@@ -3,7 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
+import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class MessagesStruct extends FFFirebaseStruct {
@@ -13,12 +15,18 @@ class MessagesStruct extends FFFirebaseStruct {
     bool? isImage,
     DateTime? createdAt,
     String? messageId,
+    List<String>? lastMessages,
+    String? initialMessage,
+    String? assistantMessage,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _role = role,
         _content = content,
         _isImage = isImage,
         _createdAt = createdAt,
         _messageId = messageId,
+        _lastMessages = lastMessages,
+        _initialMessage = initialMessage,
+        _assistantMessage = assistantMessage,
         super(firestoreUtilData);
 
   // "role" field.
@@ -56,12 +64,40 @@ class MessagesStruct extends FFFirebaseStruct {
 
   bool hasMessageId() => _messageId != null;
 
+  // "lastMessages" field.
+  List<String>? _lastMessages;
+  List<String> get lastMessages => _lastMessages ?? const [];
+  set lastMessages(List<String>? val) => _lastMessages = val;
+
+  void updateLastMessages(Function(List<String>) updateFn) {
+    updateFn(_lastMessages ??= []);
+  }
+
+  bool hasLastMessages() => _lastMessages != null;
+
+  // "initialMessage" field.
+  String? _initialMessage;
+  String get initialMessage => _initialMessage ?? '';
+  set initialMessage(String? val) => _initialMessage = val;
+
+  bool hasInitialMessage() => _initialMessage != null;
+
+  // "assistantMessage" field.
+  String? _assistantMessage;
+  String get assistantMessage => _assistantMessage ?? '';
+  set assistantMessage(String? val) => _assistantMessage = val;
+
+  bool hasAssistantMessage() => _assistantMessage != null;
+
   static MessagesStruct fromMap(Map<String, dynamic> data) => MessagesStruct(
         role: data['role'] as String?,
         content: data['content'] as String?,
         isImage: data['is_image'] as bool?,
         createdAt: data['created_at'] as DateTime?,
         messageId: data['message_id'] as String?,
+        lastMessages: getDataList(data['lastMessages']),
+        initialMessage: data['initialMessage'] as String?,
+        assistantMessage: data['assistantMessage'] as String?,
       );
 
   static MessagesStruct? maybeFromMap(dynamic data) =>
@@ -73,6 +109,9 @@ class MessagesStruct extends FFFirebaseStruct {
         'is_image': _isImage,
         'created_at': _createdAt,
         'message_id': _messageId,
+        'lastMessages': _lastMessages,
+        'initialMessage': _initialMessage,
+        'assistantMessage': _assistantMessage,
       }.withoutNulls;
 
   @override
@@ -95,6 +134,19 @@ class MessagesStruct extends FFFirebaseStruct {
         ),
         'message_id': serializeParam(
           _messageId,
+          ParamType.String,
+        ),
+        'lastMessages': serializeParam(
+          _lastMessages,
+          ParamType.String,
+          isList: true,
+        ),
+        'initialMessage': serializeParam(
+          _initialMessage,
+          ParamType.String,
+        ),
+        'assistantMessage': serializeParam(
+          _assistantMessage,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -126,6 +178,21 @@ class MessagesStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        lastMessages: deserializeParam<String>(
+          data['lastMessages'],
+          ParamType.String,
+          true,
+        ),
+        initialMessage: deserializeParam(
+          data['initialMessage'],
+          ParamType.String,
+          false,
+        ),
+        assistantMessage: deserializeParam(
+          data['assistantMessage'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -133,17 +200,29 @@ class MessagesStruct extends FFFirebaseStruct {
 
   @override
   bool operator ==(Object other) {
+    const listEquality = ListEquality();
     return other is MessagesStruct &&
         role == other.role &&
         content == other.content &&
         isImage == other.isImage &&
         createdAt == other.createdAt &&
-        messageId == other.messageId;
+        messageId == other.messageId &&
+        listEquality.equals(lastMessages, other.lastMessages) &&
+        initialMessage == other.initialMessage &&
+        assistantMessage == other.assistantMessage;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([role, content, isImage, createdAt, messageId]);
+  int get hashCode => const ListEquality().hash([
+        role,
+        content,
+        isImage,
+        createdAt,
+        messageId,
+        lastMessages,
+        initialMessage,
+        assistantMessage
+      ]);
 }
 
 MessagesStruct createMessagesStruct({
@@ -152,6 +231,8 @@ MessagesStruct createMessagesStruct({
   bool? isImage,
   DateTime? createdAt,
   String? messageId,
+  String? initialMessage,
+  String? assistantMessage,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -163,6 +244,8 @@ MessagesStruct createMessagesStruct({
       isImage: isImage,
       createdAt: createdAt,
       messageId: messageId,
+      initialMessage: initialMessage,
+      assistantMessage: assistantMessage,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

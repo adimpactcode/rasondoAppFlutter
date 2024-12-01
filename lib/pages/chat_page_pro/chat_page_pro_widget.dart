@@ -61,12 +61,12 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       if (_model.doesChatExist?.reference != null) {
-        _model.oldChatMessages = await queryMessagesRecordOnce(
+        _model.oldMessages = await queryMessagesRecordOnce(
           parent: _model.doesChatExist?.reference,
           queryBuilder: (messagesRecord) =>
               messagesRecord.orderBy('created_at', descending: true),
-          singleRecord: true,
-        ).then((s) => s.firstOrNull);
+          limit: 10,
+        );
       } else {
         var chatsRecordReference = ChatsRecord.collection.doc();
         await chatsRecordReference.set(createChatsRecordData(
@@ -79,6 +79,35 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
               characterId: widget.characterId,
             ),
             chatsRecordReference);
+      }
+
+      _model.apiLlmPageload = await NovitaFunctionLLMCall.call(
+        characterId: widget.characterId?.id,
+        userId: widget.userReference?.id,
+      );
+
+      if ((_model.apiLlmPageload?.succeeded ?? true)) {
+        if ((_model.oldMessages != null && (_model.oldMessages)!.isNotEmpty) ==
+            false) {
+          _model.addToMessage(MessagesStruct(
+            role: 'assistant',
+            content: NovitaFunctionLLMCall.startMessage(
+              (_model.apiLlmPageload?.jsonBody ?? ''),
+            ).toString(),
+          ));
+          safeSetState(() {});
+        } else {
+          _model.message = ((_model.apiLlmPageload?.jsonBody ?? '')
+                  .toList()
+                  .map<MessagesStruct?>(MessagesStruct.maybeFromMap)
+                  .toList() as Iterable<MessagesStruct?>)
+              .withoutNulls
+              .take(10)
+              .toList()
+              .toList()
+              .cast<MessagesStruct>();
+          safeSetState(() {});
+        }
       }
     });
 
@@ -731,9 +760,24 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                 ?.id;
                                                         safeSetState(() {});
 
-                                                        await MessagesRecord.createDoc(
+                                                        await widget
+                                                            .userReference!
+                                                            .update({
+                                                          ...mapToFirestore(
+                                                            {
+                                                              'messages_sent_count':
+                                                                  FieldValue
+                                                                      .increment(
+                                                                          1),
+                                                            },
+                                                          ),
+                                                        });
+
+                                                        var messagesRecordReference1 =
+                                                            MessagesRecord.createDoc(
                                                                 chatPageProChatsRecord!
-                                                                    .reference)
+                                                                    .reference);
+                                                        await messagesRecordReference1
                                                             .set(
                                                                 createMessagesRecordData(
                                                           role: 'user',
@@ -743,6 +787,19 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                           createdAt:
                                                               getCurrentTimestamp,
                                                         ));
+                                                        _model.currentUserMessage =
+                                                            MessagesRecord
+                                                                .getDocumentFromData(
+                                                                    createMessagesRecordData(
+                                                                      role:
+                                                                          'user',
+                                                                      content: _model
+                                                                          .textController
+                                                                          .text,
+                                                                      createdAt:
+                                                                          getCurrentTimestamp,
+                                                                    ),
+                                                                    messagesRecordReference1);
                                                         _model.apiResultmlu =
                                                             await NovitaFunctionLLMCall
                                                                 .call(
@@ -756,18 +813,6 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                               .text,
                                                         );
 
-                                                        await widget
-                                                            .userReference!
-                                                            .update({
-                                                          ...mapToFirestore(
-                                                            {
-                                                              'messages_sent_count':
-                                                                  FieldValue
-                                                                      .increment(
-                                                                          1),
-                                                            },
-                                                          ),
-                                                        });
                                                         safeSetState(() {
                                                           _model.textController
                                                               ?.clear();

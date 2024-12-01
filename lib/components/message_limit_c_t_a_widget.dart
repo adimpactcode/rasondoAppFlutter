@@ -172,7 +172,7 @@ class _MessageLimitCTAWidgetState extends State<MessageLimitCTAWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              context.pushNamed('auth_2_Create');
+                              context.pushNamed('GetPremium');
                             },
                             text: FFLocalizations.of(context).getText(
                               '5fvkzl7o' /* Jetzt Premium werden! */,

@@ -174,8 +174,17 @@ class NovitaFunctionLLMCall {
   static String? aiResponse(dynamic response) =>
       castToType<String>(getJsonField(
         response,
-        r'''$.content''',
+        r'''$.assistantMessage''',
       ));
+  static List? lastMessages(dynamic response) => getJsonField(
+        response,
+        r'''$.lastMessages''',
+        true,
+      ) as List?;
+  static dynamic startMessage(dynamic response) => getJsonField(
+        response,
+        r'''$.initialMessage''',
+      );
 }
 
 class NovitaFunctionTextToImageCall {
