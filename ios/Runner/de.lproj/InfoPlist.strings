@@ -1,0 +1,2 @@
+NSLocationWhenInUseUsageDescription = "Erlaube der App, deinen Standort zu verwenden, um dir personalisierte Erlebnisse basierend auf deinem Standort zu bieten.";
+PermissionGroupNotification = "Erhalte Benachrichtigungen, um immer auf dem neuesten Stand zu bleiben und keine wichtigen Updates zu verpassen";
