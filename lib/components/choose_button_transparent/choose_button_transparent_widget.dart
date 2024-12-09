@@ -1,9 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'choose_button_transparent_model.dart';
 export 'choose_button_transparent_model.dart';
 
@@ -43,12 +41,12 @@ class _ChooseButtonTransparentWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 100.0,
         height: 50.0,
         decoration: BoxDecoration(
-          color: Color(0xB3DE5499),
+          color: const Color(0xB3DE5499),
           borderRadius: BorderRadius.circular(6.0),
           border: Border.all(
             color: FlutterFlowTheme.of(context).primary,
@@ -56,7 +54,7 @@ class _ChooseButtonTransparentWidgetState
           ),
         ),
         child: Align(
-          alignment: AlignmentDirectional(0.0, 0.0),
+          alignment: const AlignmentDirectional(0.0, 0.0),
           child: Text(
             FFLocalizations.of(context).getText(
               '177p7j7x' /* Anime */,

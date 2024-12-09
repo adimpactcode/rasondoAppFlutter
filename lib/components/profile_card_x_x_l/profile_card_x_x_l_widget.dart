@@ -2,9 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'profile_card_x_x_l_model.dart';
 export 'profile_card_x_x_l_model.dart';
 
@@ -44,7 +42,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
     return Container(
       width: 450.0,
       height: 650.0,
-      decoration: BoxDecoration(),
+      decoration: const BoxDecoration(),
       child: Stack(
         children: [
           ClipRRect(
@@ -57,7 +55,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(0.0, 1.0),
+            alignment: const AlignmentDirectional(0.0, 1.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -67,7 +65,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
                   child: Container(
                     width: 450.0,
                     height: 140.0,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 4.0,
@@ -92,7 +90,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           12.0, 12.0, 12.0, 12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -116,7 +114,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
                           ),
                           Container(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 colors: [Color(0xFADE5499), Color(0xFFDE5499)],
                                 stops: [0.4, 1.0],
                                 begin: AlignmentDirectional(0.0, -1.0),
@@ -125,7 +123,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(4.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'l82hd4hq' /* 24 Years */,
@@ -136,7 +134,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .bodyMediumFamily,
-                                      color: Color(0xE6FFFFFF),
+                                      color: const Color(0xE6FFFFFF),
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -155,7 +153,7 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
-                                  color: Color(0xE6FFFFFF),
+                                  color: const Color(0xE6FFFFFF),
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -171,20 +169,20 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(1.0, 0.0),
+            alignment: const AlignmentDirectional(1.0, 0.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 25.0,
                       buttonSize: 50.0,
-                      fillColor: Color(0x4DFFFFFF),
+                      fillColor: const Color(0x4DFFFFFF),
                       icon: Icon(
                         Icons.wechat_sharp,
                         color: FlutterFlowTheme.of(context).primary,
@@ -199,8 +197,8 @@ class _ProfileCardXXLWidgetState extends State<ProfileCardXXLWidget> {
                     borderColor: Colors.transparent,
                     borderRadius: 25.0,
                     buttonSize: 50.0,
-                    fillColor: Color(0x4DFFFFFF),
-                    icon: Icon(
+                    fillColor: const Color(0x4DFFFFFF),
+                    icon: const Icon(
                       Icons.favorite_border,
                       color: Colors.white,
                       size: 24.0,

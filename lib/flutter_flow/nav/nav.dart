@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
@@ -12,11 +9,7 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -81,19 +74,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : HomeWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const HomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : HomeWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const HomeWidget(),
         ),
         FFRoute(
           name: 'Home',
           path: '/home',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Home')
+              ? const NavBarPage(initialPage: 'Home')
               : HomeWidget(
                   dummyChatID: params.getParam(
                     'dummyChatID',
@@ -107,14 +100,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Create',
           path: '/create',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Create')
-              : CreateWidget(),
+              ? const NavBarPage(initialPage: 'Create')
+              : const CreateWidget(),
         ),
         FFRoute(
           name: 'MyAI',
           path: '/myAI',
           requireAuth: true,
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: MyAIWidget(),
           ),
@@ -124,7 +117,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/chats',
           requireAuth: true,
           builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'Chats') : ChatsWidget(),
+              params.isEmpty ? const NavBarPage(initialPage: 'Chats') : const ChatsWidget(),
         ),
         FFRoute(
           name: 'characterProfil',
@@ -142,7 +135,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Explore',
           path: '/explore',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Explore')
+              ? const NavBarPage(initialPage: 'Explore')
               : ExploreWidget(
                   dummyChatID: params.getParam(
                     'dummyChatID',
@@ -156,8 +149,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'GetPremium',
           path: '/getPremium',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'GetPremium')
-              : NavBarPage(
+              ? const NavBarPage(initialPage: 'GetPremium')
+              : const NavBarPage(
                   initialPage: 'GetPremium',
                   page: GetPremiumWidget(),
                 ),
@@ -165,7 +158,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Datenschutz',
           path: '/Datenschutz',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: DatenschutzWidget(),
           ),
@@ -173,7 +166,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Impressum',
           path: '/Impressum',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: ImpressumWidget(),
           ),
@@ -181,17 +174,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'auth_2_Create',
           path: '/auth2Create',
-          builder: (context, params) => Auth2CreateWidget(),
+          builder: (context, params) => const Auth2CreateWidget(),
         ),
         FFRoute(
           name: 'auth_2_Login',
           path: '/auth2Login',
-          builder: (context, params) => Auth2LoginWidget(),
+          builder: (context, params) => const Auth2LoginWidget(),
         ),
         FFRoute(
           name: 'auth_2_ForgotPassword',
           path: '/auth2ForgotPassword',
-          builder: (context, params) => Auth2ForgotPasswordWidget(),
+          builder: (context, params) => const Auth2ForgotPasswordWidget(),
         ),
         FFRoute(
           name: 'ImageToImage',
@@ -247,7 +240,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AGB',
           path: '/AGB',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: AgbWidget(),
           ),
@@ -255,12 +248,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'VerificationPage',
           path: '/verificationPage',
-          builder: (context, params) => VerificationPageWidget(),
+          builder: (context, params) => const VerificationPageWidget(),
         ),
         FFRoute(
           name: 'AllgemeineGeschftsbedingungen',
           path: '/allgemeineGeschftsbedingungen',
-          builder: (context, params) => AllgemeineGeschftsbedingungenWidget(),
+          builder: (context, params) => const AllgemeineGeschftsbedingungenWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -450,7 +443,7 @@ class FFRoute {
               ? isWeb
                   ? Container()
                   : Container(
-                      color: Color(0xFF1E2428),
+                      color: const Color(0xFF1E2428),
                       child: Image.asset(
                         'assets/images/Rasondo_(28).png',
                         fit: BoxFit.contain,
@@ -498,7 +491,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

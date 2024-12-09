@@ -2,9 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'profile_card2_model.dart';
 export 'profile_card2_model.dart';
 
@@ -51,7 +49,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
       width: 330.0,
       height: 500.0,
       decoration: BoxDecoration(
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 4.0,
             color: Color(0x33000000),
@@ -64,7 +62,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
         ],
         borderRadius: BorderRadius.circular(0.0),
       ),
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Stack(
         children: [
           ClipRRect(
@@ -77,7 +75,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(0.0, 1.0),
+            alignment: const AlignmentDirectional(0.0, 1.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -86,7 +84,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
                   child: Container(
                     width: 330.0,
                     height: 110.0,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 4.0,
@@ -111,7 +109,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +133,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFADE5499),
                                     Color(0xFFDE5499)
@@ -147,7 +145,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(6.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
                                     'lak4z4ho' /* 24 Years */,
@@ -158,7 +156,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
-                                        color: Color(0xE6FFFFFF),
+                                        color: const Color(0xE6FFFFFF),
                                         letterSpacing: 0.0,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
@@ -178,7 +176,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
-                                  color: Color(0xE6FFFFFF),
+                                  color: const Color(0xE6FFFFFF),
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -194,9 +192,9 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(1.0, 0.0),
+            alignment: const AlignmentDirectional(1.0, 0.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -226,7 +224,7 @@ class _ProfileCard2WidgetState extends State<ProfileCard2Widget> {
                       print('IconButton pressed ...');
                     },
                   ),
-                ].divide(SizedBox(height: 10.0)),
+                ].divide(const SizedBox(height: 10.0)),
               ),
             ),
           ),

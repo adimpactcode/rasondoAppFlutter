@@ -2,10 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'button_pink_model.dart';
 export 'button_pink_model.dart';
 
@@ -52,9 +49,9 @@ class _ButtonPinkWidgetState extends State<ButtonPinkWidget> {
       options: FFButtonOptions(
         width: 220.0,
         height: 40.0,
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        color: Color(0x00F2F2F2),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        color: const Color(0x00F2F2F2),
         textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
               color: FlutterFlowTheme.of(context).primary,

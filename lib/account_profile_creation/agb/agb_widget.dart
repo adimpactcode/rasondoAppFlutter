@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/components/navbar_mobile/navbar_mobile_widget.dart';
@@ -9,9 +8,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'agb_model.dart';
@@ -64,7 +61,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                      const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,7 +91,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     35.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -119,7 +116,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                               ),
                             ],
                           ),
-                        ].divide(SizedBox(height: 32.0)),
+                        ].divide(const SizedBox(height: 32.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -157,7 +154,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -196,7 +193,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -231,7 +228,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -270,7 +267,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           Divider(
@@ -278,7 +275,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -287,7 +284,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                               children: [
                                 if (loggedIn == false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -301,7 +298,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         model: _model.buttonPinkModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: ButtonPinkWidget(),
+                                        child: const ButtonPinkWidget(),
                                       ),
                                     ),
                                   ),
@@ -310,7 +307,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         false) ==
                                     false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
@@ -321,17 +318,17 @@ class _AgbWidgetState extends State<AgbWidget> {
                                             FFLocalizations.of(context).getText(
                                           'hkt0lk2u' /* Premium */,
                                         ),
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.diamond_sharp,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -358,12 +355,12 @@ class _AgbWidgetState extends State<AgbWidget> {
                                       ),
                                     ),
                                   ),
-                              ].divide(SizedBox(height: 16.0)),
+                              ].divide(const SizedBox(height: 16.0)),
                             ),
                           ),
                           if (loggedIn == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -411,12 +408,12 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 16.0)),
+                                  ].divide(const SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 5.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -467,7 +464,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     onChanged: (lang) =>
                                         setAppLanguage(context, lang),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
@@ -506,7 +503,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           if (loggedIn == true)
@@ -548,10 +545,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
-                        ].divide(SizedBox(height: 24.0)),
+                        ].divide(const SizedBox(height: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -566,9 +563,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
-                        ].divide(SizedBox(width: 24.0)),
+                        ].divide(const SizedBox(width: 24.0)),
                       ),
-                    ].divide(SizedBox(height: 40.0)),
+                    ].divide(const SizedBox(height: 40.0)),
                   ),
                 ),
               ),
@@ -595,7 +592,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                             blurRadius: 2.0,
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -603,14 +600,14 @@ class _AgbWidgetState extends State<AgbWidget> {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -632,7 +629,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 15.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -649,7 +646,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                             'Explore',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -662,7 +659,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -698,9 +695,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -721,7 +718,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
                                       InkWell(
@@ -737,7 +734,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -773,9 +770,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -801,7 +798,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
                                       InkWell(
@@ -817,7 +814,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -853,9 +850,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -876,15 +873,15 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 35.0)),
+                                    ].divide(const SizedBox(width: 35.0)),
                                   ),
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         '8xr0efp0' /* Message... */,
@@ -911,8 +908,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Opacity(
                                     opacity: 0.5,
@@ -936,12 +933,12 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'nok13lwu' /* Darkmodus */,
                                       ),
-                                      style: TextStyle(),
+                                      style: const TextStyle(),
                                     ),
                                   ),
                                   offset: 4.0,
@@ -952,8 +949,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Opacity(
                                     opacity: 0.5,
@@ -989,7 +986,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'rn488d5t' /* User profil */,
@@ -1016,8 +1013,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Visibility(
                                     visible: (loggedIn == true) &&
@@ -1068,7 +1065,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     child: wrapWithModel(
                                       model: _model.buttonPinkModel1,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: ButtonPinkWidget(),
+                                      child: const ButtonPinkWidget(),
                                     ),
                                   ),
                                 if (loggedIn == false)
@@ -1082,10 +1079,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     options: FFButtonOptions(
                                       width: 100.0,
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1114,7 +1111,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     ),
                                   ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1132,9 +1129,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
-                          ].divide(SizedBox(width: 16.0)),
+                          ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),
                     ),
@@ -1145,14 +1142,14 @@ class _AgbWidgetState extends State<AgbWidget> {
                     wrapWithModel(
                       model: _model.navbarMobileModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: NavbarMobileWidget(),
+                      child: const NavbarMobileWidget(),
                     ),
                   Flexible(
                     child: Container(
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 750.0,
                       ),
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -1163,10 +1160,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Container(
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                       maxWidth: 750.0,
                                     ),
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -1174,10 +1171,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 40.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -1208,7 +1205,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           child: RichText(
                                             textScaler: MediaQuery.of(context)
@@ -1269,7 +1266,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                       ),
                     ),
                   ),
-                ].divide(SizedBox(height: 12.0)),
+                ].divide(const SizedBox(height: 12.0)),
               ),
             ),
           ),

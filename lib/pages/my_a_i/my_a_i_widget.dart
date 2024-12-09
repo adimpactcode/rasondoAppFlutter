@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/button_pink/button_pink_widget.dart';
@@ -9,7 +8,6 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -64,7 +62,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                      const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,7 +92,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     35.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -119,7 +117,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               ),
                             ],
                           ),
-                        ].divide(SizedBox(height: 32.0)),
+                        ].divide(const SizedBox(height: 32.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -157,7 +155,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -196,7 +194,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -231,7 +229,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -270,7 +268,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           Divider(
@@ -278,7 +276,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -287,7 +285,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               children: [
                                 if (loggedIn == false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -301,14 +299,14 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         model: _model.buttonPinkModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: ButtonPinkWidget(),
+                                        child: const ButtonPinkWidget(),
                                       ),
                                     ),
                                   ),
                                 if (valueOrDefault<bool>(
                                     currentUserDocument?.isPremium, false))
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
@@ -319,17 +317,17 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             FFLocalizations.of(context).getText(
                                           'wrugfwh4' /* Premium */,
                                         ),
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.diamond_sharp,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -356,12 +354,12 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       ),
                                     ),
                                   ),
-                              ].divide(SizedBox(height: 16.0)),
+                              ].divide(const SizedBox(height: 16.0)),
                             ),
                           ),
                           if (loggedIn == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -409,12 +407,12 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 16.0)),
+                                  ].divide(const SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 5.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -465,7 +463,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     onChanged: (lang) =>
                                         setAppLanguage(context, lang),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
@@ -504,7 +502,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           if (loggedIn == true)
@@ -546,10 +544,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
-                        ].divide(SizedBox(height: 24.0)),
+                        ].divide(const SizedBox(height: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -564,9 +562,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
-                        ].divide(SizedBox(width: 24.0)),
+                        ].divide(const SizedBox(width: 24.0)),
                       ),
-                    ].divide(SizedBox(height: 40.0)),
+                    ].divide(const SizedBox(height: 40.0)),
                   ),
                 ),
               ),
@@ -592,7 +590,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             blurRadius: 2.0,
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -600,14 +598,14 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -629,7 +627,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 15.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -646,7 +644,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             'Explore',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -659,7 +657,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -695,9 +693,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -718,7 +716,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
                                       InkWell(
@@ -734,7 +732,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -770,9 +768,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -798,7 +796,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
                                       InkWell(
@@ -814,7 +812,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -850,9 +848,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -873,15 +871,15 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 35.0)),
+                                    ].divide(const SizedBox(width: 35.0)),
                                   ),
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'jv01ei5t' /* Message... */,
@@ -908,8 +906,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Opacity(
                                     opacity: 0.5,
@@ -933,12 +931,12 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'juml0b2z' /* Darkmodus */,
                                       ),
-                                      style: TextStyle(),
+                                      style: const TextStyle(),
                                     ),
                                   ),
                                   offset: 4.0,
@@ -949,8 +947,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Opacity(
                                     opacity: 0.5,
@@ -986,7 +984,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'ul7tztuj' /* User profil */,
@@ -1013,8 +1011,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Visibility(
                                     visible: (loggedIn == true) &&
@@ -1065,7 +1063,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     child: wrapWithModel(
                                       model: _model.buttonPinkModel1,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: ButtonPinkWidget(),
+                                      child: const ButtonPinkWidget(),
                                     ),
                                   ),
                                 if (loggedIn == false)
@@ -1079,10 +1077,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     options: FFButtonOptions(
                                       width: 100.0,
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1111,7 +1109,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     ),
                                   ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1129,9 +1127,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
-                          ].divide(SizedBox(width: 16.0)),
+                          ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),
                     ),
@@ -1144,13 +1142,13 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, -1.0),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x33000000),
@@ -1172,7 +1170,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   children: [
                                     Flexible(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1182,7 +1180,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: InkWell(
@@ -1196,7 +1194,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     'Home',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          TransitionInfo(
+                                                          const TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -1324,7 +1322,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 ),
                                               ],
                                             ),
-                                          ].divide(SizedBox(width: 16.0)),
+                                          ].divide(const SizedBox(width: 16.0)),
                                         ),
                                       ),
                                     ),
@@ -1346,13 +1344,13 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, -1.0),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x33000000),
@@ -1370,7 +1368,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               children: [
                                 Flexible(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1381,7 +1379,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -1393,7 +1391,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 'Home',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
@@ -1502,7 +1500,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             ),
                                           ],
                                         ),
-                                      ].divide(SizedBox(width: 16.0)),
+                                      ].divide(const SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -1545,25 +1543,25 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         child: Stack(
                                           children: [
                                             Container(
-                                              decoration: BoxDecoration(),
+                                              decoration: const BoxDecoration(),
                                             ),
                                             Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
                                               height: 60.0,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Color(0xFF1E2428),
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   maxWidth: 600.0,
                                                 ),
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                                 child: RichText(
                                                   textScaler:
                                                       MediaQuery.of(context)
@@ -1623,7 +1621,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 .getText(
                                                           'ti1cat85' /* Charactere */,
                                                         ),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontSize: 22.0,
                                                         ),
                                                       )
@@ -1665,7 +1663,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             ),
                             Flexible(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -1678,7 +1676,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 50.0, 0.0, 0.0),
                                           child: AuthUserStreamWidget(
                                             builder: (context) => Column(
@@ -1722,11 +1720,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -1762,7 +1760,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         ),
                                       ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 25.0, 0.0, 0.0),
                                       child: StreamBuilder<
                                           List<CharactersMainRecord>>(
@@ -1797,7 +1795,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           return GridView.builder(
                                             padding: EdgeInsets.zero,
                                             gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                const SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: 2,
                                               crossAxisSpacing: 10.0,
                                               mainAxisSpacing: 10.0,
@@ -1814,7 +1812,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   gridViewCharactersMainRecordList[
                                                       gridViewIndex];
                                               return Stack(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 1.0),
                                                 children: [
                                                   Container(
@@ -1867,7 +1865,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                       .height *
                                                                   1.0,
                                                           fit: BoxFit.cover,
-                                                          alignment: Alignment(
+                                                          alignment: const Alignment(
                                                               0.0, -1.0),
                                                         ),
                                                       ),
@@ -1876,17 +1874,17 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   Container(
                                                     width: 195.0,
                                                     height: 80.0,
-                                                    decoration: BoxDecoration(
+                                                    decoration: const BoxDecoration(
                                                       color: Color(0x2A333333),
                                                     ),
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             -1.0, 1.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -1924,11 +1922,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             -1.0, 1.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -1947,7 +1945,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   4.0),
                                                           child: Text(
                                                             gridViewCharactersMainRecord
@@ -1982,11 +1980,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             1.0, -1.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   20.0,
@@ -1999,7 +1997,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         borderRadius: 180.0,
                                                         buttonSize: 44.0,
                                                         fillColor:
-                                                            Color(0xBDDE5499),
+                                                            const Color(0xBDDE5499),
                                                         icon: Icon(
                                                           Icons.wechat_outlined,
                                                           color: FlutterFlowTheme
@@ -2083,25 +2081,25 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       child: Stack(
                                         children: [
                                           Container(
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             height: 280.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Color(0xFF1E2428),
                                             ),
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Container(
-                                              constraints: BoxConstraints(
+                                              constraints: const BoxConstraints(
                                                 maxWidth: 600.0,
                                               ),
-                                              decoration: BoxDecoration(),
+                                              decoration: const BoxDecoration(),
                                               child: RichText(
                                                 textScaler:
                                                     MediaQuery.of(context)
@@ -2158,7 +2156,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                           .getText(
                                                         'lhq82og9' /* Charactere */,
                                                       ),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 34.0,
                                                       ),
                                                     )
@@ -2205,7 +2203,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               children: [
                                 Flexible(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 40.0, 20.0, 0.0),
                                     child: StreamBuilder<
                                         List<CharactersMainRecord>>(
@@ -2239,7 +2237,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         return GridView.builder(
                                           padding: EdgeInsets.zero,
                                           gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                              const SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 5,
                                             crossAxisSpacing: 10.0,
                                             mainAxisSpacing: 10.0,
@@ -2261,7 +2259,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 Flexible(
                                                   child: Stack(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.0, 1.0),
                                                     children: [
                                                       Container(
@@ -2319,7 +2317,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                   1.0,
                                                               fit: BoxFit.cover,
                                                               alignment:
-                                                                  Alignment(0.0,
+                                                                  const Alignment(0.0,
                                                                       -1.0),
                                                             ),
                                                           ),
@@ -2333,18 +2331,18 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 1.0,
                                                         height: 80.0,
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                           color:
                                                               Color(0x65333333),
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 1.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -2381,11 +2379,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 1.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -2404,7 +2402,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsets
+                                                                  const EdgeInsets
                                                                       .all(4.0),
                                                               child: Text(
                                                                 gridViewCharactersMainRecord
@@ -2438,11 +2436,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 1.0, -1.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       20.0,
@@ -2454,7 +2452,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 .transparent,
                                                             borderRadius: 180.0,
                                                             buttonSize: 48.0,
-                                                            fillColor: Color(
+                                                            fillColor: const Color(
                                                                 0xCADE5499),
                                                             icon: Icon(
                                                               Icons
@@ -2516,7 +2514,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     0)
                                   Flexible(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 50.0, 0.0, 0.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => Row(
@@ -2552,7 +2550,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       100.0, 0.0, 0.0, 0.0),
                                               child: FFButtonWidget(
@@ -2566,11 +2564,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 ),
                                                 options: FFButtonOptions(
                                                   height: 40.0,
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 16.0, 0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(

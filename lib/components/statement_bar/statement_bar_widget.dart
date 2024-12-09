@@ -1,9 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'statement_bar_model.dart';
 export 'statement_bar_model.dart';
 
@@ -67,7 +65,7 @@ class _StatementBarWidgetState extends State<StatementBarWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -89,7 +87,7 @@ class _StatementBarWidgetState extends State<StatementBarWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -111,7 +109,7 @@ class _StatementBarWidgetState extends State<StatementBarWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -133,7 +131,7 @@ class _StatementBarWidgetState extends State<StatementBarWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
       ],
     );

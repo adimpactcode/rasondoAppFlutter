@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/button_pink/button_pink_widget.dart';
@@ -10,12 +9,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -66,7 +61,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: Color(0x80FFFFFF),
+            color: const Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -78,8 +73,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 100.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 100.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -115,7 +110,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                      const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -145,7 +140,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     35.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -170,7 +165,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               ),
                             ],
                           ),
-                        ].divide(SizedBox(height: 32.0)),
+                        ].divide(const SizedBox(height: 32.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -208,7 +203,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -247,7 +242,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -282,7 +277,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -321,7 +316,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           Divider(
@@ -329,7 +324,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -338,7 +333,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               children: [
                                 if (loggedIn == false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -352,7 +347,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         model: _model.buttonPinkModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: ButtonPinkWidget(),
+                                        child: const ButtonPinkWidget(),
                                       ),
                                     ),
                                   ),
@@ -361,7 +356,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         false) ==
                                     false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
@@ -372,17 +367,17 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             FFLocalizations.of(context).getText(
                                           'j41d4cwa' /* Premium */,
                                         ),
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.diamond_sharp,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -409,12 +404,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       ),
                                     ),
                                   ),
-                              ].divide(SizedBox(height: 16.0)),
+                              ].divide(const SizedBox(height: 16.0)),
                             ),
                           ),
                           if (loggedIn == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -462,12 +457,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 16.0)),
+                                  ].divide(const SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 5.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -518,7 +513,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     onChanged: (lang) =>
                                         setAppLanguage(context, lang),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
@@ -557,7 +552,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           if (loggedIn == true)
@@ -599,10 +594,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
-                        ].divide(SizedBox(height: 24.0)),
+                        ].divide(const SizedBox(height: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -617,9 +612,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
-                        ].divide(SizedBox(width: 24.0)),
+                        ].divide(const SizedBox(width: 24.0)),
                       ),
-                    ].divide(SizedBox(height: 40.0)),
+                    ].divide(const SizedBox(height: 40.0)),
                   ),
                 ),
               ),
@@ -646,7 +641,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             blurRadius: 2.0,
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            offset: Offset(
+                            offset: const Offset(
                               0.0,
                               1.0,
                             ),
@@ -654,14 +649,14 @@ class _ExploreWidgetState extends State<ExploreWidget>
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -683,7 +678,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 15.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -700,7 +695,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             'Explore',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -713,7 +708,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -749,9 +744,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -772,7 +767,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
                                       InkWell(
@@ -788,7 +783,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -824,9 +819,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -852,7 +847,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
                                       InkWell(
@@ -868,7 +863,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                           children: [
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -904,9 +899,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: InkWell(
@@ -927,15 +922,15 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 35.0)),
+                                    ].divide(const SizedBox(width: 35.0)),
                                   ),
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         't8btwvv4' /* Message... */,
@@ -962,8 +957,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Opacity(
                                     opacity: 0.5,
@@ -987,12 +982,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'fvp0pupc' /* Darkmodus */,
                                       ),
-                                      style: TextStyle(),
+                                      style: const TextStyle(),
                                     ),
                                   ),
                                   offset: 4.0,
@@ -1003,8 +998,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Opacity(
                                     opacity: 0.5,
@@ -1040,7 +1035,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 ),
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'z6ywcml8' /* User profil */,
@@ -1067,8 +1062,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 300),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 300),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Visibility(
                                     visible: (loggedIn == true) &&
@@ -1119,7 +1114,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     child: wrapWithModel(
                                       model: _model.buttonPinkModel1,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: ButtonPinkWidget(),
+                                      child: const ButtonPinkWidget(),
                                     ),
                                   ),
                                 if (loggedIn == false)
@@ -1133,10 +1128,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     options: FFButtonOptions(
                                       width: 100.0,
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1166,7 +1161,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   ).animateOnPageLoad(animationsMap[
                                       'buttonOnPageLoadAnimation']!),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1184,9 +1179,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
-                          ].divide(SizedBox(width: 16.0)),
+                          ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),
                     ),
@@ -1200,13 +1195,13 @@ class _ExploreWidgetState extends State<ExploreWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, -1.0),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x33000000),
@@ -1224,7 +1219,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               children: [
                                 Flexible(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1235,7 +1230,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -1247,7 +1242,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 'Home',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
@@ -1356,7 +1351,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             ),
                                           ],
                                         ),
-                                      ].divide(SizedBox(width: 16.0)),
+                                      ].divide(const SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -1375,13 +1370,13 @@ class _ExploreWidgetState extends State<ExploreWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, -1.0),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x33000000),
@@ -1403,7 +1398,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   children: [
                                     Flexible(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1413,7 +1408,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                               CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: InkWell(
@@ -1427,7 +1422,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     'Home',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          TransitionInfo(
+                                                          const TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -1555,7 +1550,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 ),
                                               ],
                                             ),
-                                          ].divide(SizedBox(width: 16.0)),
+                                          ].divide(const SizedBox(width: 16.0)),
                                         ),
                                       ),
                                     ),
@@ -1591,23 +1586,23 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       Flexible(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           child: Container(
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             height: 70.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Color(0xFF1E2428),
                                               ),
                                               child: Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, -1.0),
                                                 child: RichText(
                                                   textScaler:
@@ -1711,25 +1706,25 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       Flexible(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 10.0),
                                           child: Container(
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             height: 80.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Color(0xFF1E2428),
                                             ),
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minWidth: 600.0,
                                                   maxWidth: 600.0,
                                                 ),
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                                 child: RichText(
                                                   textScaler:
                                                       MediaQuery.of(context)
@@ -1826,12 +1821,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 10.0, 16.0, 0.0),
                                     child: Column(
                                       children: [
                                         Align(
-                                          alignment: Alignment(0.0, 0),
+                                          alignment: const Alignment(0.0, 0),
                                           child: FlutterFlowButtonTabBar(
                                             useToggleButtonStyle: false,
                                             labelStyle:
@@ -1875,7 +1870,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .accent1,
                                             unselectedBackgroundColor:
-                                                Color(0x00F2F2F2),
+                                                const Color(0x00F2F2F2),
                                             borderColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
@@ -1886,7 +1881,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             borderRadius: 6.0,
                                             elevation: 0.0,
                                             buttonMargin:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             tabs: [
                                               Tab(
@@ -1928,7 +1923,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 _model.tabBarMobileController,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: StreamBuilder<
@@ -1973,7 +1968,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     return GridView.builder(
                                                       padding: EdgeInsets.zero,
                                                       gridDelegate:
-                                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                                          const SliverGridDelegateWithFixedCrossAxisCount(
                                                         crossAxisCount: 2,
                                                         crossAxisSpacing: 10.0,
                                                         mainAxisSpacing: 10.0,
@@ -1992,7 +1987,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                 gridViewIndex];
                                                         return Stack(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 1.0),
                                                           children: [
                                                             Container(
@@ -2052,7 +2047,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     fit: BoxFit
                                                                         .cover,
                                                                     alignment:
-                                                                        Alignment(
+                                                                        const Alignment(
                                                                             0.0,
                                                                             -1.0),
                                                                   ),
@@ -2063,18 +2058,18 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                               width: 195.0,
                                                               height: 80.0,
                                                               decoration:
-                                                                  BoxDecoration(
+                                                                  const BoxDecoration(
                                                                 color: Color(
                                                                     0x2A333333),
                                                               ),
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       -1.0,
                                                                       1.0),
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional
+                                                                padding: const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -2105,11 +2100,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       -1.0,
                                                                       1.0),
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional
+                                                                padding: const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -2129,7 +2124,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   child:
                                                                       Padding(
                                                                     padding:
-                                                                        EdgeInsets.all(
+                                                                        const EdgeInsets.all(
                                                                             4.0),
                                                                     child: Text(
                                                                       gridViewCharactersMainRecord
@@ -2158,11 +2153,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       1.0,
                                                                       -1.0),
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional
+                                                                padding: const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         20.0,
@@ -2177,7 +2172,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                       180.0,
                                                                   buttonSize:
                                                                       44.0,
-                                                                  fillColor: Color(
+                                                                  fillColor: const Color(
                                                                       0xBDDE5499),
                                                                   icon: Icon(
                                                                     Icons
@@ -2231,7 +2226,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                   Flexible(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   30.0,
@@ -2284,7 +2279,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                             padding:
                                                                 EdgeInsets.zero,
                                                             gridDelegate:
-                                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                                const SliverGridDelegateWithFixedCrossAxisCount(
                                                               crossAxisCount: 2,
                                                               crossAxisSpacing:
                                                                   10.0,
@@ -2306,7 +2301,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                       gridViewIndex];
                                                               return Stack(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.0,
                                                                         1.0),
                                                                 children: [
@@ -2363,7 +2358,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               MediaQuery.sizeOf(context).height * 1.0,
                                                                           fit: BoxFit
                                                                               .cover,
-                                                                          alignment: Alignment(
+                                                                          alignment: const Alignment(
                                                                               0.0,
                                                                               -1.0),
                                                                         ),
@@ -2376,19 +2371,19 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     height:
                                                                         80.0,
                                                                     decoration:
-                                                                        BoxDecoration(
+                                                                        const BoxDecoration(
                                                                       color: Color(
                                                                           0x2A333333),
                                                                     ),
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,
@@ -2412,12 +2407,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           10.0,
@@ -2434,7 +2429,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              EdgeInsets.all(4.0),
+                                                                              const EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
                                                                             gridViewCharactersMainRecord.age,
@@ -2453,12 +2448,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             1.0,
                                                                             -1.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           5.0,
                                                                           20.0,
                                                                           10.0,
@@ -2472,7 +2467,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         buttonSize:
                                                                             44.0,
                                                                         fillColor:
-                                                                            Color(0xBDDE5499),
+                                                                            const Color(0xBDDE5499),
                                                                         icon:
                                                                             Icon(
                                                                           Icons
@@ -2524,7 +2519,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                   Flexible(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   30.0,
@@ -2577,7 +2572,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                             padding:
                                                                 EdgeInsets.zero,
                                                             gridDelegate:
-                                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                                const SliverGridDelegateWithFixedCrossAxisCount(
                                                               crossAxisCount: 2,
                                                               crossAxisSpacing:
                                                                   10.0,
@@ -2599,7 +2594,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                       gridViewIndex];
                                                               return Stack(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.0,
                                                                         1.0),
                                                                 children: [
@@ -2656,7 +2651,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               MediaQuery.sizeOf(context).height * 1.0,
                                                                           fit: BoxFit
                                                                               .cover,
-                                                                          alignment: Alignment(
+                                                                          alignment: const Alignment(
                                                                               0.0,
                                                                               -1.0),
                                                                         ),
@@ -2669,19 +2664,19 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     height:
                                                                         80.0,
                                                                     decoration:
-                                                                        BoxDecoration(
+                                                                        const BoxDecoration(
                                                                       color: Color(
                                                                           0x2A333333),
                                                                     ),
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,
@@ -2705,12 +2700,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           10.0,
@@ -2727,7 +2722,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              EdgeInsets.all(4.0),
+                                                                              const EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
                                                                             gridViewCharactersMainRecord.age,
@@ -2746,12 +2741,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             1.0,
                                                                             -1.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           5.0,
                                                                           20.0,
                                                                           10.0,
@@ -2765,7 +2760,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         buttonSize:
                                                                             44.0,
                                                                         fillColor:
-                                                                            Color(0xBDDE5499),
+                                                                            const Color(0xBDDE5499),
                                                                         icon:
                                                                             Icon(
                                                                           Icons
@@ -2832,12 +2827,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Column(
                                       children: [
                                         Align(
-                                          alignment: Alignment(0.0, 0),
+                                          alignment: const Alignment(0.0, 0),
                                           child: FlutterFlowButtonTabBar(
                                             useToggleButtonStyle: false,
                                             labelStyle:
@@ -2882,7 +2877,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .accent1,
                                             unselectedBackgroundColor:
-                                                Color(0x00F2F2F2),
+                                                const Color(0x00F2F2F2),
                                             borderColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
@@ -2893,9 +2888,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             borderRadius: 6.0,
                                             elevation: 0.0,
                                             buttonMargin:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
-                                            padding: EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             tabs: [
                                               Tab(
                                                 text:
@@ -2937,7 +2932,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             children: [
                                               KeepAliveWidgetWrapper(
                                                 builder: (context) => Container(
-                                                  decoration: BoxDecoration(),
+                                                  decoration: const BoxDecoration(),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -2945,7 +2940,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       30.0,
@@ -3008,7 +3003,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     EdgeInsets
                                                                         .zero,
                                                                 gridDelegate:
-                                                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                                                   crossAxisCount:
                                                                       5,
                                                                   crossAxisSpacing:
@@ -3033,7 +3028,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           gridViewIndex];
                                                                   return Stack(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             0.0,
                                                                             1.0),
                                                                     children: [
@@ -3077,7 +3072,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               width: MediaQuery.sizeOf(context).width * 1.0,
                                                                               height: MediaQuery.sizeOf(context).height * 1.0,
                                                                               fit: BoxFit.cover,
-                                                                              alignment: Alignment(0.0, -1.0),
+                                                                              alignment: const Alignment(0.0, -1.0),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -3088,18 +3083,18 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         height:
                                                                             80.0,
                                                                         decoration:
-                                                                            BoxDecoration(
+                                                                            const BoxDecoration(
                                                                           color:
                                                                               Color(0x65333333),
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -3119,12 +3114,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -3132,7 +3127,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           child:
                                                                               Container(
                                                                             constraints:
-                                                                                BoxConstraints(
+                                                                                const BoxConstraints(
                                                                               maxWidth: 250.0,
                                                                               maxHeight: 50.0,
                                                                             ),
@@ -3143,7 +3138,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             ),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: EdgeInsets.all(4.0),
+                                                                              padding: const EdgeInsets.all(4.0),
                                                                               child: Text(
                                                                                 gridViewCharactersMainRecord.age,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3160,12 +3155,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             1.0,
                                                                             -1.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               20.0,
                                                                               10.0,
@@ -3179,7 +3174,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             buttonSize:
                                                                                 48.0,
                                                                             fillColor:
-                                                                                Color(0xCADE5499),
+                                                                                const Color(0xCADE5499),
                                                                             icon:
                                                                                 Icon(
                                                                               Icons.wechat_outlined,
@@ -3230,7 +3225,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     Flexible(
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -3289,7 +3284,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   EdgeInsets
                                                                       .zero,
                                                               gridDelegate:
-                                                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                                                 crossAxisCount:
                                                                     5,
                                                                 crossAxisSpacing:
@@ -3312,7 +3307,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         gridViewIndex];
                                                                 return Stack(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           0.0,
                                                                           1.0),
                                                                   children: [
@@ -3362,7 +3357,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             fit:
                                                                                 BoxFit.cover,
                                                                             alignment:
-                                                                                Alignment(0.0, -1.0),
+                                                                                const Alignment(0.0, -1.0),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -3374,19 +3369,19 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                       height:
                                                                           80.0,
                                                                       decoration:
-                                                                          BoxDecoration(
+                                                                          const BoxDecoration(
                                                                         color: Color(
                                                                             0x65333333),
                                                                       ),
                                                                     ),
                                                                     Align(
                                                                       alignment:
-                                                                          AlignmentDirectional(
+                                                                          const AlignmentDirectional(
                                                                               -1.0,
                                                                               1.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             10.0,
                                                                             0.0,
                                                                             0.0,
@@ -3410,12 +3405,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     ),
                                                                     Align(
                                                                       alignment:
-                                                                          AlignmentDirectional(
+                                                                          const AlignmentDirectional(
                                                                               -1.0,
                                                                               1.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             10.0,
                                                                             0.0,
                                                                             0.0,
@@ -3423,7 +3418,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         child:
                                                                             Container(
                                                                           constraints:
-                                                                              BoxConstraints(
+                                                                              const BoxConstraints(
                                                                             maxWidth:
                                                                                 250.0,
                                                                             maxHeight:
@@ -3439,7 +3434,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           child:
                                                                               Padding(
                                                                             padding:
-                                                                                EdgeInsets.all(4.0),
+                                                                                const EdgeInsets.all(4.0),
                                                                             child:
                                                                                 Text(
                                                                               gridViewCharactersMainRecord.age,
@@ -3458,12 +3453,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     ),
                                                                     Align(
                                                                       alignment:
-                                                                          AlignmentDirectional(
+                                                                          const AlignmentDirectional(
                                                                               1.0,
                                                                               -1.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             20.0,
                                                                             10.0,
@@ -3477,7 +3472,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           buttonSize:
                                                                               48.0,
                                                                           fillColor:
-                                                                              Color(0xCADE5499),
+                                                                              const Color(0xCADE5499),
                                                                           icon:
                                                                               Icon(
                                                                             Icons.wechat_outlined,
@@ -3524,7 +3519,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                               ),
                                               KeepAliveWidgetWrapper(
                                                 builder: (context) => Container(
-                                                  decoration: BoxDecoration(),
+                                                  decoration: const BoxDecoration(),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -3532,7 +3527,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       30.0,
@@ -3590,7 +3585,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     EdgeInsets
                                                                         .zero,
                                                                 gridDelegate:
-                                                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                                                   crossAxisCount:
                                                                       5,
                                                                   crossAxisSpacing:
@@ -3615,7 +3610,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           gridViewIndex];
                                                                   return Stack(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             0.0,
                                                                             1.0),
                                                                     children: [
@@ -3659,7 +3654,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               width: MediaQuery.sizeOf(context).width * 1.0,
                                                                               height: MediaQuery.sizeOf(context).height * 1.0,
                                                                               fit: BoxFit.cover,
-                                                                              alignment: Alignment(0.0, -1.0),
+                                                                              alignment: const Alignment(0.0, -1.0),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -3670,18 +3665,18 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         height:
                                                                             80.0,
                                                                         decoration:
-                                                                            BoxDecoration(
+                                                                            const BoxDecoration(
                                                                           color:
                                                                               Color(0x65333333),
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -3701,12 +3696,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             1.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -3714,7 +3709,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           child:
                                                                               Container(
                                                                             constraints:
-                                                                                BoxConstraints(
+                                                                                const BoxConstraints(
                                                                               maxWidth: 250.0,
                                                                               maxHeight: 50.0,
                                                                             ),
@@ -3725,7 +3720,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             ),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: EdgeInsets.all(4.0),
+                                                                              padding: const EdgeInsets.all(4.0),
                                                                               child: Text(
                                                                                 gridViewCharactersMainRecord.age,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3742,12 +3737,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             1.0,
                                                                             -1.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               20.0,
                                                                               10.0,
@@ -3761,7 +3756,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             buttonSize:
                                                                                 48.0,
                                                                             fillColor:
-                                                                                Color(0xCADE5499),
+                                                                                const Color(0xCADE5499),
                                                                             icon:
                                                                                 Icon(
                                                                               Icons.wechat_outlined,

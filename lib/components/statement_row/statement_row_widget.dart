@@ -1,10 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'statement_row_model.dart';
 export 'statement_row_model.dart';
 
@@ -68,7 +66,7 @@ class _StatementRowWidgetState extends State<StatementRowWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -91,7 +89,7 @@ class _StatementRowWidgetState extends State<StatementRowWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -114,7 +112,7 @@ class _StatementRowWidgetState extends State<StatementRowWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -137,9 +135,9 @@ class _StatementRowWidgetState extends State<StatementRowWidget> {
                         FlutterFlowTheme.of(context).labelMediumFamily),
                   ),
             ),
-          ].divide(SizedBox(height: 8.0)),
+          ].divide(const SizedBox(height: 8.0)),
         ),
-      ].divide(SizedBox(width: 16.0)),
+      ].divide(const SizedBox(width: 16.0)),
     );
   }
 }

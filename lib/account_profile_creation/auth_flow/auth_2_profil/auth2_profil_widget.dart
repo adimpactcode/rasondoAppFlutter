@@ -6,14 +6,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'auth2_profil_model.dart';
 export 'auth2_profil_model.dart';
 
@@ -64,7 +61,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: const AlignmentDirectional(0.0, -1.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -72,26 +69,26 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 50.0, 32.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 50.0, 32.0),
                       child: Container(
                         width: 300.0,
                         height: 70.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 25.0),
                               child: FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
                                 borderRadius: 8.0,
                                 buttonSize: 40.0,
-                                fillColor: Color(0x00DE5499),
+                                fillColor: const Color(0x00DE5499),
                                 icon: Icon(
                                   Icons.arrow_back,
                                   color: FlutterFlowTheme.of(context).primary,
@@ -103,7 +100,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 30.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -120,16 +117,16 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Container(
                         width: double.infinity,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 570.0,
                         ),
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 4.0,
                               color: Color(0x33000000),
@@ -170,7 +167,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 0.0, 20.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -195,10 +192,10 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, -1.0),
+                                            const AlignmentDirectional(0.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 12.0, 0.0, 0.0),
                                           child: Container(
                                             width: 100.0,
@@ -216,13 +213,13 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Stack(
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(4.0),
+                                                        const EdgeInsets.all(4.0),
                                                     child: AuthUserStreamWidget(
                                                       builder: (context) =>
                                                           ClipRRect(
@@ -232,11 +229,11 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                         child:
                                                             CachedNetworkImage(
                                                           fadeInDuration:
-                                                              Duration(
+                                                              const Duration(
                                                                   milliseconds:
                                                                       200),
                                                           fadeOutDuration:
-                                                              Duration(
+                                                              const Duration(
                                                                   milliseconds:
                                                                       200),
                                                           imageUrl:
@@ -254,7 +251,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(4.0),
+                                                        const EdgeInsets.all(4.0),
                                                     child: AuthUserStreamWidget(
                                                       builder: (context) =>
                                                           InkWell(
@@ -365,11 +362,11 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                           child:
                                                               CachedNetworkImage(
                                                             fadeInDuration:
-                                                                Duration(
+                                                                const Duration(
                                                                     milliseconds:
                                                                         200),
                                                             fadeOutDuration:
-                                                                Duration(
+                                                                const Duration(
                                                                     milliseconds:
                                                                         200),
                                                             imageUrl:
@@ -388,8 +385,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           ),
                                         ),
                                       ),
-                                      if (columnUsersRecord.photoUrl == null ||
-                                          columnUsersRecord.photoUrl == '')
+                                      if (columnUsersRecord.photoUrl == '')
                                         Text(
                                           FFLocalizations.of(context).getText(
                                             'zecwudj0' /* Bild hochladen */,
@@ -409,8 +405,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                             .bodyMediumFamily),
                                               ),
                                         ),
-                                      if (currentUserPhoto != null &&
-                                          currentUserPhoto != '')
+                                      if (currentUserPhoto != '')
                                         AuthUserStreamWidget(
                                           builder: (context) => InkWell(
                                             splashColor: Colors.transparent,
@@ -490,7 +485,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                 }
                                               }
 
-                                              await widget!.profileReference!
+                                              await widget.profileReference!
                                                   .update(createUsersRecordData(
                                                 photoUrl:
                                                     _model.uploadedFileUrl2,
@@ -523,7 +518,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                     ],
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 40.0, 20.0, 10.0),
                                     child: Container(
                                       width: double.infinity,
@@ -535,7 +530,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             blurRadius: 0.0,
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
-                                            offset: Offset(
+                                            offset: const Offset(
                                               0.0,
                                               1.0,
                                             ),
@@ -545,7 +540,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 12.0, 0.0, 12.0),
                                         child: Text(
                                           columnUsersRecord.displayName,
@@ -572,7 +567,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 10.0),
                                     child: Container(
                                       width: double.infinity,
@@ -584,7 +579,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             blurRadius: 0.0,
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
-                                            offset: Offset(
+                                            offset: const Offset(
                                               0.0,
                                               1.0,
                                             ),
@@ -594,7 +589,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 12.0, 0.0, 12.0),
                                         child: Text(
                                           columnUsersRecord.email,
@@ -621,7 +616,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -642,7 +637,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
-                                              offset: Offset(
+                                              offset: const Offset(
                                                 0.0,
                                                 1.0,
                                               ),
@@ -653,7 +648,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 12.0, 0.0, 12.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -700,7 +695,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           false) !=
                                       true)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 20.0, 20.0, 20.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => InkWell(
@@ -723,7 +718,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .alternate,
-                                                  offset: Offset(
+                                                  offset: const Offset(
                                                     0.0,
                                                     1.0,
                                                   ),
@@ -738,7 +733,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 12.0, 0.0, 12.0),
                                               child: Text(
@@ -777,7 +772,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           false) ==
                                       true)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 20.0, 20.0, 20.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => InkWell(
@@ -821,7 +816,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .alternate,
-                                                  offset: Offset(
+                                                  offset: const Offset(
                                                     0.0,
                                                     1.0,
                                                   ),
@@ -836,7 +831,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 12.0, 0.0, 12.0),
                                               child: Text(
@@ -871,7 +866,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                       ),
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
@@ -883,7 +878,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             blurRadius: 0.0,
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
-                                            offset: Offset(
+                                            offset: const Offset(
                                               0.0,
                                               1.0,
                                             ),
@@ -897,7 +892,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 0.0, 12.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -938,7 +933,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     20.0, 0.0, 0.0, 0.0),
                                             child: FlutterFlowLanguageSelector(
                                               width: 150.0,
@@ -985,7 +980,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 10.0, 20.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
@@ -997,7 +992,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             blurRadius: 0.0,
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
-                                            offset: Offset(
+                                            offset: const Offset(
                                               0.0,
                                               1.0,
                                             ),
@@ -1007,7 +1002,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 12.0, 0.0, 12.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,

@@ -6,11 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'edit_profile_auth21_model.dart';
 export 'edit_profile_auth21_model.dart';
 
@@ -23,11 +20,11 @@ class EditProfileAuth21Widget extends StatefulWidget {
     String? createprofil,
     String? profil,
     String? profilErstellen,
-  })  : this.title = title ?? 'Edit Profile',
-        this.confirmButtonText = confirmButtonText ?? 'Save Changes',
-        this.createprofil = createprofil ?? 'Speichern',
-        this.profil = profil ?? 'Profil',
-        this.profilErstellen = profilErstellen ?? 'Profil erstellen';
+  })  : title = title ?? 'Edit Profile',
+        confirmButtonText = confirmButtonText ?? 'Save Changes',
+        createprofil = createprofil ?? 'Speichern',
+        profil = profil ?? 'Profil',
+        profilErstellen = profilErstellen ?? 'Profil erstellen';
 
   final String title;
   final String confirmButtonText;
@@ -83,10 +80,10 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 20.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 20.0),
             child: Text(
               valueOrDefault<String>(
-                widget!.profilErstellen,
+                widget.profilErstellen,
                 'Profil erstellen',
               ),
               style: FlutterFlowTheme.of(context).displaySmall.override(
@@ -98,9 +95,9 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(0.0, -1.0),
+            alignment: const AlignmentDirectional(0.0, -1.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Container(
                 width: 100.0,
                 height: 100.0,
@@ -113,17 +110,17 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
                   ),
                 ),
                 child: Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Stack(
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: AuthUserStreamWidget(
                           builder: (context) => ClipRRect(
                             borderRadius: BorderRadius.circular(60.0),
                             child: CachedNetworkImage(
-                              fadeInDuration: Duration(milliseconds: 200),
-                              fadeOutDuration: Duration(milliseconds: 200),
+                              fadeInDuration: const Duration(milliseconds: 200),
+                              fadeOutDuration: const Duration(milliseconds: 200),
                               imageUrl: valueOrDefault<String>(
                                 currentUserPhoto,
                                 'https://images.unsplash.com/photo-1499887142886-791eca5918cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8dXNlcnxlbnwwfHx8fDE2OTc4MjQ2MjZ8MA&ixlib=rb-4.0.3&q=80&w=400',
@@ -136,12 +133,12 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(60.0),
                           child: CachedNetworkImage(
-                            fadeInDuration: Duration(milliseconds: 200),
-                            fadeOutDuration: Duration(milliseconds: 200),
+                            fadeInDuration: const Duration(milliseconds: 200),
+                            fadeOutDuration: const Duration(milliseconds: 200),
                             imageUrl:
                                 'https://images.unsplash.com/photo-1499887142886-791eca5918cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8dXNlcnxlbnwwfHx8fDE2OTc4MjQ2MjZ8MA&ixlib=rb-4.0.3&q=80&w=400',
                             width: 300.0,
@@ -157,9 +154,9 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(0.0, -1.0),
+            alignment: const AlignmentDirectional(0.0, -1.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 32.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 32.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   final selectedMedia = await selectMediaWithSourceBottomSheet(
@@ -216,9 +213,9 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
                 options: FFButtonOptions(
                   width: 130.0,
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
@@ -238,11 +235,11 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
             child: TextFormField(
               controller: _model.yourNameTextController,
               focusNode: _model.yourNameFocusNode,
-              autofillHints: [AutofillHints.name],
+              autofillHints: const [AutofillHints.name],
               textCapitalization: TextCapitalization.words,
               obscureText: false,
               decoration: InputDecoration(
@@ -304,7 +301,7 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
                 filled: true,
                 fillColor: FlutterFlowTheme.of(context).primaryBackground,
                 contentPadding:
-                    EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
+                    const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -319,7 +316,7 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
           ),
           Flexible(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 0.0, 0.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondary,
@@ -328,9 +325,9 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   await currentUserReference!.update(createUsersRecordData(
@@ -348,13 +345,13 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
                     }.withoutNulls,
                   );
                 },
-                text: widget!.createprofil,
+                text: widget.createprofil,
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 44.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily:
@@ -365,7 +362,7 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
                             FlutterFlowTheme.of(context).titleSmallFamily),
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),

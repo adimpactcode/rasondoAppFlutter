@@ -4,9 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'sidebar_mobile_model.dart';
 export 'sidebar_mobile_model.dart';
 
@@ -53,7 +51,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
       height: MediaQuery.sizeOf(context).height * 1.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 10.0,
             color: Color(0x33000000),
@@ -66,7 +64,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
         ],
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,7 +95,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(35.0, 0.0, 0.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(35.0, 0.0, 0.0, 10.0),
                       child: Icon(
                         Icons.close,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -106,7 +104,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                     ),
                   ],
                 ),
-              ].divide(SizedBox(height: 32.0)),
+              ].divide(const SizedBox(height: 32.0)),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -140,7 +138,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                                   FlutterFlowTheme.of(context).bodyLargeFamily),
                             ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
                 InkWell(
@@ -171,7 +169,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                                   FlutterFlowTheme.of(context).bodyLargeFamily),
                             ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
                 InkWell(
@@ -202,7 +200,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                                   FlutterFlowTheme.of(context).bodyLargeFamily),
                             ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
                 InkWell(
@@ -233,7 +231,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                                   FlutterFlowTheme.of(context).bodyLargeFamily),
                             ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
                 Divider(
@@ -241,7 +239,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   color: FlutterFlowTheme.of(context).alternate,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -249,7 +247,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -261,13 +259,13 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                           child: wrapWithModel(
                             model: _model.buttonPinkModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: ButtonPinkWidget(),
+                            child: const ButtonPinkWidget(),
                           ),
                         ),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                         child: FFButtonWidget(
                           onPressed: () {
                             print('Button pressed ...');
@@ -275,15 +273,15 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                           text: FFLocalizations.of(context).getText(
                             'xnrchnld' /* Premium */,
                           ),
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.diamond_sharp,
                             size: 22.0,
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -302,11 +300,11 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(height: 16.0)),
+                    ].divide(const SizedBox(height: 16.0)),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -346,7 +344,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                                         .bodyLargeFamily),
                               ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
@@ -378,10 +376,10 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                                   FlutterFlowTheme.of(context).bodyLargeFamily),
                             ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 24.0)),
+              ].divide(const SizedBox(height: 24.0)),
             ),
             Row(
               mainAxisSize: MainAxisSize.max,
@@ -396,9 +394,9 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   color: FlutterFlowTheme.of(context).primary,
                   size: 28.0,
                 ),
-              ].divide(SizedBox(width: 24.0)),
+              ].divide(const SizedBox(width: 24.0)),
             ),
-          ].divide(SizedBox(height: 40.0)),
+          ].divide(const SizedBox(height: 40.0)),
         ),
       ),
     );

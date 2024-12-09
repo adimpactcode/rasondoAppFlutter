@@ -1,9 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'social_proof_avatars_model.dart';
 export 'social_proof_avatars_model.dart';
 
@@ -48,12 +46,12 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
+        SizedBox(
           width: 180.0,
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(-1.0, 0.0),
+                alignment: const AlignmentDirectional(-1.0, 0.0),
                 child: Container(
                   width: 40.0,
                   height: 40.0,
@@ -66,7 +64,7 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
                     ),
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: Image.network(
@@ -80,7 +78,7 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-0.6, 0.0),
+                alignment: const AlignmentDirectional(-0.6, 0.0),
                 child: Container(
                   width: 40.0,
                   height: 40.0,
@@ -104,7 +102,7 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-0.3, 0.0),
+                alignment: const AlignmentDirectional(-0.3, 0.0),
                 child: Container(
                   width: 40.0,
                   height: 40.0,
@@ -128,7 +126,7 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Container(
                   width: 40.0,
                   height: 40.0,
@@ -152,7 +150,7 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.3, 0.0),
+                alignment: const AlignmentDirectional(0.3, 0.0),
                 child: Container(
                   width: 40.0,
                   height: 40.0,
@@ -176,7 +174,7 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.6, 0.0),
+                alignment: const AlignmentDirectional(0.6, 0.0),
                 child: Container(
                   width: 40.0,
                   height: 40.0,
@@ -211,35 +209,35 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(
+                const Icon(
                   Icons.star_rounded,
                   color: Color(0xFFFFD700),
                   size: 24.0,
                 ),
-                Icon(
+                const Icon(
                   Icons.star_rounded,
                   color: Color(0xFFFFD700),
                   size: 24.0,
                 ),
-                Icon(
+                const Icon(
                   Icons.star_rounded,
                   color: Color(0xFFFFD700),
                   size: 24.0,
                 ),
-                Icon(
+                const Icon(
                   Icons.star_rounded,
                   color: Color(0xFFFFD700),
                   size: 24.0,
                 ),
-                Icon(
+                const Icon(
                   Icons.star_half_rounded,
                   color: Color(0xFFFFD700),
                   size: 24.0,
                 ),
-              ].divide(SizedBox(width: 4.0)),
+              ].divide(const SizedBox(width: 4.0)),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
               child: Text(
                 FFLocalizations.of(context).getText(
                   '5n5ty6ds' /* +10000 nutzende Kunden */,
@@ -254,9 +252,9 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
                     ),
               ),
             ),
-          ].divide(SizedBox(height: 7.0)),
+          ].divide(const SizedBox(height: 7.0)),
         ),
-      ].divide(SizedBox(width: 16.0)),
+      ].divide(const SizedBox(width: 16.0)),
     );
   }
 }

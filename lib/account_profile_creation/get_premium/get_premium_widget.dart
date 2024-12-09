@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/button_pink/button_pink_widget.dart';
@@ -9,10 +8,8 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'get_premium_model.dart';
@@ -65,7 +62,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                      const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,7 +92,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     35.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -120,7 +117,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               ),
                             ],
                           ),
-                        ].divide(SizedBox(height: 32.0)),
+                        ].divide(const SizedBox(height: 32.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -158,7 +155,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -197,7 +194,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -232,7 +229,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -271,7 +268,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                           Divider(
@@ -279,7 +276,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -288,7 +285,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               children: [
                                 if (loggedIn == false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -302,7 +299,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         model: _model.buttonPinkModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: ButtonPinkWidget(),
+                                        child: const ButtonPinkWidget(),
                                       ),
                                     ),
                                   ),
@@ -311,7 +308,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         false) ==
                                     false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
@@ -322,17 +319,17 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             FFLocalizations.of(context).getText(
                                           'p4biedhq' /* Premium */,
                                         ),
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.diamond_sharp,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -359,12 +356,12 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       ),
                                     ),
                                   ),
-                              ].divide(SizedBox(height: 16.0)),
+                              ].divide(const SizedBox(height: 16.0)),
                             ),
                           ),
                           if (loggedIn == true)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -412,12 +409,12 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 16.0)),
+                                  ].divide(const SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 5.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -468,7 +465,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     onChanged: (lang) =>
                                         setAppLanguage(context, lang),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
@@ -507,7 +504,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
                           if (loggedIn == true)
@@ -549,10 +546,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
                             ),
-                        ].divide(SizedBox(height: 24.0)),
+                        ].divide(const SizedBox(height: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -567,9 +564,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
-                        ].divide(SizedBox(width: 24.0)),
+                        ].divide(const SizedBox(width: 24.0)),
                       ),
-                    ].divide(SizedBox(height: 40.0)),
+                    ].divide(const SizedBox(height: 40.0)),
                   ),
                 ),
               ),
@@ -597,7 +594,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               blurRadius: 2.0,
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              offset: Offset(
+                              offset: const Offset(
                                 0.0,
                                 1.0,
                               ),
@@ -605,14 +602,14 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                           ],
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -634,7 +631,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 15.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -651,7 +648,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                               'Explore',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -664,7 +661,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             children: [
                                               AlignedTooltip(
                                                 content: Padding(
-                                                  padding: EdgeInsets.all(4.0),
+                                                  padding: const EdgeInsets.all(4.0),
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
@@ -700,9 +697,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
+                                                    const Duration(milliseconds: 100),
                                                 showDuration:
-                                                    Duration(milliseconds: 300),
+                                                    const Duration(milliseconds: 300),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: InkWell(
@@ -727,7 +724,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 8.0)),
+                                            ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
                                         InkWell(
@@ -743,7 +740,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             children: [
                                               AlignedTooltip(
                                                 content: Padding(
-                                                  padding: EdgeInsets.all(4.0),
+                                                  padding: const EdgeInsets.all(4.0),
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
@@ -779,9 +776,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
+                                                    const Duration(milliseconds: 100),
                                                 showDuration:
-                                                    Duration(milliseconds: 300),
+                                                    const Duration(milliseconds: 300),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: InkWell(
@@ -811,7 +808,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 8.0)),
+                                            ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
                                         InkWell(
@@ -827,7 +824,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             children: [
                                               AlignedTooltip(
                                                 content: Padding(
-                                                  padding: EdgeInsets.all(4.0),
+                                                  padding: const EdgeInsets.all(4.0),
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
@@ -863,9 +860,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
+                                                    const Duration(milliseconds: 100),
                                                 showDuration:
-                                                    Duration(milliseconds: 300),
+                                                    const Duration(milliseconds: 300),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: InkWell(
@@ -889,15 +886,15 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(width: 8.0)),
+                                            ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 35.0)),
+                                      ].divide(const SizedBox(width: 35.0)),
                                     ),
                                   ),
                                   AlignedTooltip(
                                     content: Padding(
-                                      padding: EdgeInsets.all(4.0),
+                                      padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'nonunwb9' /* Message... */,
@@ -927,8 +924,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     elevation: 4.0,
                                     tailBaseWidth: 24.0,
                                     tailLength: 12.0,
-                                    waitDuration: Duration(milliseconds: 100),
-                                    showDuration: Duration(milliseconds: 300),
+                                    waitDuration: const Duration(milliseconds: 100),
+                                    showDuration: const Duration(milliseconds: 300),
                                     triggerMode: TooltipTriggerMode.tap,
                                     child: Opacity(
                                       opacity: 0.5,
@@ -952,12 +949,12 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   ),
                                   AlignedTooltip(
                                     content: Padding(
-                                      padding: EdgeInsets.all(4.0),
+                                      padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'p2lk2dok' /* Darkmodus */,
                                         ),
-                                        style: TextStyle(),
+                                        style: const TextStyle(),
                                       ),
                                     ),
                                     offset: 4.0,
@@ -969,8 +966,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     elevation: 4.0,
                                     tailBaseWidth: 24.0,
                                     tailLength: 12.0,
-                                    waitDuration: Duration(milliseconds: 100),
-                                    showDuration: Duration(milliseconds: 300),
+                                    waitDuration: const Duration(milliseconds: 100),
+                                    showDuration: const Duration(milliseconds: 300),
                                     triggerMode: TooltipTriggerMode.tap,
                                     child: Opacity(
                                       opacity: 0.5,
@@ -1006,7 +1003,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   ),
                                   AlignedTooltip(
                                     content: Padding(
-                                      padding: EdgeInsets.all(4.0),
+                                      padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'kouzdlg7' /* User profil */,
@@ -1036,8 +1033,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     elevation: 4.0,
                                     tailBaseWidth: 24.0,
                                     tailLength: 12.0,
-                                    waitDuration: Duration(milliseconds: 100),
-                                    showDuration: Duration(milliseconds: 300),
+                                    waitDuration: const Duration(milliseconds: 100),
+                                    showDuration: const Duration(milliseconds: 300),
                                     triggerMode: TooltipTriggerMode.tap,
                                     child: Visibility(
                                       visible: (loggedIn == true) &&
@@ -1090,7 +1087,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         model: _model.buttonPinkModel1,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: ButtonPinkWidget(),
+                                        child: const ButtonPinkWidget(),
                                       ),
                                     ),
                                   if (loggedIn == false)
@@ -1104,10 +1101,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       options: FFButtonOptions(
                                         width: 100.0,
                                         height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -1140,7 +1137,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       ),
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -1158,9 +1155,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(const SizedBox(width: 16.0)),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -1174,13 +1171,13 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(0.0, -1.0),
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     blurRadius: 4.0,
                                     color: Color(0x33000000),
@@ -1198,7 +1195,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                 children: [
                                   Flexible(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1209,7 +1206,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -1222,7 +1219,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   'Home',
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -1339,7 +1336,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                               ),
                                             ],
                                           ),
-                                        ].divide(SizedBox(width: 16.0)),
+                                        ].divide(const SizedBox(width: 16.0)),
                                       ),
                                     ),
                                   ),
@@ -1358,13 +1355,13 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(0.0, -1.0),
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     blurRadius: 4.0,
                                     color: Color(0x33000000),
@@ -1388,7 +1385,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       Flexible(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1398,7 +1395,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: InkWell(
@@ -1415,7 +1412,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       'Home',
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            TransitionInfo(
+                                                            const TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -1547,7 +1544,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   ),
                                                 ],
                                               ),
-                                            ].divide(SizedBox(width: 16.0)),
+                                            ].divide(const SizedBox(width: 16.0)),
                                           ),
                                         ),
                                       ),
@@ -1563,9 +1560,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(6.0),
+                          padding: const EdgeInsets.all(6.0),
                           child: Container(
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 650.0,
                             ),
                             decoration: BoxDecoration(
@@ -1580,7 +1577,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 40.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1629,7 +1626,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 ))
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Icon(
@@ -1685,7 +1682,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 ))
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Icon(
@@ -1710,7 +1707,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 20.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1723,7 +1720,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           safeSetState(() {});
                                         },
                                         child: AnimatedContainer(
-                                          duration: Duration(milliseconds: 320),
+                                          duration: const Duration(milliseconds: 320),
                                           curve: Curves.easeInOut,
                                           width: 350.0,
                                           height: 150.0,
@@ -1741,7 +1738,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(10.0),
+                                            padding: const EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1786,7 +1783,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   20.0,
@@ -1976,7 +1973,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1996,7 +1993,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                                         8.0),
                                                           ),
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Text(
                                                             FFLocalizations.of(
@@ -2035,7 +2032,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 20.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -2064,7 +2061,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(10.0),
+                                            padding: const EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2079,7 +2076,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -2312,7 +2309,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                                       8.0),
                                                         ),
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           FFLocalizations.of(
@@ -2352,21 +2349,21 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   ],
                                 ),
                                 Container(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 350.0,
                                   ),
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                 ),
                                 Container(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 350.0,
                                   ),
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 20.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -2409,7 +2406,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 20.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -2427,7 +2424,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   ),
                                                 ),
                                                 unselectedWidgetColor:
-                                                    Color(0xFF869097),
+                                                    const Color(0xFF869097),
                                               ),
                                               child: Checkbox(
                                                 value: _model.checkboxValue ??=
@@ -2437,7 +2434,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       _model.checkboxValue =
                                                           newValue!);
                                                 },
-                                                side: BorderSide(
+                                                side: const BorderSide(
                                                   width: 2,
                                                   color: Color(0xFF869097),
                                                 ),
@@ -2486,7 +2483,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                         .getText(
                                                       'y27e3f26' /* AGB */,
                                                     ),
-                                                    style: TextStyle(),
+                                                    style: const TextStyle(),
                                                     mouseCursor:
                                                         SystemMouseCursors
                                                             .click,
@@ -2529,7 +2526,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       if (loggedIn) {
@@ -2556,16 +2553,16 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: Text(
+                                                title: const Text(
                                                     'Zustimmung zu den AGB erforderlich'),
-                                                content: Text(
+                                                content: const Text(
                                                     'Um das Upgrade abzuschließen, müssen Sie den Allgemeinen Geschäftsbedingungen (AGB) zustimmen.'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: Text('Ok'),
+                                                    child: const Text('Ok'),
                                                   ),
                                                 ],
                                               );
@@ -2583,10 +2580,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     ),
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -2609,15 +2606,15 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 20.0),
                                   child: Container(
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                       maxWidth: 350.0,
                                     ),
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 30.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -2628,7 +2625,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Text(
