@@ -15,18 +15,20 @@ class MessagesStruct extends FFFirebaseStruct {
     bool? isImage,
     DateTime? createdAt,
     String? messageId,
-    List<String>? lastMessages,
     String? initialMessage,
     String? assistantMessage,
+    String? imagePrompt,
+    List<DocumentReference>? oldMessages,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _role = role,
         _content = content,
         _isImage = isImage,
         _createdAt = createdAt,
         _messageId = messageId,
-        _lastMessages = lastMessages,
         _initialMessage = initialMessage,
         _assistantMessage = assistantMessage,
+        _imagePrompt = imagePrompt,
+        _oldMessages = oldMessages,
         super(firestoreUtilData);
 
   // "role" field.
@@ -64,17 +66,6 @@ class MessagesStruct extends FFFirebaseStruct {
 
   bool hasMessageId() => _messageId != null;
 
-  // "lastMessages" field.
-  List<String>? _lastMessages;
-  List<String> get lastMessages => _lastMessages ?? const [];
-  set lastMessages(List<String>? val) => _lastMessages = val;
-
-  void updateLastMessages(Function(List<String>) updateFn) {
-    updateFn(_lastMessages ??= []);
-  }
-
-  bool hasLastMessages() => _lastMessages != null;
-
   // "initialMessage" field.
   String? _initialMessage;
   String get initialMessage => _initialMessage ?? '';
@@ -89,15 +80,34 @@ class MessagesStruct extends FFFirebaseStruct {
 
   bool hasAssistantMessage() => _assistantMessage != null;
 
+  // "image_prompt" field.
+  String? _imagePrompt;
+  String get imagePrompt => _imagePrompt ?? '';
+  set imagePrompt(String? val) => _imagePrompt = val;
+
+  bool hasImagePrompt() => _imagePrompt != null;
+
+  // "oldMessages" field.
+  List<DocumentReference>? _oldMessages;
+  List<DocumentReference> get oldMessages => _oldMessages ?? const [];
+  set oldMessages(List<DocumentReference>? val) => _oldMessages = val;
+
+  void updateOldMessages(Function(List<DocumentReference>) updateFn) {
+    updateFn(_oldMessages ??= []);
+  }
+
+  bool hasOldMessages() => _oldMessages != null;
+
   static MessagesStruct fromMap(Map<String, dynamic> data) => MessagesStruct(
         role: data['role'] as String?,
         content: data['content'] as String?,
         isImage: data['is_image'] as bool?,
         createdAt: data['created_at'] as DateTime?,
         messageId: data['message_id'] as String?,
-        lastMessages: getDataList(data['lastMessages']),
         initialMessage: data['initialMessage'] as String?,
         assistantMessage: data['assistantMessage'] as String?,
+        imagePrompt: data['image_prompt'] as String?,
+        oldMessages: getDataList(data['oldMessages']),
       );
 
   static MessagesStruct? maybeFromMap(dynamic data) =>
@@ -109,9 +119,10 @@ class MessagesStruct extends FFFirebaseStruct {
         'is_image': _isImage,
         'created_at': _createdAt,
         'message_id': _messageId,
-        'lastMessages': _lastMessages,
         'initialMessage': _initialMessage,
         'assistantMessage': _assistantMessage,
+        'image_prompt': _imagePrompt,
+        'oldMessages': _oldMessages,
       }.withoutNulls;
 
   @override
@@ -136,11 +147,6 @@ class MessagesStruct extends FFFirebaseStruct {
           _messageId,
           ParamType.String,
         ),
-        'lastMessages': serializeParam(
-          _lastMessages,
-          ParamType.String,
-          isList: true,
-        ),
         'initialMessage': serializeParam(
           _initialMessage,
           ParamType.String,
@@ -148,6 +154,15 @@ class MessagesStruct extends FFFirebaseStruct {
         'assistantMessage': serializeParam(
           _assistantMessage,
           ParamType.String,
+        ),
+        'image_prompt': serializeParam(
+          _imagePrompt,
+          ParamType.String,
+        ),
+        'oldMessages': serializeParam(
+          _oldMessages,
+          ParamType.DocumentReference,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -178,11 +193,6 @@ class MessagesStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        lastMessages: deserializeParam<String>(
-          data['lastMessages'],
-          ParamType.String,
-          true,
-        ),
         initialMessage: deserializeParam(
           data['initialMessage'],
           ParamType.String,
@@ -192,6 +202,17 @@ class MessagesStruct extends FFFirebaseStruct {
           data['assistantMessage'],
           ParamType.String,
           false,
+        ),
+        imagePrompt: deserializeParam(
+          data['image_prompt'],
+          ParamType.String,
+          false,
+        ),
+        oldMessages: deserializeParam<DocumentReference>(
+          data['oldMessages'],
+          ParamType.DocumentReference,
+          true,
+          collectionNamePath: ['chats', 'messages'],
         ),
       );
 
@@ -207,9 +228,10 @@ class MessagesStruct extends FFFirebaseStruct {
         isImage == other.isImage &&
         createdAt == other.createdAt &&
         messageId == other.messageId &&
-        listEquality.equals(lastMessages, other.lastMessages) &&
         initialMessage == other.initialMessage &&
-        assistantMessage == other.assistantMessage;
+        assistantMessage == other.assistantMessage &&
+        imagePrompt == other.imagePrompt &&
+        listEquality.equals(oldMessages, other.oldMessages);
   }
 
   @override
@@ -219,9 +241,10 @@ class MessagesStruct extends FFFirebaseStruct {
         isImage,
         createdAt,
         messageId,
-        lastMessages,
         initialMessage,
-        assistantMessage
+        assistantMessage,
+        imagePrompt,
+        oldMessages
       ]);
 }
 
@@ -233,6 +256,7 @@ MessagesStruct createMessagesStruct({
   String? messageId,
   String? initialMessage,
   String? assistantMessage,
+  String? imagePrompt,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -246,6 +270,7 @@ MessagesStruct createMessagesStruct({
       messageId: messageId,
       initialMessage: initialMessage,
       assistantMessage: assistantMessage,
+      imagePrompt: imagePrompt,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

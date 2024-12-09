@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -11,9 +13,9 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class NobitaLLMCall {
   static Future<ApiCallResponse> call({
-    dynamic systemMessageJson,
-    dynamic oldChatMessagesJson,
-    dynamic messagesJson,
+    dynamic? systemMessageJson,
+    dynamic? oldChatMessagesJson,
+    dynamic? messagesJson,
     String? userInput = '',
   }) async {
     final systemMessage = _serializeJson(systemMessageJson, true);
@@ -21,7 +23,7 @@ class NobitaLLMCall {
     final messages = _serializeJson(messagesJson, true);
     final ffApiRequestBody = '''
 {
-  "systemMessage": $systemMessage
+  "systemMessage": ${systemMessage}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'nobitaLLM',
@@ -52,13 +54,13 @@ class NobitaLLMCall {
 
 class NobitaLLMENCall {
   static Future<ApiCallResponse> call({
-    dynamic messagesJson,
+    dynamic? messagesJson,
   }) async {
     final messages = _serializeJson(messagesJson, true);
     final ffApiRequestBody = '''
 {
   "model": "meta-llama/llama-3-70b-instruct",
-  "messages": $messages
+  "messages": ${messages}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'nobitaLLMEN',
@@ -89,7 +91,7 @@ class NobitaLLMENCall {
 
 class NovitaTextToImageCall {
   static Future<ApiCallResponse> call() async {
-    const ffApiRequestBody = '''
+    final ffApiRequestBody = '''
 {
   "extra": {
     "response_image_type": "jpeg",
@@ -139,7 +141,7 @@ class NovitaTextToImageCall {
 
 class NovitaFunctionLLMCall {
   static Future<ApiCallResponse> call({
-    dynamic messagesJson,
+    dynamic? messagesJson,
     String? characterId = '0zjZs5Enh8YgEXQ6Jx8B',
     String? userId = 'JIxHsLuFKNWif20WesSMdaKKJhs2',
     String? userInput = '',
@@ -147,9 +149,9 @@ class NovitaFunctionLLMCall {
     final messages = _serializeJson(messagesJson);
     final ffApiRequestBody = '''
 {
-  "characterId": "$characterId",
-  "userId": "$userId",
-  "userInput": "$userInput"
+  "characterId": "${characterId}",
+  "userId": "${userId}",
+  "userInput": "${userInput}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'novitaFunctionLLM',
@@ -176,15 +178,16 @@ class NovitaFunctionLLMCall {
         response,
         r'''$.assistantMessage''',
       ));
-  static List? lastMessages(dynamic response) => getJsonField(
-        response,
-        r'''$.lastMessages''',
-        true,
-      ) as List?;
-  static dynamic startMessage(dynamic response) => getJsonField(
+  static String? startMessage(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.initialMessage''',
-      );
+      ));
+  static List? lastMessages(dynamic response) => getJsonField(
+        response,
+        r'''$.chatContext''',
+        true,
+      ) as List?;
 }
 
 class NovitaFunctionTextToImageCall {
@@ -193,7 +196,7 @@ class NovitaFunctionTextToImageCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "characterId": "$characterId"
+  "characterId": "${characterId}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'novitaFunctionTextToImage',
@@ -235,43 +238,14 @@ class NovitaFunctionImageToImageCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "characterId": "$characterId",
-  "img2imgChangeAppereance": "$img2imgAppereance",
-  "img2imgChangeAmbiente": "$img2imgAmbiente"
+  "characterId": "${characterId}",
+  "img2imgChangeAppereance": "${img2imgAppereance}",
+  "img2imgChangeAmbiente": "${img2imgAmbiente}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'novitaFunctionImageToImage',
       apiUrl:
           'https://us-central1-rasondo-v3-wpjwei.cloudfunctions.net/generateVariantImage',
-      callType: ApiCallType.POST,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class DeleteChatsWithDeletedCharactersCall {
-  static Future<ApiCallResponse> call({
-    String? userId = '',
-  }) async {
-    final ffApiRequestBody = '''
-{
-  "userId": "$userId"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'deleteChatsWithDeletedCharacters',
-      apiUrl:
-          'https://us-central1-rasondo-v3-wpjwei.cloudfunctions.net/deleteInvalidChats',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -296,8 +270,8 @@ class SubscriptionCallPaypalCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "userId": "$userId",
-  "planId": "$planId"
+  "userId": "${userId}",
+  "planId": "${planId}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'subscriptionCallPaypal',

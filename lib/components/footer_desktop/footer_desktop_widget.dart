@@ -1,9 +1,12 @@
+import '/auth/base_auth_user_provider.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'footer_desktop_model.dart';
 export 'footer_desktop_model.dart';
@@ -52,7 +55,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Colors.black,
@@ -64,16 +67,16 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 60.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 60.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 100.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 100.0),
                 child: Container(
                   width: double.infinity,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +88,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Image.asset(
                                 Theme.of(context).brightness == Brightness.dark
                                     ? 'assets/images/Rasondo_(18).png'
@@ -103,7 +106,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 20.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -126,7 +129,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -157,7 +160,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -188,7 +191,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -219,7 +222,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -227,7 +230,11 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('Chats');
+                                if (loggedIn == true) {
+                                  context.pushNamed('Chats');
+                                } else {
+                                  context.pushNamed('auth_2_Create');
+                                }
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(
@@ -255,7 +262,11 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('MyAI');
+                              if (loggedIn == true) {
+                                context.pushNamed('MyAI');
+                              } else {
+                                context.pushNamed('auth_2_Create');
+                              }
                             },
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -283,7 +294,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 20.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -306,7 +317,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -370,7 +381,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 20.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -393,7 +404,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -427,7 +438,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -458,7 +469,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -489,7 +500,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -524,7 +535,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 10.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -544,7 +555,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 10.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -564,7 +575,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 10.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -645,7 +656,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
                         'r1755ppl' /* 2024 Rasondo. All rights reser... */,

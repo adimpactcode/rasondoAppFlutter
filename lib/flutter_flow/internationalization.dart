@@ -148,28 +148,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '18mzotln': {
       'de': 'Character entdecken',
-      'en':
-          'The more precisely you describe the personality of your AI character, the more intense and eventful your communication with him will be. Some aspects you should consider are: Basic character: Is your character more introverted or extroverted? Is he self-confident or rather shy? What values and beliefs guide his actions? Interests and hobbies: What does your character like to do in his free time? What topics are he particularly interested in? Language style and expression: How does your character express himself? Does he use more formal or informal language? What phrases or language mannerisms does he have? Emotionality: How does your character deal with feelings? Is he more matter-of-fact and distant or very emotional and empathetic? The more detailed and authentic you make your AI character, the more credible and immersive the interaction will be for you. This leads to a more intense and eventful \ncommunication experience-',
+      'en': 'discover characters',
     },
     'jv21upoq': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     '70js1yhv': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     'e7rmc3ty': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'wkueroee': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     'zil46rvo': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     'oibfhkrl': {
       'de': 'Login',
@@ -185,17 +184,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ci7qaamo': {
       'de':
-          'Entdecke neue Horizonte der Zugehörigkeit. Öffne dich neuen Möglichkeiten. Sei teil einer inspirierenden Gemeinschaft.',
+          'Entdecke neue Horizonte der Zugehörigkeit. Öffne dich neuen Möglichkeiten. Sei Teil einer inspirierenden Gemeinschaft.',
       'en':
-          'Experience authentic conversations, flirt casually and discover new forms of intimacy with characters that suit you.',
+          'Discover new horizons of belonging. Open yourself up to new possibilities. Be part of an inspiring community.',
     },
     'y8eklo3a': {
       'de': 'Jetzt AI Character erstellen!',
-      'en': '',
+      'en': 'Create AI Character Now!',
     },
     'j8lpky8o': {
       'de': 'Download App',
-      'en': '',
+      'en': 'Download App',
     },
     'pr87y838': {
       'de': 'Tauche ein in lebendige Welten',
@@ -215,7 +214,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '29y75mvm': {
       'de': 'Donwload App!',
-      'en': '',
+      'en': 'Download app!',
     },
     'lzebf9wf': {
       'de': 'Realistisch und Anime Inspiriert',
@@ -243,7 +242,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '1p2h7oud': {
       'de': 'Wähle aus vielfältigen Optionen– Sie warten auf dich',
-      'en': 'Choose your favorite – they are waiting for you',
+      'en': 'Choose from a variety of options – they are waiting for you',
     },
     'r63kn79u': {
       'de': 'Anime und Realistik',
@@ -251,23 +250,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'tqzqh3p3': {
       'de': 'Jetzt Registrieren!',
-      'en': '',
+      'en': 'Register now!',
     },
     'z750jyr5': {
       'de': 'REGISTRIERE DICH',
-      'en': '',
+      'en': 'REGISTER',
     },
     'ruk8xcnk': {
       'de': 'Um mehr zu sehen',
-      'en': '',
+      'en': 'To see more',
     },
     '7z5wty4c': {
       'de': 'Der Testzugang ist kostenlos. \nEs ist keine Zahlung notwendig.\n',
-      'en': '',
+      'en': 'The trial access is free.\nNo payment is necessary.',
     },
     'nxc87eiz': {
       'de': 'Wähle aus vielfältigen Optionen\n– Sie warten auf dich',
-      'en': 'Choose your favorite – they are waiting for you',
+      'en': 'Choose from a variety of options\n– They are waiting for you',
     },
     'kos3f3lc': {
       'de': 'Anime und Realsitik',
@@ -275,15 +274,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'y26j31io': {
       'de': 'REGISTRIERE DICH!',
-      'en': '',
+      'en': 'REGISTER!',
     },
     'l56xilme': {
       'de': 'Um mehr zu sehen.',
-      'en': '',
+      'en': 'To see more.',
     },
     '7v8p0cra': {
       'de': 'Jetzt registrieren',
-      'en': '',
+      'en': 'Register now',
     },
     'k5msjin5': {
       'de': 'jetzt kostenlos anmelden und loslegen!',
@@ -291,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'm6l8kibu': {
       'de': 'jetzt Charactere entdecken!',
-      'en': 'Register now for free and get started!',
+      'en': 'discover characters now!',
     },
     '2w09a5k2': {
       'de': 'Kostenlos registrieren',
@@ -299,7 +298,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'cfiwk42r': {
       'de': 'Perfektes Match finden',
-      'en': 'Find the perfect partner',
+      'en': 'Find the perfect match',
     },
     'a6lpdqla': {
       'de': 'Tabulos Flirten',
@@ -307,7 +306,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '8crmlr8i': {
       'de': 'Entdecke deine Affinität',
-      'en': 'visualize fantasy',
+      'en': 'Discover your affinity',
     },
     'b7sqp7fp': {
       'de': 'Auf Premium upgraden!',
@@ -337,7 +336,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'una0mk2h': {
       'de': 'Perfektes Match finden',
-      'en': 'Find the perfect partner',
+      'en': 'Find the perfect match',
     },
     'f7hba86n': {
       'de': 'Tabulos Flirten',
@@ -345,7 +344,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'gbc01bf4': {
       'de': 'Entdecke deine Affinität',
-      'en': 'visualize fantasy',
+      'en': 'Discover your affinity',
     },
     'wavubu90': {
       'de': 'Auf Premium upgraden!',
@@ -974,7 +973,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'vej58ghy': {
       'de': 'Bademode',
-      'en': 'bikini',
+      'en': 'swimwear',
     },
     'uj10nc95': {
       'de': 'Dessous',
@@ -1099,8 +1098,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'personality description (optional)',
     },
     '8eh3uqz6': {
-      'de': 'Persönlichkeit...',
+      'de': '',
       'en': 'Personality...',
+    },
+    'dv8n03bs': {
+      'de':
+          'z. B. Du bist eine charmante und selbstbewusste Frau mit einem scharfen Verstand und einem Sinn für Humor....',
+      'en':
+          'e.g. You are a charming and confident woman with a sharp mind and a sense of humor....',
     },
     'xczraz8p': {
       'de': 'Character',
@@ -1140,11 +1145,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'o2do0l8c': {
       'de': 'Zuverlässig',
-      'en': 'playful',
+      'en': 'Reliable',
     },
     'l5n0hcyr': {
       'de': 'Respektvoll',
-      'en': 'cuddly',
+      'en': 'Respectfully',
     },
     'nnxh2tb2': {
       'de': '',
@@ -1208,7 +1213,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dwpd0i8h': {
       'de': 'Tolerant',
-      'en': 'Innocent',
+      'en': 'Tolerant',
     },
     '4lfwmwrs': {
       'de': 'Eifersüchtig',
@@ -1304,15 +1309,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '11rtvm1y': {
       'de': 'Selbstbewusst',
-      'en': 'Confident,',
+      'en': 'Confident',
     },
     'we2gubi7': {
       'de': 'Tief',
-      'en': 'Playful',
+      'en': 'Deep',
     },
     '43wer224': {
       'de': 'Charmant',
-      'en': 'Seductive',
+      'en': 'Charming',
     },
     't2qzeu0v': {
       'de': 'Formell',
@@ -1320,11 +1325,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '1dp6vty3': {
       'de': 'Warm',
-      'en': 'Sensual',
+      'en': 'Warm',
     },
     'a299mvbw': {
       'de': 'Rauchig',
-      'en': 'Dominant',
+      'en': 'Smoky',
     },
     'yirct660': {
       'de': '',
@@ -1694,7 +1699,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           'Tolle nachrichten! \nJetzt Character öffentlich stellen und likes erhalten.\n\nEs gibt jedoch ein paar wichtige Dinge zu beachten:\n\nAnonymität: Wenn du deinen Charakter veröffentlichst, bleibt deine \nIdentität anonym. Niemand erfährt, wer diesen Charakter erschaffen hat.\nInhalte: Bitte stelle sicher, dass dein Charakter keine freizügigen oder \nsexuell anzüglichen Inhalte aufweist. Solche Charaktere werden nicht \nveröffentlicht.\n\nCommunity-Richtlinien: Achte darauf, dass dein Charakter und deine \nInhalte unseren Gemeinschaftsrichtlinien entsprechen. Wir behalten uns \ndas Recht vor, Beiträge zu entfernen, die gegen diese Richtlinien \nverstoßen.\n\nWenn du diese Bedingungen erfüllst, kann dein KI-Charakter jetzt veröffentlicht \nund von anderen Nutzern entdeckt werden. Lass die Kreativität sprudeln und \nvile likes sammeln.',
       'en':
-          'The more precisely you describe the personality of your AI character, the more intense and eventful your communication with him will be. Some aspects you should consider are: Basic character: Is your character more introverted or extroverted? Is he self-confident or rather shy? What values and beliefs guide his actions? Interests and hobbies: What does your character like to do in his free time? What topics are he particularly interested in? Language style and expression: How does your character express himself? Does he use more formal or informal language? What phrases or language mannerisms does he have? Emotionality: How does your character deal with feelings? Is he more matter-of-fact and distant or very emotional and empathetic? The more detailed and authentic you make your AI character, the more credible and immersive the interaction will be for you. This leads to a more intense and eventful \ncommunication experience-',
+          'Great news! \nMake your character public now and get likes.\n\nThere are a few important things to note, however:\n\nAnonymity: When you publish your character, your \nidentity remains anonymous. No one will know who created this character.\n\nContent: Please make sure that your character does not contain any explicit or \nsexually suggestive content. Such characters will not be published.\n\nCommunity guidelines: Make sure that your character and your \ncontent comply with our community guidelines. We reserve the right to remove posts that \nviolate these guidelines.\n\nIf you meet these conditions, your AI character can now be published \nand discovered by other users. Let the creativity flow and collect lots of likes.',
     },
     'pi19pixt': {
       'de': 'Jetzt AI erstellen',
@@ -1749,23 +1754,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'msbmkd48': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     'su19gi2u': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     'jv01ei5t': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'juml0b2z': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     'ul7tztuj': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     'lfcp5xaf': {
       'de': 'Login',
@@ -1773,7 +1778,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '8fdy7ftv': {
       'de': 'Deine erstellten ',
-      'en': 'Your personal',
+      'en': 'Your created',
     },
     'x37ur6nc': {
       'de': 'AI-',
@@ -1781,7 +1786,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ti1cat85': {
       'de': 'Charactere',
-      'en': 'universe',
+      'en': 'characters',
     },
     '7v63qfs2': {
       'de': 'Die heißesten AI-Charaktere der Stadt - \nJetzt entdecken!',
@@ -1789,15 +1794,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '30b5fs3w': {
       'de': 'Du hast noch keinen AI Character ',
-      'en': '',
+      'en': 'You don\'t have an AI character yet',
     },
     'vrzxl590': {
       'de': 'Jetzt Character erstellen',
-      'en': '',
+      'en': 'Create character now',
     },
     '5onbgy7d': {
       'de': 'Deine erstellten ',
-      'en': 'Your personal',
+      'en': 'Your created',
     },
     'wreahjt0': {
       'de': 'AI-',
@@ -1805,7 +1810,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'lhq82og9': {
       'de': 'Charactere',
-      'en': 'universe',
+      'en': 'characters',
     },
     '76shhlgq': {
       'de': 'Die heißesten AI-Charaktere der Stadt - \nJetzt entdecken!',
@@ -1813,11 +1818,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dxjc57wh': {
       'de': 'Du hast noch keinen AI Character ',
-      'en': '',
+      'en': 'You don\'t have an AI character yet',
     },
     'f0raubc0': {
       'de': 'Jetzt Character erstellen',
-      'en': '',
+      'en': 'Create character now',
     },
     'fyu632vm': {
       'de': 'Explore',
@@ -1864,23 +1869,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'b5nor30j': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     'einogj3n': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     '20km9eon': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'xo46ysy1': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     '54nefpbs': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     '968mkcmw': {
       'de': 'Login',
@@ -1892,11 +1897,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zzdmdzpv': {
       'de': 'Du hast noch keinen Chat',
-      'en': 'chats',
+      'en': 'You don\'t have a chat yet',
     },
     'fho1dj62': {
-      'de': 'Jetzt Catpartner entdecken!',
-      'en': '',
+      'de': 'Jetzt Chatpartner entdecken!',
+      'en': 'Discover chat partners now!',
     },
     'hfcq76iw': {
       'de': 'Explore',
@@ -1943,23 +1948,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ptd0wgii': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     'wmpriee8': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     '9p4f1nf7': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'fvxu7mml': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     'vidmec88': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     'ly0r8qj2': {
       'de': 'Login',
@@ -1983,7 +1988,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ti7brgp5': {
       'de': 'Klick für ein Like!',
-      'en': '',
+      'en': 'Click for a like!',
     },
     'fs37hwgp': {
       'de': 'Chat',
@@ -2007,7 +2012,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'hly1liql': {
       'de': 'Klick für ein Like!',
-      'en': '',
+      'en': 'Click for a like!',
     },
     'y9d2kizb': {
       'de': 'Profil',
@@ -2074,23 +2079,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'eq6s2hng': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     'guseos6t': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     't8btwvv4': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'fvp0pupc': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     'z6ywcml8': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     'mm4974h4': {
       'de': 'Login',
@@ -2098,27 +2103,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'c5u3y3sz': {
       'de': 'Coole ',
-      'en': '',
+      'en': 'cool',
     },
     'ttntro0w': {
       'de': 'Charactere \n',
-      'en': '',
+      'en': 'characters',
     },
     'v1nyopgj': {
       'de': 'Jetzt entdecken!',
-      'en': '',
+      'en': 'Discover now!',
     },
     'sdc2gk04': {
       'de': 'Coole ',
-      'en': 'Discover now!',
+      'en': 'cool',
     },
     'tamh2808': {
       'de': 'Charactere ',
-      'en': '',
+      'en': 'characters',
     },
     'm7rk17lk': {
       'de': 'Jetzt entdecken!',
-      'en': '',
+      'en': 'Discover now!',
     },
     'ejaksq8j': {
       'de': 'Die heißesten AI-Charaktere der Stadt - \nJetzt entdecken!',
@@ -2193,23 +2198,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'hh7u03fs': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     'bhw067fl': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     'nonunwb9': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'p2lk2dok': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     'kouzdlg7': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     '9y3d2ts0': {
       'de': 'Login',
@@ -2287,9 +2292,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '60% ersparnis',
       'en': '60% savings',
     },
-    'grhik30w': {
+    'liezeb4q': {
       'de': 'Jederzeit kündbar',
       'en': 'Can be canceled at any time',
+    },
+    'xfsvtudz': {
+      'de': 'Es gelten unsere ',
+      'en': 'Our',
+    },
+    'y27e3f26': {
+      'de': 'AGB',
+      'en': 'Terms and Conditions',
+    },
+    'h905q76l': {
+      'de': 'Es gelten unsere AGB',
+      'en': 'Our terms and conditions apply',
     },
     'daenn3q2': {
       'de': 'Jetzt upgraden!',
@@ -2368,23 +2385,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'cy9saq65': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     '8johuncp': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     'yq642y7b': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     '9uko0jpk': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     'r4yjceig': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     'fukq3nxc': {
       'de': 'Login',
@@ -2445,23 +2462,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '4td4vsfh': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     'gdmiirpn': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     'qqerr9jz': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'nodvtnmj': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     '1nhop96f': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     'sdczjbvh': {
       'de': 'Login',
@@ -2532,11 +2549,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wwd4vp57': {
       'de': 'Name',
-      'en': 'E-mail',
+      'en': 'name',
     },
     'y4ibrkcy': {
       'de': 'Name',
-      'en': '',
+      'en': 'name',
     },
     '3fqwnjh3': {
       'de': 'Email',
@@ -2544,7 +2561,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '5ugveqb6': {
       'de': 'E-mail',
-      'en': '',
+      'en': 'E-mail',
     },
     'f4tjmxx1': {
       'de': 'Password',
@@ -2552,7 +2569,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'pgjlf7ks': {
       'de': 'Password',
-      'en': '',
+      'en': 'Password',
     },
     'cx7u0lr7': {
       'de': 'Password',
@@ -2560,11 +2577,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'l9efj15x': {
       'de': 'Password bestätigen',
-      'en': '',
+      'en': 'Confirm password',
     },
     '0ia8md1b': {
       'de': 'Absenden',
-      'en': 'Register',
+      'en': 'Submit',
     },
     '2u7g0w6v': {
       'de': 'Oder anmelden mit',
@@ -2717,11 +2734,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zecwudj0': {
       'de': 'Bild hochladen',
-      'en': '',
+      'en': 'Upload image',
     },
     '59y5jf9m': {
       'de': 'Ändern',
-      'en': '',
+      'en': 'Change',
     },
     '2a9rtt3i': {
       'de': 'Entdecken',
@@ -2730,6 +2747,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hgr2wjrq': {
       'de': 'Premium freischalten',
       'en': 'Unlock Premium',
+    },
+    'sexk06iu': {
+      'de': 'Premium Abo kündigen',
+      'en': 'Cancel Premium Subscription',
     },
     'yxtswbgq': {
       'de': 'Sprache',
@@ -2752,23 +2773,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'qr4r4kl8': {
       'de': 'Chats',
-      'en': 'discover characters',
+      'en': 'chats',
     },
     'kuhd4kr6': {
       'de': 'Character erstellen',
-      'en': 'discover characters',
+      'en': 'Create Character',
     },
     '8xr0efp0': {
       'de': 'Message...',
-      'en': '',
+      'en': 'Message...',
     },
     'nok13lwu': {
       'de': 'Darkmodus',
-      'en': '',
+      'en': 'dark mode',
     },
     'rn488d5t': {
       'de': 'User profil',
-      'en': 'discover characters',
+      'en': 'user profile',
     },
     'dxmcv2wq': {
       'de': 'Login',
@@ -2827,37 +2848,87 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Home',
     },
   },
-  // VerifivationPage
+  // VerificationPage
   {
     '07fswjsc': {
       'de': 'E-Mail verifizieren',
-      'en': 'Forgot password',
+      'en': 'Verify email',
     },
     '2v4mnfzq': {
       'de': 'Registrierung erfolgreich',
-      'en': 'Forgot password',
+      'en': 'Registration successful',
     },
     'lmnte0sz': {
       'de':
           'Vielen Dank für Ihre Registrierung!\n\nWir haben Ihnen eine Verifizierungs-E-Mail geschickt. Bitte öffnen Sie Ihren Posteingang und klicken Sie auf den Verifizierungslink, um Ihre Registrierung abzuschließen.',
       'en':
-          'Enter your email address below to receive a link to change your password',
+          'Thank you for registering!\n\nWe have sent you a verification email. Please open your inbox and click the verification link to complete your registration.',
     },
     'eh3u4p8c': {
       'de':
           'Ihre E-Mail-Adresse wurde erfolgreich verifiziert! Sie werden jetzt weitergeleitet.',
       'en':
-          'Enter your email address below to receive a link to change your password',
+          'Your email address has been successfully verified! You will now be redirected.',
     },
     '9kc5uqfo': {
       'de':
           'Sollten Sie keine E-Mail erhalten haben, können Sie diese erneut senden lassen.',
-      'en':
-          'Enter your email address below to receive a link to change your password',
+      'en': 'If you have not received an email, you can have it sent again.',
     },
     '8dxodi1o': {
       'de': 'E-Mail erneut senden',
-      'en': 'Request password link',
+      'en': 'Resend email',
+    },
+  },
+  // AllgemeineGeschftsbedingungen
+  {
+    '2bwlz7lo': {
+      'de': 'Character entdecken',
+      'en': 'discover characters',
+    },
+    'oozbe1ms': {
+      'de': 'Chats',
+      'en': 'chats',
+    },
+    'vqv0tpfx': {
+      'de': 'Character erstellen',
+      'en': 'Create Character',
+    },
+    'uk2mzhtn': {
+      'de': 'Message...',
+      'en': 'Message...',
+    },
+    'r3ks9jv3': {
+      'de': 'Darkmodus',
+      'en': 'dark mode',
+    },
+    'a1xiwof9': {
+      'de': 'User profil',
+      'en': 'user profile',
+    },
+    'bzadumz6': {
+      'de': 'Login',
+      'en': 'Login',
+    },
+    '610ao53y': {
+      'de': 'Allgemeine Geschäftsbedingungen ',
+      'en': 'General terms and conditions of business',
+    },
+    'fpqqiujg': {
+      'de':
+          'Angaben gemäß § 5 TMG:\n\nCapepointtrading 38 PTY (LTD)\nIl Paladino Alphen Close 2\nWestern Cape\n7140 Strand\n\nVertreten durch:\nGertrude Piringer\n\nKontakt:\nTelefon: +43 (0) 720 1270109\nE-Mail: office@rasondo.com\n\nHandelsregister: 2011/143503/07\nRegistergericht: Cape Town, Western Cape\n\nUmsatzsteuer-ID: \nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:\n4191255614\n\nVerantwortlich für den Inhalt nach § 55 Abs. 2 RStV:\nCapepointtrading 38 (PTY) LTD\n\nEU-Streitschlichtung\n\nDie Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:\nhttps://ec.europa.eu/consumers/odr/.\n\nUnsere E-Mail-Adresse finden Sie oben im Impressum.\nVerbraucherstreitbeilegung/Universalschlichtungsstelle\nWir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.\n\n',
+      'en':
+          'Information in accordance with Section 5 of the Telemedia Act:\n\nCapepointtrading 38 PTY (LTD)\n\nIl Paladino Alphen Close 2\n\nWestern Cape\n\n7140 Strand\n\nRepresented by:\nGertrude Piringer\n\nContact:\nTelephone: +43 (0) 720 1270109\nE-mail: office@rasondo.com\n\nCommercial register: 2011/143503/07\nRegistration court: Cape Town, Western Cape\n\nVAT ID: \nVAT identification number in accordance with Section 27 a of the Sales Tax Law:\n\n4191255614\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n\nCapepointtrading 38 (PTY) LTD\n\nEU dispute resolution\n\nThe European Commission provides a platform for online dispute resolution (OS) ready:\nhttps://ec.europa.eu/consumers/odr/.\n\nYou can find our email address above in the imprint.\nConsumer dispute resolution/universal arbitration board\nWe are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
+    },
+    '9qgtd7a8': {
+      'de':
+          'Impressum\n\nAngaben gemäß § 5 TMG:\n\n[Name des Unternehmens]\n[Adresse des Unternehmens]\n[PLZ Ort]\n\nVertreten durch:\n[Name des Geschäftsführers / Inhabers]\n\nKontakt:\nTelefon: [Telefonnummer]\nE-Mail: [E-Mail-Adresse]\nWebsite: [URL der Website]\n\nRegistereintrag:\nEintragung im Handelsregister.\nRegistergericht: [Name des Amtsgerichts]\nRegisternummer: [Handelsregisternummer]\n\nUmsatzsteuer-ID:\nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: [USt-IdNr.]\n\nVerantwortlich für den Inhalt nach § 55 Abs. 2 RStV:\n[Name]\n[Adresse]',
+      'en':
+          'Imprint\n\nInformation in accordance with Section 5 of the Telemedia Act:\n\n[Name of the company]\n[Address of the company]\n[Postal code]\n\nRepresented by:\n[Name of the managing director / owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [URL of the website]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of the local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number in accordance with Section 27a of the Sales Tax Law: [VAT ID number]\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n[Name]\n[Address]',
+    },
+    'qabv6fqz': {
+      'de': 'Home',
+      'en': 'Home',
     },
   },
   // navbar
@@ -3259,74 +3330,82 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'ozbim4dh': {
       'de': 'Nachricht Limit erreicht',
-      'en': 'content for 18+',
+      'en': 'Message limit reached',
     },
     'irmqn6e3': {
       'de': 'Werde Premium und chatte so viel du möchtest!',
-      'en':
-          'This site is for adults only. \nIt contains AI generated content intended for adults.',
+      'en': 'Become Premium and chat as much as you want!',
     },
     '5fvkzl7o': {
       'de': 'Jetzt Premium werden!',
-      'en': 'I am over 18',
+      'en': 'Become Premium now!',
     },
   },
   // createCharacterLimitCTA
   {
     '3c4cmhi2': {
       'de': 'Create Limit erreicht',
-      'en': 'content for 18+',
+      'en': 'Create Limit reached',
     },
     'epjotz8o': {
       'de': 'Werde Premium und erstelle so viele Charactere wie du möchtest!',
-      'en':
-          'This site is for adults only. \nIt contains AI generated content intended for adults.',
+      'en': 'Become Premium and create as many characters as you want!',
     },
     '6v2lpblx': {
       'de': 'Jetzt Premium werden!',
-      'en': 'I am over 18',
+      'en': 'Become Premium now!',
     },
   },
   // cookieBanner
   {
     '685ipd8o': {
       'de': 'Cookies',
-      'en': 'content for 18+',
+      'en': 'cookies',
     },
     'q5lp4wrf': {
       'de':
           'Wir nutzen Cookies, um unsere Webseite zu verbessern und Ihnen personalisierte Inhalte anzubieten. Einige Cookies sind notwendig, um die Funktionalität der Webseite zu gewährleisten, während andere uns helfen, die Benutzererfahrung zu optimieren und für Sie relevante Werbung anzuzeigen.Indem Sie auf \"Akzeptieren\" klicken, stimmen Sie der Verwendung aller Cookies zu. Sie können Ihre Einwilligung jederzeit widerrufen. Weitere Informationen finden Sie in unserer Datenschutzbestimmungen.',
       'en':
-          'This site is for adults only. \nIt contains AI generated content intended for adults.',
+          'We use cookies to improve our website and offer you personalized content. Some cookies are necessary to ensure the functionality of the website, while others help us optimize the user experience and display advertising that is relevant to you.By clicking \"Accept\", you agree to the use of all cookies. You can withdraw your consent at any time. For more information, see our privacy policy.',
     },
     '4du2trnj': {
       'de': 'Ablehnen',
-      'en': 'I am over 18',
+      'en': 'Refuse',
     },
     'kzy8ds8z': {
       'de': 'Akzeptieren',
-      'en': 'I am over 18',
+      'en': 'Accept',
     },
   },
   // verififizierungFehlgeschlagen
   {
     'bqnkv5wl': {
       'de': 'Verifizierung fehlgeschlagen',
-      'en': 'content for 18+',
+      'en': 'Verification failed',
     },
     'yr16cou4': {
       'de':
           'Es scheint, als hätte die Verifizierung nicht geklappt. \nBitte versuchen Sie es erneut.',
-      'en':
-          'This site is for adults only. \nIt contains AI generated content intended for adults.',
+      'en': 'It seems that the verification failed. \nPlease try again.',
     },
     'asuyruca': {
       'de': 'Zur Registrierung',
-      'en': 'I am over 18',
+      'en': 'To register',
     },
     'rotlqch7': {
       'de': 'E-Mail erneut senden',
-      'en': 'I am over 18',
+      'en': 'Resend email',
+    },
+  },
+  // eMailVerifiziert
+  {
+    'ffj5mew1': {
+      'de': 'E-Mail verifiziert!',
+      'en': 'Email verified!',
+    },
+    'biul9kd5': {
+      'de': 'Jetzt Charactere entdecken!',
+      'en': 'Discover characters now!',
     },
   },
   // Miscellaneous

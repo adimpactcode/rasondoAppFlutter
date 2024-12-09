@@ -3,15 +3,16 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class UsersRecord extends FirestoreRecord {
   UsersRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -45,11 +46,6 @@ class UsersRecord extends FirestoreRecord {
   DateTime? get lastActiveTime => _lastActiveTime;
   bool hasLastActiveTime() => _lastActiveTime != null;
 
-  // "is_Premium" field.
-  bool? _isPremium;
-  bool get isPremium => _isPremium ?? false;
-  bool hasIsPremium() => _isPremium != null;
-
   // "messages_sent_count" field.
   int? _messagesSentCount;
   int get messagesSentCount => _messagesSentCount ?? 0;
@@ -70,15 +66,20 @@ class UsersRecord extends FirestoreRecord {
   List<DocumentReference> get charactersLiked => _charactersLiked ?? const [];
   bool hasCharactersLiked() => _charactersLiked != null;
 
-  // "uid" field.
-  String? _uid;
-  String get uid => _uid ?? '';
-  bool hasUid() => _uid != null;
-
   // "planId" field.
   String? _planId;
   String get planId => _planId ?? '';
   bool hasPlanId() => _planId != null;
+
+  // "is_premium" field.
+  bool? _isPremium;
+  bool get isPremium => _isPremium ?? false;
+  bool hasIsPremium() => _isPremium != null;
+
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -87,14 +88,14 @@ class UsersRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _lastActiveTime = snapshotData['last_active_time'] as DateTime?;
-    _isPremium = snapshotData['is_Premium'] as bool?;
     _messagesSentCount = castToType<int>(snapshotData['messages_sent_count']);
     _charactersCreatedCount =
         castToType<int>(snapshotData['characters_created_count']);
     _isPayPerUse = snapshotData['is_pay_per_use'] as bool?;
     _charactersLiked = getDataList(snapshotData['characters_liked']);
-    _uid = snapshotData['uid'] as String?;
     _planId = snapshotData['planId'] as String?;
+    _isPremium = snapshotData['is_premium'] as bool?;
+    _uid = snapshotData['uid'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -137,12 +138,12 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   DateTime? lastActiveTime,
-  bool? isPremium,
   int? messagesSentCount,
   int? charactersCreatedCount,
   bool? isPayPerUse,
-  String? uid,
   String? planId,
+  bool? isPremium,
+  String? uid,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -152,12 +153,12 @@ Map<String, dynamic> createUsersRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'last_active_time': lastActiveTime,
-      'is_Premium': isPremium,
       'messages_sent_count': messagesSentCount,
       'characters_created_count': charactersCreatedCount,
       'is_pay_per_use': isPayPerUse,
-      'uid': uid,
       'planId': planId,
+      'is_premium': isPremium,
+      'uid': uid,
     }.withoutNulls,
   );
 
@@ -176,13 +177,13 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.lastActiveTime == e2?.lastActiveTime &&
-        e1?.isPremium == e2?.isPremium &&
         e1?.messagesSentCount == e2?.messagesSentCount &&
         e1?.charactersCreatedCount == e2?.charactersCreatedCount &&
         e1?.isPayPerUse == e2?.isPayPerUse &&
         listEquality.equals(e1?.charactersLiked, e2?.charactersLiked) &&
-        e1?.uid == e2?.uid &&
-        e1?.planId == e2?.planId;
+        e1?.planId == e2?.planId &&
+        e1?.isPremium == e2?.isPremium &&
+        e1?.uid == e2?.uid;
   }
 
   @override
@@ -193,13 +194,13 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.lastActiveTime,
-        e?.isPremium,
         e?.messagesSentCount,
         e?.charactersCreatedCount,
         e?.isPayPerUse,
         e?.charactersLiked,
-        e?.uid,
-        e?.planId
+        e?.planId,
+        e?.isPremium,
+        e?.uid
       ]);
 
   @override

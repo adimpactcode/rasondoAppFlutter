@@ -2,6 +2,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'nav_bar_bottom_model.dart';
 export 'nav_bar_bottom_model.dart';
 
@@ -56,7 +59,7 @@ class _NavBarBottomWidgetState extends State<NavBarBottomWidget> {
               Material(
                 color: Colors.transparent,
                 elevation: 0.0,
-                shape: const RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
@@ -69,7 +72,7 @@ class _NavBarBottomWidgetState extends State<NavBarBottomWidget> {
                   height: 80.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
                         blurRadius: 10.0,
                         color: Color(0x1A57636C),
@@ -80,7 +83,7 @@ class _NavBarBottomWidgetState extends State<NavBarBottomWidget> {
                         spreadRadius: 0.1,
                       )
                     ],
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(3.0),
@@ -112,7 +115,7 @@ class _NavBarBottomWidgetState extends State<NavBarBottomWidget> {
                       Opacity(
                         opacity: 0.8,
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 15.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
@@ -133,7 +136,7 @@ class _NavBarBottomWidgetState extends State<NavBarBottomWidget> {
                       Opacity(
                         opacity: 0.8,
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
@@ -154,7 +157,7 @@ class _NavBarBottomWidgetState extends State<NavBarBottomWidget> {
                       Opacity(
                         opacity: 0.8,
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 1.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,

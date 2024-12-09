@@ -3,15 +3,16 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class CharactersMainRecord extends FirestoreRecord {
   CharactersMainRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -127,15 +128,15 @@ class CharactersMainRecord extends FirestoreRecord {
   String get intimateBehaviourDisplay => _intimateBehaviourDisplay ?? '';
   bool hasIntimateBehaviourDisplay() => _intimateBehaviourDisplay != null;
 
-  // "characterId" field.
-  DocumentReference? _characterId;
-  DocumentReference? get characterId => _characterId;
-  bool hasCharacterId() => _characterId != null;
-
   // "type" field.
   String? _type;
   String get type => _type ?? '';
   bool hasType() => _type != null;
+
+  // "chats" field.
+  DocumentReference? _chats;
+  DocumentReference? get chats => _chats;
+  bool hasChats() => _chats != null;
 
   void _initializeFields() {
     _createdBy = snapshotData['created_by'] as DocumentReference?;
@@ -163,8 +164,8 @@ class CharactersMainRecord extends FirestoreRecord {
     _personalityDisplay = snapshotData['personalityDisplay'] as String?;
     _intimateBehaviourDisplay =
         snapshotData['intimateBehaviourDisplay'] as String?;
-    _characterId = snapshotData['characterId'] as DocumentReference?;
     _type = snapshotData['type'] as String?;
+    _chats = snapshotData['chats'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -223,8 +224,8 @@ Map<String, dynamic> createCharactersMainRecordData({
   String? characterDisplay,
   String? personalityDisplay,
   String? intimateBehaviourDisplay,
-  DocumentReference? characterId,
   String? type,
+  DocumentReference? chats,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -249,8 +250,8 @@ Map<String, dynamic> createCharactersMainRecordData({
       'characterDisplay': characterDisplay,
       'personalityDisplay': personalityDisplay,
       'intimateBehaviourDisplay': intimateBehaviourDisplay,
-      'characterId': characterId,
       'type': type,
+      'chats': chats,
     }.withoutNulls,
   );
 
@@ -292,8 +293,8 @@ class CharactersMainRecordDocumentEquality
         e1?.characterDisplay == e2?.characterDisplay &&
         e1?.personalityDisplay == e2?.personalityDisplay &&
         e1?.intimateBehaviourDisplay == e2?.intimateBehaviourDisplay &&
-        e1?.characterId == e2?.characterId &&
-        e1?.type == e2?.type;
+        e1?.type == e2?.type &&
+        e1?.chats == e2?.chats;
   }
 
   @override
@@ -320,8 +321,8 @@ class CharactersMainRecordDocumentEquality
         e?.characterDisplay,
         e?.personalityDisplay,
         e?.intimateBehaviourDisplay,
-        e?.characterId,
-        e?.type
+        e?.type,
+        e?.chats
       ]);
 
   @override

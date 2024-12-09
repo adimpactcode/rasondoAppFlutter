@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
@@ -9,7 +12,11 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -74,19 +81,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const HomeWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : HomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const HomeWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : HomeWidget(),
         ),
         FFRoute(
           name: 'Home',
           path: '/home',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Home')
+              ? NavBarPage(initialPage: 'Home')
               : HomeWidget(
                   dummyChatID: params.getParam(
                     'dummyChatID',
@@ -100,8 +107,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Create',
           path: '/create',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Create')
-              : const CreateWidget(),
+              ? NavBarPage(initialPage: 'Create')
+              : CreateWidget(),
         ),
         FFRoute(
           name: 'MyAI',
@@ -109,21 +116,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           requireAuth: true,
           builder: (context, params) => NavBarPage(
             initialPage: '',
-            page: MyAIWidget(
-              dummyChatID: params.getParam(
-                'dummyChatID',
-                ParamType.DocumentReference,
-                isList: false,
-                collectionNamePath: ['chats'],
-              ),
-            ),
+            page: MyAIWidget(),
           ),
         ),
         FFRoute(
           name: 'Chats',
           path: '/chats',
+          requireAuth: true,
           builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'Chats') : const ChatsWidget(),
+              params.isEmpty ? NavBarPage(initialPage: 'Chats') : ChatsWidget(),
         ),
         FFRoute(
           name: 'characterProfil',
@@ -135,19 +136,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: false,
               collectionNamePath: ['charactersMain'],
             ),
-            dummyChatID: params.getParam(
-              'dummyChatID',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['chats'],
-            ),
           ),
         ),
         FFRoute(
           name: 'Explore',
           path: '/explore',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Explore')
+              ? NavBarPage(initialPage: 'Explore')
               : ExploreWidget(
                   dummyChatID: params.getParam(
                     'dummyChatID',
@@ -161,8 +156,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'GetPremium',
           path: '/getPremium',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'GetPremium')
-              : const NavBarPage(
+              ? NavBarPage(initialPage: 'GetPremium')
+              : NavBarPage(
                   initialPage: 'GetPremium',
                   page: GetPremiumWidget(),
                 ),
@@ -170,7 +165,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Datenschutz',
           path: '/Datenschutz',
-          builder: (context, params) => const NavBarPage(
+          builder: (context, params) => NavBarPage(
             initialPage: '',
             page: DatenschutzWidget(),
           ),
@@ -178,7 +173,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Impressum',
           path: '/Impressum',
-          builder: (context, params) => const NavBarPage(
+          builder: (context, params) => NavBarPage(
             initialPage: '',
             page: ImpressumWidget(),
           ),
@@ -186,17 +181,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'auth_2_Create',
           path: '/auth2Create',
-          builder: (context, params) => const Auth2CreateWidget(),
+          builder: (context, params) => Auth2CreateWidget(),
         ),
         FFRoute(
           name: 'auth_2_Login',
           path: '/auth2Login',
-          builder: (context, params) => const Auth2LoginWidget(),
+          builder: (context, params) => Auth2LoginWidget(),
         ),
         FFRoute(
           name: 'auth_2_ForgotPassword',
           path: '/auth2ForgotPassword',
-          builder: (context, params) => const Auth2ForgotPasswordWidget(),
+          builder: (context, params) => Auth2ForgotPasswordWidget(),
         ),
         FFRoute(
           name: 'ImageToImage',
@@ -207,6 +202,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.DocumentReference,
               isList: false,
               collectionNamePath: ['charactersMain'],
+            ),
+            userId: params.getParam(
+              'userId',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
             ),
           ),
         ),
@@ -246,15 +247,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AGB',
           path: '/AGB',
-          builder: (context, params) => const NavBarPage(
+          builder: (context, params) => NavBarPage(
             initialPage: '',
             page: AgbWidget(),
           ),
         ),
         FFRoute(
-          name: 'VerifivationPage',
-          path: '/verifivationPage',
-          builder: (context, params) => const VerifivationPageWidget(),
+          name: 'VerificationPage',
+          path: '/verificationPage',
+          builder: (context, params) => VerificationPageWidget(),
+        ),
+        FFRoute(
+          name: 'AllgemeineGeschftsbedingungen',
+          path: '/allgemeineGeschftsbedingungen',
+          builder: (context, params) => AllgemeineGeschftsbedingungenWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -444,7 +450,7 @@ class FFRoute {
               ? isWeb
                   ? Container()
                   : Container(
-                      color: const Color(0xFF1E2428),
+                      color: Color(0xFF1E2428),
                       child: Image.asset(
                         'assets/images/Rasondo_(28).png',
                         fit: BoxFit.contain,
@@ -492,7 +498,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

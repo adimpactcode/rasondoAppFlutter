@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import '/backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -311,6 +313,12 @@ class FFAppState extends ChangeNotifier {
   String get age => _age;
   set age(String value) {
     _age = value;
+  }
+
+  bool _cameFromCreate = false;
+  bool get cameFromCreate => _cameFromCreate;
+  set cameFromCreate(bool value) {
+    _cameFromCreate = value;
   }
 }
 

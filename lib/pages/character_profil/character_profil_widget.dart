@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/button_pink/button_pink_widget.dart';
@@ -8,6 +9,9 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,11 +23,9 @@ class CharacterProfilWidget extends StatefulWidget {
   const CharacterProfilWidget({
     super.key,
     required this.characterId,
-    this.dummyChatID,
   });
 
   final DocumentReference? characterId;
-  final DocumentReference? dummyChatID;
 
   @override
   State<CharacterProfilWidget> createState() => _CharacterProfilWidgetState();
@@ -54,7 +56,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<CharactersMainRecord>(
-      stream: CharactersMainRecord.getDocument(widget.characterId!),
+      stream: CharactersMainRecord.getDocument(widget!.characterId!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -91,7 +93,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           24.0, 32.0, 24.0, 32.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -122,7 +124,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         35.0, 0.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -147,7 +149,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   ),
                                 ],
                               ),
-                            ].divide(const SizedBox(height: 32.0)),
+                            ].divide(SizedBox(height: 32.0)),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.min,
@@ -187,7 +189,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                               InkWell(
@@ -196,7 +198,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Chats');
+                                  if (loggedIn == true) {
+                                    context.pushNamed('Chats');
+                                  } else {
+                                    context.pushNamed('auth_2_Create');
+                                  }
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -224,7 +230,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                               InkWell(
@@ -261,7 +267,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                               InkWell(
@@ -302,7 +308,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                               Divider(
@@ -310,7 +316,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                 color: FlutterFlowTheme.of(context).alternate,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 30.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -320,7 +326,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   children: [
                                     if (loggedIn == false)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 2.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -334,7 +340,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             model: _model.buttonPinkModel2,
                                             updateCallback: () =>
                                                 safeSetState(() {}),
-                                            child: const ButtonPinkWidget(),
+                                            child: ButtonPinkWidget(),
                                           ),
                                         ),
                                       ),
@@ -343,7 +349,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             false) ==
                                         false)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 30.0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => FFButtonWidget(
@@ -354,16 +360,16 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                 .getText(
                                               '7qlumd8b' /* Premium */,
                                             ),
-                                            icon: const Icon(
+                                            icon: Icon(
                                               Icons.diamond_sharp,
                                               size: 22.0,
                                             ),
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -392,12 +398,12 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                           ),
                                         ),
                                       ),
-                                  ].divide(const SizedBox(height: 16.0)),
+                                  ].divide(SizedBox(height: 16.0)),
                                 ),
                               ),
                               if (loggedIn == true)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -447,12 +453,12 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                             .bodyLargeFamily),
                                               ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 5.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -507,7 +513,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                         onChanged: (lang) =>
                                             setAppLanguage(context, lang),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               ),
@@ -548,7 +554,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               if (loggedIn == true)
@@ -594,10 +600,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
-                            ].divide(const SizedBox(height: 24.0)),
+                            ].divide(SizedBox(height: 24.0)),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -612,9 +618,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                 color: FlutterFlowTheme.of(context).primary,
                                 size: 28.0,
                               ),
-                            ].divide(const SizedBox(width: 24.0)),
+                            ].divide(SizedBox(width: 24.0)),
                           ),
-                        ].divide(const SizedBox(height: 40.0)),
+                        ].divide(SizedBox(height: 40.0)),
                       ),
                     ),
                   ),
@@ -642,13 +648,13 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   children: [
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(0.0, -1.0),
+                                          AlignmentDirectional(0.0, -1.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          boxShadow: const [
+                                          boxShadow: [
                                             BoxShadow(
                                               blurRadius: 4.0,
                                               color: Color(0x33000000),
@@ -667,7 +673,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                           children: [
                                             Flexible(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 child: Row(
@@ -681,7 +687,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   10.0,
@@ -702,7 +708,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -836,7 +842,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                       ],
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 16.0)),
+                                                      SizedBox(width: 16.0)),
                                                 ),
                                               ),
                                             ),
@@ -856,13 +862,13 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   children: [
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(0.0, -1.0),
+                                          AlignmentDirectional(0.0, -1.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
-                                          boxShadow: const [
+                                          boxShadow: [
                                             BoxShadow(
                                               blurRadius: 4.0,
                                               color: Color(0x33000000),
@@ -883,7 +889,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             children: [
                                               Flexible(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 16.0, 0.0),
                                                   child: Row(
@@ -898,7 +904,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -919,7 +925,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    const TransitionInfo(
+                                                                    TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -1065,7 +1071,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         ],
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 16.0)),
+                                                        SizedBox(width: 16.0)),
                                                   ),
                                                 ),
                                               ),
@@ -1108,7 +1114,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  offset: const Offset(
+                                                  offset: Offset(
                                                     0.0,
                                                     1.0,
                                                   ),
@@ -1116,7 +1122,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                               ],
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
                                               child: Row(
@@ -1127,7 +1133,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: InkWell(
@@ -1157,7 +1163,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1187,7 +1193,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   extra: <String,
                                                                       dynamic>{
                                                                     kTransitionInfoKey:
-                                                                        const TransitionInfo(
+                                                                        TransitionInfo(
                                                                       hasTransition:
                                                                           true,
                                                                       transitionType:
@@ -1206,7 +1212,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     content:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               4.0),
                                                                       child:
                                                                           Text(
@@ -1240,11 +1246,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     tailLength:
                                                                         12.0,
                                                                     waitDuration:
-                                                                        const Duration(
+                                                                        Duration(
                                                                             milliseconds:
                                                                                 100),
                                                                     showDuration:
-                                                                        const Duration(
+                                                                        Duration(
                                                                             milliseconds:
                                                                                 300),
                                                                     triggerMode:
@@ -1280,7 +1286,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         8.0)),
                                                               ),
@@ -1309,7 +1315,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     content:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               4.0),
                                                                       child:
                                                                           Text(
@@ -1343,11 +1349,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     tailLength:
                                                                         12.0,
                                                                     waitDuration:
-                                                                        const Duration(
+                                                                        Duration(
                                                                             milliseconds:
                                                                                 100),
                                                                     showDuration:
-                                                                        const Duration(
+                                                                        Duration(
                                                                             milliseconds:
                                                                                 300),
                                                                     triggerMode:
@@ -1369,8 +1375,14 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                               .transparent,
                                                                       onTap:
                                                                           () async {
-                                                                        context.pushNamed(
-                                                                            'Chats');
+                                                                        if (loggedIn ==
+                                                                            true) {
+                                                                          context
+                                                                              .pushNamed('Chats');
+                                                                        } else {
+                                                                          context
+                                                                              .pushNamed('auth_2_Create');
+                                                                        }
                                                                       },
                                                                       child:
                                                                           Icon(
@@ -1383,7 +1395,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         8.0)),
                                                               ),
@@ -1411,7 +1423,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     content:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               4.0),
                                                                       child:
                                                                           Text(
@@ -1445,11 +1457,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     tailLength:
                                                                         12.0,
                                                                     waitDuration:
-                                                                        const Duration(
+                                                                        Duration(
                                                                             milliseconds:
                                                                                 100),
                                                                     showDuration:
-                                                                        const Duration(
+                                                                        Duration(
                                                                             milliseconds:
                                                                                 300),
                                                                     triggerMode:
@@ -1485,19 +1497,19 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         8.0)),
                                                               ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 35.0)),
                                                         ),
                                                       ),
                                                       AlignedTooltip(
                                                         content: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   4.0),
                                                           child: Text(
                                                             FFLocalizations.of(
@@ -1535,9 +1547,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         elevation: 4.0,
                                                         tailBaseWidth: 24.0,
                                                         tailLength: 12.0,
-                                                        waitDuration: const Duration(
+                                                        waitDuration: Duration(
                                                             milliseconds: 100),
-                                                        showDuration: const Duration(
+                                                        showDuration: Duration(
                                                             milliseconds: 300),
                                                         triggerMode:
                                                             TooltipTriggerMode
@@ -1571,7 +1583,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                       AlignedTooltip(
                                                         content: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   4.0),
                                                           child: Text(
                                                             FFLocalizations.of(
@@ -1579,7 +1591,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 .getText(
                                                               'fvxu7mml' /* Darkmodus */,
                                                             ),
-                                                            style: const TextStyle(),
+                                                            style: TextStyle(),
                                                           ),
                                                         ),
                                                         offset: 4.0,
@@ -1595,9 +1607,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         elevation: 4.0,
                                                         tailBaseWidth: 24.0,
                                                         tailLength: 12.0,
-                                                        waitDuration: const Duration(
+                                                        waitDuration: Duration(
                                                             milliseconds: 100),
-                                                        showDuration: const Duration(
+                                                        showDuration: Duration(
                                                             milliseconds: 300),
                                                         triggerMode:
                                                             TooltipTriggerMode
@@ -1650,7 +1662,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                       AlignedTooltip(
                                                         content: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   4.0),
                                                           child: Text(
                                                             FFLocalizations.of(
@@ -1688,9 +1700,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         elevation: 4.0,
                                                         tailBaseWidth: 24.0,
                                                         tailLength: 12.0,
-                                                        waitDuration: const Duration(
+                                                        waitDuration: Duration(
                                                             milliseconds: 100),
-                                                        showDuration: const Duration(
+                                                        showDuration: Duration(
                                                             milliseconds: 300),
                                                         triggerMode:
                                                             TooltipTriggerMode
@@ -1764,7 +1776,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 safeSetState(
                                                                     () {}),
                                                             child:
-                                                                const ButtonPinkWidget(),
+                                                                ButtonPinkWidget(),
                                                           ),
                                                         ),
                                                       if (loggedIn == false)
@@ -1783,14 +1795,14 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                             width: 100.0,
                                                             height: 40.0,
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
                                                                         0.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1835,7 +1847,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1865,9 +1877,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 16.0)),
+                                                        SizedBox(width: 16.0)),
                                                   ),
-                                                ].divide(const SizedBox(width: 16.0)),
+                                                ].divide(SizedBox(width: 16.0)),
                                               ),
                                             ),
                                           ),
@@ -1877,7 +1889,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                 ),
                               StreamBuilder<CharactersMainRecord>(
                                 stream: CharactersMainRecord.getDocument(
-                                    widget.characterId!),
+                                    characterProfilCharactersMainRecord
+                                        .reference),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -1954,7 +1967,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                           Flexible(
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           30.0,
                                                                           10.0,
@@ -1969,7 +1982,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
@@ -1996,7 +2009,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                           Expanded(
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           40.0,
                                                                           0.0,
@@ -2018,7 +2031,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       .secondaryBackground,
                                                                 ),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           40.0,
                                                                           0.0,
@@ -2035,7 +2048,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       Flexible(
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               10.0,
@@ -2050,7 +2063,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                 child: Column(
                                                                                   mainAxisSize: MainAxisSize.min,
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -2059,7 +2072,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                       mainAxisSize: MainAxisSize.min,
                                                                                       children: [
                                                                                         Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                           child: RichText(
                                                                                             textScaler: MediaQuery.of(context).textScaler,
                                                                                             text: TextSpan(
@@ -2098,15 +2111,32 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                         ),
                                                                                       ],
                                                                                     ),
-                                                                                  ].divide(const SizedBox(height: 2.0)),
+                                                                                  ].divide(SizedBox(height: 2.0)),
                                                                                 ),
                                                                               ),
+                                                                              if (FFAppState().cameFromCreate != true)
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
+                                                                                  child: FlutterFlowIconButton(
+                                                                                    borderRadius: 8.0,
+                                                                                    buttonSize: 50.0,
+                                                                                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                    icon: Icon(
+                                                                                      Icons.close,
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                      size: 34.0,
+                                                                                    ),
+                                                                                    onPressed: () async {
+                                                                                      context.safePop();
+                                                                                    },
+                                                                                  ),
+                                                                                ),
                                                                             ],
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
@@ -2138,7 +2168,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                       constraints: BoxConstraints(
                                                                                         maxWidth: MediaQuery.sizeOf(context).width * 0.4,
                                                                                       ),
-                                                                                      decoration: const BoxDecoration(),
+                                                                                      decoration: BoxDecoration(),
                                                                                       child: Text(
                                                                                         columnCharactersMainRecord.descriptionDisplay,
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2151,7 +2181,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                       ),
                                                                                     ),
                                                                                   ),
-                                                                                ].divide(const SizedBox(height: 4.0)),
+                                                                                ].divide(SizedBox(height: 4.0)),
                                                                               ),
                                                                             ),
                                                                           ],
@@ -2191,7 +2221,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                         useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                                       ),
                                                                                 ),
-                                                                              ].divide(const SizedBox(height: 12.0)),
+                                                                              ].divide(SizedBox(height: 12.0)),
                                                                             ),
                                                                           ),
                                                                         ],
@@ -2230,13 +2260,13 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                         useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                                       ),
                                                                                 ),
-                                                                              ].divide(const SizedBox(height: 12.0)),
+                                                                              ].divide(SizedBox(height: 12.0)),
                                                                             ),
                                                                           ),
                                                                           Flexible(
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 0.0, 0.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2264,17 +2294,17 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                           useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                                         ),
                                                                                   ),
-                                                                                ].divide(const SizedBox(height: 12.0)),
+                                                                                ].divide(SizedBox(height: 12.0)),
                                                                               ),
                                                                             ),
                                                                           ),
                                                                         ],
                                                                       ),
                                                                     ]
-                                                                        .divide(const SizedBox(
+                                                                        .divide(SizedBox(
                                                                             height:
                                                                                 30.0))
-                                                                        .addToEnd(const SizedBox(
+                                                                        .addToEnd(SizedBox(
                                                                             height:
                                                                                 20.0)),
                                                                   ),
@@ -2286,7 +2316,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     25.0,
@@ -2305,7 +2335,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2337,7 +2367,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
@@ -2356,16 +2386,55 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
-                                                                      await widget
-                                                                          .characterId!
-                                                                          .update({
-                                                                        ...mapToFirestore(
-                                                                          {
-                                                                            'likes_count':
-                                                                                FieldValue.increment(1),
+                                                                      _model.userLikeExist =
+                                                                          await queryCharacterLikesRecordOnce(
+                                                                        queryBuilder: (characterLikesRecord) => characterLikesRecord
+                                                                            .where(
+                                                                              'userId',
+                                                                              isEqualTo: currentUserReference?.id,
+                                                                            )
+                                                                            .where(
+                                                                              'characterId',
+                                                                              isEqualTo: columnCharactersMainRecord.reference.id,
+                                                                            ),
+                                                                        singleRecord:
+                                                                            true,
+                                                                      ).then((s) =>
+                                                                              s.firstOrNull);
+                                                                      if (_model
+                                                                              .userLikeExist
+                                                                              ?.reference ==
+                                                                          null) {
+                                                                        await widget!
+                                                                            .characterId!
+                                                                            .update({
+                                                                          ...mapToFirestore(
+                                                                            {
+                                                                              'likes_count': FieldValue.increment(1),
+                                                                            },
+                                                                          ),
+                                                                        });
+                                                                      } else {
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return AlertDialog(
+                                                                              title: Text('Character bereits geliked'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                  child: Text('Ok'),
+                                                                                ),
+                                                                              ],
+                                                                            );
                                                                           },
-                                                                        ),
-                                                                      });
+                                                                        );
+                                                                      }
+
+                                                                      safeSetState(
+                                                                          () {});
                                                                     },
                                                                     child: Icon(
                                                                       Icons
@@ -2379,7 +2448,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           10.0,
@@ -2452,7 +2521,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       .getText(
                                                                     'fs37hwgp' /* Chat */,
                                                                   ),
-                                                                  icon: const Icon(
+                                                                  icon: Icon(
                                                                     Icons
                                                                         .wechat_outlined,
                                                                     size: 26.0,
@@ -2463,14 +2532,14 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         250.0,
                                                                     height:
                                                                         60.0,
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             0.0,
                                                                             16.0,
                                                                             0.0),
                                                                     iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -2498,7 +2567,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             8.0),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   height:
                                                                       12.0)),
                                                             ),
@@ -2513,27 +2582,38 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'ImageToImage',
-                                                                      queryParameters:
-                                                                          {
-                                                                        'characterReferenz':
-                                                                            serializeParam(
-                                                                          widget
-                                                                              .characterId,
-                                                                          ParamType
-                                                                              .DocumentReference,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                    );
+                                                                    await authManager
+                                                                        .refreshUser();
+                                                                    if (currentUserEmailVerified ==
+                                                                        true) {
+                                                                      context
+                                                                          .pushNamed(
+                                                                        'ImageToImage',
+                                                                        queryParameters:
+                                                                            {
+                                                                          'characterReferenz':
+                                                                              serializeParam(
+                                                                            columnCharactersMainRecord.reference,
+                                                                            ParamType.DocumentReference,
+                                                                          ),
+                                                                          'userId':
+                                                                              serializeParam(
+                                                                            currentUserReference,
+                                                                            ParamType.DocumentReference,
+                                                                          ),
+                                                                        }.withoutNulls,
+                                                                      );
+                                                                    } else {
+                                                                      context.pushNamed(
+                                                                          'auth_2_Create');
+                                                                    }
                                                                   },
                                                                   text: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
                                                                     'rjg429qq' /* Foto */,
                                                                   ),
-                                                                  icon: const Icon(
+                                                                  icon: Icon(
                                                                     Icons.image,
                                                                     size: 26.0,
                                                                   ),
@@ -2543,14 +2623,14 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         250.0,
                                                                     height:
                                                                         60.0,
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             0.0,
                                                                             16.0,
                                                                             0.0),
                                                                     iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -2578,11 +2658,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             8.0),
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   height:
                                                                       12.0)),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 20.0)),
                                                         ),
                                                       ),
@@ -2591,7 +2671,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                 },
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         20.0, 110.0, 20.0, 0.0),
                                                 child: Row(
@@ -2632,7 +2712,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 30.0, 0.0, 0.0),
                                                 child: Container(
@@ -2640,10 +2720,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                       MediaQuery.sizeOf(context)
                                                               .width *
                                                           1.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Builder(
@@ -2658,7 +2738,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                           padding:
                                                               EdgeInsets.zero,
                                                           gridDelegate:
-                                                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                                              SliverGridDelegateWithFixedCrossAxisCount(
                                                             crossAxisCount: 4,
                                                             crossAxisSpacing:
                                                                 20.0,
@@ -2724,7 +2804,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                       children: [
                                                         Stack(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 1.0),
                                                           children: [
                                                             Container(
@@ -2752,7 +2832,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   fit: BoxFit
                                                                       .cover,
                                                                   alignment:
-                                                                      const Alignment(
+                                                                      Alignment(
                                                                           0.0,
                                                                           -1.0),
                                                                 ),
@@ -2760,7 +2840,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2777,23 +2857,31 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   FFButtonWidget(
                                                                     onPressed:
                                                                         () async {
-                                                                      context
-                                                                          .pushNamed(
-                                                                        'chatPagePro',
-                                                                        queryParameters:
-                                                                            {
-                                                                          'characterId':
-                                                                              serializeParam(
-                                                                            widget.characterId,
-                                                                            ParamType.DocumentReference,
-                                                                          ),
-                                                                          'userReference':
-                                                                              serializeParam(
-                                                                            currentUserReference,
-                                                                            ParamType.DocumentReference,
-                                                                          ),
-                                                                        }.withoutNulls,
-                                                                      );
+                                                                      await authManager
+                                                                          .refreshUser();
+                                                                      if (currentUserEmailVerified ==
+                                                                          true) {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'chatPagePro',
+                                                                          queryParameters:
+                                                                              {
+                                                                            'characterId':
+                                                                                serializeParam(
+                                                                              columnCharactersMainRecord.reference,
+                                                                              ParamType.DocumentReference,
+                                                                            ),
+                                                                            'userReference':
+                                                                                serializeParam(
+                                                                              currentUserReference,
+                                                                              ParamType.DocumentReference,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                        );
+                                                                      } else {
+                                                                        context.pushNamed(
+                                                                            'auth_2_Create');
+                                                                      }
                                                                     },
                                                                     text: FFLocalizations.of(
                                                                             context)
@@ -2804,12 +2892,12 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         FFButtonOptions(
                                                                       height:
                                                                           40.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2840,18 +2928,31 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   FFButtonWidget(
                                                                     onPressed:
                                                                         () async {
-                                                                      context
-                                                                          .pushNamed(
-                                                                        'ImageToImage',
-                                                                        queryParameters:
-                                                                            {
-                                                                          'characterReferenz':
-                                                                              serializeParam(
-                                                                            widget.characterId,
-                                                                            ParamType.DocumentReference,
-                                                                          ),
-                                                                        }.withoutNulls,
-                                                                      );
+                                                                      await authManager
+                                                                          .refreshUser();
+                                                                      if (currentUserEmailVerified ==
+                                                                          true) {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'ImageToImage',
+                                                                          queryParameters:
+                                                                              {
+                                                                            'characterReferenz':
+                                                                                serializeParam(
+                                                                              widget!.characterId,
+                                                                              ParamType.DocumentReference,
+                                                                            ),
+                                                                            'userId':
+                                                                                serializeParam(
+                                                                              currentUserReference,
+                                                                              ParamType.DocumentReference,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                        );
+                                                                      } else {
+                                                                        context.pushNamed(
+                                                                            'auth_2_Create');
+                                                                      }
                                                                     },
                                                                     text: FFLocalizations.of(
                                                                             context)
@@ -2862,12 +2963,12 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         FFButtonOptions(
                                                                       height:
                                                                           40.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2895,7 +2996,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                               8.0),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         15.0)),
                                                               ),
@@ -2914,7 +3015,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     20.0,
@@ -2933,7 +3034,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         context)
                                                                     .secondaryBackground,
                                                                 borderRadius:
-                                                                    const BorderRadius
+                                                                    BorderRadius
                                                                         .only(
                                                                   bottomLeft: Radius
                                                                       .circular(
@@ -2950,7 +3051,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 ),
                                                               ),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         0.0,
@@ -2960,7 +3061,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     CharactersMainRecord>(
                                                                   stream: CharactersMainRecord
                                                                       .getDocument(
-                                                                          widget
+                                                                          widget!
                                                                               .characterId!),
                                                                   builder: (context,
                                                                       snapshot) {
@@ -3000,7 +3101,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             [
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 1.0),
+                                                                                AlignmentDirectional(0.0, 1.0),
                                                                             child:
                                                                                 Row(
                                                                               mainAxisSize: MainAxisSize.max,
@@ -3009,7 +3110,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                               children: [
                                                                                 Flexible(
                                                                                   child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                     child: Column(
                                                                                       mainAxisSize: MainAxisSize.min,
                                                                                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -3018,7 +3119,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                           mainAxisSize: MainAxisSize.max,
                                                                                           children: [
                                                                                             Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                               child: RichText(
                                                                                                 textScaler: MediaQuery.of(context).textScaler,
                                                                                                 text: TextSpan(
@@ -3057,13 +3158,13 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                             ),
                                                                                           ],
                                                                                         ),
-                                                                                      ].divide(const SizedBox(height: 2.0)),
+                                                                                      ].divide(SizedBox(height: 2.0)),
                                                                                     ),
                                                                                   ),
                                                                                 ),
                                                                                 Flexible(
                                                                                   child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                                                                                     child: Container(
                                                                                       width: 80.0,
                                                                                       height: 90.0,
@@ -3072,7 +3173,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                         shape: BoxShape.rectangle,
                                                                                       ),
                                                                                       child: Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                         child: Column(
                                                                                           mainAxisSize: MainAxisSize.max,
                                                                                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -3094,7 +3195,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
-                                                                                                await widget.characterId!.update({
+                                                                                                await widget!.characterId!.update({
                                                                                                   ...mapToFirestore(
                                                                                                     {
                                                                                                       'likes_count': FieldValue.increment(1),
@@ -3160,7 +3261,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                             useGoogleFonts: GoogleFonts.asMap().containsKey('Poppins'),
                                                                                           ),
                                                                                     ),
-                                                                                  ].divide(const SizedBox(height: 4.0)),
+                                                                                  ].divide(SizedBox(height: 4.0)),
                                                                                 ),
                                                                               ),
                                                                             ],
@@ -3198,7 +3299,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                             useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                                           ),
                                                                                     ),
-                                                                                  ].divide(const SizedBox(height: 12.0)),
+                                                                                  ].divide(SizedBox(height: 12.0)),
                                                                                 ),
                                                                               ),
                                                                             ],
@@ -3236,7 +3337,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                             useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                                           ),
                                                                                     ),
-                                                                                  ].divide(const SizedBox(height: 12.0)),
+                                                                                  ].divide(SizedBox(height: 12.0)),
                                                                                 ),
                                                                               ),
                                                                             ],
@@ -3275,13 +3376,13 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                             useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                                           ),
                                                                                     ),
-                                                                                  ].divide(const SizedBox(height: 12.0)),
+                                                                                  ].divide(SizedBox(height: 12.0)),
                                                                                 ),
                                                                               ),
                                                                             ],
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 30.0,
                                                                                 0.0,
@@ -3307,7 +3408,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                               ],
                                                                             ),
                                                                           ),
-                                                                        ].divide(const SizedBox(height: 20.0)).addToEnd(const SizedBox(height: 20.0)),
+                                                                        ].divide(SizedBox(height: 20.0)).addToEnd(SizedBox(height: 20.0)),
                                                                       ),
                                                                     );
                                                                   },
@@ -3319,7 +3420,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     0.0,
@@ -3338,7 +3439,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   EdgeInsets
                                                                       .zero,
                                                               gridDelegate:
-                                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                  SliverGridDelegateWithFixedCrossAxisCount(
                                                                 crossAxisCount:
                                                                     2,
                                                                 crossAxisSpacing:

@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/button_pink/button_pink_widget.dart';
@@ -5,19 +6,24 @@ import '/components/cookie_banner_widget.dart';
 import '/components/footer_desktop/footer_desktop_widget.dart';
 import '/components/footer_mobile/footer_mobile_widget.dart';
 import '/components/social_proof_avatars/social_proof_avatars_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,10 +43,12 @@ class HomeWidget extends StatefulWidget {
   State<HomeWidget> createState() => _HomeWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
   late HomeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -58,11 +66,11 @@ class _HomeWidgetState extends State<HomeWidget> {
               elevation: 0,
               insetPadding: EdgeInsets.zero,
               backgroundColor: Colors.transparent,
-              alignment: const AlignmentDirectional(0.0, 0.0)
+              alignment: AlignmentDirectional(0.0, 0.0)
                   .resolve(Directionality.of(context)),
               child: GestureDetector(
                 onTap: () => FocusScope.of(dialogContext).unfocus(),
-                child: const CookieBannerWidget(),
+                child: CookieBannerWidget(),
               ),
             );
           },
@@ -101,6 +109,57 @@ class _HomeWidgetState extends State<HomeWidget> {
       }
     });
 
+    animationsMap.addAll({
+      'columnOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(-100.0, 0.0),
+            end: Offset(-1.0, 0.0),
+          ),
+        ],
+      ),
+      'columnOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'rowOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -132,7 +191,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -162,7 +221,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       35.0, 0.0, 0.0, 10.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -187,7 +246,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 ),
                               ],
                             ),
-                          ].divide(const SizedBox(height: 32.0)),
+                          ].divide(SizedBox(height: 32.0)),
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.min,
@@ -226,7 +285,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                             InkWell(
@@ -235,7 +294,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('Chats');
+                                if (loggedIn == true) {
+                                  context.pushNamed('Chats');
+                                } else {
+                                  context.pushNamed('auth_2_Create');
+                                }
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -262,7 +325,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                             InkWell(
@@ -298,7 +361,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                             InkWell(
@@ -338,7 +401,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                             Divider(
@@ -346,7 +409,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 30.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -355,7 +418,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 children: [
                                   if (loggedIn == false)
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 2.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -369,7 +432,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           model: _model.buttonPinkModel2,
                                           updateCallback: () =>
                                               safeSetState(() {}),
-                                          child: const ButtonPinkWidget(),
+                                          child: ButtonPinkWidget(),
                                         ),
                                       ),
                                     ),
@@ -378,7 +441,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           false) ==
                                       false)
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 30.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => FFButtonWidget(
@@ -389,17 +452,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               .getText(
                                             '29s9a3fv' /* Premium */,
                                           ),
-                                          icon: const Icon(
+                                          icon: Icon(
                                             Icons.diamond_sharp,
                                             size: 22.0,
                                           ),
                                           options: FFButtonOptions(
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -427,12 +490,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                       ),
                                     ),
-                                ].divide(const SizedBox(height: 16.0)),
+                                ].divide(SizedBox(height: 16.0)),
                               ),
                             ),
                             if (loggedIn == true)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -482,12 +545,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 5.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -539,7 +602,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       onChanged: (lang) =>
                                           setAppLanguage(context, lang),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -578,7 +641,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             if (loggedIn == true)
@@ -621,10 +684,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
-                          ].divide(const SizedBox(height: 24.0)),
+                          ].divide(SizedBox(height: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -639,9 +702,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               color: FlutterFlowTheme.of(context).primary,
                               size: 28.0,
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
-                      ].divide(const SizedBox(height: 40.0)),
+                      ].divide(SizedBox(height: 40.0)),
                     ),
                   ),
                 ),
@@ -664,13 +727,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: const [
+                                      boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -693,7 +756,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           children: [
                                             Flexible(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 child: Row(
@@ -707,7 +770,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   10.0,
@@ -728,7 +791,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -869,7 +932,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       ],
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 16.0)),
+                                                      SizedBox(width: 16.0)),
                                                 ),
                                               ),
                                             ),
@@ -891,13 +954,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: const [
+                                      boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -917,7 +980,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -928,7 +991,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: InkWell(
@@ -946,7 +1009,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1068,7 +1131,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                              ].divide(const SizedBox(width: 16.0)),
+                                              ].divide(SizedBox(width: 16.0)),
                                             ),
                                           ),
                                         ),
@@ -1095,7 +1158,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     blurRadius: 2.0,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    offset: const Offset(
+                                    offset: Offset(
                                       0.0,
                                       1.0,
                                     ),
@@ -1103,7 +1166,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1111,7 +1174,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1134,7 +1197,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 15.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1152,7 +1215,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     'Explore',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -1168,7 +1231,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -1205,9 +1268,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -1235,7 +1298,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -1254,7 +1317,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -1291,9 +1354,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -1308,8 +1371,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
-                                                          context.pushNamed(
-                                                              'Chats');
+                                                          if (loggedIn ==
+                                                              true) {
+                                                            context.pushNamed(
+                                                                'Chats');
+                                                          } else {
+                                                            context.pushNamed(
+                                                                'auth_2_Create');
+                                                          }
                                                         },
                                                         child: Icon(
                                                           Icons.wechat_outlined,
@@ -1321,7 +1390,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -1340,7 +1409,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -1377,9 +1446,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -1407,15 +1476,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 35.0)),
+                                            ].divide(SizedBox(width: 35.0)),
                                           ),
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -1451,9 +1520,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -1479,13 +1548,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
                                                 'wkueroee' /* Darkmodus */,
                                               ),
-                                              style: const TextStyle(),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                           offset: 4.0,
@@ -1500,9 +1569,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -1541,7 +1610,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -1577,9 +1646,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Visibility(
                                             visible: (loggedIn == true) &&
@@ -1637,7 +1706,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               model: _model.buttonPinkModel1,
                                               updateCallback: () =>
                                                   safeSetState(() {}),
-                                              child: const ButtonPinkWidget(),
+                                              child: ButtonPinkWidget(),
                                             ),
                                           ),
                                         if (loggedIn == false)
@@ -1652,9 +1721,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             options: FFButtonOptions(
                                               width: 100.0,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1693,7 +1762,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -1713,9 +1782,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -1730,7 +1799,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     phone: false,
                                   ))
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1740,9 +1809,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         children: [
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 30.0, 0.0, 0.0),
                                               child: Row(
@@ -1756,7 +1825,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   Flexible(
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   60.0,
                                                                   0.0,
@@ -1786,12 +1855,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             ).image,
                                                           ),
                                                         ),
-                                                      ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'containerOnPageLoadAnimation']!),
                                                     ),
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             1.0, 0.0),
                                                     child: Container(
                                                       width: MediaQuery.sizeOf(
@@ -1802,7 +1873,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   context)
                                                               .height *
                                                           0.6,
-                                                      decoration: const BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         shape:
                                                             BoxShape.rectangle,
                                                       ),
@@ -1853,7 +1924,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           Flexible(
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           20.0,
@@ -1892,7 +1963,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         10.0,
@@ -1900,7 +1971,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         0.0),
                                                             child: Container(
                                                               decoration:
-                                                                  const BoxDecoration(),
+                                                                  BoxDecoration(),
                                                               child: Text(
                                                                 FFLocalizations.of(
                                                                         context)
@@ -1937,7 +2008,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         20.0,
@@ -1952,7 +2023,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .start,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           30.0,
@@ -1976,13 +2047,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           300.0,
                                                                       height:
                                                                           70.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                                       iconPadding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               0.0),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
@@ -2020,7 +2091,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           20.0,
@@ -2033,10 +2104,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     children: [
                                                                       Container(
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               10.0,
                                                                               0.0,
@@ -2048,12 +2119,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             updateCallback: () =>
                                                                                 safeSetState(() {}),
                                                                             child:
-                                                                                const SocialProofAvatarsWidget(),
+                                                                                SocialProofAvatarsWidget(),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             25.0,
                                                                             8.0,
                                                                             0.0,
@@ -2064,13 +2135,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                     child: ClipRRect(
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                       child: Image.asset(
@@ -2094,7 +2165,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'j8lpky8o' /* Download App */,
@@ -2118,7 +2189,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             ),
                                                           ),
                                                         ],
-                                                      ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'columnOnPageLoadAnimation2']!),
                                                     ),
                                                   ),
                                                 ],
@@ -2138,17 +2211,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 10.0),
                                                 child: Container(
-                                                  constraints: const BoxConstraints(
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 330.0,
                                                   ),
                                                   decoration: BoxDecoration(
@@ -2158,7 +2231,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 1.0,
                                                                 0.0, 0.0),
                                                     child: ClipRRect(
@@ -2221,7 +2294,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   5.0,
@@ -2265,7 +2338,7 @@ Ani... */
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   10.0,
@@ -2293,14 +2366,14 @@ Ani... */
                                                                 FFButtonOptions(
                                                               height: 40.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2330,7 +2403,7 @@ Ani... */
                                                                           6.0),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 10.0)),
                                                       ),
                                                     ),
@@ -2342,13 +2415,13 @@ Ani... */
                                                             MainAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          SizedBox(
+                                                          Container(
                                                             width: 150.0,
                                                             child: Stack(
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
@@ -2376,7 +2449,7 @@ Ani... */
                                                                     child:
                                                                         Align(
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
@@ -2399,7 +2472,7 @@ Ani... */
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -0.6,
                                                                           0.0),
                                                                   child:
@@ -2444,7 +2517,7 @@ Ani... */
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -0.3,
                                                                           0.0),
                                                                   child:
@@ -2489,7 +2562,7 @@ Ani... */
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
@@ -2534,7 +2607,7 @@ Ani... */
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.3,
                                                                           0.0),
                                                                   child:
@@ -2579,7 +2652,7 @@ Ani... */
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.6,
                                                                           0.0),
                                                                   child:
@@ -2655,7 +2728,7 @@ Ani... */
                                                                         MainAxisAlignment
                                                                             .start,
                                                                     children: [
-                                                                      const Icon(
+                                                                      Icon(
                                                                         Icons
                                                                             .star_rounded,
                                                                         color: Color(
@@ -2663,7 +2736,7 @@ Ani... */
                                                                         size:
                                                                             24.0,
                                                                       ),
-                                                                      const Icon(
+                                                                      Icon(
                                                                         Icons
                                                                             .star_rounded,
                                                                         color: Color(
@@ -2671,7 +2744,7 @@ Ani... */
                                                                         size:
                                                                             24.0,
                                                                       ),
-                                                                      const Icon(
+                                                                      Icon(
                                                                         Icons
                                                                             .star_rounded,
                                                                         color: Color(
@@ -2679,7 +2752,7 @@ Ani... */
                                                                         size:
                                                                             24.0,
                                                                       ),
-                                                                      const Icon(
+                                                                      Icon(
                                                                         Icons
                                                                             .star_rounded,
                                                                         color: Color(
@@ -2687,7 +2760,7 @@ Ani... */
                                                                         size:
                                                                             24.0,
                                                                       ),
-                                                                      const Icon(
+                                                                      Icon(
                                                                         Icons
                                                                             .star_half_rounded,
                                                                         color: Color(
@@ -2695,12 +2768,12 @@ Ani... */
                                                                         size:
                                                                             24.0,
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         width:
                                                                             4.0)),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             3.0,
                                                                             0.0,
@@ -2729,7 +2802,7 @@ Ani... */
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     height:
                                                                         7.0)),
                                                               ),
@@ -2741,7 +2814,7 @@ Ani... */
                                                     Flexible(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -2785,7 +2858,7 @@ Ani... */
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           15.0,
                                                                           0.0,
@@ -2815,7 +2888,7 @@ Ani... */
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -2861,7 +2934,7 @@ Ani... */
                                 tablet: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 60.0, 0.0, 0.0),
                                   child: Container(
                                     width:
@@ -2872,7 +2945,7 @@ Ani... */
                                           .secondaryBackground,
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 3.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -2887,7 +2960,7 @@ Ani... */
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 15.0),
                                                   child: Icon(
@@ -2929,7 +3002,7 @@ Ani... */
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Icon(
@@ -2972,7 +3045,7 @@ Ani... */
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Icon(
@@ -3013,7 +3086,8 @@ Ani... */
                                             ],
                                           ),
                                         ],
-                                      ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'rowOnPageLoadAnimation']!),
                                     ),
                                   ),
                                 ),
@@ -3023,7 +3097,7 @@ Ani... */
                                 desktop: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Container(
                                     width:
@@ -3039,7 +3113,7 @@ Ani... */
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Flexible(
-                                          child: SizedBox(
+                                          child: Container(
                                             width: double.infinity,
                                             child: Stack(
                                               children: [
@@ -3053,7 +3127,7 @@ Ani... */
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   15.0,
@@ -3073,7 +3147,7 @@ Ani... */
                                                           Flexible(
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           10.0,
@@ -3121,7 +3195,7 @@ Ani... */
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         10.0,
@@ -3191,14 +3265,14 @@ Ani... */
                                                                 ),
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 10.0)),
                                                     ),
                                                   ],
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 1.35),
                                                   child: smooth_page_indicator
                                                       .SmoothPageIndicator(
@@ -3214,7 +3288,7 @@ Ani... */
                                                           .pageViewController!
                                                           .animateToPage(
                                                         i,
-                                                        duration: const Duration(
+                                                        duration: Duration(
                                                             milliseconds: 500),
                                                         curve: Curves.ease,
                                                       );
@@ -3253,7 +3327,7 @@ Ani... */
                                 phone: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 50.0, 0.0, 0.0),
                                   child: Container(
                                     width:
@@ -3269,15 +3343,15 @@ Ani... */
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 20.0),
                                             child: Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: Text(
@@ -3314,15 +3388,15 @@ Ani... */
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 20.0),
                                             child: Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 20.0),
                                                 child: Text(
@@ -3363,7 +3437,7 @@ Ani... */
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       60.0, 0.0, 60.0, 0.0),
                                               child: Builder(
@@ -3375,7 +3449,7 @@ Ani... */
                                                   return GridView.builder(
                                                     padding: EdgeInsets.zero,
                                                     gridDelegate:
-                                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                                        SliverGridDelegateWithFixedCrossAxisCount(
                                                       crossAxisCount: 5,
                                                       crossAxisSpacing: 20.0,
                                                       mainAxisSpacing: 20.0,
@@ -3394,7 +3468,7 @@ Ani... */
                                                               gridDisplayItemIndex];
                                                       return Stack(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 1.0),
                                                         children: [
                                                           if (gridDisplayItemItem
@@ -3408,7 +3482,7 @@ Ani... */
                                                                   1.0,
                                                               height: 80.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 color: Color(
                                                                     0x65333333),
                                                               ),
@@ -3487,7 +3561,7 @@ Ani... */
                                                                     fit: BoxFit
                                                                         .cover,
                                                                     alignment:
-                                                                        const Alignment(
+                                                                        Alignment(
                                                                             0.0,
                                                                             -1.0),
                                                                   ),
@@ -3500,11 +3574,11 @@ Ani... */
                                                               'ctaGrid')
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       -1.0,
                                                                       1.0),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -3535,11 +3609,11 @@ Ani... */
                                                             ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 1.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -3564,7 +3638,7 @@ Ani... */
                                                                   child:
                                                                       Padding(
                                                                     padding:
-                                                                        const EdgeInsets.all(
+                                                                        EdgeInsets.all(
                                                                             4.0),
                                                                     child: Text(
                                                                       gridDisplayItemItem
@@ -3597,11 +3671,11 @@ Ani... */
                                                               'ctaGrid')
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       1.0,
                                                                       -1.0),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         20.0,
@@ -3616,7 +3690,7 @@ Ani... */
                                                                       180.0,
                                                                   buttonSize:
                                                                       48.0,
-                                                                  fillColor: const Color(
+                                                                  fillColor: Color(
                                                                       0xCADE5499),
                                                                   icon: Icon(
                                                                     Icons
@@ -3662,11 +3736,11 @@ Ani... */
                                                               'ctaGrid')
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 1.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3688,14 +3762,14 @@ Ani... */
                                                                       FFButtonOptions(
                                                                     height:
                                                                         40.0,
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             0.0,
                                                                             16.0,
                                                                             0.0),
                                                                     iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -3730,7 +3804,7 @@ Ani... */
                                                               'ctaGrid')
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Container(
                                                                 height: MediaQuery.sizeOf(
@@ -3738,9 +3812,9 @@ Ani... */
                                                                         .height *
                                                                     0.25,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           15.0,
@@ -3760,7 +3834,7 @@ Ani... */
                                                                       Flexible(
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               15.0,
                                                                               0.0,
@@ -3786,12 +3860,12 @@ Ani... */
                                                                       Flexible(
                                                                         child:
                                                                             Align(
-                                                                          alignment: const AlignmentDirectional(
+                                                                          alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -3816,7 +3890,7 @@ Ani... */
                                                                       Flexible(
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               5.0,
                                                                               0.0,
                                                                               5.0,
@@ -3863,7 +3937,7 @@ Ani... */
                                 desktop: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 50.0, 0.0, 0.0),
                                   child: Container(
                                     width:
@@ -3879,11 +3953,11 @@ Ani... */
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: Text(
@@ -3917,15 +3991,15 @@ Ani... */
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 50.0),
                                             child: Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: Text(
@@ -3960,7 +4034,7 @@ Ani... */
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           child: Builder(
                                             builder: (context) {
@@ -3971,7 +4045,7 @@ Ani... */
                                               return GridView.builder(
                                                 padding: EdgeInsets.zero,
                                                 gridDelegate:
-                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                    SliverGridDelegateWithFixedCrossAxisCount(
                                                   crossAxisCount: 2,
                                                   crossAxisSpacing: 10.0,
                                                   mainAxisSpacing: 10.0,
@@ -3989,7 +4063,7 @@ Ani... */
                                                           getDisplayItemMobileIndex];
                                                   return Stack(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 1.0),
                                                     children: [
                                                       Container(
@@ -4057,7 +4131,7 @@ Ani... */
                                                                   1.0,
                                                               fit: BoxFit.cover,
                                                               alignment:
-                                                                  const Alignment(0.0,
+                                                                  Alignment(0.0,
                                                                       -1.0),
                                                             ),
                                                           ),
@@ -4070,7 +4144,7 @@ Ani... */
                                                           width: 195.0,
                                                           height: 80.0,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                              BoxDecoration(
                                                             color: Color(
                                                                 0x2A333333),
                                                           ),
@@ -4080,11 +4154,11 @@ Ani... */
                                                           'ctaGrid')
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 1.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -4123,11 +4197,11 @@ Ani... */
                                                           'ctaGrid')
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 1.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -4146,7 +4220,7 @@ Ani... */
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
+                                                                    EdgeInsets
                                                                         .all(
                                                                             4.0),
                                                                 child: Text(
@@ -4179,11 +4253,11 @@ Ani... */
                                                           'ctaGrid')
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   1.0, -1.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         20.0,
@@ -4194,7 +4268,7 @@ Ani... */
                                                               borderRadius:
                                                                   180.0,
                                                               buttonSize: 44.0,
-                                                              fillColor: const Color(
+                                                              fillColor: Color(
                                                                   0xBDDE5499),
                                                               icon: Icon(
                                                                 Icons
@@ -4243,7 +4317,7 @@ Ani... */
                                                           'ctaGrid')
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -4285,7 +4359,7 @@ Ani... */
                                                           'ctaGrid')
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -4322,7 +4396,7 @@ Ani... */
                                                           'ctaGrid')
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -4343,14 +4417,14 @@ Ani... */
                                                                 FFButtonOptions(
                                                               height: 40.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -4399,7 +4473,7 @@ Ani... */
                                 phone: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       60.0, 20.0, 60.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -4418,7 +4492,7 @@ Ani... */
                                                 desktop: false,
                                               ))
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 40.0, 0.0, 60.0),
                                               child: Row(
@@ -4427,7 +4501,7 @@ Ani... */
                                                   Flexible(
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -4448,7 +4522,7 @@ Ani... */
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: FFButtonWidget(
                                                             onPressed:
@@ -4465,14 +4539,14 @@ Ani... */
                                                                 FFButtonOptions(
                                                               height: 60.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -4518,7 +4592,7 @@ Ani... */
                                                 desktop: false,
                                               ))
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 40.0, 0.0, 60.0),
                                               child: Row(
@@ -4527,7 +4601,7 @@ Ani... */
                                                   Flexible(
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -4548,7 +4622,7 @@ Ani... */
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: FFButtonWidget(
                                                             onPressed:
@@ -4565,14 +4639,14 @@ Ani... */
                                                                 FFButtonOptions(
                                                               height: 60.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -4612,7 +4686,7 @@ Ani... */
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 40.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -4621,10 +4695,10 @@ Ani... */
                                           children: [
                                             Flexible(
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Container(
-                                                  constraints: const BoxConstraints(
+                                                  constraints: BoxConstraints(
                                                     maxWidth: 500.0,
                                                   ),
                                                   decoration: BoxDecoration(
@@ -4694,10 +4768,10 @@ Ani... */
                                                             ),
                                                           ),
                                                         ]
-                                                            .divide(const SizedBox(
+                                                            .divide(SizedBox(
                                                                 width: 30.0))
                                                             .addToStart(
-                                                                const SizedBox(
+                                                                SizedBox(
                                                                     width:
                                                                         60.0)),
                                                       ),
@@ -4756,10 +4830,10 @@ Ani... */
                                                             ),
                                                           ),
                                                         ]
-                                                            .divide(const SizedBox(
+                                                            .divide(SizedBox(
                                                                 width: 30.0))
                                                             .addToStart(
-                                                                const SizedBox(
+                                                                SizedBox(
                                                                     width:
                                                                         60.0)),
                                                       ),
@@ -4812,10 +4886,10 @@ Ani... */
                                                             ),
                                                           ),
                                                         ]
-                                                            .divide(const SizedBox(
+                                                            .divide(SizedBox(
                                                                 width: 30.0))
                                                             .addToStart(
-                                                                const SizedBox(
+                                                                SizedBox(
                                                                     width:
                                                                         60.0)),
                                                       ),
@@ -4875,10 +4949,10 @@ Ani... */
                                                             ),
                                                           ),
                                                         ]
-                                                            .divide(const SizedBox(
+                                                            .divide(SizedBox(
                                                                 width: 30.0))
                                                             .addToStart(
-                                                                const SizedBox(
+                                                                SizedBox(
                                                                     width:
                                                                         60.0)),
                                                       ),
@@ -4932,15 +5006,15 @@ Ani... */
                                                             ),
                                                           ),
                                                         ]
-                                                            .divide(const SizedBox(
+                                                            .divide(SizedBox(
                                                                 width: 30.0))
                                                             .addToStart(
-                                                                const SizedBox(
+                                                                SizedBox(
                                                                     width:
                                                                         60.0)),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(height: 20.0)),
+                                                        SizedBox(height: 20.0)),
                                                   ),
                                                 ),
                                               ),
@@ -4958,7 +5032,7 @@ Ani... */
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: ClipRRect(
                                                     borderRadius:
@@ -4978,7 +5052,7 @@ Ani... */
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 40.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -4987,7 +5061,7 @@ Ani... */
                                           children: [
                                             Flexible(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 40.0, 0.0, 40.0),
                                                 child: Container(
@@ -5003,7 +5077,7 @@ Ani... */
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
@@ -5018,14 +5092,14 @@ Ani... */
                                                       options: FFButtonOptions(
                                                         height: 60.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     0.0,
                                                                     16.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -5067,7 +5141,7 @@ Ani... */
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 60.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -5117,17 +5191,17 @@ Ani... */
                                                       _model.ratingBarValue1 =
                                                           newValue),
                                               itemBuilder: (context, index) =>
-                                                  const Icon(
+                                                  Icon(
                                                 Icons.star_rounded,
                                                 color: Color(0xFFDEC854),
                                               ),
                                               direction: Axis.horizontal,
                                               initialRating: _model
                                                   .ratingBarValue1 ??= 3.0,
-                                              unratedColor: const Color(0xFFDEC854),
+                                              unratedColor: Color(0xFFDEC854),
                                               itemCount: 5,
                                               itemSize: 24.0,
-                                              glowColor: const Color(0xFFDEC854),
+                                              glowColor: Color(0xFFDEC854),
                                             ),
                                             Text(
                                               FFLocalizations.of(context)
@@ -5164,7 +5238,7 @@ Ani... */
                                 desktop: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 10.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -5180,14 +5254,14 @@ Ani... */
                                       ))
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 30.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Flexible(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 30.0),
                                                   child: Container(
@@ -5203,7 +5277,7 @@ Ani... */
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
@@ -5220,14 +5294,14 @@ Ani... */
                                                             FFButtonOptions(
                                                           height: 40.0,
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       0.0,
                                                                       16.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -5279,7 +5353,7 @@ Ani... */
                                                       .secondaryBackground,
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 40.0, 0.0, 0.0),
                                               child: Column(
@@ -5349,9 +5423,9 @@ Ani... */
                                                         ),
                                                       ),
                                                     ]
-                                                        .divide(const SizedBox(
+                                                        .divide(SizedBox(
                                                             width: 10.0))
-                                                        .addToStart(const SizedBox(
+                                                        .addToStart(SizedBox(
                                                             width: 20.0)),
                                                   ),
                                                   Row(
@@ -5415,9 +5489,9 @@ Ani... */
                                                         ),
                                                       ),
                                                     ]
-                                                        .divide(const SizedBox(
+                                                        .divide(SizedBox(
                                                             width: 10.0))
-                                                        .addToStart(const SizedBox(
+                                                        .addToStart(SizedBox(
                                                             width: 20.0)),
                                                   ),
                                                   Row(
@@ -5475,9 +5549,9 @@ Ani... */
                                                         ),
                                                       ),
                                                     ]
-                                                        .divide(const SizedBox(
+                                                        .divide(SizedBox(
                                                             width: 10.0))
-                                                        .addToStart(const SizedBox(
+                                                        .addToStart(SizedBox(
                                                             width: 20.0)),
                                                   ),
                                                   Row(
@@ -5541,9 +5615,9 @@ Ani... */
                                                         ),
                                                       ),
                                                     ]
-                                                        .divide(const SizedBox(
+                                                        .divide(SizedBox(
                                                             width: 10.0))
-                                                        .addToStart(const SizedBox(
+                                                        .addToStart(SizedBox(
                                                             width: 20.0)),
                                                   ),
                                                   Row(
@@ -5601,19 +5675,19 @@ Ani... */
                                                         ),
                                                       ),
                                                     ]
-                                                        .divide(const SizedBox(
+                                                        .divide(SizedBox(
                                                             width: 10.0))
-                                                        .addToStart(const SizedBox(
+                                                        .addToStart(SizedBox(
                                                             width: 20.0)),
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 20.0)),
+                                                    SizedBox(height: 20.0)),
                                               ),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 30.0, 0.0, 0.0),
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
@@ -5640,16 +5714,16 @@ Ani... */
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 30.0)),
+                                        ].divide(SizedBox(height: 30.0)),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 30.0, 0.0, 30.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 30.0, 0.0, 30.0),
                                               child: Container(
@@ -5665,7 +5739,7 @@ Ani... */
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
@@ -5680,14 +5754,14 @@ Ani... */
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   0.0,
                                                                   16.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -5741,7 +5815,7 @@ Ani... */
                                                       .secondaryBackground,
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       15.0, 0.0, 15.0, 0.0),
                                               child: Text(
@@ -5778,7 +5852,7 @@ Ani... */
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 10.0),
                                             child: RatingBar.builder(
                                               onRatingUpdate: (newValue) =>
@@ -5786,17 +5860,17 @@ Ani... */
                                                       _model.ratingBarValue2 =
                                                           newValue),
                                               itemBuilder: (context, index) =>
-                                                  const Icon(
+                                                  Icon(
                                                 Icons.star_rounded,
                                                 color: Color(0xFFDEC854),
                                               ),
                                               direction: Axis.horizontal,
                                               initialRating: _model
                                                   .ratingBarValue2 ??= 3.0,
-                                              unratedColor: const Color(0xFFDEC854),
+                                              unratedColor: Color(0xFFDEC854),
                                               itemCount: 5,
                                               itemSize: 24.0,
-                                              glowColor: const Color(0xFFDEC854),
+                                              glowColor: Color(0xFFDEC854),
                                             ),
                                           ),
                                           Text(
@@ -5821,7 +5895,7 @@ Ani... */
                                           ),
                                         ],
                                       ),
-                                      const Padding(
+                                      Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 30.0),
                                         child: Column(
@@ -5845,13 +5919,13 @@ Ani... */
                                         model: _model.footerDesktopModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const FooterDesktopWidget(),
+                                        child: FooterDesktopWidget(),
                                       ),
                                       wrapWithModel(
                                         model: _model.footerMobileModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const FooterMobileWidget(),
+                                        child: FooterMobileWidget(),
                                       ),
                                     ],
                                   ),
@@ -5863,7 +5937,8 @@ Ani... */
                       ),
                     ],
                   ),
-                ),
+                ).animateOnPageLoad(
+                    animationsMap['columnOnPageLoadAnimation1']!),
               ),
             ),
           )),

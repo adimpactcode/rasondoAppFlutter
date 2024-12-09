@@ -3,15 +3,16 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class MessagesRecord extends FirestoreRecord {
   MessagesRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -50,6 +51,16 @@ class MessagesRecord extends FirestoreRecord {
   String get imagePrompt => _imagePrompt ?? '';
   bool hasImagePrompt() => _imagePrompt != null;
 
+  // "initialMessage" field.
+  String? _initialMessage;
+  String get initialMessage => _initialMessage ?? '';
+  bool hasInitialMessage() => _initialMessage != null;
+
+  // "assistantMessage" field.
+  String? _assistantMessage;
+  String get assistantMessage => _assistantMessage ?? '';
+  bool hasAssistantMessage() => _assistantMessage != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -60,6 +71,8 @@ class MessagesRecord extends FirestoreRecord {
     _content = snapshotData['content'] as String?;
     _image = snapshotData['image'] as String?;
     _imagePrompt = snapshotData['image_prompt'] as String?;
+    _initialMessage = snapshotData['initialMessage'] as String?;
+    _assistantMessage = snapshotData['assistantMessage'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -109,6 +122,8 @@ Map<String, dynamic> createMessagesRecordData({
   String? content,
   String? image,
   String? imagePrompt,
+  String? initialMessage,
+  String? assistantMessage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,6 +134,8 @@ Map<String, dynamic> createMessagesRecordData({
       'content': content,
       'image': image,
       'image_prompt': imagePrompt,
+      'initialMessage': initialMessage,
+      'assistantMessage': assistantMessage,
     }.withoutNulls,
   );
 
@@ -136,7 +153,9 @@ class MessagesRecordDocumentEquality implements Equality<MessagesRecord> {
         e1?.role == e2?.role &&
         e1?.content == e2?.content &&
         e1?.image == e2?.image &&
-        e1?.imagePrompt == e2?.imagePrompt;
+        e1?.imagePrompt == e2?.imagePrompt &&
+        e1?.initialMessage == e2?.initialMessage &&
+        e1?.assistantMessage == e2?.assistantMessage;
   }
 
   @override
@@ -147,7 +166,9 @@ class MessagesRecordDocumentEquality implements Equality<MessagesRecord> {
         e?.role,
         e?.content,
         e?.image,
-        e?.imagePrompt
+        e?.imagePrompt,
+        e?.initialMessage,
+        e?.assistantMessage
       ]);
 
   @override

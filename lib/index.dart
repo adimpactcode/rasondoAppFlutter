@@ -24,5 +24,7 @@ export '/pages/chat_page_pro/chat_page_pro_widget.dart' show ChatPageProWidget;
 export '/account_profile_creation/auth_flow/auth_2_profil/auth2_profil_widget.dart'
     show Auth2ProfilWidget;
 export '/account_profile_creation/agb/agb_widget.dart' show AgbWidget;
-export '/account_profile_creation/verifivation_page/verifivation_page_widget.dart'
-    show VerifivationPageWidget;
+export '/account_profile_creation/verification_page/verification_page_widget.dart'
+    show VerificationPageWidget;
+export '/allgemeine_geschftsbedingungen/allgemeine_geschftsbedingungen_widget.dart'
+    show AllgemeineGeschftsbedingungenWidget;

@@ -1,9 +1,12 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/components/choose_button_transparent/choose_button_transparent_widget.dart';
 import '/components/create_character_limit_c_t_a_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_language_selector.dart';
@@ -12,10 +15,14 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:math';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,10 +36,13 @@ class CreateWidget extends StatefulWidget {
   State<CreateWidget> createState() => _CreateWidgetState();
 }
 
-class _CreateWidgetState extends State<CreateWidget> {
+class _CreateWidgetState extends State<CreateWidget>
+    with TickerProviderStateMixin {
   late CreateModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -49,6 +59,21 @@ class _CreateWidgetState extends State<CreateWidget> {
     _model.textfieldJobFocusNode ??= FocusNode();
 
     _model.oeffentlichValue = false;
+    animationsMap.addAll({
+      'columnOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 60.0.ms,
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -79,7 +104,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                      EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +134,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     35.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -134,7 +159,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                               ),
                             ],
                           ),
-                        ].divide(const SizedBox(height: 32.0)),
+                        ].divide(SizedBox(height: 32.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -172,7 +197,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -181,7 +206,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Chats');
+                              if (loggedIn == true) {
+                                context.pushNamed('Chats');
+                              } else {
+                                context.pushNamed('auth_2_Create');
+                              }
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -207,7 +236,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -242,7 +271,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -281,7 +310,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           Divider(
@@ -289,7 +318,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -298,7 +327,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                               children: [
                                 if (loggedIn == false)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -312,7 +341,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         model: _model.buttonPinkModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const ButtonPinkWidget(),
+                                        child: ButtonPinkWidget(),
                                       ),
                                     ),
                                   ),
@@ -321,7 +350,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         false) ==
                                     false)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
@@ -332,17 +361,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             FFLocalizations.of(context).getText(
                                           '07lng8n9' /* Premium */,
                                         ),
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.diamond_sharp,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -369,12 +398,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       ),
                                     ),
                                   ),
-                              ].divide(const SizedBox(height: 16.0)),
+                              ].divide(SizedBox(height: 16.0)),
                             ),
                           ),
                           if (loggedIn == true)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -422,12 +451,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 5.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -478,7 +507,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     onChanged: (lang) =>
                                         setAppLanguage(context, lang),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
@@ -517,7 +546,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           if (loggedIn == true)
@@ -559,10 +588,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -577,9 +606,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
-                        ].divide(const SizedBox(width: 24.0)),
+                        ].divide(SizedBox(width: 24.0)),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40.0)),
                   ),
                 ),
               ),
@@ -602,13 +631,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x33000000),
@@ -626,7 +655,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   children: [
                                     Flexible(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -636,7 +665,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: InkWell(
@@ -650,7 +679,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     'Home',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -769,7 +798,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 ),
                                               ],
                                             ),
-                                          ].divide(const SizedBox(width: 16.0)),
+                                          ].divide(SizedBox(width: 16.0)),
                                         ),
                                       ),
                                     ),
@@ -788,13 +817,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x33000000),
@@ -818,7 +847,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -829,7 +858,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: InkWell(
@@ -847,7 +876,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -978,7 +1007,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                              ].divide(const SizedBox(width: 16.0)),
+                                              ].divide(SizedBox(width: 16.0)),
                                             ),
                                           ),
                                         ),
@@ -1007,7 +1036,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 blurRadius: 2.0,
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                offset: const Offset(
+                                offset: Offset(
                                   0.0,
                                   1.0,
                                 ),
@@ -1015,14 +1044,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                             ],
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -1044,7 +1073,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 15.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1061,7 +1090,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 'Explore',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -1075,7 +1104,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 AlignedTooltip(
                                                   content: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(4.0),
+                                                        EdgeInsets.all(4.0),
                                                     child: Text(
                                                       FFLocalizations.of(
                                                               context)
@@ -1113,9 +1142,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: const Duration(
+                                                  waitDuration: Duration(
                                                       milliseconds: 100),
-                                                  showDuration: const Duration(
+                                                  showDuration: Duration(
                                                       milliseconds: 300),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -1142,7 +1171,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
                                           InkWell(
@@ -1159,7 +1188,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 AlignedTooltip(
                                                   content: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(4.0),
+                                                        EdgeInsets.all(4.0),
                                                     child: Text(
                                                       FFLocalizations.of(
                                                               context)
@@ -1197,9 +1226,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: const Duration(
+                                                  waitDuration: Duration(
                                                       milliseconds: 100),
-                                                  showDuration: const Duration(
+                                                  showDuration: Duration(
                                                       milliseconds: 300),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -1213,8 +1242,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      context
-                                                          .pushNamed('Chats');
+                                                      if (loggedIn == true) {
+                                                        context
+                                                            .pushNamed('Chats');
+                                                      } else {
+                                                        context.pushNamed(
+                                                            'auth_2_Create');
+                                                      }
                                                     },
                                                     child: Icon(
                                                       Icons.wechat_outlined,
@@ -1226,7 +1260,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
                                           InkWell(
@@ -1243,7 +1277,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 AlignedTooltip(
                                                   content: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(4.0),
+                                                        EdgeInsets.all(4.0),
                                                     child: Text(
                                                       FFLocalizations.of(
                                                               context)
@@ -1281,9 +1315,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: const Duration(
+                                                  waitDuration: Duration(
                                                       milliseconds: 100),
-                                                  showDuration: const Duration(
+                                                  showDuration: Duration(
                                                       milliseconds: 300),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -1310,15 +1344,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 35.0)),
+                                        ].divide(SizedBox(width: 35.0)),
                                       ),
                                     ),
                                     AlignedTooltip(
                                       content: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             's652198e' /* Message... */,
@@ -1348,8 +1382,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       elevation: 4.0,
                                       tailBaseWidth: 24.0,
                                       tailLength: 12.0,
-                                      waitDuration: const Duration(milliseconds: 100),
-                                      showDuration: const Duration(milliseconds: 300),
+                                      waitDuration: Duration(milliseconds: 100),
+                                      showDuration: Duration(milliseconds: 300),
                                       triggerMode: TooltipTriggerMode.tap,
                                       child: Opacity(
                                         opacity: 0.5,
@@ -1374,12 +1408,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                     AlignedTooltip(
                                       content: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             'xjrz02hu' /* Darkmodus */,
                                           ),
-                                          style: const TextStyle(),
+                                          style: TextStyle(),
                                         ),
                                       ),
                                       offset: 4.0,
@@ -1391,8 +1425,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       elevation: 4.0,
                                       tailBaseWidth: 24.0,
                                       tailLength: 12.0,
-                                      waitDuration: const Duration(milliseconds: 100),
-                                      showDuration: const Duration(milliseconds: 300),
+                                      waitDuration: Duration(milliseconds: 100),
+                                      showDuration: Duration(milliseconds: 300),
                                       triggerMode: TooltipTriggerMode.tap,
                                       child: Opacity(
                                         opacity: 0.5,
@@ -1428,7 +1462,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                     AlignedTooltip(
                                       content: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             'g4xk8t0b' /* User profil */,
@@ -1458,8 +1492,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       elevation: 4.0,
                                       tailBaseWidth: 24.0,
                                       tailLength: 12.0,
-                                      waitDuration: const Duration(milliseconds: 100),
-                                      showDuration: const Duration(milliseconds: 300),
+                                      waitDuration: Duration(milliseconds: 100),
+                                      showDuration: Duration(milliseconds: 300),
                                       triggerMode: TooltipTriggerMode.tap,
                                       child: Visibility(
                                         visible: (loggedIn == true) &&
@@ -1513,7 +1547,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           model: _model.buttonPinkModel1,
                                           updateCallback: () =>
                                               safeSetState(() {}),
-                                          child: const ButtonPinkWidget(),
+                                          child: ButtonPinkWidget(),
                                         ),
                                       ),
                                     if (loggedIn == false)
@@ -1529,10 +1563,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           width: 100.0,
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -1566,7 +1600,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         ),
                                       ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 10.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1585,9 +1619,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -1604,12 +1638,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Flexible(
-                                child: SizedBox(
+                                child: Container(
                                   width: double.infinity,
                                   child: Stack(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 40.0),
                                         child: PageView(
                                           physics:
@@ -1663,7 +1697,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         .center,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             30.0,
@@ -1672,15 +1706,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                     child:
                                                                         Container(
                                                                       constraints:
-                                                                          const BoxConstraints(
+                                                                          BoxConstraints(
                                                                         maxWidth:
                                                                             770.0,
                                                                       ),
                                                                       decoration:
-                                                                          const BoxDecoration(),
+                                                                          BoxDecoration(),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             12.0,
                                                                             16.0,
@@ -1698,7 +1732,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             children:
                                                                                 [
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                alignment: AlignmentDirectional(0.0, -1.0),
                                                                                 child: Text(
                                                                                   FFLocalizations.of(context).getText(
                                                                                     'scidgjg9' /* Erstelle deinen Traumpartner m... */,
@@ -1722,7 +1756,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                                                                                       child: Stack(
                                                                                         children: [
                                                                                           if (responsiveVisibility(
@@ -1731,7 +1765,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             tablet: false,
                                                                                           ))
                                                                                             Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
                                                                                               child: Row(
                                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1747,10 +1781,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                         safeSetState(() {});
                                                                                                       },
                                                                                                       child: Stack(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         children: [
                                                                                                           Align(
-                                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                             child: Container(
                                                                                                               width: 250.0,
                                                                                                               height: 350.0,
@@ -1758,7 +1792,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                                                 border: Border.all(
-                                                                                                                  color: FFAppState().imageStyleState == 'Realistik' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                                  color: FFAppState().imageStyleState == 'Realistik' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                                   width: FFAppState().imageStyleState == 'Realistik' ? 3.0 : 0.0,
                                                                                                                 ),
                                                                                                               ),
@@ -1772,12 +1806,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                             ),
                                                                                                           ),
                                                                                                           Align(
-                                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                             child: Container(
                                                                                                               width: 100.0,
                                                                                                               height: 50.0,
                                                                                                               decoration: BoxDecoration(
-                                                                                                                color: const Color(0xB3DE5499),
+                                                                                                                color: Color(0xB3DE5499),
                                                                                                                 borderRadius: BorderRadius.circular(6.0),
                                                                                                                 border: Border.all(
                                                                                                                   color: FlutterFlowTheme.of(context).primary,
@@ -1785,7 +1819,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                                 ),
                                                                                                               ),
                                                                                                               child: Align(
-                                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                                 child: Text(
                                                                                                                   FFLocalizations.of(context).getText(
                                                                                                                     'nkn7i265' /* Realistik */,
@@ -1817,21 +1851,21 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                         safeSetState(() {});
                                                                                                       },
                                                                                                       child: Stack(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         children: [
                                                                                                           Align(
-                                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                             child: Container(
                                                                                                               width: 250.0,
                                                                                                               height: 350.0,
-                                                                                                              constraints: const BoxConstraints(
+                                                                                                              constraints: BoxConstraints(
                                                                                                                 maxWidth: 350.0,
                                                                                                                 maxHeight: 450.0,
                                                                                                               ),
                                                                                                               decoration: BoxDecoration(
                                                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                                                 border: Border.all(
-                                                                                                                  color: FFAppState().imageStyleState == 'Anime' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                                  color: FFAppState().imageStyleState == 'Anime' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                                   width: FFAppState().imageStyleState == 'Anime' ? 3.0 : 0.0,
                                                                                                                 ),
                                                                                                               ),
@@ -1845,12 +1879,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                             ),
                                                                                                           ),
                                                                                                           Align(
-                                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                             child: Container(
                                                                                                               width: 100.0,
                                                                                                               height: 50.0,
                                                                                                               decoration: BoxDecoration(
-                                                                                                                color: const Color(0xB3DE5499),
+                                                                                                                color: Color(0xB3DE5499),
                                                                                                                 borderRadius: BorderRadius.circular(6.0),
                                                                                                                 border: Border.all(
                                                                                                                   color: FlutterFlowTheme.of(context).primary,
@@ -1858,7 +1892,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                                 ),
                                                                                                               ),
                                                                                                               child: Align(
-                                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                                 child: Text(
                                                                                                                   FFLocalizations.of(context).getText(
                                                                                                                     '59j0bbrj' /* Anime */,
@@ -1883,9 +1917,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                           Align(
-                                                                                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                             child: Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                                                                                               child: Text(
                                                                                                 FFLocalizations.of(context).getText(
                                                                                                   'pla4gnzb' /* Style auswählen: */,
@@ -1903,7 +1937,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                       child: Text(
                                                                                         FFLocalizations.of(context).getText(
                                                                                           'wjw327g5' /* Wähle das Geschlecht */,
@@ -1931,7 +1965,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                       Stack(
                                                                                         children: [
                                                                                           Align(
-                                                                                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                             child: Text(
                                                                                               FFLocalizations.of(context).getText(
                                                                                                 '5m84ax7l' /* Style auswählen: */,
@@ -1945,7 +1979,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             ),
                                                                                           ),
                                                                                           Padding(
-                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 35.0),
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 35.0),
                                                                                             child: Row(
                                                                                               mainAxisSize: MainAxisSize.max,
                                                                                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1961,12 +1995,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       safeSetState(() {});
                                                                                                     },
                                                                                                     child: Stack(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       children: [
                                                                                                         Container(
                                                                                                           width: 170.0,
                                                                                                           height: 250.0,
-                                                                                                          constraints: const BoxConstraints(
+                                                                                                          constraints: BoxConstraints(
                                                                                                             maxWidth: 250.0,
                                                                                                             maxHeight: 350.0,
                                                                                                           ),
@@ -1974,7 +2008,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                             color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                             borderRadius: BorderRadius.circular(8.0),
                                                                                                             border: Border.all(
-                                                                                                              color: FFAppState().imageStyleState == 'Realistik' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                              color: FFAppState().imageStyleState == 'Realistik' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                               width: FFAppState().imageStyleState == 'Realistik' ? 3.0 : 0.0,
                                                                                                             ),
                                                                                                           ),
@@ -1992,8 +2026,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                           width: 100.0,
                                                                                                           height: 50.0,
                                                                                                           decoration: BoxDecoration(
-                                                                                                            color: const Color(0xB2DE5499),
-                                                                                                            borderRadius: const BorderRadius.only(
+                                                                                                            color: Color(0xB2DE5499),
+                                                                                                            borderRadius: BorderRadius.only(
                                                                                                               bottomLeft: Radius.circular(0.0),
                                                                                                               bottomRight: Radius.circular(0.0),
                                                                                                               topLeft: Radius.circular(2.0),
@@ -2004,7 +2038,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                             ),
                                                                                                           ),
                                                                                                           child: Align(
-                                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                             child: Text(
                                                                                                               FFLocalizations.of(context).getText(
                                                                                                                 'z14f63qy' /* Realistic */,
@@ -2034,7 +2068,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       safeSetState(() {});
                                                                                                     },
                                                                                                     child: Stack(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       children: [
                                                                                                         Container(
                                                                                                           width: 170.0,
@@ -2042,7 +2076,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                           decoration: BoxDecoration(
                                                                                                             borderRadius: BorderRadius.circular(8.0),
                                                                                                             border: Border.all(
-                                                                                                              color: FFAppState().imageStyleState == 'Anime' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                              color: FFAppState().imageStyleState == 'Anime' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                               width: FFAppState().imageStyleState == 'Anime' ? 3.0 : 0.0,
                                                                                                             ),
                                                                                                           ),
@@ -2059,7 +2093,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                         wrapWithModel(
                                                                                                           model: _model.chooseButtonTransparentModel,
                                                                                                           updateCallback: () => safeSetState(() {}),
-                                                                                                          child: const ChooseButtonTransparentWidget(),
+                                                                                                          child: ChooseButtonTransparentWidget(),
                                                                                                         ),
                                                                                                       ],
                                                                                                     ),
@@ -2071,7 +2105,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         ],
                                                                                       ),
                                                                                       Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                                         child: Text(
                                                                                           FFLocalizations.of(context).getText(
                                                                                             'eewqty4k' /* Wähle das Geschlecht */,
@@ -2088,18 +2122,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   ),
                                                                                 ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                 child: Container(
-                                                                                  constraints: const BoxConstraints(
+                                                                                  constraints: BoxConstraints(
                                                                                     maxWidth: 770.0,
                                                                                     maxHeight: 700.0,
                                                                                   ),
-                                                                                  decoration: const BoxDecoration(),
+                                                                                  decoration: BoxDecoration(),
                                                                                   child: Column(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     children: [
                                                                                       Align(
-                                                                                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                         child: FlutterFlowChoiceChips(
                                                                                           options: [
                                                                                             ChipData(FFLocalizations.of(context).getText(
@@ -2111,7 +2145,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           ],
                                                                                           onChanged: (val) => safeSetState(() => _model.choiceChipsGenderValue = val?.firstOrNull),
                                                                                           selectedChipStyle: ChipStyle(
-                                                                                            backgroundColor: const Color(0xE6DE5499),
+                                                                                            backgroundColor: Color(0xE6DE5499),
                                                                                             textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                   color: FlutterFlowTheme.of(context).secondary,
@@ -2126,7 +2160,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             borderRadius: BorderRadius.circular(8.0),
                                                                                           ),
                                                                                           unselectedChipStyle: ChipStyle(
-                                                                                            backgroundColor: const Color(0x00F2F2F2),
+                                                                                            backgroundColor: Color(0x00F2F2F2),
                                                                                             textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                   color: FlutterFlowTheme.of(context).primary,
@@ -2151,11 +2185,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         ),
                                                                                       ),
                                                                                       Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                                                                                         child: FFButtonWidget(
                                                                                           onPressed: () async {
                                                                                             await _model.pageViewController?.nextPage(
-                                                                                              duration: const Duration(milliseconds: 300),
+                                                                                              duration: Duration(milliseconds: 300),
                                                                                               curve: Curves.ease,
                                                                                             );
                                                                                           },
@@ -2165,8 +2199,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           options: FFButtonOptions(
                                                                                             width: double.infinity,
                                                                                             height: 48.0,
-                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                                                                                            iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                                                                                             color: FlutterFlowTheme.of(context).primary,
                                                                                             textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                                                                                   fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
@@ -2175,7 +2209,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
                                                                                                 ),
                                                                                             elevation: 3.0,
-                                                                                            borderSide: const BorderSide(
+                                                                                            borderSide: BorderSide(
                                                                                               color: Colors.transparent,
                                                                                               width: 1.0,
                                                                                             ),
@@ -2183,13 +2217,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(height: 40.0)),
+                                                                                    ].divide(SizedBox(height: 40.0)),
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                            ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                            ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                           ),
-                                                                        ),
+                                                                        ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -2238,15 +2272,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 children: [
                                                                   Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           770.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           40.0,
                                                                           16.0,
@@ -2262,7 +2296,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         children:
                                                                             [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -2281,7 +2315,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -2307,7 +2341,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ],
                                                                               onChanged: (val) => safeSetState(() => _model.choiceChipsAgeValue = val?.firstOrNull),
                                                                               selectedChipStyle: ChipStyle(
-                                                                                backgroundColor: const Color(0xE6DE5499),
+                                                                                backgroundColor: Color(0xE6DE5499),
                                                                                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).secondary,
@@ -2322,7 +2356,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                               ),
                                                                               unselectedChipStyle: ChipStyle(
-                                                                                backgroundColor: const Color(0x00F2F2F2),
+                                                                                backgroundColor: Color(0x00F2F2F2),
                                                                                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).primary,
@@ -2348,11 +2382,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
@@ -2362,9 +2396,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     children: [
                                                                                       Align(
-                                                                                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                         child: Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                                           child: Text(
                                                                                             FFLocalizations.of(context).getText(
                                                                                               'g78t8q70' /* Welche Herkunft soll dein AI-C... */,
@@ -2382,7 +2416,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                       if (_model.choiceChipsGenderValue == 'Frau')
                                                                                         GridView(
                                                                                           padding: EdgeInsets.zero,
-                                                                                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                             crossAxisCount: 3,
                                                                                             crossAxisSpacing: 10.0,
                                                                                             mainAxisSpacing: 10.0,
@@ -2407,7 +2441,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(6.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Kaukasisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Kaukasisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Kaukasisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2420,19 +2454,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'bxlj62av' /* Kaukasisch */,
@@ -2467,7 +2501,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Latina' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Latina' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Latina' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2480,19 +2514,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'jdqrwe4a' /* Latina */,
@@ -2527,7 +2561,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Afrikanisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Afrikanisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Afrikanisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2540,19 +2574,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             '6ccca24z' /* Afrikanisch */,
@@ -2587,7 +2621,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Asiatisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Asiatisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Asiatisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2600,19 +2634,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'tjwok5vu' /* Asiatisch */,
@@ -2647,7 +2681,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Europäisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Europäisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Europäisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2660,19 +2694,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'twq49kvm' /* Europäisch */,
@@ -2707,7 +2741,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Arabisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Arabisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Arabisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2720,19 +2754,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'd0d4n6qf' /* Arabisch */,
@@ -2756,7 +2790,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                       if (_model.choiceChipsGenderValue == 'Mann')
                                                                                         GridView(
                                                                                           padding: EdgeInsets.zero,
-                                                                                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                             crossAxisCount: 3,
                                                                                             crossAxisSpacing: 10.0,
                                                                                             mainAxisSpacing: 10.0,
@@ -2781,7 +2815,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(6.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Kaukasisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Kaukasisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Kaukasisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2794,19 +2828,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'mi5pa39f' /* Kaukasisch */,
@@ -2841,7 +2875,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Latino' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Latino' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Latino' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2854,19 +2888,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             '6w7dj1qc' /* Latina */,
@@ -2901,7 +2935,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Afrikanisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Afrikanisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Afrikanisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2914,19 +2948,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'l95v4ul7' /* Afrikanisch */,
@@ -2961,7 +2995,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Asiatisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Asiatisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Asiatisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -2974,19 +3008,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             '9hfkb8xm' /* Asiatisch */,
@@ -3021,7 +3055,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Europäisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Europäisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Europäisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -3034,19 +3068,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             '3s0pxkku' /* Europäisch */,
@@ -3081,7 +3115,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                                       border: Border.all(
-                                                                                                        color: FFAppState().ethnicity == 'Arabisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                        color: FFAppState().ethnicity == 'Arabisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                         width: FFAppState().ethnicity == 'Arabisch' ? 4.0 : 0.0,
                                                                                                       ),
                                                                                                     ),
@@ -3094,19 +3128,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     ),
                                                                                                   ),
                                                                                                   Align(
-                                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                     child: Container(
                                                                                                       width: 100.0,
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
-                                                                                                        color: const Color(0xB3DE5499),
+                                                                                                        color: Color(0xB3DE5499),
                                                                                                         border: Border.all(
                                                                                                           color: FlutterFlowTheme.of(context).primary,
                                                                                                           width: 2.0,
                                                                                                         ),
                                                                                                       ),
                                                                                                       child: Align(
-                                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Text(
                                                                                                           FFLocalizations.of(context).getText(
                                                                                                             'elc5fgm9' /* Arabisch */,
@@ -3134,9 +3168,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     children: [
                                                                                       Align(
-                                                                                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                         child: Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                                           child: Text(
                                                                                             FFLocalizations.of(context).getText(
                                                                                               'ggzoamue' /* Welches Accessoire soll dein A... */,
@@ -3153,7 +3187,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                       ),
                                                                                       GridView(
                                                                                         padding: EdgeInsets.zero,
-                                                                                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                           crossAxisCount: 3,
                                                                                           crossAxisSpacing: 10.0,
                                                                                           mainAxisSpacing: 10.0,
@@ -3178,7 +3212,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
-                                                                                                      color: FFAppState().accessoires == 'Tattoo' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                      color: FFAppState().accessoires == 'Tattoo' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                       width: FFAppState().accessoires == 'Tattoo' ? 4.0 : 0.0,
                                                                                                     ),
                                                                                                   ),
@@ -3191,19 +3225,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   ),
                                                                                                 ),
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Container(
                                                                                                     width: 100.0,
                                                                                                     height: 30.0,
                                                                                                     decoration: BoxDecoration(
-                                                                                                      color: const Color(0xB3DE5499),
+                                                                                                      color: Color(0xB3DE5499),
                                                                                                       border: Border.all(
                                                                                                         color: FlutterFlowTheme.of(context).primary,
                                                                                                         width: 2.0,
                                                                                                       ),
                                                                                                     ),
                                                                                                     child: Align(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       child: Text(
                                                                                                         FFLocalizations.of(context).getText(
                                                                                                           'g9oja936' /* Tattoo */,
@@ -3238,7 +3272,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                                     border: Border.all(
-                                                                                                      color: FFAppState().accessoires == 'Brille' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                      color: FFAppState().accessoires == 'Brille' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                       width: FFAppState().accessoires == 'Brille' ? 4.0 : 0.0,
                                                                                                     ),
                                                                                                   ),
@@ -3251,19 +3285,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   ),
                                                                                                 ),
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Container(
                                                                                                     width: 100.0,
                                                                                                     height: 30.0,
                                                                                                     decoration: BoxDecoration(
-                                                                                                      color: const Color(0xB3DE5499),
+                                                                                                      color: Color(0xB3DE5499),
                                                                                                       border: Border.all(
                                                                                                         color: FlutterFlowTheme.of(context).primary,
                                                                                                         width: 2.0,
                                                                                                       ),
                                                                                                     ),
                                                                                                     child: Align(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       child: Text(
                                                                                                         FFLocalizations.of(context).getText(
                                                                                                           '5u7pwq6q' /* Brille */,
@@ -3298,7 +3332,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                                     border: Border.all(
-                                                                                                      color: FFAppState().accessoires == 'Hörner' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                      color: FFAppState().accessoires == 'Hörner' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                       width: FFAppState().accessoires == 'Hörner' ? 4.0 : 0.0,
                                                                                                     ),
                                                                                                   ),
@@ -3311,19 +3345,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   ),
                                                                                                 ),
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Container(
                                                                                                     width: 100.0,
                                                                                                     height: 30.0,
                                                                                                     decoration: BoxDecoration(
-                                                                                                      color: const Color(0xB3DE5499),
+                                                                                                      color: Color(0xB3DE5499),
                                                                                                       border: Border.all(
                                                                                                         color: FlutterFlowTheme.of(context).primary,
                                                                                                         width: 2.0,
                                                                                                       ),
                                                                                                     ),
                                                                                                     child: Align(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       child: Text(
                                                                                                         FFLocalizations.of(context).getText(
                                                                                                           'w7nxq6g3' /* Hörner */,
@@ -3358,7 +3392,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                                     border: Border.all(
-                                                                                                      color: FFAppState().accessoires == 'Schwanz' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                      color: FFAppState().accessoires == 'Schwanz' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                       width: FFAppState().accessoires == 'Schwanz' ? 4.0 : 0.0,
                                                                                                     ),
                                                                                                   ),
@@ -3371,19 +3405,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   ),
                                                                                                 ),
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Container(
                                                                                                     width: 100.0,
                                                                                                     height: 30.0,
                                                                                                     decoration: BoxDecoration(
-                                                                                                      color: const Color(0xB3DE5499),
+                                                                                                      color: Color(0xB3DE5499),
                                                                                                       border: Border.all(
                                                                                                         color: FlutterFlowTheme.of(context).primary,
                                                                                                         width: 2.0,
                                                                                                       ),
                                                                                                     ),
                                                                                                     child: Align(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       child: Text(
                                                                                                         FFLocalizations.of(context).getText(
                                                                                                           'i452unhc' /* Schwanz */,
@@ -3418,7 +3452,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                                     border: Border.all(
-                                                                                                      color: FFAppState().accessoires == 'Ohrringe' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                      color: FFAppState().accessoires == 'Ohrringe' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                       width: FFAppState().accessoires == 'Ohrringe' ? 4.0 : 0.0,
                                                                                                     ),
                                                                                                   ),
@@ -3431,19 +3465,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   ),
                                                                                                 ),
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Container(
                                                                                                     width: 100.0,
                                                                                                     height: 30.0,
                                                                                                     decoration: BoxDecoration(
-                                                                                                      color: const Color(0xB3DE5499),
+                                                                                                      color: Color(0xB3DE5499),
                                                                                                       border: Border.all(
                                                                                                         color: FlutterFlowTheme.of(context).primary,
                                                                                                         width: 2.0,
                                                                                                       ),
                                                                                                     ),
                                                                                                     child: Align(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       child: Text(
                                                                                                         FFLocalizations.of(context).getText(
                                                                                                           'vwzxfcgf' /* Ohrringe */,
@@ -3478,7 +3512,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                                     border: Border.all(
-                                                                                                      color: FFAppState().accessoires == 'Halskette' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                      color: FFAppState().accessoires == 'Halskette' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                       width: FFAppState().accessoires == 'Halskette' ? 4.0 : 0.0,
                                                                                                     ),
                                                                                                   ),
@@ -3491,19 +3525,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   ),
                                                                                                 ),
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Container(
                                                                                                     width: 100.0,
                                                                                                     height: 30.0,
                                                                                                     decoration: BoxDecoration(
-                                                                                                      color: const Color(0xB3DE5499),
+                                                                                                      color: Color(0xB3DE5499),
                                                                                                       border: Border.all(
                                                                                                         color: FlutterFlowTheme.of(context).primary,
                                                                                                         width: 2.0,
                                                                                                       ),
                                                                                                     ),
                                                                                                     child: Align(
-                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                       child: Text(
                                                                                                         FFLocalizations.of(context).getText(
                                                                                                           'svfvlosw' /* Halskette */,
@@ -3529,7 +3563,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ],
                                                                             ),
                                                                           ),
-                                                                        ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                        ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -3554,15 +3588,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -3576,7 +3610,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -3592,12 +3626,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -3615,7 +3649,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -3636,15 +3670,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -3658,7 +3692,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.nextPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -3674,12 +3708,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -3697,7 +3731,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -3727,15 +3761,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         350.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -3749,7 +3783,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -3765,12 +3799,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -3789,7 +3823,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -3809,15 +3843,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         350.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -3831,7 +3865,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.nextPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -3847,12 +3881,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -3871,7 +3905,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -3926,15 +3960,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 children: [
                                                                   Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           770.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           30.0,
                                                                           16.0,
@@ -3950,7 +3984,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         children:
                                                                             [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -3970,21 +4004,21 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
                                                                                 if ((FFAppState().imageStyleState == 'Realistik') && (_model.choiceChipsGenderValue == 'Frau'))
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 4,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -4003,7 +4037,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4012,11 +4046,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Blond' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Blond' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Blond' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: ClipRRect(
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   child: Image.asset(
@@ -4029,13 +4063,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'wkqk5501' /* Blond */,
@@ -4061,7 +4095,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4070,7 +4104,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Brunette' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Brunette' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Brunette' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4086,13 +4120,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'lrj4uufs' /* Brunette */,
@@ -4118,7 +4152,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4127,7 +4161,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Schwarz' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Schwarz' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Schwarz' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4143,13 +4177,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '8hyz3bqa' /* Schwarz */,
@@ -4175,7 +4209,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4185,7 +4219,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Rot' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Rot' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Rot' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4201,13 +4235,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'j1bafl3j' /* Rot */,
@@ -4233,7 +4267,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4243,7 +4277,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Blau' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Blau' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Blau' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4259,13 +4293,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'qv3080k0' /* Blau */,
@@ -4291,7 +4325,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4301,7 +4335,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Rosa' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Rosa' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Rosa' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4317,13 +4351,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '2sju6esb' /* Rosa */,
@@ -4349,7 +4383,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4359,7 +4393,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Weiß' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Weiß' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Weiß' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4375,13 +4409,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'v9swo5rt' /* Weiß */,
@@ -4402,10 +4436,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   ),
                                                                                 if ((FFAppState().imageStyleState == 'Realistik') && (_model.choiceChipsGenderValue == 'Mann'))
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 4,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -4424,7 +4458,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4433,11 +4467,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Blond' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Blond' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Blond' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: ClipRRect(
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   child: Image.asset(
@@ -4450,13 +4484,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'pqs6rabf' /* Blond */,
@@ -4482,7 +4516,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4491,7 +4525,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Brunette' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Brunette' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Brunette' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4507,13 +4541,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '9r2czo3z' /* Brunette */,
@@ -4539,7 +4573,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4548,7 +4582,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Schwarz' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Schwarz' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Schwarz' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4564,13 +4598,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'l6b53fox' /* Schwarz */,
@@ -4596,7 +4630,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4606,7 +4640,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Rot' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Rot' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Rot' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4622,13 +4656,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'lu3btcel' /* Rot */,
@@ -4654,7 +4688,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4664,7 +4698,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Weiß' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Weiß' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Weiß' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4680,13 +4714,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'ix9nszxp' /* Weiß */,
@@ -4707,10 +4741,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   ),
                                                                                 if (FFAppState().imageStyleState == 'Anime')
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 4,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -4729,7 +4763,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4738,11 +4772,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Blau' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Blau' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Blau' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: ClipRRect(
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   child: Image.asset(
@@ -4755,13 +4789,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'v4osorml' /* Blau */,
@@ -4787,7 +4821,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4796,7 +4830,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Bunt' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Bunt' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Bunt' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4812,13 +4846,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '38u9tb3p' /* Bunt */,
@@ -4844,7 +4878,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4853,7 +4887,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Pink' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Pink' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Pink' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4869,13 +4903,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '0o4jpp31' /* Pink */,
@@ -4901,7 +4935,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4911,7 +4945,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Grün' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Grün' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Grün' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4927,13 +4961,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'ch6o61h5' /* Grün */,
@@ -4959,7 +4993,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -4969,7 +5003,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Rot' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Rot' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Rot' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -4985,13 +5019,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'weghmkiy' /* Rot */,
@@ -5017,7 +5051,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -5027,7 +5061,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Weiß' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Weiß' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Weiß' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -5043,13 +5077,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'xgc196c7' /* Weiß */,
@@ -5075,7 +5109,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -5085,7 +5119,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Dunkel' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Dunkel' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Dunkel' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -5101,13 +5135,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'zf792d2h' /* Dunkel */,
@@ -5133,7 +5167,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -5143,7 +5177,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Silber' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Silber' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Silber' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -5159,13 +5193,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'fmlsfgip' /* Silber */,
@@ -5191,7 +5225,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -5201,7 +5235,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().hairColour == 'Blond' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().hairColour == 'Blond' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().hairColour == 'Blond' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -5217,13 +5251,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 width: 100.0,
                                                                                                 height: 30.0,
                                                                                                 decoration: BoxDecoration(
-                                                                                                  color: const Color(0xB3DE5499),
+                                                                                                  color: Color(0xB3DE5499),
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'vlab3x18' /* Blond */,
@@ -5246,7 +5280,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -5267,11 +5301,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
@@ -5279,7 +5313,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               children: [
                                                                                 if (FFAppState().imageStyleState == 'Realistik')
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: FlutterFlowChoiceChips(
                                                                                       options: [
                                                                                         ChipData(FFLocalizations.of(context).getText(
@@ -5316,7 +5350,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         safeSetState(() {});
                                                                                       },
                                                                                       selectedChipStyle: ChipStyle(
-                                                                                        backgroundColor: const Color(0xE6DE5499),
+                                                                                        backgroundColor: Color(0xE6DE5499),
                                                                                         textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                               color: FlutterFlowTheme.of(context).primaryText,
@@ -5331,7 +5365,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         borderRadius: BorderRadius.circular(8.0),
                                                                                       ),
                                                                                       unselectedChipStyle: ChipStyle(
-                                                                                        backgroundColor: const Color(0x00F2F2F2),
+                                                                                        backgroundColor: Color(0x00F2F2F2),
                                                                                         textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                               color: FlutterFlowTheme.of(context).primary,
@@ -5357,7 +5391,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   ),
                                                                                 if (FFAppState().imageStyleState == 'Anime')
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: FlutterFlowChoiceChips(
                                                                                       options: [
                                                                                         ChipData(FFLocalizations.of(context).getText(
@@ -5391,7 +5425,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         safeSetState(() {});
                                                                                       },
                                                                                       selectedChipStyle: ChipStyle(
-                                                                                        backgroundColor: const Color(0xE6DE5499),
+                                                                                        backgroundColor: Color(0xE6DE5499),
                                                                                         textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                               color: FlutterFlowTheme.of(context).primaryText,
@@ -5406,7 +5440,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         borderRadius: BorderRadius.circular(8.0),
                                                                                       ),
                                                                                       unselectedChipStyle: ChipStyle(
-                                                                                        backgroundColor: const Color(0x00F2F2F2),
+                                                                                        backgroundColor: Color(0x00F2F2F2),
                                                                                         textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                               color: FlutterFlowTheme.of(context).primary,
@@ -5434,7 +5468,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -5455,11 +5489,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
@@ -5467,7 +5501,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 if (FFAppState().imageStyleState == 'Realistik')
                                                                                   GridView(
                                                                                     padding: EdgeInsets.zero,
-                                                                                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                       crossAxisCount: 4,
                                                                                       crossAxisSpacing: 20.0,
                                                                                       mainAxisSpacing: 10.0,
@@ -5486,7 +5520,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           safeSetState(() {});
                                                                                         },
                                                                                         child: Stack(
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                           children: [
                                                                                             Container(
                                                                                               width: 150.0,
@@ -5495,7 +5529,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                                 border: Border.all(
-                                                                                                  color: FFAppState().eyeColour == 'Blau' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                  color: FFAppState().eyeColour == 'Blau' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                   width: FFAppState().eyeColour == 'Blau' ? 4.0 : 0.0,
                                                                                                 ),
                                                                                               ),
@@ -5508,14 +5542,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Align(
-                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              alignment: AlignmentDirectional(0.0, 1.0),
                                                                                               child: Container(
                                                                                                 width: 100.0,
                                                                                                 height: 20.0,
-                                                                                                decoration: const BoxDecoration(
+                                                                                                decoration: BoxDecoration(
                                                                                                   color: Color(0xB2DE5499),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '6x52o7h5' /* Blau */,
@@ -5544,7 +5578,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           safeSetState(() {});
                                                                                         },
                                                                                         child: Stack(
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                           children: [
                                                                                             Container(
                                                                                               width: 150.0,
@@ -5553,7 +5587,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                 borderRadius: BorderRadius.circular(10.0),
                                                                                                 border: Border.all(
-                                                                                                  color: FFAppState().eyeColour == 'Braun' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                  color: FFAppState().eyeColour == 'Braun' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                   width: FFAppState().eyeColour == 'Braun' ? 4.0 : 0.0,
                                                                                                 ),
                                                                                               ),
@@ -5566,14 +5600,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Align(
-                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              alignment: AlignmentDirectional(0.0, 1.0),
                                                                                               child: Container(
                                                                                                 width: 100.0,
                                                                                                 height: 20.0,
-                                                                                                decoration: const BoxDecoration(
+                                                                                                decoration: BoxDecoration(
                                                                                                   color: Color(0xB4DE5499),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'ogq10z9l' /* Braun */,
@@ -5602,7 +5636,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           safeSetState(() {});
                                                                                         },
                                                                                         child: Stack(
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                           children: [
                                                                                             Container(
                                                                                               width: 150.0,
@@ -5611,7 +5645,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                                 border: Border.all(
-                                                                                                  color: FFAppState().eyeColour == 'Grün' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                  color: FFAppState().eyeColour == 'Grün' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                   width: FFAppState().eyeColour == 'Grün' ? 4.0 : 0.0,
                                                                                                 ),
                                                                                               ),
@@ -5624,14 +5658,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Align(
-                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              alignment: AlignmentDirectional(0.0, 1.0),
                                                                                               child: Container(
                                                                                                 width: 100.0,
                                                                                                 height: 20.0,
-                                                                                                decoration: const BoxDecoration(
+                                                                                                decoration: BoxDecoration(
                                                                                                   color: Color(0xB2DE5499),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '39mt2fd7' /* Grün */,
@@ -5655,7 +5689,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 if (FFAppState().imageStyleState == 'Anime')
                                                                                   GridView(
                                                                                     padding: EdgeInsets.zero,
-                                                                                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                       crossAxisCount: 4,
                                                                                       crossAxisSpacing: 20.0,
                                                                                       mainAxisSpacing: 10.0,
@@ -5674,7 +5708,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           safeSetState(() {});
                                                                                         },
                                                                                         child: Stack(
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                           children: [
                                                                                             Container(
                                                                                               width: 150.0,
@@ -5683,7 +5717,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                                 border: Border.all(
-                                                                                                  color: FFAppState().eyeColour == 'Gold' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                  color: FFAppState().eyeColour == 'Gold' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                   width: FFAppState().eyeColour == 'Gold' ? 4.0 : 0.0,
                                                                                                 ),
                                                                                               ),
@@ -5696,14 +5730,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Align(
-                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              alignment: AlignmentDirectional(0.0, 1.0),
                                                                                               child: Container(
                                                                                                 width: 100.0,
                                                                                                 height: 20.0,
-                                                                                                decoration: const BoxDecoration(
+                                                                                                decoration: BoxDecoration(
                                                                                                   color: Color(0xB2DE5499),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'qx9tts2m' /* Gold */,
@@ -5732,7 +5766,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           safeSetState(() {});
                                                                                         },
                                                                                         child: Stack(
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                           children: [
                                                                                             Container(
                                                                                               width: 150.0,
@@ -5741,7 +5775,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                 borderRadius: BorderRadius.circular(10.0),
                                                                                                 border: Border.all(
-                                                                                                  color: FFAppState().eyeColour == 'Silber' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                  color: FFAppState().eyeColour == 'Silber' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                   width: FFAppState().eyeColour == 'Silber' ? 4.0 : 0.0,
                                                                                                 ),
                                                                                               ),
@@ -5754,14 +5788,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Align(
-                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              alignment: AlignmentDirectional(0.0, 1.0),
                                                                                               child: Container(
                                                                                                 width: 100.0,
                                                                                                 height: 20.0,
-                                                                                                decoration: const BoxDecoration(
+                                                                                                decoration: BoxDecoration(
                                                                                                   color: Color(0xB4DE5499),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '5yyv3j9d' /* Silber */,
@@ -5790,7 +5824,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           safeSetState(() {});
                                                                                         },
                                                                                         child: Stack(
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                           children: [
                                                                                             Container(
                                                                                               width: 150.0,
@@ -5799,7 +5833,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                                 border: Border.all(
-                                                                                                  color: FFAppState().eyeColour == 'Dunkel' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                  color: FFAppState().eyeColour == 'Dunkel' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                   width: FFAppState().eyeColour == 'Dunkel' ? 4.0 : 0.0,
                                                                                                 ),
                                                                                               ),
@@ -5812,14 +5846,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Align(
-                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              alignment: AlignmentDirectional(0.0, 1.0),
                                                                                               child: Container(
                                                                                                 width: 100.0,
                                                                                                 height: 20.0,
-                                                                                                decoration: const BoxDecoration(
+                                                                                                decoration: BoxDecoration(
                                                                                                   color: Color(0xB2DE5499),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'j75d85g4' /* Dunkel */,
@@ -5848,7 +5882,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           safeSetState(() {});
                                                                                         },
                                                                                         child: Stack(
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                           children: [
                                                                                             Container(
                                                                                               width: 150.0,
@@ -5857,7 +5891,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                                                 border: Border.all(
-                                                                                                  color: FFAppState().eyeColour == 'Mehrfarbig' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                  color: FFAppState().eyeColour == 'Mehrfarbig' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                   width: FFAppState().eyeColour == 'Mehrfarbig' ? 4.0 : 0.0,
                                                                                                 ),
                                                                                               ),
@@ -5870,14 +5904,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Align(
-                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              alignment: AlignmentDirectional(0.0, 1.0),
                                                                                               child: Container(
                                                                                                 width: 100.0,
                                                                                                 height: 20.0,
-                                                                                                decoration: const BoxDecoration(
+                                                                                                decoration: BoxDecoration(
                                                                                                   color: Color(0xB2DE5499),
                                                                                                 ),
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'zsyqcx21' /* Mehrfarbig */,
@@ -5901,7 +5935,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ],
                                                                             ),
                                                                           ),
-                                                                        ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                        ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -5926,15 +5960,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -5948,7 +5982,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -5964,12 +5998,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -5988,7 +6022,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -6009,15 +6043,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -6031,7 +6065,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.nextPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -6047,12 +6081,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -6071,7 +6105,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -6101,15 +6135,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         350.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -6123,7 +6157,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -6139,12 +6173,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -6163,7 +6197,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -6183,15 +6217,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         350.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -6205,7 +6239,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.nextPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -6221,12 +6255,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -6245,7 +6279,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -6300,15 +6334,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 children: [
                                                                   Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           770.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           12.0,
                                                                           16.0,
@@ -6324,7 +6358,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         children:
                                                                             [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -6345,21 +6379,21 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
                                                                                 if (_model.choiceChipsGenderValue == 'Frau')
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 3,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -6378,7 +6412,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6387,7 +6421,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'Skinny' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'Skinny' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'Skinny' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6400,18 +6434,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'vbw56u12' /* Skinny */,
@@ -6440,7 +6474,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6449,7 +6483,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'Normal' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'Normal' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'Normal' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6462,18 +6496,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'ybtpab5u' /* Normal */,
@@ -6502,7 +6536,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6511,7 +6545,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'Athletisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'Athletisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'Athletisch' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6524,17 +6558,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB4DE5499),
+                                                                                                    color: Color(0xB4DE5499),
                                                                                                     border: Border.all(
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'l8fwvj0c' /* Athletisch */,
@@ -6563,7 +6597,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6573,7 +6607,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'Kurvig' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'Kurvig' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'Kurvig' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6586,18 +6620,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.8),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.8),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB2DE5499),
+                                                                                                    color: Color(0xB2DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'ioq5a6i9' /* Kurvig */,
@@ -6626,7 +6660,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6636,7 +6670,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'XXL' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'XXL' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'XXL' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6649,18 +6683,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.8),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.8),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB2DE5499),
+                                                                                                    color: Color(0xB2DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'm0dobcxt' /* XXL */,
@@ -6684,10 +6718,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   ),
                                                                                 if (_model.choiceChipsGenderValue == 'Mann')
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 3,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -6706,7 +6740,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6715,7 +6749,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'Slim' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'Slim' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'Slim' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6728,18 +6762,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'czxfx11y' /* Slim */,
@@ -6768,7 +6802,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6777,7 +6811,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'Normal' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'Normal' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'Normal' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6790,18 +6824,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'mugwz362' /* Normal */,
@@ -6830,7 +6864,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6839,7 +6873,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'Athletisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'Athletisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'Athletisch' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6852,17 +6886,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB4DE5499),
+                                                                                                    color: Color(0xB4DE5499),
                                                                                                     border: Border.all(
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'siqzv4n5' /* Athletisch */,
@@ -6891,7 +6925,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -6901,7 +6935,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(6.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().bodyTyp == 'XXL' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().bodyTyp == 'XXL' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().bodyTyp == 'XXL' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -6914,18 +6948,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.8),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.8),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB2DE5499),
+                                                                                                    color: Color(0xB2DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'loebqoij' /* XXL */,
@@ -6953,7 +6987,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (_model.characterFull?.gender ==
                                                                               'Frau')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   '9bpt29c5' /* Brüste */,
@@ -6969,11 +7003,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Visibility(
                                                                               visible: _model.choiceChipsGenderValue == 'Frau',
@@ -6981,10 +7015,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 4,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -7003,7 +7037,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7012,7 +7046,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().breastSize == 'Klein' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().breastSize == 'Klein' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().breastSize == 'Klein' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7025,19 +7059,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'pl1voibw' /* Klein */,
@@ -7066,7 +7100,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7075,7 +7109,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().breastSize == 'Medium' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().breastSize == 'Medium' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().breastSize == 'Medium' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7088,19 +7122,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'gn48tc0m' /* Medium */,
@@ -7129,7 +7163,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7139,7 +7173,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().breastSize == 'Groß' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().breastSize == 'Groß' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().breastSize == 'Groß' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7152,19 +7186,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'w1rnrgh8' /* Groß */,
@@ -7193,7 +7227,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7203,7 +7237,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().breastSize == 'XXL' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().breastSize == 'XXL' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().breastSize == 'XXL' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7216,19 +7250,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'nlmb5zoy' /* XXL */,
@@ -7255,7 +7289,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 10.0,
                                                                                 0.0,
@@ -7276,21 +7310,21 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
                                                                                 if (_model.choiceChipsGenderValue == 'Frau')
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 4,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -7309,7 +7343,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7318,7 +7352,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'Klein' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'Klein' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'Klein' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7331,19 +7365,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'm9heafr1' /* Klein */,
@@ -7372,7 +7406,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7381,7 +7415,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'Medium' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'Medium' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'Medium' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7390,24 +7424,24 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   child: Image.asset(
                                                                                                     'assets/images/Design_ohne_Titel_(37).png',
                                                                                                     fit: BoxFit.cover,
-                                                                                                    alignment: const Alignment(0.0, 0.0),
+                                                                                                    alignment: Alignment(0.0, 0.0),
                                                                                                   ),
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'iklx8rkb' /* Medium */,
@@ -7436,7 +7470,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7445,7 +7479,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'Groß' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'Groß' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'Groß' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7458,19 +7492,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'efj28szk' /* Groß */,
@@ -7499,7 +7533,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7508,7 +7542,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'XXL' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'XXL' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'XXL' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7521,19 +7555,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'uporc8m9' /* XXL */,
@@ -7557,10 +7591,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   ),
                                                                                 if (_model.choiceChipsGenderValue == 'Mann')
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                                     child: GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 4,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -7579,7 +7613,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7588,7 +7622,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'Klein' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'Klein' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'Klein' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7601,19 +7635,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       '159dll0s' /* Klein */,
@@ -7642,7 +7676,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7651,7 +7685,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'Medium' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'Medium' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'Medium' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7660,24 +7694,24 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   child: Image.asset(
                                                                                                     'assets/images/Design_ohne_Titel_(79).png',
                                                                                                     fit: BoxFit.cover,
-                                                                                                    alignment: const Alignment(0.0, 0.0),
+                                                                                                    alignment: Alignment(0.0, 0.0),
                                                                                                   ),
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'ubrb8f2x' /* Medium */,
@@ -7706,7 +7740,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7715,7 +7749,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'Groß' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'Groß' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'Groß' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7728,19 +7762,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'c01foxhx' /* Groß */,
@@ -7769,7 +7803,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, -1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, -1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -7778,7 +7812,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().buttSize == 'XXL' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().buttSize == 'XXL' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().buttSize == 'XXL' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -7791,19 +7825,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 20.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 1.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'qolaica2' /* XXL */,
@@ -7831,7 +7865,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Realistik')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   '0wv5aev3' /* Tattoo */,
@@ -7848,7 +7882,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Realistik')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -7864,7 +7898,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 selectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0xE6DE5499),
+                                                                                  backgroundColor: Color(0xE6DE5499),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -7879,7 +7913,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                 ),
                                                                                 unselectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0x00F2F2F2),
+                                                                                  backgroundColor: Color(0x00F2F2F2),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).primary,
@@ -7903,7 +7937,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 wrapped: true,
                                                                               ),
                                                                             ),
-                                                                        ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                        ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -7928,15 +7962,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -7950,7 +7984,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -7966,12 +8000,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -7989,7 +8023,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -8010,15 +8044,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -8032,7 +8066,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.nextPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -8048,12 +8082,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -8071,7 +8105,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -8100,7 +8134,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 tablet: false,
                                                               ))
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -8109,15 +8143,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                   child:
                                                                       Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           350.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           12.0,
                                                                           16.0,
@@ -8130,7 +8164,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               .pageViewController
                                                                               ?.previousPage(
                                                                             duration:
-                                                                                const Duration(milliseconds: 300),
+                                                                                Duration(milliseconds: 300),
                                                                             curve:
                                                                                 Curves.ease,
                                                                           );
@@ -8145,12 +8179,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               double.infinity,
                                                                           height:
                                                                               48.0,
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               24.0,
                                                                               0.0,
                                                                               24.0,
                                                                               0.0),
-                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -8169,7 +8203,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           elevation:
                                                                               3.0,
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Colors.transparent,
                                                                             width:
@@ -8189,7 +8223,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 tablet: false,
                                                               ))
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -8198,15 +8232,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                   child:
                                                                       Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           350.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           12.0,
                                                                           16.0,
@@ -8219,7 +8253,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               .pageViewController
                                                                               ?.nextPage(
                                                                             duration:
-                                                                                const Duration(milliseconds: 300),
+                                                                                Duration(milliseconds: 300),
                                                                             curve:
                                                                                 Curves.ease,
                                                                           );
@@ -8234,12 +8268,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               double.infinity,
                                                                           height:
                                                                               48.0,
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               24.0,
                                                                               0.0,
                                                                               24.0,
                                                                               0.0),
-                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -8258,7 +8292,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           elevation:
                                                                               3.0,
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Colors.transparent,
                                                                             width:
@@ -8314,15 +8348,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 children: [
                                                                   Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           770.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           25.0,
                                                                           16.0,
@@ -8338,7 +8372,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         children:
                                                                             [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 20.0,
                                                                                 0.0,
@@ -8360,7 +8394,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Realistik')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -8391,7 +8425,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 selectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0xF0DE5499),
+                                                                                  backgroundColor: Color(0xF0DE5499),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -8435,7 +8469,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Anime')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -8454,7 +8488,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 selectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0xF0DE5499),
+                                                                                  backgroundColor: Color(0xF0DE5499),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -8497,14 +8531,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -8515,7 +8549,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                     desktop: false,
                                                                                   ))
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                                                                                       child: Text(
                                                                                         FFLocalizations.of(context).getText(
                                                                                           'zy6u3pb4' /* Ambiente */,
@@ -8532,7 +8566,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   if (FFAppState().imageStyleState == 'Anime')
                                                                                     GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 3,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -8551,7 +8585,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -8560,7 +8594,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Futuristic' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Futuristic' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Futuristic' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -8573,19 +8607,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'uauooswu' /* Futuristic */,
@@ -8608,9 +8642,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                     tablet: false,
                                                                                                   ))
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
+                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                                                                   child: Padding(
-                                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                                                     child: Text(
                                                                                                       FFLocalizations.of(context).getText(
                                                                                                         '1utstd7o' /* Ambiente */,
@@ -8638,7 +8672,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -8647,7 +8681,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Asiatisch' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Asiatisch' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Asiatisch' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -8660,19 +8694,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'lf4va1pq' /* Asiatisch */,
@@ -8701,7 +8735,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -8710,7 +8744,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Fantasy' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Fantasy' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Fantasy' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -8723,19 +8757,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB4DE5499),
+                                                                                                    color: Color(0xB4DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       '1egx2pg5' /* Fantasy */,
@@ -8759,7 +8793,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   if (FFAppState().imageStyleState == 'Realistik')
                                                                                     GridView(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 3,
                                                                                         crossAxisSpacing: 10.0,
                                                                                         mainAxisSpacing: 10.0,
@@ -8778,7 +8812,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -8787,7 +8821,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'City' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'City' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'City' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -8800,19 +8834,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'mwwxjo2s' /* City */,
@@ -8834,9 +8868,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 tablet: false,
                                                                                               ))
                                                                                                 Align(
-                                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
+                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                                                                   child: Padding(
-                                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                                                     child: Text(
                                                                                                       FFLocalizations.of(context).getText(
                                                                                                         'axvsr9ox' /* Ambiente */,
@@ -8864,7 +8898,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -8873,7 +8907,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Wohnung' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Wohnung' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Wohnung' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -8886,19 +8920,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'j4mw6o2e' /* Wohnung */,
@@ -8927,7 +8961,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -8936,7 +8970,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Natur' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Natur' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Natur' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -8949,19 +8983,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB4DE5499),
+                                                                                                    color: Color(0xB4DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'c6785o9c' /* Natur */,
@@ -8990,7 +9024,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -9000,7 +9034,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Restaurant' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Restaurant' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Restaurant' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -9013,18 +9047,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB2DE5499),
+                                                                                                    color: Color(0xB2DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       '83oiz40p' /* Restaurant */,
@@ -9053,7 +9087,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -9063,7 +9097,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Büro' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Büro' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Büro' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -9076,19 +9110,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB4DE5499),
+                                                                                                    color: Color(0xB4DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'iqj4xy1n' /* Büro */,
@@ -9117,7 +9151,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -9127,7 +9161,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Strand' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Strand' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Strand' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -9140,15 +9174,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB2DE5499),
+                                                                                                    color: Color(0xB2DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'gvy18d95' /* Strand */,
@@ -9176,7 +9210,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -9186,7 +9220,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Gym' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Gym' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Gym' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -9199,14 +9233,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
                                                                                                     color: FlutterFlowTheme.of(context).primary,
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'jdgtxrbx' /* Gym */,
@@ -9235,7 +9269,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -9245,7 +9279,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Luxus' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Luxus' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Luxus' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -9258,19 +9292,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB3DE5499),
+                                                                                                    color: Color(0xB3DE5499),
                                                                                                     borderRadius: BorderRadius.circular(6.0),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       's6zou8ao' /* Luxus */,
@@ -9299,7 +9333,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                             safeSetState(() {});
                                                                                           },
                                                                                           child: Stack(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
                                                                                               Container(
                                                                                                 width: 150.0,
@@ -9309,7 +9343,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                                   shape: BoxShape.rectangle,
                                                                                                   border: Border.all(
-                                                                                                    color: FFAppState().ambiente == 'Club' ? FlutterFlowTheme.of(context).primary : const Color(0x00000000),
+                                                                                                    color: FFAppState().ambiente == 'Club' ? FlutterFlowTheme.of(context).primary : Color(0x00000000),
                                                                                                     width: FFAppState().ambiente == 'Club' ? 4.0 : 0.0,
                                                                                                   ),
                                                                                                 ),
@@ -9322,18 +9356,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                                 child: Container(
                                                                                                   width: 100.0,
                                                                                                   height: 30.0,
                                                                                                   decoration: BoxDecoration(
-                                                                                                    color: const Color(0xB2DE5499),
+                                                                                                    color: Color(0xB2DE5499),
                                                                                                     border: Border.all(
                                                                                                       color: FlutterFlowTheme.of(context).primary,
                                                                                                       width: 2.0,
                                                                                                     ),
                                                                                                   ),
-                                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Text(
                                                                                                     FFLocalizations.of(context).getText(
                                                                                                       'sfqi32la' /* Club */,
@@ -9357,7 +9391,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                        ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                        ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -9382,15 +9416,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -9404,7 +9438,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -9420,12 +9454,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -9443,7 +9477,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -9464,15 +9498,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -9486,7 +9520,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.nextPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -9502,12 +9536,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -9525,7 +9559,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -9549,12 +9583,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                             children: [
                                                               Container(
                                                                 constraints:
-                                                                    const BoxConstraints(
+                                                                    BoxConstraints(
                                                                   maxWidth:
                                                                       350.0,
                                                                 ),
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child:
                                                                     Visibility(
                                                                   visible:
@@ -9570,7 +9604,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -9584,7 +9618,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -9600,12 +9634,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -9624,7 +9658,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -9639,12 +9673,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ),
                                                               Container(
                                                                 constraints:
-                                                                    const BoxConstraints(
+                                                                    BoxConstraints(
                                                                   maxWidth:
                                                                       350.0,
                                                                 ),
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child:
                                                                     Visibility(
                                                                   visible:
@@ -9660,7 +9694,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -9674,7 +9708,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.nextPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -9690,12 +9724,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -9714,7 +9748,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -9770,15 +9804,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 children: [
                                                                   Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           770.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           12.0,
                                                                           16.0,
@@ -9799,7 +9833,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             children: [
                                                                               Flexible(
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                                                                                   child: Text(
                                                                                     FFLocalizations.of(context).getText(
                                                                                       'q1ibzbhb' /* 2. Gib deiner AI eine Persönli... */,
@@ -9817,7 +9851,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                               AlignedTooltip(
                                                                                 content: Padding(
-                                                                                  padding: const EdgeInsets.all(4.0),
+                                                                                  padding: EdgeInsets.all(4.0),
                                                                                   child: Text(
                                                                                     FFLocalizations.of(context).getText(
                                                                                       'trxgsgh1' /* Je genauer du die Persönlichke... */,
@@ -9837,11 +9871,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 elevation: 4.0,
                                                                                 tailBaseWidth: 24.0,
                                                                                 tailLength: 12.0,
-                                                                                waitDuration: const Duration(milliseconds: 100),
-                                                                                showDuration: const Duration(milliseconds: 1500),
+                                                                                waitDuration: Duration(milliseconds: 100),
+                                                                                showDuration: Duration(milliseconds: 1500),
                                                                                 triggerMode: TooltipTriggerMode.tap,
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
                                                                                   child: FlutterFlowIconButton(
                                                                                     borderRadius: 8.0,
                                                                                     buttonSize: 40.0,
@@ -9860,7 +9894,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ],
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 20.0,
                                                                                 0.0,
@@ -9880,7 +9914,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -9899,7 +9933,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 labelStyle: FlutterFlowTheme.of(context).headlineMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
-                                                                                      fontSize: 24.0,
+                                                                                      fontSize: 20.0,
                                                                                       letterSpacing: 0.0,
                                                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineMediumFamily),
                                                                                     ),
@@ -9945,7 +9979,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 ),
                                                                                 filled: true,
                                                                                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                contentPadding: const EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 20.0),
+                                                                                contentPadding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 20.0),
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).headlineMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -9959,7 +9993,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -9979,7 +10013,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -9993,17 +10027,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               obscureText: false,
                                                                               decoration: InputDecoration(
                                                                                 isDense: false,
-                                                                                labelText: FFLocalizations.of(context).getText(
-                                                                                  '8eh3uqz6' /* Persönlichkeit... */,
-                                                                                ),
                                                                                 labelStyle: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
-                                                                                      fontSize: 24.0,
+                                                                                      fontSize: 20.0,
                                                                                       letterSpacing: 0.0,
                                                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
                                                                                     ),
                                                                                 alignLabelWithHint: true,
+                                                                                hintText: FFLocalizations.of(context).getText(
+                                                                                  'dv8n03bs' /* z. B. Du bist eine charmante u... */,
+                                                                                ),
                                                                                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
                                                                                       letterSpacing: 0.0,
@@ -10046,10 +10080,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 ),
                                                                                 filled: true,
                                                                                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                contentPadding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                                                                contentPadding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                                    fontSize: 16.0,
                                                                                     letterSpacing: 0.0,
                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
                                                                                   ),
@@ -10060,7 +10095,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -10082,7 +10117,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Realistik')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -10122,7 +10157,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 selectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0xFBDE5499),
+                                                                                  backgroundColor: Color(0xFBDE5499),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -10164,7 +10199,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Anime')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -10192,7 +10227,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 selectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0xFBDE5499),
+                                                                                  backgroundColor: Color(0xFBDE5499),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -10232,7 +10267,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -10254,7 +10289,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Realistik')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -10307,12 +10342,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   iconColor: FlutterFlowTheme.of(context).primaryText,
                                                                                   iconSize: 18.0,
                                                                                   elevation: 0.0,
-                                                                                  borderColor: const Color(0xF6DE5499),
+                                                                                  borderColor: Color(0xF6DE5499),
                                                                                   borderWidth: 2.0,
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                 ),
                                                                                 unselectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0x00F2F2F2),
+                                                                                  backgroundColor: Color(0x00F2F2F2),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).primary,
@@ -10339,7 +10374,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Anime')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -10404,12 +10439,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   iconColor: FlutterFlowTheme.of(context).primaryText,
                                                                                   iconSize: 18.0,
                                                                                   elevation: 0.0,
-                                                                                  borderColor: const Color(0xF6DE5499),
+                                                                                  borderColor: Color(0xF6DE5499),
                                                                                   borderWidth: 2.0,
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                 ),
                                                                                 unselectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0x00F2F2F2),
+                                                                                  backgroundColor: Color(0x00F2F2F2),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).primary,
@@ -10434,7 +10469,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -10456,7 +10491,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Realistik')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -10502,7 +10537,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                 ),
                                                                                 unselectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0x00F2F2F2),
+                                                                                  backgroundColor: Color(0x00F2F2F2),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).primary,
@@ -10529,7 +10564,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Anime')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: FlutterFlowChoiceChips(
                                                                                 options: [
                                                                                   ChipData(FFLocalizations.of(context).getText(
@@ -10569,7 +10604,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                 ),
                                                                                 unselectedChipStyle: ChipStyle(
-                                                                                  backgroundColor: const Color(0x00F2F2F2),
+                                                                                  backgroundColor: Color(0x00F2F2F2),
                                                                                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         color: FlutterFlowTheme.of(context).primary,
@@ -10594,7 +10629,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -10614,7 +10649,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -10679,7 +10714,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                 ),
                                                                                 filled: true,
                                                                                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                contentPadding: const EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 20.0),
+                                                                                contentPadding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 20.0),
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).headlineMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -10692,7 +10727,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -10712,7 +10747,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -10789,7 +10824,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Realistik')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'wu39fwgo' /* Szenarien */,
@@ -10806,7 +10841,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           if (FFAppState().imageStyleState ==
                                                                               'Anime')
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'u2js5ftw' /* Themen */,
@@ -10822,18 +10857,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             ),
                                                                           Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
                                                                                 if (FFAppState().imageStyleState == 'Realistik')
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: FlutterFlowChoiceChips(
                                                                                       options: [
                                                                                         ChipData(FFLocalizations.of(context).getText(
@@ -10908,7 +10943,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                   ),
                                                                                 if (FFAppState().imageStyleState == 'Anime')
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: FlutterFlowChoiceChips(
                                                                                       options: [
                                                                                         ChipData(FFLocalizations.of(context).getText(
@@ -10975,7 +11010,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ],
                                                                             ),
                                                                           ),
-                                                                        ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                        ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -10997,15 +11032,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -11019,7 +11054,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -11035,12 +11070,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -11059,7 +11094,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -11080,15 +11115,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         200.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -11098,14 +11133,20 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
-                                                                        await _model
-                                                                            .pageViewController
-                                                                            ?.nextPage(
-                                                                          duration:
-                                                                              const Duration(milliseconds: 300),
-                                                                          curve:
-                                                                              Curves.ease,
-                                                                        );
+                                                                        if (loggedIn ==
+                                                                            true) {
+                                                                          await _model
+                                                                              .pageViewController
+                                                                              ?.nextPage(
+                                                                            duration:
+                                                                                Duration(milliseconds: 300),
+                                                                            curve:
+                                                                                Curves.ease,
+                                                                          );
+                                                                        } else {
+                                                                          context
+                                                                              .pushNamed('auth_2_Create');
+                                                                        }
                                                                       },
                                                                       text: FFLocalizations.of(
                                                                               context)
@@ -11118,12 +11159,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -11142,7 +11183,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -11172,15 +11213,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         350.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -11194,7 +11235,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .pageViewController
                                                                             ?.previousPage(
                                                                           duration:
-                                                                              const Duration(milliseconds: 300),
+                                                                              Duration(milliseconds: 300),
                                                                           curve:
                                                                               Curves.ease,
                                                                         );
@@ -11210,12 +11251,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -11234,7 +11275,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -11254,15 +11295,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               ))
                                                                 Container(
                                                                   constraints:
-                                                                      const BoxConstraints(
+                                                                      BoxConstraints(
                                                                     maxWidth:
                                                                         350.0,
                                                                   ),
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -11272,14 +11313,20 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
-                                                                        await _model
-                                                                            .pageViewController
-                                                                            ?.nextPage(
-                                                                          duration:
-                                                                              const Duration(milliseconds: 300),
-                                                                          curve:
-                                                                              Curves.ease,
-                                                                        );
+                                                                        if (loggedIn ==
+                                                                            true) {
+                                                                          await _model
+                                                                              .pageViewController
+                                                                              ?.nextPage(
+                                                                            duration:
+                                                                                Duration(milliseconds: 300),
+                                                                            curve:
+                                                                                Curves.ease,
+                                                                          );
+                                                                        } else {
+                                                                          context
+                                                                              .pushNamed('auth_2_Create');
+                                                                        }
                                                                       },
                                                                       text: FFLocalizations.of(
                                                                               context)
@@ -11292,12 +11339,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -11316,7 +11363,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         elevation:
                                                                             3.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -11374,15 +11421,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                       'Realistik')
                                                                     Container(
                                                                       constraints:
-                                                                          const BoxConstraints(
+                                                                          BoxConstraints(
                                                                         maxWidth:
                                                                             770.0,
                                                                       ),
                                                                       decoration:
-                                                                          const BoxDecoration(),
+                                                                          BoxDecoration(),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             12.0,
                                                                             16.0,
@@ -11398,7 +11445,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           children:
                                                                               [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   't6s74anf' /* Zusammenfassung */,
@@ -11414,7 +11461,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'v20i18y1' /* Aussehen */,
@@ -11430,7 +11477,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
@@ -11461,7 +11508,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11493,7 +11540,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11525,7 +11572,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11554,7 +11601,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11583,7 +11630,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11615,7 +11662,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11644,7 +11691,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11673,7 +11720,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   if (_model.choiceChipsGenderValue == 'Frau')
                                                                                     Row(
@@ -11703,7 +11750,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                           ),
                                                                                         ),
-                                                                                      ].divide(const SizedBox(width: 10.0)),
+                                                                                      ].divide(SizedBox(width: 10.0)),
                                                                                     ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11732,7 +11779,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11771,7 +11818,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           ],
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11803,7 +11850,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11832,13 +11879,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
-                                                                                ].divide(const SizedBox(height: 10.0)),
+                                                                                ].divide(SizedBox(height: 10.0)),
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'pwxxxtda' /* Persönlichkeit */,
@@ -11854,13 +11901,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                             Container(
-                                                                              constraints: const BoxConstraints(
+                                                                              constraints: BoxConstraints(
                                                                                 maxWidth: 770.0,
                                                                               ),
-                                                                              decoration: const BoxDecoration(),
+                                                                              decoration: BoxDecoration(),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
@@ -11891,7 +11938,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11920,7 +11967,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11952,7 +11999,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -11984,7 +12031,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12016,7 +12063,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12048,7 +12095,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12080,7 +12127,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12112,12 +12159,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
-                                                                                ].divide(const SizedBox(height: 10.0)),
+                                                                                ].divide(SizedBox(height: 10.0)),
                                                                               ),
                                                                             ),
-                                                                          ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                          ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                         ),
                                                                       ),
                                                                     ),
@@ -12126,15 +12173,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                       'Anime')
                                                                     Container(
                                                                       constraints:
-                                                                          const BoxConstraints(
+                                                                          BoxConstraints(
                                                                         maxWidth:
                                                                             770.0,
                                                                       ),
                                                                       decoration:
-                                                                          const BoxDecoration(),
+                                                                          BoxDecoration(),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             12.0,
                                                                             16.0,
@@ -12150,7 +12197,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           children:
                                                                               [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'l9or913j' /* Zusammenfassung */,
@@ -12166,7 +12213,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'ssyb0c34' /* Aussehen */,
@@ -12182,7 +12229,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
@@ -12213,7 +12260,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12245,7 +12292,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12277,7 +12324,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12306,7 +12353,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12338,7 +12385,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12367,7 +12414,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12396,7 +12443,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   if (_model.choiceChipsGenderValue == 'Frau')
                                                                                     Row(
@@ -12426,7 +12473,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                                 ),
                                                                                           ),
                                                                                         ),
-                                                                                      ].divide(const SizedBox(width: 10.0)),
+                                                                                      ].divide(SizedBox(width: 10.0)),
                                                                                     ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12455,7 +12502,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12491,7 +12538,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           ],
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12511,7 +12558,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                       Flexible(
                                                                                         child: Text(
                                                                                           valueOrDefault<String>(
-                                                                                            _model.choiceChipsClothingValue,
+                                                                                            _model.choiceChipsClothingAnimeValue,
                                                                                             'Kleidung',
                                                                                           ),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -12523,7 +12570,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12552,13 +12599,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
-                                                                                ].divide(const SizedBox(height: 10.0)),
+                                                                                ].divide(SizedBox(height: 10.0)),
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'asp69wbs' /* Persönlichkeit */,
@@ -12574,13 +12621,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               ),
                                                                             ),
                                                                             Container(
-                                                                              constraints: const BoxConstraints(
+                                                                              constraints: BoxConstraints(
                                                                                 maxWidth: 770.0,
                                                                               ),
-                                                                              decoration: const BoxDecoration(),
+                                                                              decoration: BoxDecoration(),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
@@ -12611,7 +12658,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12640,7 +12687,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12672,7 +12719,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12704,7 +12751,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12736,7 +12783,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12768,7 +12815,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12800,7 +12847,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
@@ -12832,23 +12879,23 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                         ),
                                                                                       ),
-                                                                                    ].divide(const SizedBox(width: 10.0)),
+                                                                                    ].divide(SizedBox(width: 10.0)),
                                                                                   ),
-                                                                                ].divide(const SizedBox(height: 10.0)),
+                                                                                ].divide(SizedBox(height: 10.0)),
                                                                               ),
                                                                             ),
-                                                                          ].divide(const SizedBox(height: 12.0)).addToEnd(const SizedBox(height: 32.0)),
+                                                                          ].divide(SizedBox(height: 12.0)).addToEnd(SizedBox(height: 32.0)),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                   Container(
                                                                     constraints:
-                                                                        const BoxConstraints(
+                                                                        BoxConstraints(
                                                                       maxWidth:
                                                                           770.0,
                                                                     ),
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Column(
                                                                       mainAxisSize:
@@ -12862,9 +12909,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   FFLocalizations.of(context).getText(
                                                                                     '0hwbspd1' /* Status */,
@@ -12884,7 +12931,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           ],
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               0.0,
                                                                               10.0,
@@ -12892,14 +12939,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                           child:
                                                                               Container(
                                                                             constraints:
-                                                                                const BoxConstraints(
+                                                                                BoxConstraints(
                                                                               maxWidth: 770.0,
                                                                             ),
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -12918,17 +12965,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                     child: Row(
                                                                                       mainAxisSize: MainAxisSize.max,
                                                                                       children: [
                                                                                         Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                           child: Switch.adaptive(
                                                                                             value: _model.oeffentlichValue!,
                                                                                             onChanged: (newValue) async {
-                                                                                              safeSetState(() => _model.oeffentlichValue = newValue);
-                                                                                              if (newValue) {
+                                                                                              safeSetState(() => _model.oeffentlichValue = newValue!);
+                                                                                              if (newValue!) {
                                                                                                 FFAppState().ispublicState = true;
                                                                                                 safeSetState(() {});
                                                                                               }
@@ -12944,7 +12991,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                           children: [
                                                                                             if (_model.oeffentlichValue == true)
                                                                                               Padding(
-                                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     '92hv90we' /* Öffentlich */,
@@ -12959,7 +13006,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                               ),
                                                                                             if (_model.oeffentlichValue == false)
                                                                                               Padding(
-                                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                                 child: Text(
                                                                                                   FFLocalizations.of(context).getText(
                                                                                                     'vbtqg2nu' /* Privat */,
@@ -12976,7 +13023,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                                         ),
                                                                                         AlignedTooltip(
                                                                                           content: Padding(
-                                                                                            padding: const EdgeInsets.all(4.0),
+                                                                                            padding: EdgeInsets.all(4.0),
                                                                                             child: Text(
                                                                                               FFLocalizations.of(context).getText(
                                                                                                 'l9bpqcg2' /* Tolle nachrichten! 
@@ -12998,11 +13045,11 @@ Jetzt Char... */
                                                                                           elevation: 4.0,
                                                                                           tailBaseWidth: 24.0,
                                                                                           tailLength: 12.0,
-                                                                                          waitDuration: const Duration(milliseconds: 100),
-                                                                                          showDuration: const Duration(milliseconds: 1000),
+                                                                                          waitDuration: Duration(milliseconds: 100),
+                                                                                          showDuration: Duration(milliseconds: 1000),
                                                                                           triggerMode: TooltipTriggerMode.tap,
                                                                                           child: Padding(
-                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                             child: FlutterFlowIconButton(
                                                                                               borderRadius: 8.0,
                                                                                               buttonSize: 40.0,
@@ -13018,7 +13065,7 @@ Jetzt Char... */
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      ].divide(const SizedBox(width: 20.0)),
+                                                                                      ].divide(SizedBox(width: 20.0)),
                                                                                     ),
                                                                                   ),
                                                                                 ],
@@ -13040,17 +13087,17 @@ Jetzt Char... */
                                                             children: [
                                                               Container(
                                                                 constraints:
-                                                                    const BoxConstraints(
+                                                                    BoxConstraints(
                                                                   maxWidth:
                                                                       350.0,
                                                                 ),
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Builder(
                                                                   builder:
                                                                       (context) =>
                                                                           Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -13086,150 +13133,156 @@ Jetzt Char... */
                                                                         return FFButtonWidget(
                                                                           onPressed:
                                                                               () async {
-                                                                            if ((valueOrDefault<bool>(currentUserDocument?.isPremium, false) == true) ||
-                                                                                (valueOrDefault(currentUserDocument?.charactersCreatedCount, 0) < 1)) {
-                                                                              var charactersMainRecordReference = CharactersMainRecord.collection.doc();
-                                                                              await charactersMainRecordReference.set({
-                                                                                ...createCharactersMainRecordData(
-                                                                                  name: _model.nameTextController.text,
-                                                                                  createdBy: currentUserReference,
-                                                                                  age: _model.choiceChipsAgeValue,
-                                                                                  descriptionDisplay: _model.descriptionTextController.text,
-                                                                                  personalityDisplay: FFAppState().personalityChoice,
-                                                                                  characterDisplay: FFAppState().characterChoice,
-                                                                                  createdAt: getCurrentTimestamp,
-                                                                                  intimateBehaviourDisplay: _model.choiceChipsintimBehaviourValue,
-                                                                                  personality: updateCharacterPersonalityStruct(
-                                                                                    CharacterPersonalityStruct(
-                                                                                      characterChoice: FFAppState().characterChoice,
-                                                                                      personalityChoice: FFAppState().personalityChoice,
-                                                                                      voiceTone: FFAppState().voiceTon,
-                                                                                      job: _model.textfieldJobTextController.text,
-                                                                                      intimateBehavior: _model.choiceChipsintimBehaviourValue,
-                                                                                      scenarios: FFAppState().scenarios,
-                                                                                      description: _model.descriptionTextController.text,
-                                                                                    ),
-                                                                                    clearUnsetFields: false,
-                                                                                    create: true,
-                                                                                  ),
-                                                                                  appearance: updateCharacterAppearanceStruct(
-                                                                                    CharacterAppearanceStruct(
-                                                                                      hairColour: FFAppState().hairColour,
-                                                                                      hairStyle: FFAppState().hairColour,
-                                                                                      eyeColour: FFAppState().eyeColour,
-                                                                                      bodyTyp: FFAppState().bodyTyp,
-                                                                                      breastSize: FFAppState().breastSize,
-                                                                                      buttSize: FFAppState().buttSize,
-                                                                                      clothing: FFAppState().clothing,
-                                                                                      ambiente: FFAppState().ambiente,
-                                                                                      ethnicity: FFAppState().ethnicity,
-                                                                                      accessoires: FFAppState().accessoires,
-                                                                                    ),
-                                                                                    clearUnsetFields: false,
-                                                                                    create: true,
-                                                                                  ),
-                                                                                  gender: _model.choiceChipsGenderValue,
-                                                                                  imageStyle: FFAppState().imageStyleState,
-                                                                                  isPublic: _model.oeffentlichValue,
-                                                                                ),
-                                                                                ...mapToFirestore(
-                                                                                  {
-                                                                                    'last_interaction': FieldValue.serverTimestamp(),
-                                                                                  },
-                                                                                ),
-                                                                              });
-                                                                              _model.createdCharacterId = CharactersMainRecord.getDocumentFromData({
-                                                                                ...createCharactersMainRecordData(
-                                                                                  name: _model.nameTextController.text,
-                                                                                  createdBy: currentUserReference,
-                                                                                  age: _model.choiceChipsAgeValue,
-                                                                                  descriptionDisplay: _model.descriptionTextController.text,
-                                                                                  personalityDisplay: FFAppState().personalityChoice,
-                                                                                  characterDisplay: FFAppState().characterChoice,
-                                                                                  createdAt: getCurrentTimestamp,
-                                                                                  intimateBehaviourDisplay: _model.choiceChipsintimBehaviourValue,
-                                                                                  personality: updateCharacterPersonalityStruct(
-                                                                                    CharacterPersonalityStruct(
-                                                                                      characterChoice: FFAppState().characterChoice,
-                                                                                      personalityChoice: FFAppState().personalityChoice,
-                                                                                      voiceTone: FFAppState().voiceTon,
-                                                                                      job: _model.textfieldJobTextController.text,
-                                                                                      intimateBehavior: _model.choiceChipsintimBehaviourValue,
-                                                                                      scenarios: FFAppState().scenarios,
-                                                                                      description: _model.descriptionTextController.text,
-                                                                                    ),
-                                                                                    clearUnsetFields: false,
-                                                                                    create: true,
-                                                                                  ),
-                                                                                  appearance: updateCharacterAppearanceStruct(
-                                                                                    CharacterAppearanceStruct(
-                                                                                      hairColour: FFAppState().hairColour,
-                                                                                      hairStyle: FFAppState().hairColour,
-                                                                                      eyeColour: FFAppState().eyeColour,
-                                                                                      bodyTyp: FFAppState().bodyTyp,
-                                                                                      breastSize: FFAppState().breastSize,
-                                                                                      buttSize: FFAppState().buttSize,
-                                                                                      clothing: FFAppState().clothing,
-                                                                                      ambiente: FFAppState().ambiente,
-                                                                                      ethnicity: FFAppState().ethnicity,
-                                                                                      accessoires: FFAppState().accessoires,
-                                                                                    ),
-                                                                                    clearUnsetFields: false,
-                                                                                    create: true,
-                                                                                  ),
-                                                                                  gender: _model.choiceChipsGenderValue,
-                                                                                  imageStyle: FFAppState().imageStyleState,
-                                                                                  isPublic: _model.oeffentlichValue,
-                                                                                ),
-                                                                                ...mapToFirestore(
-                                                                                  {
-                                                                                    'last_interaction': DateTime.now(),
-                                                                                  },
-                                                                                ),
-                                                                              }, charactersMainRecordReference);
-                                                                              if (_model.createdCharacterId?.reference != null) {
-                                                                                FFAppState().characterId = _model.createdCharacterId!.characterId!.id;
-                                                                                safeSetState(() {});
-                                                                                _model.generatedImageUrl = await NovitaFunctionTextToImageCall.call(
-                                                                                  characterId: FFAppState().characterId,
-                                                                                );
-
-                                                                                if (_model.generatedImageUrl != null) {
-                                                                                  await currentUserReference!.update({
-                                                                                    ...mapToFirestore(
-                                                                                      {
-                                                                                        'characters_created_count': FieldValue.increment(1),
-                                                                                      },
-                                                                                    ),
-                                                                                  });
-
-                                                                                  context.pushNamed(
-                                                                                    'characterProfil',
-                                                                                    queryParameters: {
-                                                                                      'characterId': serializeParam(
-                                                                                        _model.createdCharacterId?.reference,
-                                                                                        ParamType.DocumentReference,
+                                                                            if (loggedIn ==
+                                                                                true) {
+                                                                              if ((valueOrDefault(currentUserDocument?.charactersCreatedCount, 0) < 1) || valueOrDefault<bool>(currentUserDocument?.isPremium, false)) {
+                                                                                var charactersMainRecordReference = CharactersMainRecord.collection.doc();
+                                                                                await charactersMainRecordReference.set({
+                                                                                  ...createCharactersMainRecordData(
+                                                                                    name: _model.nameTextController.text,
+                                                                                    createdBy: buttonUsersRecord.reference,
+                                                                                    age: _model.choiceChipsAgeValue,
+                                                                                    descriptionDisplay: _model.descriptionTextController.text,
+                                                                                    personalityDisplay: FFAppState().personalityChoice,
+                                                                                    characterDisplay: FFAppState().characterChoice,
+                                                                                    createdAt: getCurrentTimestamp,
+                                                                                    personality: updateCharacterPersonalityStruct(
+                                                                                      CharacterPersonalityStruct(
+                                                                                        characterChoice: FFAppState().characterChoice,
+                                                                                        personalityChoice: FFAppState().personalityChoice,
+                                                                                        voiceTone: FFAppState().voiceTon,
+                                                                                        job: _model.textfieldJobTextController.text,
+                                                                                        intimateBehavior: _model.choiceChipsintimBehaviourValue,
+                                                                                        scenarios: FFAppState().scenarios,
+                                                                                        description: _model.descriptionTextController.text,
                                                                                       ),
-                                                                                    }.withoutNulls,
+                                                                                      clearUnsetFields: false,
+                                                                                      create: true,
+                                                                                    ),
+                                                                                    appearance: updateCharacterAppearanceStruct(
+                                                                                      CharacterAppearanceStruct(
+                                                                                        hairColour: FFAppState().hairColour,
+                                                                                        hairStyle: FFAppState().hairColour,
+                                                                                        eyeColour: FFAppState().eyeColour,
+                                                                                        bodyTyp: FFAppState().bodyTyp,
+                                                                                        breastSize: FFAppState().breastSize,
+                                                                                        buttSize: FFAppState().buttSize,
+                                                                                        clothing: FFAppState().clothing,
+                                                                                        ambiente: FFAppState().ambiente,
+                                                                                        ethnicity: FFAppState().ethnicity,
+                                                                                        accessoires: FFAppState().accessoires,
+                                                                                      ),
+                                                                                      clearUnsetFields: false,
+                                                                                      create: true,
+                                                                                    ),
+                                                                                    gender: _model.choiceChipsGenderValue,
+                                                                                    imageStyle: FFAppState().imageStyleState,
+                                                                                    isPublic: _model.oeffentlichValue,
+                                                                                    isAdminCreated: false,
+                                                                                  ),
+                                                                                  ...mapToFirestore(
+                                                                                    {
+                                                                                      'last_interaction': FieldValue.serverTimestamp(),
+                                                                                    },
+                                                                                  ),
+                                                                                });
+                                                                                _model.createdCharacterId = CharactersMainRecord.getDocumentFromData({
+                                                                                  ...createCharactersMainRecordData(
+                                                                                    name: _model.nameTextController.text,
+                                                                                    createdBy: buttonUsersRecord.reference,
+                                                                                    age: _model.choiceChipsAgeValue,
+                                                                                    descriptionDisplay: _model.descriptionTextController.text,
+                                                                                    personalityDisplay: FFAppState().personalityChoice,
+                                                                                    characterDisplay: FFAppState().characterChoice,
+                                                                                    createdAt: getCurrentTimestamp,
+                                                                                    personality: updateCharacterPersonalityStruct(
+                                                                                      CharacterPersonalityStruct(
+                                                                                        characterChoice: FFAppState().characterChoice,
+                                                                                        personalityChoice: FFAppState().personalityChoice,
+                                                                                        voiceTone: FFAppState().voiceTon,
+                                                                                        job: _model.textfieldJobTextController.text,
+                                                                                        intimateBehavior: _model.choiceChipsintimBehaviourValue,
+                                                                                        scenarios: FFAppState().scenarios,
+                                                                                        description: _model.descriptionTextController.text,
+                                                                                      ),
+                                                                                      clearUnsetFields: false,
+                                                                                      create: true,
+                                                                                    ),
+                                                                                    appearance: updateCharacterAppearanceStruct(
+                                                                                      CharacterAppearanceStruct(
+                                                                                        hairColour: FFAppState().hairColour,
+                                                                                        hairStyle: FFAppState().hairColour,
+                                                                                        eyeColour: FFAppState().eyeColour,
+                                                                                        bodyTyp: FFAppState().bodyTyp,
+                                                                                        breastSize: FFAppState().breastSize,
+                                                                                        buttSize: FFAppState().buttSize,
+                                                                                        clothing: FFAppState().clothing,
+                                                                                        ambiente: FFAppState().ambiente,
+                                                                                        ethnicity: FFAppState().ethnicity,
+                                                                                        accessoires: FFAppState().accessoires,
+                                                                                      ),
+                                                                                      clearUnsetFields: false,
+                                                                                      create: true,
+                                                                                    ),
+                                                                                    gender: _model.choiceChipsGenderValue,
+                                                                                    imageStyle: FFAppState().imageStyleState,
+                                                                                    isPublic: _model.oeffentlichValue,
+                                                                                    isAdminCreated: false,
+                                                                                  ),
+                                                                                  ...mapToFirestore(
+                                                                                    {
+                                                                                      'last_interaction': DateTime.now(),
+                                                                                    },
+                                                                                  ),
+                                                                                }, charactersMainRecordReference);
+                                                                                if (_model.createdCharacterId?.reference != null) {
+                                                                                  FFAppState().characterId = _model.createdCharacterId!.reference.id;
+                                                                                  safeSetState(() {});
+                                                                                  _model.generatedImageUrl = await NovitaFunctionTextToImageCall.call(
+                                                                                    characterId: FFAppState().characterId,
                                                                                   );
+
+                                                                                  if (_model.generatedImageUrl != null) {
+                                                                                    await buttonUsersRecord.reference.update({
+                                                                                      ...mapToFirestore(
+                                                                                        {
+                                                                                          'characters_created_count': FieldValue.increment(1),
+                                                                                        },
+                                                                                      ),
+                                                                                    });
+                                                                                    FFAppState().cameFromCreate = true;
+                                                                                    safeSetState(() {});
+
+                                                                                    context.pushNamed(
+                                                                                      'characterProfil',
+                                                                                      queryParameters: {
+                                                                                        'characterId': serializeParam(
+                                                                                          _model.createdCharacterId?.reference,
+                                                                                          ParamType.DocumentReference,
+                                                                                        ),
+                                                                                      }.withoutNulls,
+                                                                                    );
+                                                                                  }
                                                                                 }
+                                                                              } else {
+                                                                                await showDialog(
+                                                                                  context: context,
+                                                                                  builder: (dialogContext) {
+                                                                                    return Dialog(
+                                                                                      elevation: 0,
+                                                                                      insetPadding: EdgeInsets.zero,
+                                                                                      backgroundColor: Colors.transparent,
+                                                                                      alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                      child: GestureDetector(
+                                                                                        onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                        child: CreateCharacterLimitCTAWidget(),
+                                                                                      ),
+                                                                                    );
+                                                                                  },
+                                                                                );
                                                                               }
                                                                             } else {
-                                                                              await showDialog(
-                                                                                context: context,
-                                                                                builder: (dialogContext) {
-                                                                                  return Dialog(
-                                                                                    elevation: 0,
-                                                                                    insetPadding: EdgeInsets.zero,
-                                                                                    backgroundColor: Colors.transparent,
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                    child: GestureDetector(
-                                                                                      onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                      child: const CreateCharacterLimitCTAWidget(),
-                                                                                    ),
-                                                                                  );
-                                                                                },
-                                                                              );
+                                                                              context.pushNamed('auth_2_Create');
                                                                             }
 
                                                                             safeSetState(() {});
@@ -13244,12 +13297,12 @@ Jetzt Char... */
                                                                                 double.infinity,
                                                                             height:
                                                                                 48.0,
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 24.0,
                                                                                 0.0,
                                                                                 24.0,
                                                                                 0.0),
-                                                                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -13266,7 +13319,7 @@ Jetzt Char... */
                                                                             elevation:
                                                                                 3.0,
                                                                             borderSide:
-                                                                                const BorderSide(
+                                                                                BorderSide(
                                                                               color: Colors.transparent,
                                                                               width: 1.0,
                                                                             ),
@@ -13281,14 +13334,14 @@ Jetzt Char... */
                                                               ),
                                                               Container(
                                                                 constraints:
-                                                                    const BoxConstraints(
+                                                                    BoxConstraints(
                                                                   maxWidth:
                                                                       350.0,
                                                                 ),
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
@@ -13302,7 +13355,7 @@ Jetzt Char... */
                                                                           .pageViewController
                                                                           ?.previousPage(
                                                                         duration:
-                                                                            const Duration(milliseconds: 300),
+                                                                            Duration(milliseconds: 300),
                                                                         curve: Curves
                                                                             .ease,
                                                                       );
@@ -13318,12 +13371,12 @@ Jetzt Char... */
                                                                           .infinity,
                                                                       height:
                                                                           48.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -13349,7 +13402,7 @@ Jetzt Char... */
                                                                       elevation:
                                                                           3.0,
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Colors
                                                                             .transparent,
                                                                         width:
@@ -13376,7 +13429,7 @@ Jetzt Char... */
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, -1.0),
+                                            AlignmentDirectional(0.0, -1.0),
                                         child: smooth_page_indicator
                                             .SmoothPageIndicator(
                                           controller: _model
@@ -13389,7 +13442,7 @@ Jetzt Char... */
                                                 .animateToPage(
                                               i,
                                               duration:
-                                                  const Duration(milliseconds: 500),
+                                                  Duration(milliseconds: 500),
                                               curve: Curves.ease,
                                             );
                                             safeSetState(() {});

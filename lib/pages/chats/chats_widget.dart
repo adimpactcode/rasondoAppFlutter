@@ -1,5 +1,5 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -11,7 +11,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -35,17 +34,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
     super.initState();
     _model = createModel(context, () => ChatsModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultpl9 = await DeleteChatsWithDeletedCharactersCall.call(
-        userId: currentUserUid,
-      );
-
-      if ((_model.apiResultpl9?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 1000));
-      }
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -60,8 +48,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return StreamBuilder<List<CharactersMainRecord>>(
-      stream: queryCharactersMainRecord(),
+    return StreamBuilder<List<ChatsRecord>>(
+      stream: queryChatsRecord(
+        queryBuilder: (chatsRecord) => chatsRecord.where(
+          'user_id',
+          isEqualTo: currentUserReference,
+          isNull: (currentUserReference) == null,
+        ),
+      ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -79,8 +73,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
             ),
           );
         }
-        List<CharactersMainRecord> chatsCharactersMainRecordList =
-            snapshot.data!;
+        List<ChatsRecord> chatsChatsRecordList = snapshot.data!;
 
         return Title(
             title: 'Chats',
@@ -106,7 +99,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 32.0, 24.0, 32.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -137,7 +130,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           35.0, 0.0, 0.0, 10.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -162,7 +155,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     ),
                                   ],
                                 ),
-                              ].divide(const SizedBox(height: 32.0)),
+                              ].divide(SizedBox(height: 32.0)),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
@@ -204,7 +197,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 InkWell(
@@ -213,7 +206,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('Chats');
+                                    if (loggedIn == true) {
+                                      context.pushNamed('Chats');
+                                    } else {
+                                      context.pushNamed('auth_2_Create');
+                                    }
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -243,7 +240,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 InkWell(
@@ -282,7 +279,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 InkWell(
@@ -325,7 +322,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 Divider(
@@ -333,7 +330,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   color: FlutterFlowTheme.of(context).alternate,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 30.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -344,7 +341,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       if (loggedIn == false)
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 2.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -359,7 +356,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               model: _model.buttonPinkModel2,
                                               updateCallback: () =>
                                                   safeSetState(() {}),
-                                              child: const ButtonPinkWidget(),
+                                              child: ButtonPinkWidget(),
                                             ),
                                           ),
                                         ),
@@ -369,7 +366,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           false)
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 30.0),
                                           child: AuthUserStreamWidget(
                                             builder: (context) =>
@@ -381,17 +378,17 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   .getText(
                                                 'dllrrzv9' /* Premium */,
                                               ),
-                                              icon: const Icon(
+                                              icon: Icon(
                                                 Icons.diamond_sharp,
                                                 size: 22.0,
                                               ),
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -421,12 +418,12 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             ),
                                           ),
                                         ),
-                                    ].divide(const SizedBox(height: 16.0)),
+                                    ].divide(SizedBox(height: 16.0)),
                                   ),
                                 ),
                                 if (loggedIn == true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -478,12 +475,12 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               .bodyLargeFamily),
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(width: 16.0)),
+                                        ].divide(SizedBox(width: 16.0)),
                                       ),
                                     ),
                                   ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 5.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -540,7 +537,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           onChanged: (lang) =>
                                               setAppLanguage(context, lang),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -581,7 +578,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                             .bodyLargeFamily),
                                               ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 if (loggedIn == true)
@@ -627,10 +624,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                             .bodyLargeFamily),
                                               ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
                                   ),
-                              ].divide(const SizedBox(height: 24.0)),
+                              ].divide(SizedBox(height: 24.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -645,9 +642,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   color: FlutterFlowTheme.of(context).primary,
                                   size: 28.0,
                                 ),
-                              ].divide(const SizedBox(width: 24.0)),
+                              ].divide(SizedBox(width: 24.0)),
                             ),
-                          ].divide(const SizedBox(height: 40.0)),
+                          ].divide(SizedBox(height: 40.0)),
                         ),
                       ),
                     ),
@@ -657,6 +654,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   top: true,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (responsiveVisibility(
@@ -676,7 +674,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 blurRadius: 2.0,
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                offset: const Offset(
+                                offset: Offset(
                                   0.0,
                                   1.0,
                                 ),
@@ -684,14 +682,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                             ],
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -713,7 +711,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 15.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -730,7 +728,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 'Explore',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -744,7 +742,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 AlignedTooltip(
                                                   content: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(4.0),
+                                                        EdgeInsets.all(4.0),
                                                     child: Text(
                                                       FFLocalizations.of(
                                                               context)
@@ -782,9 +780,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: const Duration(
+                                                  waitDuration: Duration(
                                                       milliseconds: 100),
-                                                  showDuration: const Duration(
+                                                  showDuration: Duration(
                                                       milliseconds: 300),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -811,7 +809,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
                                           InkWell(
@@ -828,7 +826,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 AlignedTooltip(
                                                   content: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(4.0),
+                                                        EdgeInsets.all(4.0),
                                                     child: Text(
                                                       FFLocalizations.of(
                                                               context)
@@ -866,9 +864,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: const Duration(
+                                                  waitDuration: Duration(
                                                       milliseconds: 100),
-                                                  showDuration: const Duration(
+                                                  showDuration: Duration(
                                                       milliseconds: 300),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -882,8 +880,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      context
-                                                          .pushNamed('Chats');
+                                                      if (loggedIn == true) {
+                                                        context
+                                                            .pushNamed('Chats');
+                                                      } else {
+                                                        context.pushNamed(
+                                                            'auth_2_Create');
+                                                      }
                                                     },
                                                     child: Icon(
                                                       Icons.wechat_outlined,
@@ -895,7 +898,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
                                           InkWell(
@@ -912,7 +915,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 AlignedTooltip(
                                                   content: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(4.0),
+                                                        EdgeInsets.all(4.0),
                                                     child: Text(
                                                       FFLocalizations.of(
                                                               context)
@@ -950,9 +953,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: const Duration(
+                                                  waitDuration: Duration(
                                                       milliseconds: 100),
-                                                  showDuration: const Duration(
+                                                  showDuration: Duration(
                                                       milliseconds: 300),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -979,15 +982,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 35.0)),
+                                        ].divide(SizedBox(width: 35.0)),
                                       ),
                                     ),
                                     AlignedTooltip(
                                       content: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             '20km9eon' /* Message... */,
@@ -1017,8 +1020,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       elevation: 4.0,
                                       tailBaseWidth: 24.0,
                                       tailLength: 12.0,
-                                      waitDuration: const Duration(milliseconds: 100),
-                                      showDuration: const Duration(milliseconds: 300),
+                                      waitDuration: Duration(milliseconds: 100),
+                                      showDuration: Duration(milliseconds: 300),
                                       triggerMode: TooltipTriggerMode.tap,
                                       child: Opacity(
                                         opacity: 0.5,
@@ -1043,12 +1046,12 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     ),
                                     AlignedTooltip(
                                       content: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             'xo46ysy1' /* Darkmodus */,
                                           ),
-                                          style: const TextStyle(),
+                                          style: TextStyle(),
                                         ),
                                       ),
                                       offset: 4.0,
@@ -1060,8 +1063,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       elevation: 4.0,
                                       tailBaseWidth: 24.0,
                                       tailLength: 12.0,
-                                      waitDuration: const Duration(milliseconds: 100),
-                                      showDuration: const Duration(milliseconds: 300),
+                                      waitDuration: Duration(milliseconds: 100),
+                                      showDuration: Duration(milliseconds: 300),
                                       triggerMode: TooltipTriggerMode.tap,
                                       child: Opacity(
                                         opacity: 0.5,
@@ -1097,7 +1100,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     ),
                                     AlignedTooltip(
                                       content: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             '54nefpbs' /* User profil */,
@@ -1127,8 +1130,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       elevation: 4.0,
                                       tailBaseWidth: 24.0,
                                       tailLength: 12.0,
-                                      waitDuration: const Duration(milliseconds: 100),
-                                      showDuration: const Duration(milliseconds: 300),
+                                      waitDuration: Duration(milliseconds: 100),
+                                      showDuration: Duration(milliseconds: 300),
                                       triggerMode: TooltipTriggerMode.tap,
                                       child: Visibility(
                                         visible: (loggedIn == true) &&
@@ -1182,7 +1185,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           model: _model.buttonPinkModel1,
                                           updateCallback: () =>
                                               safeSetState(() {}),
-                                          child: const ButtonPinkWidget(),
+                                          child: ButtonPinkWidget(),
                                         ),
                                       ),
                                     if (loggedIn == false)
@@ -1198,10 +1201,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           width: 100.0,
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -1235,7 +1238,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         ),
                                       ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 10.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1254,9 +1257,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -1269,13 +1272,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x33000000),
@@ -1299,7 +1302,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1310,7 +1313,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: InkWell(
@@ -1328,7 +1331,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1459,7 +1462,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                              ].divide(const SizedBox(width: 16.0)),
+                                              ].divide(SizedBox(width: 16.0)),
                                             ),
                                           ),
                                         ),
@@ -1481,13 +1484,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x33000000),
@@ -1505,7 +1508,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   children: [
                                     Flexible(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1515,7 +1518,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: InkWell(
@@ -1529,7 +1532,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     'Home',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -1648,7 +1651,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 ),
                                               ],
                                             ),
-                                          ].divide(const SizedBox(width: 16.0)),
+                                          ].divide(SizedBox(width: 16.0)),
                                         ),
                                       ),
                                     ),
@@ -1658,28 +1661,89 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                             ),
                           ],
                         ),
-                      SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Column(
+                      Flexible(
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, -1.0),
+                          child: Container(
+                            constraints: BoxConstraints(
+                              maxWidth: 750.0,
+                            ),
+                            decoration: BoxDecoration(),
+                            child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 20.0, 0.0, 20.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 20.0, 0.0, 0.0),
                                     child: Container(
-                                      constraints: const BoxConstraints(
+                                      constraints: BoxConstraints(
                                         maxWidth: 720.0,
                                       ),
-                                      decoration: const BoxDecoration(),
-                                      child: Visibility(
-                                        visible: chatsCharactersMainRecordList.isNotEmpty,
+                                      decoration: BoxDecoration(),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 30.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            borderRadius:
+                                                BorderRadius.circular(6.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Text(
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                '5ey23c9i' /* Chats */,
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                    fontSize: 20.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    useGoogleFonts:
+                                                        GoogleFonts.asMap()
+                                                            .containsKey(
+                                                                'Poppins'),
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                if (chatsChatsRecordList.length <= 0)
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 20.0, 0.0, 0.0),
+                                      child: Container(
+                                        constraints: BoxConstraints(
+                                          maxWidth: 720.0,
+                                        ),
+                                        decoration: BoxDecoration(),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 30.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -1696,32 +1760,109 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               ),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(4.0),
-                                              child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '5ey23c9i' /* Chats */,
-                                                ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'Poppins',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      fontSize: 20.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      useGoogleFonts:
-                                                          GoogleFonts.asMap()
-                                                              .containsKey(
-                                                                  'Poppins'),
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Visibility(
+                                              visible:
+                                                  chatsChatsRecordList.length <=
+                                                      0,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  Flexible(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(4.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'zzdmdzpv' /* Du hast noch keinen Chat */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          'Poppins'),
+                                                                ),
+                                                      ),
                                                     ),
+                                                  ),
+                                                  Flexible(
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        context.pushNamed(
+                                                            'Explore');
+                                                      },
+                                                      text: FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'fho1dj62' /* Jetzt Chatpartner entdecken! */,
+                                                      ),
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily),
+                                                                ),
+                                                        elevation: 0.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
@@ -1729,435 +1870,281 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       ),
                                     ),
                                   ),
-                                ),
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 20.0, 0.0, 20.0),
-                                    child: Container(
-                                      constraints: const BoxConstraints(
-                                        maxWidth: 720.0,
-                                      ),
-                                      decoration: const BoxDecoration(),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 5.0, 0.0, 30.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 2.0,
-                                            ),
-                                          ),
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Visibility(
-                                            visible:
-                                                chatsCharactersMainRecordList.isEmpty,
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Flexible(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(4.0),
-                                                    child: Text(
-                                                      FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        'zzdmdzpv' /* Du hast noch keinen Chat */,
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondary,
-                                                            fontSize: 20.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            useGoogleFonts:
-                                                                GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        'Poppins'),
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Flexible(
-                                                  child: FFButtonWidget(
-                                                    onPressed: () async {
-                                                      context
-                                                          .pushNamed('Explore');
-                                                    },
-                                                    text: FFLocalizations.of(
-                                                            context)
-                                                        .getText(
-                                                      'fho1dj62' /* Jetzt Catpartner entdecken! */,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  16.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
-                                                              ),
-                                                      elevation: 0.0,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                if (loggedIn == true)
+                                  Flexible(
+                                    child: StreamBuilder<List<ChatsRecord>>(
+                                      stream: queryChatsRecord(
+                                        queryBuilder: (chatsRecord) =>
+                                            chatsRecord.where(
+                                          'user_id',
+                                          isEqualTo: currentUserReference,
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 10.0, 0.0),
-                            child: Container(
-                              constraints: const BoxConstraints(
-                                maxWidth: 720.0,
-                              ),
-                              decoration: const BoxDecoration(),
-                              child: StreamBuilder<List<ChatsRecord>>(
-                                stream: queryChatsRecord(
-                                  queryBuilder: (chatsRecord) =>
-                                      chatsRecord.where(
-                                    'user_id',
-                                    isEqualTo: currentUserReference,
-                                  ),
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: SpinKitPumpingHeart(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 50.0,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<ChatsRecord> listViewChatsRecordList =
-                                      snapshot.data!;
-
-                                  return ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: listViewChatsRecordList.length,
-                                    itemBuilder: (context, listViewIndex) {
-                                      final listViewChatsRecord =
-                                          listViewChatsRecordList[
-                                              listViewIndex];
-                                      return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 1.0, 0.0, 0.0),
-                                        child:
-                                            StreamBuilder<CharactersMainRecord>(
-                                          stream:
-                                              CharactersMainRecord.getDocument(
-                                                  listViewChatsRecord
-                                                      .characterId!),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child: SpinKitPumpingHeart(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: SpinKitPumpingHeart(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .primary,
-                                                    size: 50.0,
-                                                  ),
-                                                ),
-                                              );
-                                            }
+                                                size: 50.0,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<ChatsRecord>
+                                            listViewChatsRecordList =
+                                            snapshot.data!;
 
-                                            final containerCharactersMainRecord =
-                                                snapshot.data!;
-
-                                            return InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await authManager.refreshUser();
-                                                if (currentUserEmailVerified ==
-                                                    true) {
-                                                  context.pushNamed(
-                                                    'chatPagePro',
-                                                    queryParameters: {
-                                                      'characterId':
-                                                          serializeParam(
-                                                        listViewChatsRecord
-                                                            .characterId,
-                                                        ParamType
-                                                            .DocumentReference,
-                                                      ),
-                                                      'userReference':
-                                                          serializeParam(
-                                                        currentUserReference,
-                                                        ParamType
-                                                            .DocumentReference,
-                                                      ),
-                                                    }.withoutNulls,
-                                                  );
-                                                } else {
-                                                  context.pushNamed(
-                                                      'auth_2_Create');
-                                                }
-                                              },
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                elevation: 0.0,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          0.0),
-                                                ),
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 0.0,
+                                        return ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount:
+                                              listViewChatsRecordList.length,
+                                          itemBuilder:
+                                              (context, listViewIndex) {
+                                            final listViewChatsRecord =
+                                                listViewChatsRecordList[
+                                                    listViewIndex];
+                                            return StreamBuilder<
+                                                CharactersMainRecord>(
+                                              stream: CharactersMainRecord
+                                                  .getDocument(
+                                                      listViewChatsRecord
+                                                          .characterId!),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          SpinKitPumpingHeart(
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .alternate,
-                                                        offset: const Offset(
-                                                          0.0,
-                                                          1.0,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                16.0,
-                                                                12.0,
-                                                                12.0,
-                                                                12.0),
-                                                    child: Row(
+                                                                .primary,
+                                                        size: 50.0,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+
+                                                final columnCharactersMainRecord =
+                                                    snapshot.data!;
+
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await authManager
+                                                        .refreshUser();
+                                                    if (currentUserEmailVerified ==
+                                                        true) {
+                                                      context.pushNamed(
+                                                        'chatPagePro',
+                                                        queryParameters: {
+                                                          'characterId':
+                                                              serializeParam(
+                                                            listViewChatsRecord
+                                                                .characterId,
+                                                            ParamType
+                                                                .DocumentReference,
+                                                          ),
+                                                          'userReference':
+                                                              serializeParam(
+                                                            currentUserReference,
+                                                            ParamType
+                                                                .DocumentReference,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    } else {
+                                                      context.pushNamed(
+                                                          'auth_2_Create');
+                                                    }
+                                                  },
+                                                  child: SingleChildScrollView(
+                                                    child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
                                                       children: [
-                                                        Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 1.0),
-                                                          child: Container(
-                                                            width: 52.0,
-                                                            height: 52.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondary,
-                                                              image:
-                                                                  DecorationImage(
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                image: Image
-                                                                    .network(
-                                                                  random_data
-                                                                      .randomImageUrl(
-                                                                    0,
-                                                                    0,
-                                                                  ),
-                                                                ).image,
-                                                              ),
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              border:
-                                                                  Border.all(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                width: 2.0,
-                                                              ),
-                                                            ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(2.0),
-                                                              child: ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            60.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  containerCharactersMainRecord
-                                                                      .referenceImage,
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      12.0,
+                                                                      12.0,
+                                                                      12.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1.0,
+                                                                        1.0),
+                                                                child:
+                                                                    Container(
                                                                   width: 52.0,
                                                                   height: 52.0,
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Expanded(
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          containerCharactersMainRecord
-                                                                              .name,
-                                                                          textAlign:
-                                                                              TextAlign.start,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyLarge
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                                                letterSpacing: 0.0,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
-                                                                              ),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary,
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                      image: Image
+                                                                          .network(
+                                                                        random_data
+                                                                            .randomImageUrl(
+                                                                          0,
+                                                                          0,
                                                                         ),
-                                                                      ),
+                                                                      ).image,
                                                                     ),
-                                                                    Icon(
-                                                                      Icons
-                                                                          .chevron_right_rounded,
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                    border:
+                                                                        Border
+                                                                            .all(
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondaryText,
-                                                                      size:
-                                                                          24.0,
+                                                                          .primary,
+                                                                      width:
+                                                                          2.0,
                                                                     ),
-                                                                  ],
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            2.0),
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              60.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        columnCharactersMainRecord
+                                                                            .referenceImage,
+                                                                        width:
+                                                                            52.0,
+                                                                        height:
+                                                                            52.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                              Flexible(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: [
+                                                                          Flexible(
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                                                              child: Text(
+                                                                                columnCharactersMainRecord.name,
+                                                                                textAlign: TextAlign.start,
+                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                                      letterSpacing: 0.0,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Icon(
+                                                                            Icons.chevron_right_rounded,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-                                                ),
-                                              ),
+                                                );
+                                              },
                                             );
                                           },
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                              ],
                             ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: Container(
+                          constraints: BoxConstraints(
+                            maxWidth: 750.0,
+                          ),
+                          decoration: BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [],
                           ),
                         ),
                       ),

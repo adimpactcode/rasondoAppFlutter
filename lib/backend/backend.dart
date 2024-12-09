@@ -12,6 +12,7 @@ import 'schema/messages_record.dart';
 import 'schema/images_record.dart';
 import 'schema/payments_record.dart';
 import 'schema/admin_character_record.dart';
+import 'schema/character_likes_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -27,6 +28,7 @@ export 'schema/messages_record.dart';
 export 'schema/images_record.dart';
 export 'schema/payments_record.dart';
 export 'schema/admin_character_record.dart';
+export 'schema/character_likes_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -290,6 +292,43 @@ Future<List<AdminCharacterRecord>> queryAdminCharacterRecordOnce({
       singleRecord: singleRecord,
     );
 
+/// Functions to query CharacterLikesRecords (as a Stream and as a Future).
+Future<int> queryCharacterLikesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      CharacterLikesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<CharacterLikesRecord>> queryCharacterLikesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CharacterLikesRecord.collection,
+      CharacterLikesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CharacterLikesRecord>> queryCharacterLikesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CharacterLikesRecord.collection,
+      CharacterLikesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
 Future<int> queryCollectionCount(
   Query collection, {
   Query Function(Query)? queryBuilder,
@@ -409,7 +448,7 @@ Future<FFFirestorePage<T>> queryCollectionPage<T>(
   } else {
     docSnapshot = await query.get();
   }
-  getDocs(QuerySnapshot s) => s.docs
+  final getDocs = (QuerySnapshot s) => s.docs
       .map(
         (d) => safeGet(
           () => recordBuilder(d),
