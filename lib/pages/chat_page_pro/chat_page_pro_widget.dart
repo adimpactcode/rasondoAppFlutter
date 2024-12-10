@@ -1,12 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/message_limit_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -45,17 +47,17 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().userId = currentUserReference!.id;
       safeSetState(() {});
-      FFAppState().characterId = widget.characterId!.id;
+      FFAppState().characterId = widget!.characterId!.id;
       safeSetState(() {});
       _model.doesChatExist = await queryChatsRecordOnce(
         queryBuilder: (chatsRecord) => chatsRecord
             .where(
               'user_id',
-              isEqualTo: widget.userReference,
+              isEqualTo: widget!.userReference,
             )
             .where(
               'character_id',
-              isEqualTo: widget.characterId,
+              isEqualTo: widget!.characterId,
             ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
@@ -66,20 +68,20 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
       } else {
         var chatsRecordReference = ChatsRecord.collection.doc();
         await chatsRecordReference.set(createChatsRecordData(
-          userId: widget.userReference,
-          characterId: widget.characterId,
+          userId: widget!.userReference,
+          characterId: widget!.characterId,
         ));
         _model.newChatId = ChatsRecord.getDocumentFromData(
             createChatsRecordData(
-              userId: widget.userReference,
-              characterId: widget.characterId,
+              userId: widget!.userReference,
+              characterId: widget!.characterId,
             ),
             chatsRecordReference);
       }
 
       _model.apiLlmPageload = await NovitaFunctionLLMCall.call(
-        userId: widget.userReference?.id,
-        characterId: widget.characterId?.id,
+        userId: widget!.userReference?.id,
+        characterId: widget!.characterId?.id,
       );
 
       _model.addToLastMessages(
@@ -110,7 +112,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
 
         await _model.chatListView?.animateTo(
           _model.chatListView!.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 100),
+          duration: Duration(milliseconds: 100),
           curve: Curves.ease,
         );
       }
@@ -138,11 +140,11 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
         queryBuilder: (chatsRecord) => chatsRecord
             .where(
               'user_id',
-              isEqualTo: widget.userReference,
+              isEqualTo: widget!.userReference,
             )
             .where(
               'character_id',
-              isEqualTo: widget.characterId,
+              isEqualTo: widget!.characterId,
             ),
         singleRecord: true,
       ),
@@ -188,7 +190,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        constraints: const BoxConstraints(
+                        constraints: BoxConstraints(
                           maxWidth: 800.0,
                         ),
                         decoration: BoxDecoration(
@@ -201,11 +203,11 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: StreamBuilder<CharactersMainRecord>(
                             stream: CharactersMainRecord.getDocument(
-                                widget.characterId!),
+                                widget!.characterId!),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -231,7 +233,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                 children: [
                                   Flexible(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -240,7 +242,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 4.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -264,7 +266,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                             width: 54.0,
                                             height: 54.0,
                                             clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
@@ -275,7 +277,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               rowCharactersMainRecord.name,
@@ -315,7 +317,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                             'characterProfil',
                                             queryParameters: {
                                               'characterId': serializeParam(
-                                                widget.characterId,
+                                                widget!.characterId,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -332,12 +334,12 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                           width: 34.0,
                                           height: 34.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   6.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0x00FE3D96),
+                                          color: Color(0x00FE3D96),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -355,16 +357,16 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                             .titleSmallFamily),
                                               ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 12.0)),
+                                    ].divide(SizedBox(width: 12.0)),
                                   ),
-                                ].divide(const SizedBox(width: 20.0)),
+                                ].divide(SizedBox(width: 20.0)),
                               );
                             },
                           ),
@@ -372,12 +374,12 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                       ),
                       Flexible(
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: Container(
-                            constraints: const BoxConstraints(
+                            constraints: BoxConstraints(
                               maxWidth: 750.0,
                             ),
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -402,7 +404,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                             final messagesItem =
                                                 messages[messagesIndex];
                                             return Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 10.0, 10.0, 0.0),
                                               child: Column(
@@ -423,11 +425,14 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                       children: [
                                                         if (messagesItem
                                                                     .content !=
+                                                                null &&
+                                                            messagesItem
+                                                                    .content !=
                                                                 '')
                                                           Flexible(
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       1.0, 0.0),
                                                               child: Text(
                                                                 messagesItem
@@ -463,6 +468,9 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                       children: [
                                                         if (messagesItem
                                                                     .content !=
+                                                                null &&
+                                                            messagesItem
+                                                                    .content !=
                                                                 '')
                                                           Flexible(
                                                             child: Container(
@@ -472,7 +480,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                         context)
                                                                     .primary,
                                                                 borderRadius:
-                                                                    const BorderRadius
+                                                                    BorderRadius
                                                                         .only(
                                                                   bottomLeft: Radius
                                                                       .circular(
@@ -490,7 +498,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
+                                                                    EdgeInsets
                                                                         .all(
                                                                             8.0),
                                                                 child: Text(
@@ -518,7 +526,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                       ],
                                                     ),
                                                 ].divide(
-                                                    const SizedBox(height: 10.0)),
+                                                    SizedBox(height: 10.0)),
                                               ),
                                             );
                                           }),
@@ -529,7 +537,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                 ),
                                 if (_model.isAssistantLoading == true)
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Lottie.asset(
                                       'assets/jsons/Animation_-_1733099242869.json',
                                       width: 200.0,
@@ -544,7 +552,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                         ),
                       ),
                       Container(
-                        constraints: const BoxConstraints(
+                        constraints: BoxConstraints(
                           maxWidth: 750.0,
                         ),
                         decoration: BoxDecoration(
@@ -562,7 +570,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(6.0),
+                                padding: EdgeInsets.all(6.0),
                                 child: Container(
                                   width: 42.0,
                                   decoration: BoxDecoration(
@@ -589,7 +597,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                         'ImageToImage',
                                         queryParameters: {
                                           'characterReferenz': serializeParam(
-                                            widget.characterId,
+                                            widget!.characterId,
                                             ParamType.DocumentReference,
                                           ),
                                           'userId': serializeParam(
@@ -604,7 +612,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                               ),
                               Flexible(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       3.0, 4.0, 10.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -613,7 +621,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                     children: [
                                       Expanded(
                                         child: Builder(
-                                          builder: (context) => SizedBox(
+                                          builder: (context) => Container(
                                             width: 200.0,
                                             child: TextFormField(
                                               controller: _model.textController,
@@ -643,12 +651,12 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   _model.userInput = _model
                                                       .textController.text;
                                                   _model.userId =
-                                                      widget.userReference?.id;
+                                                      widget!.userReference?.id;
                                                   _model.characterId =
-                                                      widget.characterId?.id;
+                                                      widget!.characterId?.id;
                                                   safeSetState(() {});
 
-                                                  await widget.userReference!
+                                                  await widget!.userReference!
                                                       .update({
                                                     ...mapToFirestore(
                                                       {
@@ -690,7 +698,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                         .chatListView!
                                                         .position
                                                         .maxScrollExtent,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -706,8 +714,8 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                       await NovitaFunctionLLMCall
                                                           .call(
                                                     characterId:
-                                                        widget.characterId?.id,
-                                                    userId: widget
+                                                        widget!.characterId?.id,
+                                                    userId: widget!
                                                         .userReference?.id,
                                                     userInput: _model.userInput,
                                                   );
@@ -732,7 +740,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                     safeSetState(() {});
 
                                                     await MessagesRecord.createDoc(
-                                                            chatPageProChatsRecord
+                                                            chatPageProChatsRecord!
                                                                 .reference)
                                                         .set(
                                                             createMessagesRecordData(
@@ -752,7 +760,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                         .chatListView!
                                                         .position
                                                         .maxScrollExtent,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -767,7 +775,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -778,7 +786,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                       dialogContext)
                                                                   .unfocus(),
                                                           child:
-                                                              const MessageLimitCTAWidget(),
+                                                              MessageLimitCTAWidget(),
                                                         ),
                                                       );
                                                     },
@@ -817,13 +825,13 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                       .bodySmallFamily),
                                                         ),
                                                 enabledBorder:
-                                                    const UnderlineInputBorder(
+                                                    UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
+                                                      const BorderRadius.only(
                                                     topLeft:
                                                         Radius.circular(4.0),
                                                     topRight:
@@ -831,13 +839,13 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   ),
                                                 ),
                                                 focusedBorder:
-                                                    const UnderlineInputBorder(
+                                                    UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
+                                                      const BorderRadius.only(
                                                     topLeft:
                                                         Radius.circular(4.0),
                                                     topRight:
@@ -845,13 +853,13 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   ),
                                                 ),
                                                 errorBorder:
-                                                    const UnderlineInputBorder(
+                                                    UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
+                                                      const BorderRadius.only(
                                                     topLeft:
                                                         Radius.circular(4.0),
                                                     topRight:
@@ -859,13 +867,13 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   ),
                                                 ),
                                                 focusedErrorBorder:
-                                                    const UnderlineInputBorder(
+                                                    UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
+                                                      const BorderRadius.only(
                                                     topLeft:
                                                         Radius.circular(4.0),
                                                     topRight:
@@ -940,12 +948,12 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                               _model.userInput =
                                                   _model.textController.text;
                                               _model.userId =
-                                                  widget.userReference?.id;
+                                                  widget!.userReference?.id;
                                               _model.characterId =
-                                                  widget.characterId?.id;
+                                                  widget!.characterId?.id;
                                               safeSetState(() {});
 
-                                              await widget.userReference!
+                                              await widget!.userReference!
                                                   .update({
                                                 ...mapToFirestore(
                                                   {
@@ -981,9 +989,9 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   await NovitaFunctionLLMCall
                                                       .call(
                                                 characterId:
-                                                    widget.characterId?.id,
+                                                    widget!.characterId?.id,
                                                 userId:
-                                                    widget.userReference?.id,
+                                                    widget!.userReference?.id,
                                                 userInput: _model.userInput,
                                               );
 
@@ -995,7 +1003,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                 _model.chatListView!.position
                                                     .maxScrollExtent,
                                                 duration:
-                                                    const Duration(milliseconds: 100),
+                                                    Duration(milliseconds: 100),
                                                 curve: Curves.ease,
                                               );
                                               _model.isAssistantLoading = false;
@@ -1016,7 +1024,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                 safeSetState(() {});
 
                                                 await MessagesRecord.createDoc(
-                                                        chatPageProChatsRecord
+                                                        chatPageProChatsRecord!
                                                             .reference)
                                                     .set(
                                                         createMessagesRecordData(
@@ -1034,7 +1042,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                 _model.chatListView!.position
                                                     .maxScrollExtent,
                                                 duration:
-                                                    const Duration(milliseconds: 100),
+                                                    Duration(milliseconds: 100),
                                                 curve: Curves.ease,
                                               );
                                             } else {
@@ -1048,7 +1056,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -1059,7 +1067,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const MessageLimitCTAWidget(),
+                                                          MessageLimitCTAWidget(),
                                                     ),
                                                   );
                                                 },

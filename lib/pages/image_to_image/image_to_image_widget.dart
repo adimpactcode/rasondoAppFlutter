@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'image_to_image_model.dart';
 export 'image_to_image_model.dart';
 
@@ -52,7 +56,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<CharactersMainRecord>(
-      stream: CharactersMainRecord.getDocument(widget.characterReferenz!),
+      stream: CharactersMainRecord.getDocument(widget!.characterReferenz!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -113,12 +117,12 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Container(
-                                                constraints: const BoxConstraints(
+                                                constraints: BoxConstraints(
                                                   maxWidth: 770.0,
                                                 ),
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 12.0,
                                                           16.0, 0.0),
                                                   child: Column(
@@ -133,7 +137,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 1.0, 0.0),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -159,7 +163,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     20.0,
@@ -237,7 +241,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     20.0,
@@ -272,7 +276,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -415,7 +419,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                                     .of(context)
                                                                 .secondaryBackground,
                                                             contentPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         16.0,
@@ -452,7 +456,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     20.0,
@@ -487,7 +491,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -630,7 +634,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                                     .of(context)
                                                                 .secondaryBackground,
                                                             contentPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         16.0,
@@ -665,9 +669,9 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                         ),
                                                       ),
                                                     ]
-                                                        .divide(const SizedBox(
+                                                        .divide(SizedBox(
                                                             height: 12.0))
-                                                        .addToEnd(const SizedBox(
+                                                        .addToEnd(SizedBox(
                                                             height: 32.0)),
                                                   ),
                                                 ),
@@ -677,13 +681,13 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                         ),
                                       ),
                                       Container(
-                                        constraints: const BoxConstraints(
+                                        constraints: BoxConstraints(
                                           maxWidth: 770.0,
                                         ),
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 12.0, 16.0, 12.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
@@ -694,7 +698,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                   .img2imgChangeAmbienteTextController
                                                   .text;
                                               _model.characterId =
-                                                  widget.characterReferenz!.id;
+                                                  widget!.characterReferenz!.id;
                                               safeSetState(() {});
                                               _model.newGeneratedImgUrl =
                                                   await NovitaFunctionImageToImageCall
@@ -709,7 +713,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                               if ((_model.newGeneratedImgUrl
                                                       ?.succeeded ??
                                                   true)) {
-                                                await widget.characterReferenz!
+                                                await widget!.characterReferenz!
                                                     .update({
                                                   ...mapToFirestore(
                                                     {
@@ -732,7 +736,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                   queryParameters: {
                                                     'characterId':
                                                         serializeParam(
-                                                      widget.characterReferenz,
+                                                      widget!.characterReferenz,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -749,10 +753,10 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 48.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -776,7 +780,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                                     .titleSmallFamily),
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),

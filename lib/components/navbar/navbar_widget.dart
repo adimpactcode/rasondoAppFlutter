@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,6 +7,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'navbar_model.dart';
@@ -66,7 +68,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
             BoxShadow(
               blurRadius: 2.0,
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              offset: const Offset(
+              offset: Offset(
                 0.0,
                 1.0,
               ),
@@ -74,13 +76,13 @@ class _NavbarWidgetState extends State<NavbarWidget> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -102,7 +104,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -116,7 +118,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                             context.pushNamed(
                               'Explore',
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: const TransitionInfo(
+                                kTransitionInfoKey: TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                 ),
@@ -140,7 +142,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                   size: 26.0,
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                         InkWell(
@@ -168,7 +170,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                   size: 26.0,
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                         InkWell(
@@ -196,10 +198,10 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                   size: 26.0,
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 35.0)),
+                      ].divide(SizedBox(width: 35.0)),
                     ),
                   ),
                   Opacity(
@@ -283,7 +285,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                       child: wrapWithModel(
                         model: _model.buttonPinkModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const ButtonPinkWidget(),
+                        child: ButtonPinkWidget(),
                       ),
                     ),
                   if (loggedIn == false)
@@ -298,9 +300,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                         width: 100.0,
                         height: 40.0,
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle: FlutterFlowTheme.of(context)
                             .bodyMedium
@@ -324,16 +326,16 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Icon(
                       Icons.menu_open,
                       color: FlutterFlowTheme.of(context).primary,
                       size: 40.0,
                     ),
                   ),
-                ].divide(const SizedBox(width: 16.0)),
+                ].divide(SizedBox(width: 16.0)),
               ),
-            ].divide(const SizedBox(width: 16.0)),
+            ].divide(SizedBox(width: 16.0)),
           ),
         ),
       ),

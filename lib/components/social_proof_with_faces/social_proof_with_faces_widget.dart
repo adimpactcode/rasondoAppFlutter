@@ -1,7 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'social_proof_with_faces_model.dart';
 export 'social_proof_with_faces_model.dart';
 
@@ -43,7 +45,7 @@ class _SocialProofWithFacesWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+      padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
       child: Container(
         width: 380.0,
         decoration: BoxDecoration(
@@ -175,10 +177,10 @@ class _SocialProofWithFacesWidgetState
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(width: -12.0)),
+              ].divide(SizedBox(width: -12.0)),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,7 +192,7 @@ class _SocialProofWithFacesWidgetState
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.star_rounded,
                             color: Color(0xFFFFD700),
                             size: 24.0,
@@ -212,7 +214,7 @@ class _SocialProofWithFacesWidgetState
                                           .titleMediumFamily),
                                 ),
                           ),
-                        ].divide(const SizedBox(width: 4.0)),
+                        ].divide(SizedBox(width: 4.0)),
                       ),
                       Text(
                         FFLocalizations.of(context).getText(
@@ -229,7 +231,7 @@ class _SocialProofWithFacesWidgetState
                       ),
                     ],
                   ),
-                ].divide(const SizedBox(width: 16.0)),
+                ].divide(SizedBox(width: 16.0)),
               ),
             ),
           ],

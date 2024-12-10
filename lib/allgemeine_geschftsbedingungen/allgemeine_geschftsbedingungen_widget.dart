@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/components/navbar_mobile/navbar_mobile_widget.dart';
@@ -7,7 +8,9 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'allgemeine_geschftsbedingungen_model.dart';
@@ -83,7 +86,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                     blurRadius: 2.0,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    offset: const Offset(
+                                    offset: Offset(
                                       0.0,
                                       1.0,
                                     ),
@@ -91,7 +94,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -99,7 +102,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -122,7 +125,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 15.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -140,7 +143,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                     'Explore',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -156,7 +159,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -193,9 +196,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -223,7 +226,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -242,7 +245,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -279,9 +282,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -315,7 +318,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -334,7 +337,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -371,9 +374,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -401,15 +404,15 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 35.0)),
+                                            ].divide(SizedBox(width: 35.0)),
                                           ),
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -445,9 +448,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -473,13 +476,13 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
                                                 'r3ks9jv3' /* Darkmodus */,
                                               ),
-                                              style: const TextStyle(),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                           offset: 4.0,
@@ -494,9 +497,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -535,7 +538,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -571,9 +574,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Visibility(
                                             visible: (loggedIn == true) &&
@@ -631,7 +634,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                               model: _model.buttonPinkModel,
                                               updateCallback: () =>
                                                   safeSetState(() {}),
-                                              child: const ButtonPinkWidget(),
+                                              child: ButtonPinkWidget(),
                                             ),
                                           ),
                                         if (loggedIn == false)
@@ -646,9 +649,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                             options: FFButtonOptions(
                                               width: 100.0,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -687,7 +690,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                           ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -707,9 +710,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -724,14 +727,14 @@ class _AllgemeineGeschftsbedingungenWidgetState
                     wrapWithModel(
                       model: _model.navbarMobileModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const NavbarMobileWidget(),
+                      child: NavbarMobileWidget(),
                     ),
                   Flexible(
                     child: Container(
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 750.0,
                       ),
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -742,10 +745,10 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Container(
-                                    constraints: const BoxConstraints(
+                                    constraints: BoxConstraints(
                                       maxWidth: 750.0,
                                     ),
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -753,10 +756,10 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 40.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -787,7 +790,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           child: RichText(
                                             textScaler: MediaQuery.of(context)
@@ -851,7 +854,7 @@ Capepo... */
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(height: 12.0)),
+                ].divide(SizedBox(height: 12.0)),
               ),
             ),
           ),

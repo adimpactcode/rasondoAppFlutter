@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/components/navbar_mobile/navbar_mobile_widget.dart';
@@ -8,7 +9,9 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'datenschutz_model.dart';
@@ -61,7 +64,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                      EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +94,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     35.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -116,7 +119,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                               ),
                             ],
                           ),
-                        ].divide(const SizedBox(height: 32.0)),
+                        ].divide(SizedBox(height: 32.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -154,7 +157,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -193,7 +196,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -228,7 +231,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -267,7 +270,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           Divider(
@@ -275,7 +278,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -284,7 +287,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                               children: [
                                 if (loggedIn == false)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -298,7 +301,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         model: _model.buttonPinkModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const ButtonPinkWidget(),
+                                        child: ButtonPinkWidget(),
                                       ),
                                     ),
                                   ),
@@ -307,7 +310,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         false) ==
                                     false)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
@@ -318,17 +321,17 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                             FFLocalizations.of(context).getText(
                                           'ys1wbdfy' /* Premium */,
                                         ),
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.diamond_sharp,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -355,12 +358,12 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                       ),
                                     ),
                                   ),
-                              ].divide(const SizedBox(height: 16.0)),
+                              ].divide(SizedBox(height: 16.0)),
                             ),
                           ),
                           if (loggedIn == true)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -408,12 +411,12 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 5.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -464,7 +467,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                     onChanged: (lang) =>
                                         setAppLanguage(context, lang),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
@@ -503,7 +506,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           if (loggedIn == true)
@@ -545,10 +548,10 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -563,9 +566,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
-                        ].divide(const SizedBox(width: 24.0)),
+                        ].divide(SizedBox(width: 24.0)),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40.0)),
                   ),
                 ),
               ),
@@ -598,7 +601,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                     blurRadius: 2.0,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    offset: const Offset(
+                                    offset: Offset(
                                       0.0,
                                       1.0,
                                     ),
@@ -606,7 +609,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -614,7 +617,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -637,7 +640,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 15.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -655,7 +658,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     'Explore',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -671,7 +674,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -708,9 +711,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -738,7 +741,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -757,7 +760,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -794,9 +797,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -830,7 +833,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -849,7 +852,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -886,9 +889,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -916,15 +919,15 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 35.0)),
+                                            ].divide(SizedBox(width: 35.0)),
                                           ),
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -960,9 +963,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -988,13 +991,13 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
                                                 '9uko0jpk' /* Darkmodus */,
                                               ),
-                                              style: const TextStyle(),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                           offset: 4.0,
@@ -1009,9 +1012,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -1050,7 +1053,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -1086,9 +1089,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Visibility(
                                             visible: (loggedIn == true) &&
@@ -1146,7 +1149,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                               model: _model.buttonPinkModel1,
                                               updateCallback: () =>
                                                   safeSetState(() {}),
-                                              child: const ButtonPinkWidget(),
+                                              child: ButtonPinkWidget(),
                                             ),
                                           ),
                                         if (loggedIn == false)
@@ -1161,9 +1164,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                             options: FFButtonOptions(
                                               width: 100.0,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1202,7 +1205,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                           ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -1222,9 +1225,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -1235,22 +1238,22 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             wrapWithModel(
                               model: _model.navbarMobileModel,
                               updateCallback: () => safeSetState(() {}),
-                              child: const NavbarMobileWidget(),
+                              child: NavbarMobileWidget(),
                             ),
                           Container(
-                            constraints: const BoxConstraints(
+                            constraints: BoxConstraints(
                               maxWidth: 750.0,
                             ),
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 10.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 30.0, 0.0, 20.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(

@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/components/navbar_mobile/navbar_mobile_widget.dart';
@@ -8,7 +9,9 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'impressum_model.dart';
@@ -61,7 +64,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
+                      EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 32.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +94,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     35.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -116,7 +119,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                               ),
                             ],
                           ),
-                        ].divide(const SizedBox(height: 32.0)),
+                        ].divide(SizedBox(height: 32.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -154,7 +157,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -193,7 +196,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -228,7 +231,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           InkWell(
@@ -267,7 +270,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     .bodyLargeFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                           Divider(
@@ -275,7 +278,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -284,7 +287,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                               children: [
                                 if (loggedIn == false)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 2.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -298,7 +301,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         model: _model.buttonPinkModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const ButtonPinkWidget(),
+                                        child: ButtonPinkWidget(),
                                       ),
                                     ),
                                   ),
@@ -307,7 +310,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         false) ==
                                     false)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
@@ -318,17 +321,17 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             FFLocalizations.of(context).getText(
                                           'bzs695ka' /* Premium */,
                                         ),
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.diamond_sharp,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -355,12 +358,12 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                       ),
                                     ),
                                   ),
-                              ].divide(const SizedBox(height: 16.0)),
+                              ].divide(SizedBox(height: 16.0)),
                             ),
                           ),
                           if (loggedIn == true)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -408,12 +411,12 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                         .bodyLargeFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 5.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -464,7 +467,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                     onChanged: (lang) =>
                                         setAppLanguage(context, lang),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
@@ -503,7 +506,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           if (loggedIn == true)
@@ -545,10 +548,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       .bodyLargeFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -563,9 +566,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
-                        ].divide(const SizedBox(width: 24.0)),
+                        ].divide(SizedBox(width: 24.0)),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40.0)),
                   ),
                 ),
               ),
@@ -599,7 +602,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                     blurRadius: 2.0,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    offset: const Offset(
+                                    offset: Offset(
                                       0.0,
                                       1.0,
                                     ),
@@ -607,7 +610,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -615,7 +618,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -638,7 +641,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 15.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -656,7 +659,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     'Explore',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -672,7 +675,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -709,9 +712,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -739,7 +742,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -758,7 +761,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -795,9 +798,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -831,7 +834,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
                                               InkWell(
@@ -850,7 +853,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     AlignedTooltip(
                                                       content: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(4.0),
+                                                            EdgeInsets.all(4.0),
                                                         child: Text(
                                                           FFLocalizations.of(
                                                                   context)
@@ -887,9 +890,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       elevation: 4.0,
                                                       tailBaseWidth: 24.0,
                                                       tailLength: 12.0,
-                                                      waitDuration: const Duration(
+                                                      waitDuration: Duration(
                                                           milliseconds: 100),
-                                                      showDuration: const Duration(
+                                                      showDuration: Duration(
                                                           milliseconds: 300),
                                                       triggerMode:
                                                           TooltipTriggerMode
@@ -917,15 +920,15 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 8.0)),
+                                                      SizedBox(width: 8.0)),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 35.0)),
+                                            ].divide(SizedBox(width: 35.0)),
                                           ),
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -961,9 +964,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -989,13 +992,13 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
                                                 'nodvtnmj' /* Darkmodus */,
                                               ),
-                                              style: const TextStyle(),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                           offset: 4.0,
@@ -1010,9 +1013,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Opacity(
                                             opacity: 0.5,
@@ -1051,7 +1054,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -1087,9 +1090,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Visibility(
                                             visible: (loggedIn == true) &&
@@ -1147,7 +1150,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                               model: _model.buttonPinkModel1,
                                               updateCallback: () =>
                                                   safeSetState(() {}),
-                                              child: const ButtonPinkWidget(),
+                                              child: ButtonPinkWidget(),
                                             ),
                                           ),
                                         if (loggedIn == false)
@@ -1162,9 +1165,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             options: FFButtonOptions(
                                               width: 100.0,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1203,7 +1206,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                           ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -1223,9 +1226,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -1240,14 +1243,14 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                     wrapWithModel(
                       model: _model.navbarMobileModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const NavbarMobileWidget(),
+                      child: NavbarMobileWidget(),
                     ),
                   Flexible(
                     child: Container(
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 750.0,
                       ),
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -1258,10 +1261,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Container(
-                                    constraints: const BoxConstraints(
+                                    constraints: BoxConstraints(
                                       maxWidth: 750.0,
                                     ),
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -1269,10 +1272,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 40.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -1303,7 +1306,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           child: RichText(
                                             textScaler: MediaQuery.of(context)
@@ -1367,7 +1370,7 @@ Capepo... */
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(height: 12.0)),
+                ].divide(SizedBox(height: 12.0)),
               ),
             ),
           ),
