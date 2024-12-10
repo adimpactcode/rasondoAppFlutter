@@ -105,18 +105,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
     });
 
     animationsMap.addAll({
-      'columnOnPageLoadAnimation1': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -129,7 +117,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
           ),
         ],
       ),
-      'columnOnPageLoadAnimation2': AnimationInfo(
+      'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           MoveEffect(
@@ -137,18 +125,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             delay: 0.0.ms,
             duration: 600.0.ms,
             begin: Offset(100.0, 0.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'rowOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.0, 100.0),
             end: Offset(0.0, 0.0),
           ),
         ],
@@ -1792,6 +1768,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                   if (responsiveVisibility(
                                     context: context,
                                     phone: false,
+                                    tablet: false,
+                                    tabletLandscape: false,
                                   ))
                                     Align(
                                       alignment: AlignmentDirectional(0.0, 0.0),
@@ -1874,13 +1852,13 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                       ),
                                                       child: Column(
                                                         mainAxisSize:
-                                                            MainAxisSize.min,
+                                                            MainAxisSize.max,
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .center,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
-                                                                .start,
+                                                                .stretch,
                                                         children: [
                                                           Flexible(
                                                             child: Text(
@@ -1924,12 +1902,12 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                           0.0,
                                                                           20.0,
                                                                           0.0,
-                                                                          20.0),
+                                                                          0.0),
                                                               child: Text(
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  '574o2tfq' /* KI Chat mit Realismus und Anim... */,
+                                                                  '574o2tfq' /* KI Test Chat mit Realismus und... */,
                                                                 ),
                                                                 textAlign:
                                                                     TextAlign
@@ -2194,7 +2172,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                         ],
                                                       ).animateOnPageLoad(
                                                           animationsMap[
-                                                              'columnOnPageLoadAnimation2']!),
+                                                              'columnOnPageLoadAnimation']!),
                                                     ),
                                                   ),
                                                 ],
@@ -2206,8 +2184,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     ),
                                   if (responsiveVisibility(
                                     context: context,
-                                    tablet: false,
-                                    tabletLandscape: false,
                                     desktop: false,
                                   ))
                                     Column(
@@ -3090,8 +3066,7 @@ Ani... */
                                             ],
                                           ),
                                         ],
-                                      ).animateOnPageLoad(animationsMap[
-                                          'rowOnPageLoadAnimation']!),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -5941,8 +5916,7 @@ Ani... */
                       ),
                     ],
                   ),
-                ).animateOnPageLoad(
-                    animationsMap['columnOnPageLoadAnimation1']!),
+                ),
               ),
             ),
           )),

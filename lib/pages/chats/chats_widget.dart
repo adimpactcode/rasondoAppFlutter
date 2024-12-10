@@ -2041,21 +2041,26 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                     padding:
                                                                         EdgeInsets.all(
                                                                             2.0),
-                                                                    child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              60.0),
-                                                                      child: Image
-                                                                          .network(
-                                                                        columnCharactersMainRecord
-                                                                            .referenceImage,
-                                                                        width:
-                                                                            52.0,
-                                                                        height:
-                                                                            52.0,
-                                                                        fit: BoxFit
-                                                                            .cover,
+                                                                    child: Hero(
+                                                                      tag: columnCharactersMainRecord
+                                                                          .referenceImage,
+                                                                      transitionOnUserGestures:
+                                                                          true,
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(60.0),
+                                                                        child: Image
+                                                                            .network(
+                                                                          columnCharactersMainRecord
+                                                                              .referenceImage,
+                                                                          width:
+                                                                              52.0,
+                                                                          height:
+                                                                              52.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
