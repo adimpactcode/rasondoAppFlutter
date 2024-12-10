@@ -92,16 +92,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Home',
           path: '/home',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Home')
-              : HomeWidget(
-                  dummyChatID: params.getParam(
-                    'dummyChatID',
-                    ParamType.DocumentReference,
-                    isList: false,
-                    collectionNamePath: ['chats'],
-                  ),
-                ),
+          builder: (context, params) =>
+              params.isEmpty ? NavBarPage(initialPage: 'Home') : HomeWidget(),
         ),
         FFRoute(
           name: 'Create',
