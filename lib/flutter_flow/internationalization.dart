@@ -179,7 +179,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Immerse yourself in living worlds',
     },
     '574o2tfq': {
-      'de': 'KI Chat mit Realismus und Anime - Zauber',
+      'de': 'KI Test Chat mit Realismus und Anime - Zauber',
       'en': 'AI Chat with Realism and Anime Magic',
     },
     'ci7qaamo': {
