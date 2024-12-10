@@ -32,12 +32,7 @@ import 'home_model.dart';
 export 'home_model.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({
-    super.key,
-    this.dummyChatID,
-  });
-
-  final DocumentReference? dummyChatID;
+  const HomeWidget({super.key});
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
