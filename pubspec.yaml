@@ -119,6 +119,7 @@ dependency_overrides:
   http: 1.2.2
   uuid: ^4.0.0
   win32: 5.5.1
+  web: 0.1.4-beta  # Override the web package to match flutter_test
 
 dev_dependencies:
   flutter_launcher_icons: 0.13.1
