@@ -16,17 +16,17 @@ jobs:
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.24.0' # Update to the latest Flutter version
+        flutter-version: '3.24.0'
 
     - name: Install dependencies
       run: flutter pub get
 
     - name: Build web
-      run: flutter build web
+      run: flutter build web --release
 
     - name: Deploy to Firebase Hosting
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      run: |
-        firebase deploy --only hosting
+      run: firebase deploy --only hosting
+
 
