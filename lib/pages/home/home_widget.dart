@@ -1879,7 +1879,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  '574o2tfq' /* KI TChat mit Realismus und Ani... */,
+                                                                  '574o2tfq' /* KI Chat mit Realismus und Anim... */,
                                                                 ),
                                                                 textAlign:
                                                                     TextAlign
