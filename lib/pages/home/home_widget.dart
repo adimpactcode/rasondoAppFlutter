@@ -2113,6 +2113,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                               Column(
                                                                             mainAxisSize:
                                                                                 MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
                                                                             children: [
                                                                               Padding(
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
