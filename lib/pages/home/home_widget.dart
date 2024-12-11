@@ -6,14 +6,12 @@ import '/components/cookie_banner_widget.dart';
 import '/components/footer_desktop/footer_desktop_widget.dart';
 import '/components/footer_mobile/footer_mobile_widget.dart';
 import '/components/social_proof_avatars/social_proof_avatars_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
@@ -21,7 +19,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -38,12 +35,10 @@ class HomeWidget extends StatefulWidget {
   State<HomeWidget> createState() => _HomeWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
+class _HomeWidgetState extends State<HomeWidget> {
   late HomeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -64,7 +59,10 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
               alignment: AlignmentDirectional(0.0, 0.0)
                   .resolve(Directionality.of(context)),
               child: GestureDetector(
-                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                onTap: () {
+                  FocusScope.of(dialogContext).unfocus();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
                 child: CookieBannerWidget(),
               ),
             );
@@ -104,33 +102,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
       }
     });
 
-    animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(-100.0, 0.0),
-            end: Offset(-1.0, 0.0),
-          ),
-        ],
-      ),
-      'columnOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(100.0, 0.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -150,7 +121,10 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
           title: 'Home',
           color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
           child: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             child: Scaffold(
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1828,9 +1802,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                             ).image,
                                                           ),
                                                         ),
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'containerOnPageLoadAnimation']!),
+                                                      ),
                                                     ),
                                                   ),
                                                   Align(
@@ -1907,7 +1879,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  '574o2tfq' /* KI Test Chat mit Realismus und... */,
+                                                                  '574o2tfq' /* KI TChat mit Realismus und Ani... */,
                                                                 ),
                                                                 textAlign:
                                                                     TextAlign
@@ -2172,9 +2144,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                             ),
                                                           ),
                                                         ],
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'columnOnPageLoadAnimation']!),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],

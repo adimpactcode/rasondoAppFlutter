@@ -55,7 +55,10 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
         title: 'auth_2_profil',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -786,25 +789,53 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            _model.apiResult3fj =
-                                                await SubscriptionCallPaypalCall
-                                                    .call(
-                                              userId: currentUserReference?.id,
-                                            );
+                                            var confirmDialogResponse =
+                                                await showDialog<bool>(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                              'Premium Zugang kündigen'),
+                                                          content: Text(
+                                                              'Bestätigen Sie ihre Kündigung'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      false),
+                                                              child: Text(
+                                                                  'Premium bleiben'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      true),
+                                                              child: Text(
+                                                                  'Premium kündigen'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ) ??
+                                                    false;
+                                            if (confirmDialogResponse) {
+                                              _model.apiResult3fj =
+                                                  await SubscriptionCallPaypalCall
+                                                      .call(
+                                                userId:
+                                                    currentUserReference?.id,
+                                              );
+                                            } else {
+                                              Navigator.pop(context);
+                                            }
 
                                             if ((_model
                                                     .apiResult3fj?.succeeded ??
                                                 true)) {
-                                              context.pushNamed(
-                                                'auth_2_profil',
-                                                queryParameters: {
-                                                  'profileReference':
-                                                      serializeParam(
-                                                    columnUsersRecord.reference,
-                                                    ParamType.DocumentReference,
-                                                  ),
-                                                }.withoutNulls,
-                                              );
+                                              context.pushNamed('Home');
                                             }
 
                                             safeSetState(() {});

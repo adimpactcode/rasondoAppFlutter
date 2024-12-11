@@ -178,7 +178,10 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
             title: 'chatPagePro',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
             child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
               child: Scaffold(
                 key: scaffoldKey,
                 backgroundColor:
@@ -781,10 +784,15 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                     Directionality.of(
                                                                         context)),
                                                         child: GestureDetector(
-                                                          onTap: () =>
-                                                              FocusScope.of(
-                                                                      dialogContext)
-                                                                  .unfocus(),
+                                                          onTap: () {
+                                                            FocusScope.of(
+                                                                    dialogContext)
+                                                                .unfocus();
+                                                            FocusManager
+                                                                .instance
+                                                                .primaryFocus
+                                                                ?.unfocus();
+                                                          },
                                                           child:
                                                               MessageLimitCTAWidget(),
                                                         ),
@@ -1062,10 +1070,14 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                 Directionality.of(
                                                                     context)),
                                                     child: GestureDetector(
-                                                      onTap: () =>
-                                                          FocusScope.of(
-                                                                  dialogContext)
-                                                              .unfocus(),
+                                                      onTap: () {
+                                                        FocusScope.of(
+                                                                dialogContext)
+                                                            .unfocus();
+                                                        FocusManager.instance
+                                                            .primaryFocus
+                                                            ?.unfocus();
+                                                      },
                                                       child:
                                                           MessageLimitCTAWidget(),
                                                     ),

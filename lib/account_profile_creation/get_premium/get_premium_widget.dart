@@ -53,7 +53,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
         title: 'GetPremium',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1953,7 +1956,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  'r3mvdbd0' /*  monat */,
+                                                                  'r3mvdbd0' /*  /monat */,
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -2277,7 +2280,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  'muadd7s1' /*  monat */,
+                                                                  'muadd7s1' /*  /monat */,
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
