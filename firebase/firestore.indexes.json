@@ -1,0 +1,22 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "charactersMain",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "gender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "is_public",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "image_style",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
