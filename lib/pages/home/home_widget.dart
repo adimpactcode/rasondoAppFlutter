@@ -59,7 +59,10 @@ class _HomeWidgetState extends State<HomeWidget> {
               alignment: AlignmentDirectional(0.0, 0.0)
                   .resolve(Directionality.of(context)),
               child: GestureDetector(
-                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                onTap: () {
+                  FocusScope.of(dialogContext).unfocus();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
                 child: CookieBannerWidget(),
               ),
             );
@@ -118,7 +121,10 @@ class _HomeWidgetState extends State<HomeWidget> {
           title: 'Home',
           color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
           child: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             child: Scaffold(
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1873,7 +1879,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  '574o2tfq' /* KI Test Chat mit Realismus und... */,
+                                                                  '574o2tfq' /* KI TChat mit Realismus und Ani... */,
                                                                 ),
                                                                 textAlign:
                                                                     TextAlign

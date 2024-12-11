@@ -92,7 +92,10 @@ class _CreateWidgetState extends State<CreateWidget>
         title: 'Create',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -10477,7 +10480,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                             child:
                                                                                 Text(
                                                                               FFLocalizations.of(context).getText(
-                                                                                'rxzasmau' /* StimmeAusdruck */,
+                                                                                'rxzasmau' /* Stimme/Ausdruck */,
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -12038,7 +12041,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                     children: [
                                                                                       Text(
                                                                                         FFLocalizations.of(context).getText(
-                                                                                          'athyro8i' /* StimmeAusdruck: */,
+                                                                                          'athyro8i' /* Stimme/Ausdruck: */,
                                                                                         ),
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -12758,7 +12761,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                     children: [
                                                                                       Text(
                                                                                         FFLocalizations.of(context).getText(
-                                                                                          '3fz5fozw' /* StimmeAusdruck: */,
+                                                                                          '3fz5fozw' /* Stimme/Ausdruck: */,
                                                                                         ),
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -13274,7 +13277,10 @@ Jetzt Char... */
                                                                                       backgroundColor: Colors.transparent,
                                                                                       alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                       child: GestureDetector(
-                                                                                        onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                        onTap: () {
+                                                                                          FocusScope.of(dialogContext).unfocus();
+                                                                                          FocusManager.instance.primaryFocus?.unfocus();
+                                                                                        },
                                                                                         child: CreateCharacterLimitCTAWidget(),
                                                                                       ),
                                                                                     );

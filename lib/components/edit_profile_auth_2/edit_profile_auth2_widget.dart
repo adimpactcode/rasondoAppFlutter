@@ -270,7 +270,7 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
                 ),
                 options: [
                   FFLocalizations.of(context).getText(
-                    'yu4u61oq' /* OwnerFounder */,
+                    'yu4u61oq' /* Owner/Founder */,
                   ),
                   FFLocalizations.of(context).getText(
                     'bd67lwky' /* Director */,

@@ -183,9 +183,12 @@ class CharacterFullStruct extends FFFirebaseStruct {
   static CharacterFullStruct fromMap(Map<String, dynamic> data) =>
       CharacterFullStruct(
         name: data['name'] as String?,
-        personality:
-            CharacterPersonalityStruct.maybeFromMap(data['personality']),
-        appearance: CharacterAppearanceStruct.maybeFromMap(data['appearance']),
+        personality: data['personality'] is CharacterPersonalityStruct
+            ? data['personality']
+            : CharacterPersonalityStruct.maybeFromMap(data['personality']),
+        appearance: data['appearance'] is CharacterAppearanceStruct
+            ? data['appearance']
+            : CharacterAppearanceStruct.maybeFromMap(data['appearance']),
         isPublic: data['is_public'] as bool?,
         gender: data['gender'] as String?,
         imageStyle: data['image_style'] as String?,

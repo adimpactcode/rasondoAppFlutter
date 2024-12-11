@@ -148,10 +148,12 @@ class CharactersMainRecord extends FirestoreRecord {
     _createdAt = snapshotData['created_at'] as DateTime?;
     _lastInteraction = snapshotData['last_interaction'] as DateTime?;
     _language = snapshotData['language'] as String?;
-    _personality =
-        CharacterPersonalityStruct.maybeFromMap(snapshotData['personality']);
-    _appearance =
-        CharacterAppearanceStruct.maybeFromMap(snapshotData['appearance']);
+    _personality = snapshotData['personality'] is CharacterPersonalityStruct
+        ? snapshotData['personality']
+        : CharacterPersonalityStruct.maybeFromMap(snapshotData['personality']);
+    _appearance = snapshotData['appearance'] is CharacterAppearanceStruct
+        ? snapshotData['appearance']
+        : CharacterAppearanceStruct.maybeFromMap(snapshotData['appearance']);
     _gender = snapshotData['gender'] as String?;
     _imageStyle = snapshotData['image_style'] as String?;
     _referenceImage = snapshotData['reference_image'] as String?;
