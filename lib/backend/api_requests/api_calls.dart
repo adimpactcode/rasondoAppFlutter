@@ -168,7 +168,7 @@ class NovitaFunctionLLMCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
-      isStreamingApi: false,
+      isStreamingApi: true,
       alwaysAllowBody: false,
     );
   }
