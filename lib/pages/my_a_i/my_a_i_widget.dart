@@ -1670,385 +1670,399 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 0.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    if (valueOrDefault(
-                                            currentUserDocument
-                                                ?.charactersCreatedCount,
-                                            0) <=
-                                        0)
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 50.0, 0.0, 0.0),
-                                          child: AuthUserStreamWidget(
-                                            builder: (context) => Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '30b5fs3w' /* Du hast noch keinen AI Charact... */,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        fontSize: 26.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                                ),
-                                                FFButtonWidget(
-                                                  onPressed: () async {
-                                                    context.pushNamed('Create');
-                                                  },
-                                                  text: FFLocalizations.of(
-                                                          context)
-                                                      .getText(
-                                                    'vrzxl590' /* Jetzt Character erstellen */,
-                                                  ),
-                                                  options: FFButtonOptions(
-                                                    height: 40.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (valueOrDefault(
+                                              currentUserDocument
+                                                  ?.charactersCreatedCount,
+                                              0) <=
+                                          0)
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 50.0, 0.0, 0.0),
+                                            child: AuthUserStreamWidget(
+                                              builder: (context) => Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      '30b5fs3w' /* Du hast noch keinen AI Charact... */,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .titleSmallFamily,
-                                                          color: Colors.white,
-                                                          fontSize: 18.0,
+                                                                  .bodyMediumFamily,
+                                                          fontSize: 26.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleSmallFamily),
+                                                                      .bodyMediumFamily),
                                                         ),
-                                                    elevation: 0.0,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 25.0, 0.0, 0.0),
-                                      child: StreamBuilder<
-                                          List<CharactersMainRecord>>(
-                                        stream: queryCharactersMainRecord(
-                                          queryBuilder:
-                                              (charactersMainRecord) =>
-                                                  charactersMainRecord.where(
-                                            'created_by',
-                                            isEqualTo: currentUserReference,
-                                          ),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child: SpinKitPumpingHeart(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  size: 50.0,
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<CharactersMainRecord>
-                                              gridViewCharactersMainRecordList =
-                                              snapshot.data!;
-
-                                          return GridView.builder(
-                                            padding: EdgeInsets.zero,
-                                            gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 2,
-                                              crossAxisSpacing: 10.0,
-                                              mainAxisSpacing: 10.0,
-                                              childAspectRatio: 0.66,
-                                            ),
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                gridViewCharactersMainRecordList
-                                                    .length,
-                                            itemBuilder:
-                                                (context, gridViewIndex) {
-                                              final gridViewCharactersMainRecord =
-                                                  gridViewCharactersMainRecordList[
-                                                      gridViewIndex];
-                                              return Stack(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 1.0),
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      context
+                                                          .pushNamed('Create');
+                                                    },
+                                                    text: FFLocalizations.of(
+                                                            context)
+                                                        .getText(
+                                                      'vrzxl590' /* Jetzt Character erstellen */,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      height: 40.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily),
+                                                              ),
+                                                      elevation: 0.0,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8.0),
                                                     ),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'characterProfil',
-                                                          queryParameters: {
-                                                            'characterId':
-                                                                serializeParam(
-                                                              gridViewCharactersMainRecord
-                                                                  .reference,
-                                                              ParamType
-                                                                  .DocumentReference,
-                                                            ),
-                                                          }.withoutNulls,
-                                                        );
-                                                      },
-                                                      child: ClipRRect(
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 25.0, 0.0, 0.0),
+                                        child: StreamBuilder<
+                                            List<CharactersMainRecord>>(
+                                          stream: queryCharactersMainRecord(
+                                            queryBuilder:
+                                                (charactersMainRecord) =>
+                                                    charactersMainRecord.where(
+                                              'created_by',
+                                              isEqualTo: currentUserReference,
+                                            ),
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child: SpinKitPumpingHeart(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    size: 50.0,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<CharactersMainRecord>
+                                                gridViewCharactersMainRecordList =
+                                                snapshot.data!;
+
+                                            return GridView.builder(
+                                              padding: EdgeInsets.zero,
+                                              gridDelegate:
+                                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                crossAxisSpacing: 10.0,
+                                                mainAxisSpacing: 10.0,
+                                                childAspectRatio: 0.66,
+                                              ),
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  gridViewCharactersMainRecordList
+                                                      .length,
+                                              itemBuilder:
+                                                  (context, gridViewIndex) {
+                                                final gridViewCharactersMainRecord =
+                                                    gridViewCharactersMainRecordList[
+                                                        gridViewIndex];
+                                                return Stack(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 1.0),
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(8.0),
-                                                        child: Image.network(
-                                                          gridViewCharactersMainRecord
-                                                              .referenceImage,
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  1.0,
-                                                          height:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .height *
-                                                                  1.0,
-                                                          fit: BoxFit.cover,
-                                                          alignment: Alignment(
-                                                              0.0, -1.0),
-                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: 195.0,
-                                                    height: 80.0,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(0x2A333333),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, 1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  35.0),
-                                                      child: Text(
-                                                        gridViewCharactersMainRecord
-                                                            .name,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  fontSize:
-                                                                      20.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, 1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  10.0),
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'characterProfil',
+                                                            queryParameters: {
+                                                              'characterId':
+                                                                  serializeParam(
+                                                                gridViewCharactersMainRecord
+                                                                    .reference,
+                                                                ParamType
+                                                                    .DocumentReference,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        },
+                                                        child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       8.0),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  4.0),
-                                                          child: Text(
+                                                          child: Image.network(
                                                             gridViewCharactersMainRecord
-                                                                .age,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
+                                                                .referenceImage,
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                1.0,
+                                                            fit: BoxFit.cover,
+                                                            alignment:
+                                                                Alignment(
+                                                                    0.0, -1.0),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            1.0, -1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  5.0,
-                                                                  20.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child:
-                                                          FlutterFlowIconButton(
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderRadius: 180.0,
-                                                        buttonSize: 44.0,
-                                                        fillColor:
-                                                            Color(0xBDDE5499),
-                                                        icon: Icon(
-                                                          Icons.wechat_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondary,
-                                                          size: 28.0,
-                                                        ),
-                                                        onPressed: () async {
-                                                          await authManager
-                                                              .refreshUser();
-                                                          if (currentUserEmailVerified ==
-                                                              true) {
-                                                            context.pushNamed(
-                                                              'chatPagePro',
-                                                              queryParameters: {
-                                                                'characterId':
-                                                                    serializeParam(
-                                                                  gridViewCharactersMainRecord
-                                                                      .reference,
-                                                                  ParamType
-                                                                      .DocumentReference,
-                                                                ),
-                                                                'userReference':
-                                                                    serializeParam(
-                                                                  currentUserReference,
-                                                                  ParamType
-                                                                      .DocumentReference,
-                                                                ),
-                                                              }.withoutNulls,
-                                                            );
-                                                          } else {
-                                                            context.pushNamed(
-                                                                'auth_2_Create');
-                                                          }
-                                                        },
+                                                    Container(
+                                                      width: 195.0,
+                                                      height: 80.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0x2A333333),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1.0, 1.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    35.0),
+                                                        child: Text(
+                                                          gridViewCharactersMainRecord
+                                                              .name,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                fontSize: 20.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1.0, 1.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    10.0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    4.0),
+                                                            child: Text(
+                                                              gridViewCharactersMainRecord
+                                                                  .age,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiary,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1.0, -1.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    20.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child:
+                                                            FlutterFlowIconButton(
+                                                          borderColor: Colors
+                                                              .transparent,
+                                                          borderRadius: 180.0,
+                                                          buttonSize: 44.0,
+                                                          fillColor:
+                                                              Color(0xBDDE5499),
+                                                          icon: Icon(
+                                                            Icons
+                                                                .wechat_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondary,
+                                                            size: 28.0,
+                                                          ),
+                                                          onPressed: () async {
+                                                            await authManager
+                                                                .refreshUser();
+                                                            if (currentUserEmailVerified ==
+                                                                true) {
+                                                              context.pushNamed(
+                                                                'chatPagePro',
+                                                                queryParameters:
+                                                                    {
+                                                                  'characterId':
+                                                                      serializeParam(
+                                                                    gridViewCharactersMainRecord
+                                                                        .reference,
+                                                                    ParamType
+                                                                        .DocumentReference,
+                                                                  ),
+                                                                  'userReference':
+                                                                      serializeParam(
+                                                                    currentUserReference,
+                                                                    ParamType
+                                                                        .DocumentReference,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                              );
+                                                            } else {
+                                                              context.pushNamed(
+                                                                  'auth_2_Create');
+                                                            }
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -2203,414 +2217,415 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             ],
                           ),
                           Flexible(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Flexible(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 40.0, 20.0, 0.0),
-                                    child: StreamBuilder<
-                                        List<CharactersMainRecord>>(
-                                      stream: queryCharactersMainRecord(
-                                        queryBuilder: (charactersMainRecord) =>
-                                            charactersMainRecord.where(
-                                          'created_by',
-                                          isEqualTo: currentUserReference,
-                                        ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: SpinKitPumpingHeart(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 50.0,
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<CharactersMainRecord>
-                                            gridViewCharactersMainRecordList =
-                                            snapshot.data!;
-
-                                        return GridView.builder(
-                                          padding: EdgeInsets.zero,
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 5,
-                                            crossAxisSpacing: 10.0,
-                                            mainAxisSpacing: 10.0,
-                                            childAspectRatio: 0.66,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Flexible(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 40.0, 20.0, 0.0),
+                                      child: StreamBuilder<
+                                          List<CharactersMainRecord>>(
+                                        stream: queryCharactersMainRecord(
+                                          queryBuilder:
+                                              (charactersMainRecord) =>
+                                                  charactersMainRecord.where(
+                                            'created_by',
+                                            isEqualTo: currentUserReference,
                                           ),
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount:
-                                              gridViewCharactersMainRecordList
-                                                  .length,
-                                          itemBuilder:
-                                              (context, gridViewIndex) {
-                                            final gridViewCharactersMainRecord =
-                                                gridViewCharactersMainRecordList[
-                                                    gridViewIndex];
-                                            return Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Flexible(
-                                                  child: Stack(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 1.0),
-                                                    children: [
-                                                      Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        child: InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            context.pushNamed(
-                                                              'characterProfil',
-                                                              queryParameters: {
-                                                                'characterId':
-                                                                    serializeParam(
-                                                                  gridViewCharactersMainRecord
-                                                                      .reference,
-                                                                  ParamType
-                                                                      .DocumentReference,
-                                                                ),
-                                                              }.withoutNulls,
-                                                            );
-                                                          },
-                                                          child: ClipRRect(
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitPumpingHeart(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 50.0,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<CharactersMainRecord>
+                                              gridViewCharactersMainRecordList =
+                                              snapshot.data!;
+
+                                          return GridView.builder(
+                                            padding: EdgeInsets.zero,
+                                            gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 5,
+                                              crossAxisSpacing: 10.0,
+                                              mainAxisSpacing: 10.0,
+                                              childAspectRatio: 0.66,
+                                            ),
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                gridViewCharactersMainRecordList
+                                                    .length,
+                                            itemBuilder:
+                                                (context, gridViewIndex) {
+                                              final gridViewCharactersMainRecord =
+                                                  gridViewCharactersMainRecordList[
+                                                      gridViewIndex];
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Flexible(
+                                                    child: Stack(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 1.0),
+                                                      children: [
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         8.0),
-                                                            child:
-                                                                Image.network(
-                                                              gridViewCharactersMainRecord
-                                                                  .referenceImage,
-                                                              width: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .width *
-                                                                  1.0,
-                                                              height: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .height *
-                                                                  1.0,
-                                                              fit: BoxFit.cover,
-                                                              alignment:
-                                                                  Alignment(0.0,
-                                                                      -1.0),
-                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        width:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .width *
-                                                                1.0,
-                                                        height: 80.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0x65333333),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 1.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      45.0),
-                                                          child: Text(
-                                                            gridViewCharactersMainRecord
-                                                                .name,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  fontSize:
-                                                                      20.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 1.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0),
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'characterProfil',
+                                                                queryParameters:
+                                                                    {
+                                                                  'characterId':
+                                                                      serializeParam(
+                                                                    gridViewCharactersMainRecord
+                                                                        .reference,
+                                                                    ParamType
+                                                                        .DocumentReference,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                              );
+                                                            },
+                                                            child: ClipRRect(
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
                                                                           8.0),
-                                                            ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(4.0),
-                                                              child: Text(
+                                                              child:
+                                                                  Image.network(
                                                                 gridViewCharactersMainRecord
-                                                                    .age,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                    ),
+                                                                    .referenceImage,
+                                                                width: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .width *
+                                                                    1.0,
+                                                                height: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .height *
+                                                                    1.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                alignment:
+                                                                    Alignment(
+                                                                        0.0,
+                                                                        -1.0),
                                                               ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1.0, -1.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      20.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child:
-                                                              FlutterFlowIconButton(
-                                                            borderColor: Colors
-                                                                .transparent,
-                                                            borderRadius: 180.0,
-                                                            buttonSize: 48.0,
-                                                            fillColor: Color(
-                                                                0xCADE5499),
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .wechat_outlined,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondary,
-                                                              size: 32.0,
-                                                            ),
-                                                            onPressed:
-                                                                () async {
-                                                              await authManager
-                                                                  .refreshUser();
-                                                              if (currentUserEmailVerified ==
-                                                                  true) {
-                                                                context
-                                                                    .pushNamed(
-                                                                  'chatPagePro',
-                                                                  queryParameters:
-                                                                      {
-                                                                    'characterId':
-                                                                        serializeParam(
-                                                                      gridViewCharactersMainRecord
-                                                                          .reference,
-                                                                      ParamType
-                                                                          .DocumentReference,
-                                                                    ),
-                                                                    'userReference':
-                                                                        serializeParam(
-                                                                      currentUserReference,
-                                                                      ParamType
-                                                                          .DocumentReference,
-                                                                    ),
-                                                                  }.withoutNulls,
-                                                                );
-                                                              } else {
-                                                                context.pushNamed(
-                                                                    'auth_2_Create');
-                                                              }
-                                                            },
+                                                        Container(
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  1.0,
+                                                          height: 80.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Color(
+                                                                0x65333333),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, 1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        45.0),
+                                                            child: Text(
+                                                              gridViewCharactersMainRecord
+                                                                  .name,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary,
+                                                                    fontSize:
+                                                                        20.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, 1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        15.0),
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            4.0),
+                                                                child: Text(
+                                                                  gridViewCharactersMainRecord
+                                                                      .age,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiary,
+                                                                        fontSize:
+                                                                            16.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1.0, -1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        20.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child:
+                                                                FlutterFlowIconButton(
+                                                              borderColor: Colors
+                                                                  .transparent,
+                                                              borderRadius:
+                                                                  180.0,
+                                                              buttonSize: 48.0,
+                                                              fillColor: Color(
+                                                                  0xCADE5499),
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .wechat_outlined,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                size: 32.0,
+                                                              ),
+                                                              onPressed:
+                                                                  () async {
+                                                                await authManager
+                                                                    .refreshUser();
+                                                                if (currentUserEmailVerified ==
+                                                                    true) {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'chatPagePro',
+                                                                    queryParameters:
+                                                                        {
+                                                                      'characterId':
+                                                                          serializeParam(
+                                                                        gridViewCharactersMainRecord
+                                                                            .reference,
+                                                                        ParamType
+                                                                            .DocumentReference,
+                                                                      ),
+                                                                      'userReference':
+                                                                          serializeParam(
+                                                                        currentUserReference,
+                                                                        ParamType
+                                                                            .DocumentReference,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                } else {
+                                                                  context.pushNamed(
+                                                                      'auth_2_Create');
+                                                                }
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      },
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
-                                ),
-                                if (valueOrDefault(
-                                        currentUserDocument
-                                            ?.charactersCreatedCount,
-                                        0) <=
-                                    0)
-                                  Flexible(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 50.0, 0.0, 0.0),
-                                      child: AuthUserStreamWidget(
-                                        builder: (context) => Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Flexible(
-                                              child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'dxjc57wh' /* Du hast noch keinen AI Charact... */,
+                                  if (valueOrDefault(
+                                          currentUserDocument
+                                              ?.charactersCreatedCount,
+                                          0) <=
+                                      0)
+                                    Flexible(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 50.0, 0.0, 0.0),
+                                        child: AuthUserStreamWidget(
+                                          builder: (context) => Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'dxjc57wh' /* Du hast noch keinen AI Charact... */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        fontSize: 26.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        100.0, 0.0, 0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    context.pushNamed('Create');
+                                                  },
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'f0raubc0' /* Jetzt Character erstellen */,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    height: 40.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
                                                         .override(
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMediumFamily,
-                                                          fontSize: 26.0,
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMediumFamily),
+                                                                      .titleSmallFamily),
                                                         ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      100.0, 0.0, 0.0, 0.0),
-                                              child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  context.pushNamed('Create');
-                                                },
-                                                text:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'f0raubc0' /* Jetzt Character erstellen */,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  height: 40.0,
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          16.0, 0.0, 16.0, 0.0),
-                                                  iconPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                            color: Colors.white,
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            useGoogleFonts: GoogleFonts
-                                                                    .asMap()
-                                                                .containsKey(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmallFamily),
-                                                          ),
-                                                  elevation: 0.0,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
+                                                    elevation: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
