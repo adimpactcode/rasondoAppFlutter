@@ -2062,8 +2062,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       .primary,
                                               width: _model.premiumChoice ==
                                                       'P-2P503182VC718830LM4ZGDQQ'
-                                                  ? 5.0
-                                                  : 1.0,
+                                                  ? 6.0
+                                                  : 3.0,
                                             ),
                                           ),
                                           child: Padding(
@@ -2537,22 +2537,43 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     onPressed: () async {
                                       if (loggedIn) {
                                         if (_model.checkboxValue!) {
-                                          _model.paypalUrl =
-                                              await SubscriptionCallPaypalCall
-                                                  .call(
-                                            userId: currentUserReference?.id,
-                                            planId: _model.premiumChoice,
-                                          );
+                                          if (_model.premiumChoice != null &&
+                                              _model.premiumChoice != '') {
+                                            _model.paypalUrl =
+                                                await SubscriptionCallPaypalCall
+                                                    .call(
+                                              userId: currentUserReference?.id,
+                                              planId: _model.premiumChoice,
+                                            );
 
-                                          if (_model.paypalUrl != null) {
-                                            await launchURL(
-                                                SubscriptionCallPaypalCall
-                                                    .approvalUrl(
-                                              (_model.paypalUrl?.jsonBody ??
-                                                  ''),
-                                            )!);
+                                            if (_model.paypalUrl != null) {
+                                              await launchURL(
+                                                  SubscriptionCallPaypalCall
+                                                      .approvalUrl(
+                                                (_model.paypalUrl?.jsonBody ??
+                                                    ''),
+                                              )!);
+                                            } else {
+                                              context.pushNamed('GetPremium');
+                                            }
                                           } else {
-                                            context.pushNamed('GetPremium');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Bitte wählen Sie ihr Premiumabo!'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
                                           }
                                         } else {
                                           await showDialog(

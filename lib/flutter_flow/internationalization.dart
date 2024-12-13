@@ -2931,6 +2931,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Home',
     },
   },
+  // EmailVerified
+  {
+    'gkhr00m0': {
+      'de': ' Email Adresse erfolgreich verifiziert!',
+      'en': '',
+    },
+    '8h0m2pnj': {
+      'de': 'jetzt Charactere entdecken!',
+      'en': '',
+    },
+  },
   // navbar
   {
     'wtj931sx': {
