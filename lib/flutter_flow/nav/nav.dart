@@ -253,6 +253,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AllgemeineGeschftsbedingungen',
           path: '/allgemeineGeschftsbedingungen',
           builder: (context, params) => AllgemeineGeschftsbedingungenWidget(),
+        ),
+        FFRoute(
+          name: 'EmailVerified',
+          path: '/emailVerified',
+          builder: (context, params) => EmailVerifiedWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -28,3 +28,4 @@ export '/account_profile_creation/verification_page/verification_page_widget.dar
     show VerificationPageWidget;
 export '/allgemeine_geschftsbedingungen/allgemeine_geschftsbedingungen_widget.dart'
     show AllgemeineGeschftsbedingungenWidget;
+export '/email_verified/email_verified_widget.dart' show EmailVerifiedWidget;
