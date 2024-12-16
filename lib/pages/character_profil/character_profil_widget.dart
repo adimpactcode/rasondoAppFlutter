@@ -365,6 +365,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             ),
                                             icon: Icon(
                                               Icons.diamond_sharp,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
                                               size: 22.0,
                                             ),
                                             options: FFButtonOptions(
@@ -2048,6 +2051,36 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         CrossAxisAlignment
                                                                             .center,
                                                                     children: [
+                                                                      if (FFAppState()
+                                                                              .cameFromCreate !=
+                                                                          true)
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              1.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                30.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                FlutterFlowIconButton(
+                                                                              borderRadius: 8.0,
+                                                                              buttonSize: 50.0,
+                                                                              fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              icon: Icon(
+                                                                                Icons.close,
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                size: 34.0,
+                                                                              ),
+                                                                              onPressed: () async {
+                                                                                context.safePop();
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                        ),
                                                                       Flexible(
                                                                         child:
                                                                             Padding(
@@ -2117,23 +2150,6 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                   ].divide(SizedBox(height: 2.0)),
                                                                                 ),
                                                                               ),
-                                                                              if (FFAppState().cameFromCreate != true)
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
-                                                                                  child: FlutterFlowIconButton(
-                                                                                    borderRadius: 8.0,
-                                                                                    buttonSize: 50.0,
-                                                                                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                    icon: Icon(
-                                                                                      Icons.close,
-                                                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                                                      size: 34.0,
-                                                                                    ),
-                                                                                    onPressed: () async {
-                                                                                      context.safePop();
-                                                                                    },
-                                                                                  ),
-                                                                                ),
                                                                             ],
                                                                           ),
                                                                         ),
@@ -2529,7 +2545,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         .wechat_outlined,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .secondaryBackground,
+                                                                        .secondary,
                                                                     size: 26.0,
                                                                   ),
                                                                   options:
@@ -2623,7 +2639,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     Icons.image,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .secondaryBackground,
+                                                                        .secondary,
                                                                     size: 26.0,
                                                                   ),
                                                                   options:
