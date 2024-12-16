@@ -2540,10 +2540,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      if (loggedIn) {
-                                        if (_model.checkboxValue!) {
-                                          if (_model.premiumChoice != null &&
-                                              _model.premiumChoice != '') {
+                                      if (loggedIn == true) {
+                                        if (_model.premiumChoice !=
+                                            'premiumChoice') {
+                                          if (_model.checkboxValue == true) {
                                             _model.paypalUrl =
                                                 await SubscriptionCallPaypalCall
                                                     .call(
@@ -2567,7 +2567,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
                                                   title: Text(
-                                                      'Bitte wählen Sie ihr Premiumabo!'),
+                                                      'Zustimmung zu den AGB erforderlich'),
+                                                  content: Text(
+                                                      'Um das Upgrade abzuschließen, müssen Sie den Allgemeinen Geschäftsbedingungen (AGB) zustimmen'),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>
@@ -2586,9 +2588,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
                                                 title: Text(
-                                                    'Zustimmung zu den AGB erforderlich'),
-                                                content: Text(
-                                                    'Um das Upgrade abzuschließen, müssen Sie den Allgemeinen Geschäftsbedingungen (AGB) zustimmen.'),
+                                                    'Bitte wählen Sie ihr Premiumabo!'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
@@ -2602,7 +2602,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           );
                                         }
                                       } else {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed('Create');
                                       }
 
                                       safeSetState(() {});
