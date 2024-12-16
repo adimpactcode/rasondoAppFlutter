@@ -2527,6 +2527,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   icon: Icon(
                                                                     Icons
                                                                         .wechat_outlined,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
                                                                     size: 26.0,
                                                                   ),
                                                                   options:
@@ -2618,6 +2621,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   ),
                                                                   icon: Icon(
                                                                     Icons.image,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
                                                                     size: 26.0,
                                                                   ),
                                                                   options:
