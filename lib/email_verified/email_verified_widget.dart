@@ -113,13 +113,13 @@ class _EmailVerifiedWidgetState extends State<EmailVerifiedWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              context.pushNamed('Explore');
+                              context.pushNamed('Home');
                             },
                             text: FFLocalizations.of(context).getText(
-                              '8h0m2pnj' /* jetzt Charactere entdecken! */,
+                              '8h0m2pnj' /* Login */,
                             ),
                             options: FFButtonOptions(
-                              height: 60.0,
+                              height: 40.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(

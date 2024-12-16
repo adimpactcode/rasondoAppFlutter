@@ -362,57 +362,62 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               ].divide(SizedBox(height: 16.0)),
                             ),
                           ),
-                          if (loggedIn == true)
+                          if ((loggedIn == true) &&
+                              (currentUserEmailVerified == true))
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  if (loggedIn == true) {
-                                    context.pushNamed(
-                                      'auth_2_profil',
-                                      queryParameters: {
-                                        'profileReference': serializeParam(
-                                          currentUserReference,
-                                          ParamType.DocumentReference,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  } else {
-                                    context.pushNamed('auth_2_Create');
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.person_2,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                    Text(
-                                      FFLocalizations.of(context).getText(
-                                        '3o6488n3' /* Profil */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLargeFamily,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLargeFamily),
+                              child: AuthUserStreamWidget(
+                                builder: (context) => InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (loggedIn == true) {
+                                      context.pushNamed(
+                                        'auth_2_profil',
+                                        queryParameters: {
+                                          'profileReference': serializeParam(
+                                            currentUserReference,
+                                            ParamType.DocumentReference,
                                           ),
-                                    ),
-                                  ].divide(SizedBox(width: 16.0)),
+                                        }.withoutNulls,
+                                      );
+                                    } else {
+                                      context.pushNamed('auth_2_Create');
+                                    }
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.person_2,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          '3o6488n3' /* Profil */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLargeFamily),
+                                            ),
+                                      ),
+                                    ].divide(SizedBox(width: 16.0)),
+                                  ),
                                 ),
                               ),
                             ),
