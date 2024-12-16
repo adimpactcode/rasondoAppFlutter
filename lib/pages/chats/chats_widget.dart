@@ -383,6 +383,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               ),
                                               icon: Icon(
                                                 Icons.diamond_sharp,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
                                                 size: 22.0,
                                               ),
                                               options: FFButtonOptions(
