@@ -2967,6 +2967,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Your full name...',
       'en': 'Your full name...',
     },
+    '7x26fwaz': {
+      'de': 'Your Role',
+      'en': 'Your Role',
+    },
+    'efqx3hn2': {
+      'de': 'Search for an item...',
+      'en': 'Search for an item...',
+    },
     'yu4u61oq': {
       'de': 'Owner/Founder',
       'en': 'Owner/Founder',
@@ -2986,14 +2994,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm52efw13': {
       'de': 'Employee',
       'en': 'Employee',
-    },
-    '7x26fwaz': {
-      'de': 'Your Role',
-      'en': 'Your Role',
-    },
-    'efqx3hn2': {
-      'de': 'Search for an item...',
-      'en': 'Search for an item...',
     },
     'm0kqqhu2': {
       'de': 'Short Description',

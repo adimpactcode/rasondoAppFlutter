@@ -1,6 +1,7 @@
 import '/components/profile_card2/profile_card2_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'grid_gallery_home_widget.dart' show GridGalleryHomeWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

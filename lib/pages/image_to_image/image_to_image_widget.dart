@@ -4,6 +4,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -733,6 +734,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                     },
                                                   ),
                                                 });
+                                                Navigator.pop(context);
 
                                                 context.pushNamed(
                                                   'characterProfil',
@@ -744,6 +746,25 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                           .DocumentReference,
                                                     ),
                                                   }.withoutNulls,
+                                                );
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'uuups, das hat nicht geklappt'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
                                                 );
                                               }
 

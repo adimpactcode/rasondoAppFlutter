@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -228,38 +229,6 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                         EdgeInsets.all(4.0),
                                                     child: AuthUserStreamWidget(
                                                       builder: (context) =>
-                                                          ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(60.0),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          fadeInDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      200),
-                                                          fadeOutDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      200),
-                                                          imageUrl:
-                                                              valueOrDefault<
-                                                                  String>(
-                                                            currentUserPhoto,
-                                                            'https://images.unsplash.com/photo-1499887142886-791eca5918cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8dXNlcnxlbnwwfHx8fDE2OTc4MjQ2MjZ8MA&ixlib=rb-4.0.3&q=80&w=400',
-                                                          ),
-                                                          width: 300.0,
-                                                          height: 200.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.all(4.0),
-                                                    child: AuthUserStreamWidget(
-                                                      builder: (context) =>
                                                           InkWell(
                                                         splashColor:
                                                             Colors.transparent,
@@ -356,8 +325,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                           await currentUserReference!
                                                               .update(
                                                                   createUsersRecordData(
-                                                            photoUrl: _model
-                                                                .uploadedFileUrl1,
+                                                            photoUrl:
+                                                                currentUserPhoto,
                                                           ));
                                                         },
                                                         child: ClipRRect(
@@ -376,7 +345,11 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                                     milliseconds:
                                                                         200),
                                                             imageUrl:
-                                                                currentUserPhoto,
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              currentUserPhoto,
+                                                              'https://images.unsplash.com/photo-1499887142886-791eca5918cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8dXNlcnxlbnwwfHx8fDE2OTc4MjQ2MjZ8MA&ixlib=rb-4.0.3&q=80&w=400',
+                                                            ),
                                                             width: 300.0,
                                                             height: 200.0,
                                                             fit: BoxFit.cover,
