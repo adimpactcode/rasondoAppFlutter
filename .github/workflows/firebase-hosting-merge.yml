@@ -9,28 +9,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+        with:
+          repository: adimpactcode/rasondoAppFlutter
+          ref: main
+          
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
           channel: 'stable'
           cache: true
       
-      - name: List Directory Contents
-        run: ls -la
-      
-      - name: Flutter Build
+      - name: Clone FlutterFlow Project
         run: |
-          ls -la
-          pwd
-          flutter config --enable-web
+          git clone https://github.com/adimpactcode/rasondoAppFlutter.git app
+          cd app
+          
+      - name: Flutter Build
+        working-directory: ./app
+        run: |
           flutter pub get
+          flutter config --enable-web
           flutter build web --release
       
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
       
       - name: Deploy to Firebase
+        working-directory: ./app
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RASONDO_V3_WPJWEI }}
         run: |
