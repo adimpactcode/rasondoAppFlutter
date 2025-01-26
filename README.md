@@ -1,7 +1,7 @@
 # Rasondo
 
-A new Flutter project.
+A AI Character Chat App with finetuned Mixtral 8X/b and Text-to-image and Image-to-image Functions.
 
-## Getting Started
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+
+
