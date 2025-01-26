@@ -1,0 +1,30 @@
+name: Deploy to Firebase Hosting on merge
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+          cache: true
+      
+      - name: Flutter Build
+        run: |
+          flutter pub get
+          flutter build web --release
+      
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+      
+      - name: Deploy to Firebase
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RASONDO_V3_WPJWEI }}
+        run: |
+          firebase deploy --only hosting --token "$FIREBASE_TOKEN"
