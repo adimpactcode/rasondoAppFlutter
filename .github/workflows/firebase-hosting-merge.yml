@@ -1,5 +1,4 @@
 name: Deploy to Firebase Hosting
-
 on:
   push:
     branches:
@@ -25,18 +24,9 @@ jobs:
           flutter pub get
           flutter config --enable-web
           flutter build web --release
-
       # Install Firebase CLI
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
-
-      # List directory structure for debugging
-      - name: List directory structure
-        run: ls -R /home/runner/work/rasondoAppFlutter/rasondoAppFlutter
-
-      # Navigate to the correct directory
-      - name: Navigate to Firebase project directory
-        run: cd /home/runner/work/rasondoAppFlutter/rasondoAppFlutter
 
       # Deploy to Firebase Hosting
       - name: Deploy to Firebase
