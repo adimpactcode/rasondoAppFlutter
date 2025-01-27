@@ -320,7 +320,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           '\"Ich hätte nie gedacht, dass eine AI-basierte Flirtplattform so gut funktionieren kann! \nDie Charaktere sind überraschend authentisch, und die Chats fühlen sich echt an. Besonders cool finde ich, dass man seinen eigenen Charakter erstellen und nach Belieben anpassen kann. Seitdem ich Premium-Mitglied bin, genieße ich die unbegrenzten Chats und die Möglichkeit, personalisierte Bilder zu generieren – das hebt die Interaktionen nochmal auf ein neues Level. Alles läuft flüssig, und die App ist total einfach zu bedienen. \nEine tolle Möglichkeit, mal etwas anderes zu erleben!\"',
       'en':
-          '\"I never thought that an AI-based flirting platform could work so well! \nThe characters are surprisingly authentic and the chats feel real. I think it\'s particularly cool that you can create your own character and customize it as you like. Since becoming a premium member, I\'ve enjoyed the unlimited chats and the ability to generate personalized pictures - that takes the interactions to a new level. Everything runs smoothly and the app is really easy to use. \nA great way to experience something different!\"',
+          '\"I never thought that an AI-based flirting platform could work so well! \nThe characters are surprisingly authentic and the chats feel real. I think it\'s particularly cool that you can create your own character and customize it as you like. Since I became a premium member, I\'ve enjoyed the unlimited chats and the ability to generate personalized pictures - that takes the interactions to a new level. Everything runs smoothly and the app is really easy to use. \nA great way to experience something different!\"',
     },
     'el3latcq': {
       'de': 'Linus K.',
@@ -2935,11 +2935,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'gkhr00m0': {
       'de': ' Email Adresse erfolgreich verifiziert!',
-      'en': '',
+      'en': 'Email address successfully verified!',
     },
     '8h0m2pnj': {
       'de': 'Login',
-      'en': '',
+      'en': 'Login',
     },
   },
   // navbar

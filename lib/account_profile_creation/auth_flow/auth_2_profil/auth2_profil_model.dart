@@ -31,7 +31,7 @@ class Auth2ProfilModel extends FlutterFlowModel<Auth2ProfilWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl2 = '';
 
-  // Stores action output result for [Backend Call - API (subscriptionCallPaypal)] action in Container widget.
+  // Stores action output result for [Backend Call - API (cancelSubscriptionPaypal)] action in Container widget.
   ApiCallResponse? apiResult3fj;
 
   @override
