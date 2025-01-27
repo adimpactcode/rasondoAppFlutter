@@ -21,7 +21,7 @@ export 'auth2_profil_model.dart';
 class Auth2ProfilWidget extends StatefulWidget {
   const Auth2ProfilWidget({
     super.key,
-    required this.profileReference,
+    this.profileReference,
   });
 
   final DocumentReference? profileReference;
