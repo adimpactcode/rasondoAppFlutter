@@ -32,7 +32,7 @@ jobs:
 
       # Navigate to the correct directory
       - name: Navigate to Firebase project directory
-        run: cd ${{ github.workspace }}
+        run: cd ${{ github.workspace }}/rasondoAppFlutter
 
       # Deploy to Firebase Hosting
       - name: Deploy to Firebase
