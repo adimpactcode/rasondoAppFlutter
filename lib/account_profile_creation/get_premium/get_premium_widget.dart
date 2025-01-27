@@ -1,6 +1,7 @@
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_language_selector.dart';
@@ -11,6 +12,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -2559,6 +2561,74 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 (_model.paypalUrl?.jsonBody ??
                                                     ''),
                                               )!);
+                                              await queryUsersRecordOnce(
+                                                queryBuilder: (usersRecord) =>
+                                                    usersRecord.where(
+                                                  'uid',
+                                                  isEqualTo:
+                                                      currentUserReference?.id,
+                                                ),
+                                                singleRecord: true,
+                                              ).then((s) => s.firstOrNull);
+                                              if (valueOrDefault<bool>(
+                                                      currentUserDocument
+                                                          ?.isPremium,
+                                                      false) ==
+                                                  true) {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Zahlung erfolgreich!'),
+                                                      content: Text(
+                                                          'Sie sind jetzt Premium user'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+
+                                                context.pushNamed(
+                                                  'auth_2_profil',
+                                                  queryParameters: {
+                                                    'profileReference':
+                                                        serializeParam(
+                                                      currentUserReference,
+                                                      ParamType
+                                                          .DocumentReference,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Zahlung nicht erfolgreich!'),
+                                                      content: Text(
+                                                          'Bitte erneut versuchen!'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
                                             } else {
                                               context.pushNamed('GetPremium');
                                             }

@@ -86,6 +86,11 @@ class UsersRecord extends FirestoreRecord {
   bool get emailVerifiziert => _emailVerifiziert ?? false;
   bool hasEmailVerifiziert() => _emailVerifiziert != null;
 
+  // "subscription_id" field.
+  String? _subscriptionId;
+  String get subscriptionId => _subscriptionId ?? '';
+  bool hasSubscriptionId() => _subscriptionId != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -102,6 +107,7 @@ class UsersRecord extends FirestoreRecord {
     _isPremium = snapshotData['is_premium'] as bool?;
     _uid = snapshotData['uid'] as String?;
     _emailVerifiziert = snapshotData['emailVerifiziert'] as bool?;
+    _subscriptionId = snapshotData['subscription_id'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -151,6 +157,7 @@ Map<String, dynamic> createUsersRecordData({
   bool? isPremium,
   String? uid,
   bool? emailVerifiziert,
+  String? subscriptionId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -167,6 +174,7 @@ Map<String, dynamic> createUsersRecordData({
       'is_premium': isPremium,
       'uid': uid,
       'emailVerifiziert': emailVerifiziert,
+      'subscription_id': subscriptionId,
     }.withoutNulls,
   );
 
@@ -192,7 +200,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.planId == e2?.planId &&
         e1?.isPremium == e2?.isPremium &&
         e1?.uid == e2?.uid &&
-        e1?.emailVerifiziert == e2?.emailVerifiziert;
+        e1?.emailVerifiziert == e2?.emailVerifiziert &&
+        e1?.subscriptionId == e2?.subscriptionId;
   }
 
   @override
@@ -210,7 +219,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.planId,
         e?.isPremium,
         e?.uid,
-        e?.emailVerifiziert
+        e?.emailVerifiziert,
+        e?.subscriptionId
       ]);
 
   @override

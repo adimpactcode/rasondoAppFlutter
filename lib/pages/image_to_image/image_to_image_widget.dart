@@ -4,6 +4,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
@@ -717,26 +718,31 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                               if ((_model.newGeneratedImgUrl
                                                       ?.succeeded ??
                                                   true)) {
-                                                await widget!.characterReferenz!
-                                                    .update({
-                                                  ...mapToFirestore(
-                                                    {
-                                                      'created_images':
-                                                          FieldValue
-                                                              .arrayUnion([
-                                                        getJsonField(
-                                                          (_model.newGeneratedImgUrl
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.imageUrl''',
-                                                        ).toString()
-                                                      ]),
-                                                    },
-                                                  ),
-                                                });
+                                                unawaited(
+                                                  () async {
+                                                    await widget!
+                                                        .characterReferenz!
+                                                        .update({
+                                                      ...mapToFirestore(
+                                                        {
+                                                          'created_images':
+                                                              FieldValue
+                                                                  .arrayUnion([
+                                                            getJsonField(
+                                                              (_model.newGeneratedImgUrl
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                              r'''$.imageUrl''',
+                                                            ).toString()
+                                                          ]),
+                                                        },
+                                                      ),
+                                                    });
+                                                  }(),
+                                                );
                                                 Navigator.pop(context);
 
-                                                context.pushNamed(
+                                                context.goNamed(
                                                   'characterProfil',
                                                   queryParameters: {
                                                     'characterId':

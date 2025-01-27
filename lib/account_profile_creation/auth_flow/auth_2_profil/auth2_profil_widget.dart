@@ -796,10 +796,10 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                     false;
                                             if (confirmDialogResponse) {
                                               _model.apiResult3fj =
-                                                  await SubscriptionCallPaypalCall
+                                                  await CancelSubscriptionPaypalCall
                                                       .call(
-                                                userId:
-                                                    currentUserReference?.id,
+                                                userId: widget!
+                                                    .profileReference?.id,
                                               );
                                             } else {
                                               Navigator.pop(context);
@@ -808,7 +808,47 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             if ((_model
                                                     .apiResult3fj?.succeeded ??
                                                 true)) {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                        'Premium Abo gekündigt'),
+                                                    content: Text(
+                                                        'Ihr Premium Abo wurde erfolgreich gekündigt'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+
                                               context.pushNamed('Home');
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                        'Das hat leider nicht geklappt!'),
+                                                    content: Text(
+                                                        'Bitte versuchen Sie es erneut.'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
                                             }
 
                                             safeSetState(() {});
