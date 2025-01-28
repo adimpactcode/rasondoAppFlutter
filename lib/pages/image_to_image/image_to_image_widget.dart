@@ -740,7 +740,9 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                     });
                                                   }(),
                                                 );
-                                                Navigator.pop(context);
+                                                await Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 300));
 
                                                 context.goNamed(
                                                   'characterProfil',
