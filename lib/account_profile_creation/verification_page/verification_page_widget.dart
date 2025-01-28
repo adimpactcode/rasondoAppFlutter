@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,27 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VerificationPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await authManager.refreshUser();
+      if (currentUserEmailVerified == true) {
+        context.pushNamed('auth_2_profil');
+      } else {
+        await Future.delayed(const Duration(milliseconds: 1000));
+        if (currentUserEmailVerified == true) {
+          context.pushNamed(
+            'auth_2_profil',
+            queryParameters: {
+              'profileReference': serializeParam(
+                currentUserReference,
+                ParamType.DocumentReference,
+              ),
+            }.withoutNulls,
+          );
+        }
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }

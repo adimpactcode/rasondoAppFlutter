@@ -2349,156 +2349,162 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               MainAxisAlignment
                                                                   .end,
                                                           children: [
-                                                            Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                                  child: Text(
-                                                                    FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'ti7brgp5' /* Klick für ein Like! */,
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
-                                                                      _model.userLikeExist =
-                                                                          await queryCharacterLikesRecordOnce(
-                                                                        queryBuilder: (characterLikesRecord) => characterLikesRecord
-                                                                            .where(
-                                                                              'userId',
-                                                                              isEqualTo: currentUserReference?.id,
-                                                                            )
-                                                                            .where(
-                                                                              'characterId',
-                                                                              isEqualTo: columnCharactersMainRecord.reference.id,
-                                                                            ),
-                                                                        singleRecord:
-                                                                            true,
-                                                                      ).then((s) =>
-                                                                              s.firstOrNull);
-                                                                      if (_model
-                                                                              .userLikeExist
-                                                                              ?.reference ==
-                                                                          null) {
-                                                                        await widget!
-                                                                            .characterId!
-                                                                            .update({
-                                                                          ...mapToFirestore(
-                                                                            {
-                                                                              'likes_count': FieldValue.increment(1),
-                                                                            },
-                                                                          ),
-                                                                        });
-                                                                      } else {
-                                                                        await showDialog(
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (alertDialogContext) {
-                                                                            return AlertDialog(
-                                                                              title: Text('Character bereits geliked'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Ok'),
-                                                                                ),
-                                                                              ],
-                                                                            );
-                                                                          },
-                                                                        );
-                                                                      }
-
-                                                                      safeSetState(
-                                                                          () {});
-                                                                    },
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .favorite,
-                                                                      color: FlutterFlowTheme.of(
+                                                            if (responsiveVisibility(
+                                                              context: context,
+                                                              phone: false,
+                                                              tablet: false,
+                                                              tabletLandscape:
+                                                                  false,
+                                                              desktop: false,
+                                                            ))
+                                                              Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0),
+                                                                    child: Text(
+                                                                      FFLocalizations.of(
                                                                               context)
-                                                                          .primary,
-                                                                      size:
-                                                                          38.0,
+                                                                          .getText(
+                                                                        'ti7brgp5' /* Klick für ein Like! */,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                          ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      columnCharactersMainRecord
-                                                                          .likesCount
-                                                                          .toString(),
-                                                                      '1211',
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        _model.userLikeExist =
+                                                                            await queryCharacterLikesRecordOnce(
+                                                                          queryBuilder: (characterLikesRecord) => characterLikesRecord
+                                                                              .where(
+                                                                                'userId',
+                                                                                isEqualTo: currentUserReference?.id,
+                                                                              )
+                                                                              .where(
+                                                                                'characterId',
+                                                                                isEqualTo: columnCharactersMainRecord.reference.id,
+                                                                              ),
+                                                                          singleRecord:
+                                                                              true,
+                                                                        ).then((s) =>
+                                                                                s.firstOrNull);
+                                                                        if (_model.userLikeExist?.reference ==
+                                                                            null) {
+                                                                          await widget!
+                                                                              .characterId!
+                                                                              .update({
+                                                                            ...mapToFirestore(
+                                                                              {
+                                                                                'likes_count': FieldValue.increment(1),
+                                                                              },
+                                                                            ),
+                                                                          });
+                                                                        } else {
+                                                                          await showDialog(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: Text('Character bereits geliked'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                    child: Text('Ok'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          );
+                                                                        }
+
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      },
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .favorite,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        size:
+                                                                            38.0,
+                                                                      ),
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                        ),
                                                                   ),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        columnCharactersMainRecord
+                                                                            .likesCount
+                                                                            .toString(),
+                                                                        '1211',
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
