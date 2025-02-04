@@ -9,9 +9,10 @@ import 'package:provider/provider.dart';
 import 'grid_gallery_home_model.dart';
 export 'grid_gallery_home_model.dart';
 
+/// create a modern grid with 4 Coloums and 4 Rows.
+///
+/// The grid should have space for 4:3 product cards
 class GridGalleryHomeWidget extends StatefulWidget {
-  /// create a modern grid with 4 Coloums and 4 Rows. The grid should have space
-  /// for 4:3 product cards
   const GridGalleryHomeWidget({super.key});
 
   @override

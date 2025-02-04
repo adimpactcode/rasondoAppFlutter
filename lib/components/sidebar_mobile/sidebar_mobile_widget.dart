@@ -11,12 +11,13 @@ import 'package:provider/provider.dart';
 import 'sidebar_mobile_model.dart';
 export 'sidebar_mobile_model.dart';
 
+/// Please create me a Modern Sidebar menue for an AI Flirt app with the logo
+/// two CTA Buttons  in a Coloum, the Siedelinks with matching Icon for the
+/// site: Explore, Chats, Create AI, My Ai, Pricing, Contact, and two Social
+/// Media icons.
+///
+/// Please note that enough Whitspace is inside. Please be creativ
 class SidebarMobileWidget extends StatefulWidget {
-  /// Please create me a Modern Sidebar menue for an AI Flirt app with the logo
-  /// two CTA Buttons  in a Coloum, the Siedelinks with matching Icon for the
-  /// site: Explore, Chats, Create AI, My Ai, Pricing, Contact, and two Social
-  /// Media icons. Please note that enough Whitspace is inside. Please be
-  /// creativ
   const SidebarMobileWidget({super.key});
 
   @override

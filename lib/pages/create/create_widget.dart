@@ -6995,7 +6995,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                               ],
                                                                             ),
                                                                           ),
-                                                                          if (_model.characterFull?.gender ==
+                                                                          if (FFAppState().gender ==
                                                                               'Frau')
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),

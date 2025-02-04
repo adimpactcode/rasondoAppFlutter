@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import 'dart:ui';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -3227,13 +3228,17 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
-                                                                                                await widget!.characterId!.update({
-                                                                                                  ...mapToFirestore(
-                                                                                                    {
-                                                                                                      'likes_count': FieldValue.increment(1),
-                                                                                                    },
-                                                                                                  ),
-                                                                                                });
+                                                                                                unawaited(
+                                                                                                  () async {
+                                                                                                    await widget!.characterId!.update({
+                                                                                                      ...mapToFirestore(
+                                                                                                        {
+                                                                                                          'likes_count': FieldValue.increment(1),
+                                                                                                        },
+                                                                                                      ),
+                                                                                                    });
+                                                                                                  }(),
+                                                                                                );
                                                                                               },
                                                                                               child: Icon(
                                                                                                 Icons.favorite,

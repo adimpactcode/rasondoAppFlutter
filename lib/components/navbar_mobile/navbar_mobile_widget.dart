@@ -11,11 +11,11 @@ import 'package:provider/provider.dart';
 import 'navbar_mobile_model.dart';
 export 'navbar_mobile_model.dart';
 
+/// Create adesktop navbar with logo left, 4 sitelinksfor the sites: Explore,
+/// Chats, Create AI and My Ai with matching Button Icons in the middle than
+/// on the right a icon for Notification, a toggle for EN/DE and Dark/Light
+/// Choice and than two CTA buttons
 class NavbarMobileWidget extends StatefulWidget {
-  /// Create adesktop navbar with logo left, 4 sitelinksfor the sites: Explore,
-  /// Chats, Create AI and My Ai with matching Button Icons in the middle than
-  /// on the right a icon for Notification, a toggle for EN/DE and Dark/Light
-  /// Choice and than two CTA buttons
   const NavbarMobileWidget({super.key});
 
   @override
