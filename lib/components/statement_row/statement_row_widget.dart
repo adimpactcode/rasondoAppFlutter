@@ -9,9 +9,9 @@ import 'package:provider/provider.dart';
 import 'statement_row_model.dart';
 export 'statement_row_model.dart';
 
+/// Please Create Row with 4 Statement Label and above of the for each
+/// statement an ICON.
 class StatementRowWidget extends StatefulWidget {
-  /// Please Create Row with 4 Statement Label and above of the for each
-  /// statement an ICON.
   const StatementRowWidget({super.key});
 
   @override

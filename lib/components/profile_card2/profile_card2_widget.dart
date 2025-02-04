@@ -9,13 +9,14 @@ import 'package:provider/provider.dart';
 import 'profile_card2_model.dart';
 export 'profile_card2_model.dart';
 
+/// Please create a Profile card in which the picture of the AI Flirt
+/// character can be seen and which is linked to the entire profile page.
+///
+/// The card should contain the picture, the character's name and description
+/// at the bottom of the picture (each of them on a very  light frosted glass
+/// background), it should also include a Icon Button for to Like and to
+/// starting Chat
 class ProfileCard2Widget extends StatefulWidget {
-  /// Please create a Profile card in which the picture of the AI Flirt
-  /// character can be seen and which is linked to the entire profile page. The
-  /// card should contain the picture, the character's name and description at
-  /// the bottom of the picture (each of them on a very  light frosted glass
-  /// background), it should also include a Icon Button for to Like and to
-  /// starting Chat
   const ProfileCard2Widget({super.key});
 
   @override

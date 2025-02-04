@@ -8,10 +8,11 @@ import 'package:provider/provider.dart';
 import 'statement_bar_model.dart';
 export 'statement_bar_model.dart';
 
+/// Please create a Row with 4 Statment Labels and 4 Icons above of them
+/// representing the Label.
+///
+/// The icon should be a trophy, a flame, lips and a magic wand
 class StatementBarWidget extends StatefulWidget {
-  /// Please create a Row with 4 Statment Labels and 4 Icons above of them
-  /// representing the Label. The icon should be a trophy, a flame, lips and a
-  /// magic wand
   const StatementBarWidget({super.key});
 
   @override

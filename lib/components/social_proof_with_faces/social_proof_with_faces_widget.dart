@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 import 'social_proof_with_faces_model.dart';
 export 'social_proof_with_faces_model.dart';
 
+/// create a social Proof widget with 6 profil images stacked on each other
+/// and a star rating and a Label
 class SocialProofWithFacesWidget extends StatefulWidget {
-  /// create a social Proof widget with 6 profil images stacked on each other
-  /// and a star rating and a Label
   const SocialProofWithFacesWidget({super.key});
 
   @override

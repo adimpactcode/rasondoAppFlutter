@@ -8,10 +8,11 @@ import 'package:provider/provider.dart';
 import 'social_proof_avatars_model.dart';
 export 'social_proof_avatars_model.dart';
 
+/// please create a SocialProof widget with 6 round avatar profiles that are
+/// slightly stacked on top of each other.
+///
+/// next to it a star rating and below a statement
 class SocialProofAvatarsWidget extends StatefulWidget {
-  /// please create a SocialProof widget with 6 round avatar profiles that are
-  /// slightly stacked on top of each other. next to it a star rating and below
-  /// a statement
   const SocialProofAvatarsWidget({super.key});
 
   @override
