@@ -1,120 +1,51 @@
 name: Deploy to Firebase Hosting
 
-
-
-
 on:
-
-
- push:
-
-
-   branches:
-
-
-     - main
-
-
-
-
-
-
+  push:
+    branches:
+      - main
 
 jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ✅ Check out the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # ✅ Set up Flutter environment
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+          cache: true
+
+      # ✅ Install dependencies and build for web
+      - name: Flutter Build
+        run: |
+          flutter pub get
+          flutter config --enable-web
+          flutter build web --release
+
+      # ✅ Install Firebase CLI
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      # ✅ Debug: Check if `firebase.json` exists
+      - name: Debug - List project files
+        run: ls -la
+        working-directory: ${{ github.workspace }}
+
+      # ✅ Deploy to Firebase Hosting (Fixed Working Directory)
+      - name: Deploy to Firebase
+        working-directory: ${{ github.workspace }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          firebase deploy --only hosting --token "$FIREBASE_TOKEN"
 
-
- build_and_deploy:
-
-
-   runs-on: ubuntu-latest
-
-
-   steps:
-
-
-     # Check out the repository
-
-
-     - uses: actions/checkout@v4
-
-
-
-
-
-
-
-     # Set up Flutter environment
-
-
-     - uses: subosito/flutter-action@v2
-
-
-       with:
-
-
-         flutter-version: '3.x'
-
-
-         channel: 'stable'
-
-
-         cache: true
-
-
-
-
-
-
-
-     # Install project dependencies and build for web
-
-
-     - name: Flutter Build
-
-
-       run: |
-
-
-         flutter pub get
-
-
-         flutter config --enable-web
-
-
-         flutter build web --release
-
-
-
-
-
-
-     # Install Firebase CLI
-
-
-     - name: Install Firebase CLI
-
-
-       run: npm install -g firebase-tools
-
-
-
-
-
-
-
-     # Deploy to Firebase Hosting
-
-
-     - name: Deploy to Firebase
-
-
-       env:
-
-
-         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-
-       run: firebase deploy --only hosting --token "$FIREBASE_TOKEN"
 
 
 
