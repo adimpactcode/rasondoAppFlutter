@@ -2812,9 +2812,16 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              if (columnCharactersMainRecord
-                                                      .isAdminCreated ==
-                                                  false)
+                                              if ((columnCharactersMainRecord
+                                                          .isAdminCreated ==
+                                                      false) &&
+                                                  responsiveVisibility(
+                                                    context: context,
+                                                    phone: false,
+                                                    tablet: false,
+                                                    tabletLandscape: false,
+                                                    desktop: false,
+                                                  ))
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
@@ -3657,9 +3664,17 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                           },
                                                         ),
                                                       ),
-                                                      if (columnCharactersMainRecord
-                                                              .isAdminCreated ==
-                                                          false)
+                                                      if ((columnCharactersMainRecord
+                                                                  .isAdminCreated ==
+                                                              false) &&
+                                                          responsiveVisibility(
+                                                            context: context,
+                                                            phone: false,
+                                                            tablet: false,
+                                                            tabletLandscape:
+                                                                false,
+                                                            desktop: false,
+                                                          ))
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
