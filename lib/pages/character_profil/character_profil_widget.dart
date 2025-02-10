@@ -2812,121 +2812,137 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 20.0, 0.0, 0.0),
-                                                  child: FFButtonWidget(
-                                                    onPressed: () async {
-                                                      var confirmDialogResponse =
-                                                          await showDialog<
-                                                                  bool>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Character löschen'),
-                                                                    content: Text(
-                                                                        'Xharacter und dazugehöriges Chat endgültig löschen?'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: Text(
-                                                                            'Abbrechen'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: Text(
-                                                                            'Ja, löschen'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              ) ??
-                                                              false;
-                                                      if (confirmDialogResponse) {
-                                                        await widget!
-                                                            .characterId!
-                                                            .delete();
-                                                        await columnCharactersMainRecord
-                                                            .chats!
-                                                            .delete();
-                                                      } else {
-                                                        Navigator.pop(context);
-                                                      }
-                                                    },
-                                                    text: FFLocalizations.of(
-                                                            context)
-                                                        .getText(
-                                                      '9upwv7uw' /* Character Löschen */,
-                                                    ),
-                                                    icon: Icon(
-                                                      Icons
-                                                          .delete_forever_sharp,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      size: 25.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  16.0,
-                                                                  0.0),
-                                                      iconAlignment:
-                                                          IconAlignment.end,
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color: Color(0x00DE5499),
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                letterSpacing:
+                                              if ((columnCharactersMainRecord
+                                                          .isAdminCreated ==
+                                                      false) &&
+                                                  responsiveVisibility(
+                                                    context: context,
+                                                    phone: false,
+                                                    tablet: false,
+                                                    tabletLandscape: false,
+                                                    desktop: false,
+                                                  ))
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(10.0,
+                                                                20.0, 0.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        var confirmDialogResponse =
+                                                            await showDialog<
+                                                                    bool>(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Character löschen'),
+                                                                      content: Text(
+                                                                          'Character und dazugehöriges Chat endgültig löschen?'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              false),
+                                                                          child:
+                                                                              Text('Abbrechen'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              true),
+                                                                          child:
+                                                                              Text('Ja, löschen'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                ) ??
+                                                                false;
+                                                        if (confirmDialogResponse) {
+                                                          await columnCharactersMainRecord
+                                                              .chats!
+                                                              .delete();
+                                                          await columnCharactersMainRecord
+                                                              .reference
+                                                              .delete();
+                                                          Navigator.pop(
+                                                              context);
+                                                        } else {
+                                                          Navigator.pop(
+                                                              context);
+                                                        }
+                                                      },
+                                                      text: FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        '9upwv7uw' /* Character Löschen */,
+                                                      ),
+                                                      icon: Icon(
+                                                        Icons
+                                                            .delete_forever_sharp,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        size: 25.0,
+                                                      ),
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
                                                                     0.0,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
-                                                              ),
-                                                      elevation: 0.0,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
+                                                                    16.0,
+                                                                    0.0),
+                                                        iconAlignment:
+                                                            IconAlignment.end,
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            Color(0x00DE5499),
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily),
+                                                                ),
+                                                        elevation: 0.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
                                             ],
                                           ),
                                         ),
@@ -3648,114 +3664,128 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                           },
                                                         ),
                                                       ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      20.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              var confirmDialogResponse =
-                                                                  await showDialog<
-                                                                          bool>(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (alertDialogContext) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                Text('Character löschen'),
-                                                                            content:
-                                                                                Text('Xharacter und dazugehöriges Chat endgültig löschen?'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                child: Text('Abbrechen'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                child: Text('Ja, löschen'),
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        },
-                                                                      ) ??
-                                                                      false;
-                                                              if (confirmDialogResponse) {
-                                                                await widget!
-                                                                    .characterId!
-                                                                    .delete();
-                                                                await columnCharactersMainRecord
-                                                                    .chats!
-                                                                    .delete();
-                                                              } else {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              }
-                                                            },
-                                                            text: FFLocalizations
-                                                                    .of(context)
-                                                                .getText(
-                                                              'cbcspmhy' /* Character Löschen  */,
-                                                            ),
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .delete_forever_sharp,
-                                                              size: 25.0,
-                                                            ),
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 40.0,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                              iconAlignment:
-                                                                  IconAlignment
-                                                                      .end,
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: Color(
-                                                                  0x00DE5499),
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        letterSpacing:
+                                                      if ((columnCharactersMainRecord
+                                                                  .isAdminCreated ==
+                                                              false) &&
+                                                          responsiveVisibility(
+                                                            context: context,
+                                                            phone: false,
+                                                            tablet: false,
+                                                            tabletLandscape:
+                                                                false,
+                                                            desktop: false,
+                                                          ))
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        20.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                var confirmDialogResponse =
+                                                                    await showDialog<
+                                                                            bool>(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return AlertDialog(
+                                                                              title: Text('Character löschen'),
+                                                                              content: Text('Character und dazugehöriges Chat endgültig löschen?'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                  child: Text('Abbrechen'),
+                                                                                ),
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                  child: Text('Ja, löschen'),
+                                                                                ),
+                                                                              ],
+                                                                            );
+                                                                          },
+                                                                        ) ??
+                                                                        false;
+                                                                if (confirmDialogResponse) {
+                                                                  await columnCharactersMainRecord
+                                                                      .chats!
+                                                                      .delete();
+                                                                  await columnCharactersMainRecord
+                                                                      .reference
+                                                                      .delete();
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                } else {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                }
+                                                              },
+                                                              text: FFLocalizations
+                                                                      .of(context)
+                                                                  .getText(
+                                                                'cbcspmhy' /* Character Löschen  */,
+                                                              ),
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .delete_forever_sharp,
+                                                                size: 25.0,
+                                                              ),
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                height: 40.0,
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        0.0,
+                                                                        16.0,
+                                                                        0.0),
+                                                                iconAlignment:
+                                                                    IconAlignment
+                                                                        .end,
+                                                                iconPadding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0.0,
-                                                                        decoration:
-                                                                            TextDecoration.underline,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                              elevation: 0.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: Color(
+                                                                    0x00DE5499),
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      decoration:
+                                                                          TextDecoration
+                                                                              .underline,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                                elevation: 0.0,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
                                                     ],
                                                   ),
                                                 ),
