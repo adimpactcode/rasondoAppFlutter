@@ -2124,6 +2124,56 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            FlutterFlowIconButton(
+                                                                          borderRadius:
+                                                                              8.0,
+                                                                          buttonSize:
+                                                                              34.0,
+                                                                          fillColor:
+                                                                              Color(0x00DE5499),
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.delete_forever,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                20.0,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () async {
+                                                                            var confirmDialogResponse = await showDialog<bool>(
+                                                                                  context: context,
+                                                                                  builder: (alertDialogContext) {
+                                                                                    return AlertDialog(
+                                                                                      title: Text('Unterhaltung löschen?'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                          child: Text('Abbrechen'),
+                                                                                        ),
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                          child: Text('Ja, löschen'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    );
+                                                                                  },
+                                                                                ) ??
+                                                                                false;
+                                                                            if (confirmDialogResponse) {
+                                                                              await listViewChatsRecord.reference.delete();
+                                                                              Navigator.pop(context);
+                                                                            } else {
+                                                                              Navigator.pop(context);
+                                                                            }
+                                                                          },
+                                                                        ),
+                                                                      ),
                                                                     ],
                                                                   ),
                                                                 ),
