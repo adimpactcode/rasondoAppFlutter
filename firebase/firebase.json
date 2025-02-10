@@ -13,12 +13,7 @@
     "rules": "storage.rules"
   },
   "hosting": {
-  "public": "build/web",
-  "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-  "rewrites": [
-    {
-      "source": "**",
-      "destination": "/index.html"
-    }
-  ]
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
 }
