@@ -3211,51 +3211,66 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                           mainAxisSize: MainAxisSize.max,
                                                                                           crossAxisAlignment: CrossAxisAlignment.stretch,
                                                                                           children: [
-                                                                                            Text(
-                                                                                              FFLocalizations.of(context).getText(
-                                                                                                'hly1liql' /* Klick für ein Like! */,
+                                                                                            if (responsiveVisibility(
+                                                                                              context: context,
+                                                                                              phone: false,
+                                                                                              tablet: false,
+                                                                                            ))
+                                                                                              Text(
+                                                                                                FFLocalizations.of(context).getText(
+                                                                                                  'hly1liql' /* Klick für ein Like! */,
+                                                                                                ),
+                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                                      letterSpacing: 0.0,
+                                                                                                      fontWeight: FontWeight.w600,
+                                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                                    ),
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                                                  ),
-                                                                                            ),
-                                                                                            InkWell(
-                                                                                              splashColor: Colors.transparent,
-                                                                                              focusColor: Colors.transparent,
-                                                                                              hoverColor: Colors.transparent,
-                                                                                              highlightColor: Colors.transparent,
-                                                                                              onTap: () async {
-                                                                                                unawaited(
-                                                                                                  () async {
-                                                                                                    await widget!.characterId!.update({
-                                                                                                      ...mapToFirestore(
-                                                                                                        {
-                                                                                                          'likes_count': FieldValue.increment(1),
-                                                                                                        },
-                                                                                                      ),
-                                                                                                    });
-                                                                                                  }(),
-                                                                                                );
-                                                                                              },
-                                                                                              child: Icon(
-                                                                                                Icons.favorite,
-                                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                                size: 30.0,
+                                                                                            if (responsiveVisibility(
+                                                                                              context: context,
+                                                                                              phone: false,
+                                                                                              tablet: false,
+                                                                                            ))
+                                                                                              InkWell(
+                                                                                                splashColor: Colors.transparent,
+                                                                                                focusColor: Colors.transparent,
+                                                                                                hoverColor: Colors.transparent,
+                                                                                                highlightColor: Colors.transparent,
+                                                                                                onTap: () async {
+                                                                                                  unawaited(
+                                                                                                    () async {
+                                                                                                      await widget!.characterId!.update({
+                                                                                                        ...mapToFirestore(
+                                                                                                          {
+                                                                                                            'likes_count': FieldValue.increment(1),
+                                                                                                          },
+                                                                                                        ),
+                                                                                                      });
+                                                                                                    }(),
+                                                                                                  );
+                                                                                                },
+                                                                                                child: Icon(
+                                                                                                  Icons.favorite,
+                                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                                  size: 30.0,
+                                                                                                ),
                                                                                               ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              columnCharactersMainRecord.likesCount.toString(),
-                                                                                              textAlign: TextAlign.center,
-                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                                                  ),
-                                                                                            ),
+                                                                                            if (responsiveVisibility(
+                                                                                              context: context,
+                                                                                              phone: false,
+                                                                                              tablet: false,
+                                                                                            ))
+                                                                                              Text(
+                                                                                                columnCharactersMainRecord.likesCount.toString(),
+                                                                                                textAlign: TextAlign.center,
+                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                                                      letterSpacing: 0.0,
+                                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                                    ),
+                                                                                              ),
                                                                                           ],
                                                                                         ),
                                                                                       ),
