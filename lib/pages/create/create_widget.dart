@@ -8598,6 +8598,30 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           child: Stack(
                                                                                             alignment: AlignmentDirectional(0.0, 1.0),
                                                                                             children: [
+                                                                                              if ((FFAppState().imageStyleState == 'Anime') &&
+                                                                                                  responsiveVisibility(
+                                                                                                    context: context,
+                                                                                                    phone: false,
+                                                                                                    tablet: false,
+                                                                                                  ))
+                                                                                                Align(
+                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                                  child: Padding(
+                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                                                    child: Text(
+                                                                                                      FFLocalizations.of(context).getText(
+                                                                                                        '1utstd7o' /* Ambiente */,
+                                                                                                      ),
+                                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                                            fontSize: 16.0,
+                                                                                                            letterSpacing: 0.0,
+                                                                                                            fontWeight: FontWeight.w500,
+                                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                                          ),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                ),
                                                                                               Container(
                                                                                                 width: 150.0,
                                                                                                 height: 150.0,
@@ -8646,30 +8670,6 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                   ),
                                                                                                 ),
                                                                                               ),
-                                                                                              if ((_model.characterFull?.imageStyle == 'Anime') &&
-                                                                                                  responsiveVisibility(
-                                                                                                    context: context,
-                                                                                                    phone: false,
-                                                                                                    tablet: false,
-                                                                                                  ))
-                                                                                                Align(
-                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
-                                                                                                  child: Padding(
-                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                                                                                                    child: Text(
-                                                                                                      FFLocalizations.of(context).getText(
-                                                                                                        '1utstd7o' /* Ambiente */,
-                                                                                                      ),
-                                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                                            fontSize: 16.0,
-                                                                                                            letterSpacing: 0.0,
-                                                                                                            fontWeight: FontWeight.w500,
-                                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                                                          ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
                                                                                             ],
                                                                                           ),
                                                                                         ),
@@ -10144,7 +10144,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                     '4qsjp30i' /* Mysteriös */,
                                                                                   )),
                                                                                   ChipData(FFLocalizations.of(context).getText(
-                                                                                    '80jcivb8' /* Romatisch */,
+                                                                                    '80jcivb8' /* Romantisch */,
                                                                                   )),
                                                                                   ChipData(FFLocalizations.of(context).getText(
                                                                                     '1bblhaqr' /* Zurückhaltend */,
@@ -11572,7 +11572,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                         child: Text(
                                                                                           valueOrDefault<String>(
                                                                                             _model.choiceChipsAgeValue,
-                                                                                            '2ßs',
+                                                                                            '20s',
                                                                                           ),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,

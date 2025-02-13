@@ -696,12 +696,20 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                   16.0, 12.0, 16.0, 12.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              _model.imgToimgAppearance = _model
-                                                  .img2imgChangeAppereanceTextController
-                                                  .text;
-                                              _model.imgToimgAmbiente = _model
-                                                  .img2imgChangeAmbienteTextController
-                                                  .text;
+                                              _model.imgToimgAppearance =
+                                                  valueOrDefault<String>(
+                                                _model
+                                                    .img2imgChangeAppereanceTextController
+                                                    .text,
+                                                'Same Appereance',
+                                              );
+                                              _model.imgToimgAmbiente =
+                                                  valueOrDefault<String>(
+                                                _model
+                                                    .img2imgChangeAmbienteTextController
+                                                    .text,
+                                                'Same Ambience ',
+                                              );
                                               _model.characterId =
                                                   widget!.characterReferenz!.id;
                                               safeSetState(() {});
@@ -718,6 +726,24 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                               if ((_model.newGeneratedImgUrl
                                                       ?.succeeded ??
                                                   true)) {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Bild erfolgreich in Gallerie gespeichert!'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
                                                 unawaited(
                                                   () async {
                                                     await widget!
@@ -762,7 +788,7 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       (alertDialogContext) {
                                                     return AlertDialog(
                                                       title: Text(
-                                                          'uuups, das hat nicht geklappt'),
+                                                          'uuups, das hat nicht geklappt. Bitte  erneut versuchen'),
                                                       actions: [
                                                         TextButton(
                                                           onPressed: () =>
