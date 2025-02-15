@@ -726,6 +726,14 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                               if ((_model.newGeneratedImgUrl
                                                       ?.succeeded ??
                                                   true)) {
+                                                FFAppState().generatedImageUrl =
+                                                    NovitaFunctionImageToImageCall
+                                                        .generatedImage(
+                                                  (_model.newGeneratedImgUrl
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                )!;
+                                                safeSetState(() {});
                                                 await showDialog(
                                                   context: context,
                                                   builder:
@@ -766,16 +774,14 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                     });
                                                   }(),
                                                 );
-                                                await Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 300));
 
-                                                context.goNamed(
+                                                context.pushNamed(
                                                   'characterProfil',
                                                   queryParameters: {
                                                     'characterId':
                                                         serializeParam(
-                                                      widget!.characterReferenz,
+                                                      imageToImageCharactersMainRecord
+                                                          .reference,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),

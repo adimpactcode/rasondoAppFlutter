@@ -320,6 +320,12 @@ class FFAppState extends ChangeNotifier {
   set cameFromCreate(bool value) {
     _cameFromCreate = value;
   }
+
+  String _generatedImageUrl = '';
+  String get generatedImageUrl => _generatedImageUrl;
+  set generatedImageUrl(String value) {
+    _generatedImageUrl = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
