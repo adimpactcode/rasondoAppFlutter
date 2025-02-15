@@ -3419,6 +3419,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Discover characters now!',
     },
   },
+  // generatedImage
+  {
+    'bestfz7q': {
+      'de': 'Abs Blaster',
+      'en': '',
+    },
+    'tu1w4vrf': {
+      'de': 'Total Workouts: ',
+      'en': '',
+    },
+    'hw1ux5fy': {
+      'de': '12',
+      'en': '',
+    },
+    '9ny4a32z': {
+      'de': 'Choose Workout',
+      'en': '',
+    },
+  },
   // Miscellaneous
   {
     'hpg8mc4d': {

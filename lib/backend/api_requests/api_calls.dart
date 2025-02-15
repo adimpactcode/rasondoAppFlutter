@@ -261,6 +261,12 @@ class NovitaFunctionImageToImageCall {
       alwaysAllowBody: false,
     );
   }
+
+  static String? generatedImage(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.imageUrl''',
+      ));
 }
 
 class SubscriptionCallPaypalCall {
