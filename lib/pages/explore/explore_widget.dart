@@ -1958,6 +1958,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   'is_public',
                                                                   isEqualTo:
                                                                       true,
+                                                                )
+                                                                .where(
+                                                                  'image_style',
+                                                                  isNotEqualTo:
+                                                                      'anime',
                                                                 ),
                                                   ),
                                                   builder: (context, snapshot) {
@@ -2265,6 +2270,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         'is_public',
                                                                         isEqualTo:
                                                                             true,
+                                                                      )
+                                                                      .where(
+                                                                        'image_style',
+                                                                        isNotEqualTo:
+                                                                            'anime',
                                                                       ),
                                                         ),
                                                         builder: (context,
