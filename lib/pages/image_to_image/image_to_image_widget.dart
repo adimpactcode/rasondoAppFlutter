@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/components/custom_loading_image_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -690,166 +691,205 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                           maxWidth: 770.0,
                                         ),
                                         decoration: BoxDecoration(),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 12.0, 16.0, 12.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              _model.imgToimgAppearance =
-                                                  valueOrDefault<String>(
-                                                _model
-                                                    .img2imgChangeAppereanceTextController
-                                                    .text,
-                                                'Same Appereance',
-                                              );
-                                              _model.imgToimgAmbiente =
-                                                  valueOrDefault<String>(
-                                                _model
-                                                    .img2imgChangeAmbienteTextController
-                                                    .text,
-                                                'Same Ambience ',
-                                              );
-                                              _model.characterId =
-                                                  widget!.characterReferenz!.id;
-                                              safeSetState(() {});
-                                              _model.newGeneratedImgUrl =
-                                                  await NovitaFunctionImageToImageCall
-                                                      .call(
-                                                characterId: _model.characterId,
-                                                img2imgAppereance:
-                                                    _model.imgToimgAppearance,
-                                                img2imgAmbiente:
-                                                    _model.imgToimgAmbiente,
-                                              );
-
-                                              if ((_model.newGeneratedImgUrl
-                                                      ?.succeeded ??
-                                                  true)) {
-                                                FFAppState().generatedImageUrl =
-                                                    NovitaFunctionImageToImageCall
-                                                        .generatedImage(
-                                                  (_model.newGeneratedImgUrl
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                )!;
+                                        child: Builder(
+                                          builder: (context) => Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 12.0, 16.0, 12.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                _model.imgToimgAppearance =
+                                                    valueOrDefault<String>(
+                                                  _model
+                                                      .img2imgChangeAppereanceTextController
+                                                      .text,
+                                                  'Same Appereance',
+                                                );
+                                                _model.imgToimgAmbiente =
+                                                    valueOrDefault<String>(
+                                                  _model
+                                                      .img2imgChangeAmbienteTextController
+                                                      .text,
+                                                  'Same Ambience ',
+                                                );
+                                                _model.characterId = widget!
+                                                    .characterReferenz!.id;
                                                 safeSetState(() {});
-                                                await showDialog(
+                                                showDialog(
+                                                  barrierDismissible: false,
                                                   context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'Bild erfolgreich in Gallerie gespeichert!'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                                unawaited(
-                                                  () async {
-                                                    await widget!
-                                                        .characterReferenz!
-                                                        .update({
-                                                      ...mapToFirestore(
-                                                        {
-                                                          'created_images':
-                                                              FieldValue
-                                                                  .arrayUnion([
-                                                            getJsonField(
-                                                              (_model.newGeneratedImgUrl
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              r'''$.imageUrl''',
-                                                            ).toString()
-                                                          ]),
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus();
+                                                          FocusManager.instance
+                                                              .primaryFocus
+                                                              ?.unfocus();
                                                         },
+                                                        child:
+                                                            CustomLoadingImageWidget(),
                                                       ),
-                                                    });
-                                                  }(),
-                                                );
-
-                                                context.pushNamed(
-                                                  'characterProfil',
-                                                  queryParameters: {
-                                                    'characterId':
-                                                        serializeParam(
-                                                      imageToImageCharactersMainRecord
-                                                          .reference,
-                                                      ParamType
-                                                          .DocumentReference,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              } else {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'uuups, das hat nicht geklappt. Bitte  erneut versuchen'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
-                                                        ),
-                                                      ],
                                                     );
                                                   },
                                                 );
-                                              }
 
-                                              safeSetState(() {});
-                                            },
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              'oegqxyqj' /* jetzt erstellen */,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: double.infinity,
-                                              height: 48.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        fontSize: 18.0,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
+                                                _model.newGeneratedImgUrl =
+                                                    await NovitaFunctionImageToImageCall
+                                                        .call(
+                                                  characterId:
+                                                      _model.characterId,
+                                                  img2imgAppereance:
+                                                      _model.imgToimgAppearance,
+                                                  img2imgAmbiente:
+                                                      _model.imgToimgAmbiente,
+                                                );
+
+                                                if ((_model.newGeneratedImgUrl
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  FFAppState()
+                                                          .generatedImageUrl =
+                                                      NovitaFunctionImageToImageCall
+                                                          .generatedImage(
+                                                    (_model.newGeneratedImgUrl
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )!;
+                                                  safeSetState(() {});
+                                                  Navigator.pop(context);
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                            'Bild erfolgreich in Gallerie gespeichert!'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                  unawaited(
+                                                    () async {
+                                                      await widget!
+                                                          .characterReferenz!
+                                                          .update({
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'created_images':
+                                                                FieldValue
+                                                                    .arrayUnion([
+                                                              getJsonField(
+                                                                (_model.newGeneratedImgUrl
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$.imageUrl''',
+                                                              ).toString()
+                                                            ]),
+                                                          },
+                                                        ),
+                                                      });
+                                                    }(),
+                                                  );
+
+                                                  context.pushNamed(
+                                                    'characterProfil',
+                                                    queryParameters: {
+                                                      'characterId':
+                                                          serializeParam(
+                                                        imageToImageCharactersMainRecord
+                                                            .reference,
+                                                        ParamType
+                                                            .DocumentReference,
                                                       ),
-                                              elevation: 3.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
+                                                    }.withoutNulls,
+                                                  );
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                            'uuups, das hat nicht geklappt. Bitte  erneut versuchen'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
+
+                                                safeSetState(() {});
+                                              },
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                'oegqxyqj' /* jetzt erstellen */,
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                              options: FFButtonOptions(
+                                                width: double.infinity,
+                                                height: 48.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
                                           ),
                                         ),

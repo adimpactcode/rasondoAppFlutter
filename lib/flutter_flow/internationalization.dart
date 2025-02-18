@@ -441,7 +441,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '59j0bbrj': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
     'pla4gnzb': {
       'de': 'Style auswählen:',
@@ -2139,7 +2139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6mx5k5ui': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
     'bs1btta7': {
       'de': 'Frauen',
@@ -2151,7 +2151,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '82fvngpe': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
     'dp7efind': {
       'de': 'Explore',
@@ -3157,7 +3157,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '177p7j7x': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
   },
   // editProfile_auth_2_1
@@ -3423,19 +3423,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'bestfz7q': {
       'de': 'Abs Blaster',
-      'en': '',
+      'en': 'Abs Blaster',
     },
     'tu1w4vrf': {
       'de': 'Total Workouts: ',
-      'en': '',
+      'en': 'Total Workouts:',
     },
     'hw1ux5fy': {
       'de': '12',
-      'en': '',
+      'en': '12',
     },
     '9ny4a32z': {
       'de': 'Choose Workout',
-      'en': '',
+      'en': 'Choose Workout',
+    },
+  },
+  // customLoading
+  {
+    'mddl96kt': {
+      'de': 'Character wird erstellt',
+      'en': 'Character is created',
+    },
+  },
+  // customLoadingImage
+  {
+    'xglwufyp': {
+      'de': 'Bild wird erstellt',
+      'en': 'Image is created',
     },
   },
   // Miscellaneous
