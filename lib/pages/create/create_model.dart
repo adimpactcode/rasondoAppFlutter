@@ -6,6 +6,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/components/choose_button_transparent/choose_button_transparent_widget.dart';
 import '/components/create_character_limit_c_t_a_widget.dart';
+import '/components/custom_loading_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -52,6 +53,8 @@ class CreateModel extends FlutterFlowModel<CreateWidget> {
   }
 
   int? createdCharacterCount;
+
+  bool isLoading = false;
 
   ///  State fields for stateful widgets in this page.
 
