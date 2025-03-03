@@ -1990,11 +1990,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     padding:
                                                         EdgeInsets.all(4.0),
                                                     child: Text(
-                                                      valueOrDefault<String>(
-                                                        gridViewCharactersMainRecord
-                                                            .characterDisplay,
-                                                        'Character',
-                                                      ),
+                                                      gridViewCharactersMainRecord
+                                                          .personality
+                                                          .characterChoice,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -2582,12 +2580,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 EdgeInsets.all(
                                                                     4.0),
                                                             child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                gridViewCharactersMainRecord
-                                                                    .characterDisplay,
-                                                                'Character',
-                                                              ),
+                                                              gridViewCharactersMainRecord
+                                                                  .personality
+                                                                  .characterChoice,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
