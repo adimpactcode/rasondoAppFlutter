@@ -3633,8 +3633,7 @@ Ani... */
                                                                             4.0),
                                                                     child: Text(
                                                                       gridDisplayItemItem
-                                                                          .personality
-                                                                          .characterChoice,
+                                                                          .age,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -4221,8 +4220,7 @@ Ani... */
                                                                             4.0),
                                                                 child: Text(
                                                                   getDisplayItemMobileItem
-                                                                      .personality
-                                                                      .characterChoice,
+                                                                      .age,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
