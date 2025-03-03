@@ -12,6 +12,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
@@ -31,6 +32,9 @@ class ExploreWidget extends StatefulWidget {
   });
 
   final DocumentReference? dummyChatID;
+
+  static String routeName = 'Explore';
+  static String routePath = '/explore';
 
   @override
   State<ExploreWidget> createState() => _ExploreWidgetState();
@@ -139,7 +143,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -186,7 +190,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Explore');
+                              context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -222,9 +226,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('Chats');
+                                context.pushNamed(ChatsWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -260,7 +264,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Create');
+                              context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -296,9 +300,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('MyAI');
+                                context.pushNamed(MyAIWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -350,7 +354,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel2,
@@ -370,7 +375,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
-                                          context.pushNamed('GetPremium');
+                                          context.pushNamed(
+                                              GetPremiumWidget.routeName);
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
@@ -432,7 +438,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   onTap: () async {
                                     if (loggedIn == true) {
                                       context.pushNamed(
-                                        'auth_2_profil',
+                                        Auth2ProfilWidget.routeName,
                                         queryParameters: {
                                           'profileReference': serializeParam(
                                             currentUserReference,
@@ -441,7 +447,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -487,7 +494,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'auth_2_profil',
+                                  Auth2ProfilWidget.routeName,
                                   queryParameters: {
                                     'profileReference': serializeParam(
                                       currentUserReference,
@@ -540,7 +547,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('auth_2_Login');
+                                context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -582,7 +589,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.pushNamedAuth('Home', context.mounted);
+                                context.pushNamedAuth(
+                                    HomeWidget.routeName, context.mounted);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -680,7 +688,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -708,7 +716,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           context.pushNamed(
-                                            'Explore',
+                                            ExploreWidget.routeName,
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -772,7 +780,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Explore');
+                                                  context.pushNamed(
+                                                      ExploreWidget.routeName);
                                                 },
                                                 child: Icon(
                                                   Icons.explore,
@@ -792,7 +801,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('Chats');
+                                          context
+                                              .pushNamed(ChatsWidget.routeName);
                                         },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -848,10 +858,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   if (loggedIn == true) {
-                                                    context.pushNamed('Chats');
+                                                    context.pushNamed(
+                                                        ChatsWidget.routeName);
                                                   } else {
                                                     context.pushNamed(
-                                                        'auth_2_Create');
+                                                        Auth2CreateWidget
+                                                            .routeName);
                                                   }
                                                 },
                                                 child: Icon(
@@ -872,7 +884,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('Create');
+                                          context.pushNamed(
+                                              CreateWidget.routeName);
                                         },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -927,7 +940,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Create');
+                                                  context.pushNamed(
+                                                      CreateWidget.routeName);
                                                 },
                                                 child: Icon(
                                                   Icons.add_circle,
@@ -1103,7 +1117,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                           ),
                                           onPressed: () async {
                                             context.pushNamed(
-                                              'auth_2_profil',
+                                              Auth2ProfilWidget.routeName,
                                               queryParameters: {
                                                 'profileReference':
                                                     serializeParam(
@@ -1125,7 +1139,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     },
                                     child: wrapWithModel(
                                       model: _model.buttonPinkModel1,
@@ -1136,7 +1151,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 if (loggedIn == false)
                                   FFButtonWidget(
                                     onPressed: () async {
-                                      context.pushNamed('auth_2_Login');
+                                      context.pushNamed(
+                                          Auth2LoginWidget.routeName);
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'mm4974h4' /* Login */,
@@ -1255,7 +1271,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               context.pushNamed(
-                                                'Home',
+                                                HomeWidget.routeName,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
                                                       TransitionInfo(
@@ -1339,7 +1355,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 ),
                                                 onPressed: () async {
                                                   context.pushNamed(
-                                                      'auth_2_Login');
+                                                      Auth2LoginWidget
+                                                          .routeName);
                                                 },
                                               ),
                                             ),
@@ -1435,7 +1452,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
-                                                    'Home',
+                                                    HomeWidget.routeName,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
                                                           TransitionInfo(
@@ -1527,7 +1544,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     ),
                                                     onPressed: () async {
                                                       context.pushNamed(
-                                                        'auth_2_profil',
+                                                        Auth2ProfilWidget
+                                                            .routeName,
                                                         queryParameters: {
                                                           'profileReference':
                                                               serializeParam(
@@ -2036,7 +2054,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                     () async {
                                                                   context
                                                                       .pushNamed(
-                                                                    'characterProfil',
+                                                                    CharacterProfilWidget
+                                                                        .routeName,
                                                                     queryParameters:
                                                                         {
                                                                       'characterId':
@@ -2148,8 +2167,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         EdgeInsets.all(
                                                                             4.0),
                                                                     child: Text(
-                                                                      gridViewCharactersMainRecord
-                                                                          .age,
+                                                                      '${gridViewCharactersMainRecord.age}jahre',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -2211,7 +2229,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         true) {
                                                                       context
                                                                           .pushNamed(
-                                                                        'chatPagePro',
+                                                                        ChatPageProWidget
+                                                                            .routeName,
                                                                         queryParameters:
                                                                             {
                                                                           'characterId':
@@ -2228,7 +2247,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                       );
                                                                     } else {
                                                                       context.pushNamed(
-                                                                          'auth_2_Create');
+                                                                          Auth2CreateWidget
+                                                                              .routeName);
                                                                     }
                                                                   },
                                                                 ),
@@ -2359,7 +2379,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           () async {
                                                                         context
                                                                             .pushNamed(
-                                                                          'characterProfil',
+                                                                          CharacterProfilWidget
+                                                                              .routeName,
                                                                           queryParameters:
                                                                               {
                                                                             'characterId':
@@ -2458,7 +2479,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
-                                                                            gridViewCharactersMainRecord.age,
+                                                                            '${gridViewCharactersMainRecord.age}jahre',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                   color: FlutterFlowTheme.of(context).tertiary,
@@ -2510,7 +2531,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           if (currentUserEmailVerified ==
                                                                               true) {
                                                                             context.pushNamed(
-                                                                              'chatPagePro',
+                                                                              ChatPageProWidget.routeName,
                                                                               queryParameters: {
                                                                                 'characterId': serializeParam(
                                                                                   gridViewCharactersMainRecord.reference,
@@ -2523,7 +2544,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               }.withoutNulls,
                                                                             );
                                                                           } else {
-                                                                            context.pushNamed('auth_2_Create');
+                                                                            context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
                                                                       ),
@@ -2652,7 +2673,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           () async {
                                                                         context
                                                                             .pushNamed(
-                                                                          'characterProfil',
+                                                                          CharacterProfilWidget
+                                                                              .routeName,
                                                                           queryParameters:
                                                                               {
                                                                             'characterId':
@@ -2751,7 +2773,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
-                                                                            gridViewCharactersMainRecord.age,
+                                                                            '${gridViewCharactersMainRecord.age}jahre',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                   color: FlutterFlowTheme.of(context).tertiary,
@@ -2803,7 +2825,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           if (currentUserEmailVerified ==
                                                                               true) {
                                                                             context.pushNamed(
-                                                                              'chatPagePro',
+                                                                              ChatPageProWidget.routeName,
                                                                               queryParameters: {
                                                                                 'characterId': serializeParam(
                                                                                   gridViewCharactersMainRecord.reference,
@@ -2816,7 +2838,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               }.withoutNulls,
                                                                             );
                                                                           } else {
-                                                                            context.pushNamed('auth_2_Create');
+                                                                            context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
                                                                       ),
@@ -3079,7 +3101,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           onTap:
                                                                               () async {
                                                                             context.pushNamed(
-                                                                              'characterProfil',
+                                                                              CharacterProfilWidget.routeName,
                                                                               queryParameters: {
                                                                                 'characterId': serializeParam(
                                                                                   gridViewCharactersMainRecord.reference,
@@ -3166,7 +3188,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 Padding(
                                                                               padding: EdgeInsets.all(4.0),
                                                                               child: Text(
-                                                                                gridViewCharactersMainRecord.age,
+                                                                                '${gridViewCharactersMainRecord.age}jahre',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).tertiary,
@@ -3212,7 +3234,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               await authManager.refreshUser();
                                                                               if (currentUserEmailVerified == true) {
                                                                                 context.pushNamed(
-                                                                                  'chatPagePro',
+                                                                                  ChatPageProWidget.routeName,
                                                                                   queryParameters: {
                                                                                     'characterId': serializeParam(
                                                                                       gridViewCharactersMainRecord.reference,
@@ -3225,7 +3247,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                   }.withoutNulls,
                                                                                 );
                                                                               } else {
-                                                                                context.pushNamed('auth_2_Create');
+                                                                                context.pushNamed(Auth2CreateWidget.routeName);
                                                                               }
                                                                             },
                                                                           ),
@@ -3359,7 +3381,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             () async {
                                                                           context
                                                                               .pushNamed(
-                                                                            'characterProfil',
+                                                                            CharacterProfilWidget.routeName,
                                                                             queryParameters:
                                                                                 {
                                                                               'characterId': serializeParam(
@@ -3463,7 +3485,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 EdgeInsets.all(4.0),
                                                                             child:
                                                                                 Text(
-                                                                              gridViewCharactersMainRecord.age,
+                                                                              '${gridViewCharactersMainRecord.age}jahre',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                     color: FlutterFlowTheme.of(context).tertiary,
@@ -3513,7 +3535,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             if (currentUserEmailVerified ==
                                                                                 true) {
                                                                               context.pushNamed(
-                                                                                'chatPagePro',
+                                                                                ChatPageProWidget.routeName,
                                                                                 queryParameters: {
                                                                                   'characterId': serializeParam(
                                                                                     gridViewCharactersMainRecord.reference,
@@ -3526,7 +3548,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 }.withoutNulls,
                                                                               );
                                                                             } else {
-                                                                              context.pushNamed('auth_2_Create');
+                                                                              context.pushNamed(Auth2CreateWidget.routeName);
                                                                             }
                                                                           },
                                                                         ),
@@ -3661,7 +3683,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           onTap:
                                                                               () async {
                                                                             context.pushNamed(
-                                                                              'characterProfil',
+                                                                              CharacterProfilWidget.routeName,
                                                                               queryParameters: {
                                                                                 'characterId': serializeParam(
                                                                                   gridViewCharactersMainRecord.reference,
@@ -3748,7 +3770,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 Padding(
                                                                               padding: EdgeInsets.all(4.0),
                                                                               child: Text(
-                                                                                gridViewCharactersMainRecord.age,
+                                                                                '${gridViewCharactersMainRecord.age}jahre',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).tertiary,
@@ -3794,7 +3816,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               await authManager.refreshUser();
                                                                               if (currentUserEmailVerified == true) {
                                                                                 context.pushNamed(
-                                                                                  'chatPagePro',
+                                                                                  ChatPageProWidget.routeName,
                                                                                   queryParameters: {
                                                                                     'characterId': serializeParam(
                                                                                       gridViewCharactersMainRecord.reference,
@@ -3807,7 +3829,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                   }.withoutNulls,
                                                                                 );
                                                                               } else {
-                                                                                context.pushNamed('auth_2_Create');
+                                                                                context.pushNamed(Auth2CreateWidget.routeName);
                                                                               }
                                                                             },
                                                                           ),

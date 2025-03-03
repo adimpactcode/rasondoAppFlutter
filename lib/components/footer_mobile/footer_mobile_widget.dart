@@ -2,6 +2,7 @@ import '/auth/base_auth_user_provider.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -114,7 +115,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Home');
+                            context.pushNamed(HomeWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -148,7 +149,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Explore');
+                            context.pushNamed(ExploreWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -182,7 +183,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Create');
+                            context.pushNamed(CreateWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -216,7 +217,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Chats');
+                            context.pushNamed(ChatsWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -230,9 +231,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   if (loggedIn == true) {
-                                    context.pushNamed('Chats');
+                                    context.pushNamed(ChatsWidget.routeName);
                                   } else {
-                                    context.pushNamed('auth_2_Create');
+                                    context
+                                        .pushNamed(Auth2CreateWidget.routeName);
                                   }
                                 },
                                 child: Text(
@@ -266,9 +268,9 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('MyAI');
+                                context.pushNamed(MyAIWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Text(
@@ -328,7 +330,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('auth_2_Login');
+                            context.pushNamed(Auth2LoginWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -364,7 +366,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('GetPremium');
+                              context.pushNamed(GetPremiumWidget.routeName);
                             },
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -467,7 +469,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Datenschutz');
+                            context.pushNamed(DatenschutzWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -501,7 +503,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Impressum');
+                            context.pushNamed(ImpressumWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -514,7 +516,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Impressum');
+                                  context.pushNamed(ImpressumWidget.routeName);
                                 },
                                 child: Text(
                                   FFLocalizations.of(context).getText(
@@ -544,7 +546,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Impressum');
+                            context.pushNamed(ImpressumWidget.routeName);
                           },
                           child: Container(
                             decoration: BoxDecoration(),
@@ -557,7 +559,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('AGB');
+                                  context.pushNamed(AgbWidget.routeName);
                                 },
                                 child: Text(
                                   FFLocalizations.of(context).getText(

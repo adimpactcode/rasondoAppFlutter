@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,9 @@ export 'auth2_forgot_password_model.dart';
 
 class Auth2ForgotPasswordWidget extends StatefulWidget {
   const Auth2ForgotPasswordWidget({super.key});
+
+  static String routeName = 'auth_2_ForgotPassword';
+  static String routePath = '/auth2ForgotPassword';
 
   @override
   State<Auth2ForgotPasswordWidget> createState() =>
@@ -325,7 +329,8 @@ class _Auth2ForgotPasswordWidgetState extends State<Auth2ForgotPasswordWidget> {
                                         }(),
                                       );
 
-                                      context.pushNamed('auth_2_Login');
+                                      context.pushNamed(
+                                          Auth2LoginWidget.routeName);
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'klxhcnel' /* Passwort Link anfordern */,

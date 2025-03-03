@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ export 'my_a_i_model.dart';
 
 class MyAIWidget extends StatefulWidget {
   const MyAIWidget({super.key});
+
+  static String routeName = 'MyAI';
+  static String routePath = '/myAI';
 
   @override
   State<MyAIWidget> createState() => _MyAIWidgetState();
@@ -88,7 +92,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -135,7 +139,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Explore');
+                              context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -171,9 +175,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('Chats');
+                                context.pushNamed(ChatsWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -209,7 +213,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Create');
+                              context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -245,9 +249,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('MyAI');
+                                context.pushNamed(MyAIWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -299,7 +303,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel2,
@@ -317,7 +322,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
-                                          context.pushNamed('GetPremium');
+                                          context.pushNamed(
+                                              GetPremiumWidget.routeName);
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
@@ -379,7 +385,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   onTap: () async {
                                     if (loggedIn == true) {
                                       context.pushNamed(
-                                        'auth_2_profil',
+                                        Auth2ProfilWidget.routeName,
                                         queryParameters: {
                                           'profileReference': serializeParam(
                                             currentUserReference,
@@ -388,7 +394,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -434,7 +441,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'auth_2_profil',
+                                  Auth2ProfilWidget.routeName,
                                   queryParameters: {
                                     'profileReference': serializeParam(
                                       currentUserReference,
@@ -487,7 +494,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('auth_2_Login');
+                                context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -529,7 +536,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.pushNamedAuth('Home', context.mounted);
+                                context.pushNamedAuth(
+                                    HomeWidget.routeName, context.mounted);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -627,7 +635,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('Home');
+                                    context.pushNamed(HomeWidget.routeName);
                                   },
                                   child: Image.asset(
                                     'assets/images/Rasondo_(18).png',
@@ -655,7 +663,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'Explore',
+                                              ExploreWidget.routeName,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
                                                     TransitionInfo(
@@ -722,8 +730,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context
-                                                        .pushNamed('Explore');
+                                                    context.pushNamed(
+                                                        ExploreWidget
+                                                            .routeName);
                                                   },
                                                   child: Icon(
                                                     Icons.explore,
@@ -743,7 +752,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('Chats');
+                                            context.pushNamed(
+                                                ChatsWidget.routeName);
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -802,11 +812,13 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     if (loggedIn == true) {
-                                                      context
-                                                          .pushNamed('Chats');
+                                                      context.pushNamed(
+                                                          ChatsWidget
+                                                              .routeName);
                                                     } else {
                                                       context.pushNamed(
-                                                          'auth_2_Create');
+                                                          Auth2CreateWidget
+                                                              .routeName);
                                                     }
                                                   },
                                                   child: Icon(
@@ -827,7 +839,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('Create');
+                                            context.pushNamed(
+                                                CreateWidget.routeName);
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -885,7 +898,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed('Create');
+                                                    context.pushNamed(
+                                                        CreateWidget.routeName);
                                                   },
                                                   child: Icon(
                                                     Icons.add_circle,
@@ -1069,7 +1083,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             ),
                                             onPressed: () async {
                                               context.pushNamed(
-                                                'auth_2_profil',
+                                                Auth2ProfilWidget.routeName,
                                                 queryParameters: {
                                                   'profileReference':
                                                       serializeParam(
@@ -1091,7 +1105,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel1,
@@ -1103,7 +1118,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   if (loggedIn == false)
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        context.pushNamed('auth_2_Login');
+                                        context.pushNamed(
+                                            Auth2LoginWidget.routeName);
                                       },
                                       text: FFLocalizations.of(context).getText(
                                         'lfcp5xaf' /* Login */,
@@ -1234,7 +1250,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
-                                                      'Home',
+                                                      HomeWidget.routeName,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
                                                             TransitionInfo(
@@ -1327,7 +1343,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       ),
                                                       onPressed: () async {
                                                         context.pushNamed(
-                                                          'auth_2_profil',
+                                                          Auth2ProfilWidget
+                                                              .routeName,
                                                           queryParameters: {
                                                             'profileReference':
                                                                 serializeParam(
@@ -1435,7 +1452,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 context.pushNamed(
-                                                  'Home',
+                                                  HomeWidget.routeName,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
                                                         TransitionInfo(
@@ -1525,7 +1542,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   ),
                                                   onPressed: () async {
                                                     context.pushNamed(
-                                                        'auth_2_Login');
+                                                        Auth2LoginWidget
+                                                            .routeName);
                                                   },
                                                 ),
                                               ),
@@ -1621,7 +1639,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                context.pushNamed('Create');
+                                                context.pushNamed(
+                                                    CreateWidget.routeName);
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
@@ -1873,7 +1892,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
-                                                    'characterProfil',
+                                                    CharacterProfilWidget
+                                                        .routeName,
                                                     queryParameters: {
                                                       'characterId':
                                                           serializeParam(
@@ -1970,8 +1990,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     padding:
                                                         EdgeInsets.all(4.0),
                                                     child: Text(
-                                                      gridViewCharactersMainRecord
-                                                          .age,
+                                                      '${gridViewCharactersMainRecord.age}jahre',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -2026,7 +2045,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     if (currentUserEmailVerified ==
                                                         true) {
                                                       context.pushNamed(
-                                                        'chatPagePro',
+                                                        ChatPageProWidget
+                                                            .routeName,
                                                         queryParameters: {
                                                           'characterId':
                                                               serializeParam(
@@ -2045,10 +2065,66 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       );
                                                     } else {
                                                       context.pushNamed(
-                                                          'auth_2_Create');
+                                                          Auth2CreateWidget
+                                                              .routeName);
                                                     }
                                                   },
                                                 ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  1.0, 1.0),
+                                              child: FlutterFlowIconButton(
+                                                borderRadius: 8.0,
+                                                buttonSize: 40.0,
+                                                fillColor: Color(0x00DE5499),
+                                                icon: Icon(
+                                                  Icons.delete_forever_sharp,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  size: 24.0,
+                                                ),
+                                                onPressed: () async {
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: Text(
+                                                                    'Character löschen?'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: Text(
+                                                                        'Abbruch'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: Text(
+                                                                        'Ja, löschen!'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
+                                                  if (confirmDialogResponse) {
+                                                    await gridViewCharactersMainRecord
+                                                        .reference
+                                                        .delete();
+                                                  } else {
+                                                    Navigator.pop(context);
+                                                  }
+                                                },
                                               ),
                                             ),
                                           ],
@@ -2258,7 +2334,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     100.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                context.pushNamed('Create');
+                                                context.pushNamed(
+                                                    CreateWidget.routeName);
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
@@ -2383,7 +2460,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
-                                                            'characterProfil',
+                                                            CharacterProfilWidget
+                                                                .routeName,
                                                             queryParameters: {
                                                               'characterId':
                                                                   serializeParam(
@@ -2500,8 +2578,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 EdgeInsets.all(
                                                                     4.0),
                                                             child: Text(
-                                                              gridViewCharactersMainRecord
-                                                                  .age,
+                                                              '${gridViewCharactersMainRecord.age}jahre',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -2563,7 +2640,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                             if (currentUserEmailVerified ==
                                                                 true) {
                                                               context.pushNamed(
-                                                                'chatPagePro',
+                                                                ChatPageProWidget
+                                                                    .routeName,
                                                                 queryParameters:
                                                                     {
                                                                   'characterId':
@@ -2583,10 +2661,69 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                               );
                                                             } else {
                                                               context.pushNamed(
-                                                                  'auth_2_Create');
+                                                                  Auth2CreateWidget
+                                                                      .routeName);
                                                             }
                                                           },
                                                         ),
+                                                      ),
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1.0, 1.0),
+                                                      child:
+                                                          FlutterFlowIconButton(
+                                                        borderRadius: 8.0,
+                                                        buttonSize: 40.0,
+                                                        fillColor:
+                                                            Color(0x00DE5499),
+                                                        icon: Icon(
+                                                          Icons
+                                                              .delete_forever_sharp,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          size: 24.0,
+                                                        ),
+                                                        onPressed: () async {
+                                                          var confirmDialogResponse =
+                                                              await showDialog<
+                                                                      bool>(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Character löschen?'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, false),
+                                                                            child:
+                                                                                Text('Abbruch'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, true),
+                                                                            child:
+                                                                                Text('Ja, löschen!'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  ) ??
+                                                                  false;
+                                                          if (confirmDialogResponse) {
+                                                            await gridViewCharactersMainRecord
+                                                                .reference
+                                                                .delete();
+                                                          } else {
+                                                            Navigator.pop(
+                                                                context);
+                                                          }
+                                                        },
                                                       ),
                                                     ),
                                                   ],

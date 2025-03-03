@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/api_requests/api_streaming.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -8,7 +9,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:convert';
 import 'dart:ui';
+import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -24,6 +27,9 @@ class Auth2ProfilWidget extends StatefulWidget {
   });
 
   final DocumentReference? profileReference;
+
+  static String routeName = 'auth_2_profil';
+  static String routePath = '/auth2Profil';
 
   @override
   State<Auth2ProfilWidget> createState() => _Auth2ProfilWidgetState();
@@ -563,7 +569,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('Explore');
+                                        context
+                                            .pushNamed(ExploreWidget.routeName);
                                       },
                                       child: Container(
                                         width: double.infinity,
@@ -595,7 +602,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context.pushNamed('Explore');
+                                              context.pushNamed(
+                                                  ExploreWidget.routeName);
                                             },
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -643,7 +651,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('GetPremium');
+                                            context.pushNamed(
+                                                GetPremiumWidget.routeName);
                                           },
                                           child: Container(
                                             width: double.infinity,
@@ -786,7 +795,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                 },
                                               );
 
-                                              context.pushNamed('Home');
+                                              context.pushNamed(
+                                                  HomeWidget.routeName);
                                             } else {
                                               await showDialog(
                                                 context: context,
@@ -908,7 +918,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                context.pushNamed('Explore');
+                                                context.pushNamed(
+                                                    ExploreWidget.routeName);
                                               },
                                               child: Text(
                                                 FFLocalizations.of(context)
@@ -1024,7 +1035,7 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                 .clearRedirectLocation();
 
                                             context.pushNamedAuth(
-                                                'auth_2_Login',
+                                                Auth2LoginWidget.routeName,
                                                 context.mounted);
                                           },
                                           child: Text(

@@ -10,13 +10,14 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/lat_lng.dart';
 import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -93,21 +94,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : HomeWidget(),
         ),
         FFRoute(
-          name: 'Home',
-          path: '/home',
+          name: HomeWidget.routeName,
+          path: HomeWidget.routePath,
           builder: (context, params) =>
               params.isEmpty ? NavBarPage(initialPage: 'Home') : HomeWidget(),
         ),
         FFRoute(
-          name: 'Create',
-          path: '/create',
+          name: CreateWidget.routeName,
+          path: CreateWidget.routePath,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Create')
               : CreateWidget(),
         ),
         FFRoute(
-          name: 'MyAI',
-          path: '/myAI',
+          name: MyAIWidget.routeName,
+          path: MyAIWidget.routePath,
           requireAuth: true,
           builder: (context, params) => NavBarPage(
             initialPage: '',
@@ -115,15 +116,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'Chats',
-          path: '/chats',
+          name: ChatsWidget.routeName,
+          path: ChatsWidget.routePath,
           requireAuth: true,
           builder: (context, params) =>
               params.isEmpty ? NavBarPage(initialPage: 'Chats') : ChatsWidget(),
         ),
         FFRoute(
-          name: 'characterProfil',
-          path: '/characterProfil',
+          name: CharacterProfilWidget.routeName,
+          path: CharacterProfilWidget.routePath,
           builder: (context, params) => CharacterProfilWidget(
             characterId: params.getParam(
               'characterId',
@@ -134,8 +135,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'Explore',
-          path: '/explore',
+          name: ExploreWidget.routeName,
+          path: ExploreWidget.routePath,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Explore')
               : ExploreWidget(
@@ -148,8 +149,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
         ),
         FFRoute(
-          name: 'GetPremium',
-          path: '/getPremium',
+          name: GetPremiumWidget.routeName,
+          path: GetPremiumWidget.routePath,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'GetPremium')
               : NavBarPage(
@@ -158,39 +159,39 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
         ),
         FFRoute(
-          name: 'Datenschutz',
-          path: '/Datenschutz',
+          name: DatenschutzWidget.routeName,
+          path: DatenschutzWidget.routePath,
           builder: (context, params) => NavBarPage(
             initialPage: '',
             page: DatenschutzWidget(),
           ),
         ),
         FFRoute(
-          name: 'Impressum',
-          path: '/Impressum',
+          name: ImpressumWidget.routeName,
+          path: ImpressumWidget.routePath,
           builder: (context, params) => NavBarPage(
             initialPage: '',
             page: ImpressumWidget(),
           ),
         ),
         FFRoute(
-          name: 'auth_2_Create',
-          path: '/auth2Create',
+          name: Auth2CreateWidget.routeName,
+          path: Auth2CreateWidget.routePath,
           builder: (context, params) => Auth2CreateWidget(),
         ),
         FFRoute(
-          name: 'auth_2_Login',
-          path: '/auth2Login',
+          name: Auth2LoginWidget.routeName,
+          path: Auth2LoginWidget.routePath,
           builder: (context, params) => Auth2LoginWidget(),
         ),
         FFRoute(
-          name: 'auth_2_ForgotPassword',
-          path: '/auth2ForgotPassword',
+          name: Auth2ForgotPasswordWidget.routeName,
+          path: Auth2ForgotPasswordWidget.routePath,
           builder: (context, params) => Auth2ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: 'ImageToImage',
-          path: '/imageToImage',
+          name: ImageToImageWidget.routeName,
+          path: ImageToImageWidget.routePath,
           builder: (context, params) => ImageToImageWidget(
             characterReferenz: params.getParam(
               'characterReferenz',
@@ -207,8 +208,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'chatPagePro',
-          path: '/chatPagePro',
+          name: ChatPageProWidget.routeName,
+          path: ChatPageProWidget.routePath,
           builder: (context, params) => ChatPageProWidget(
             characterId: params.getParam(
               'characterId',
@@ -225,8 +226,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'auth_2_profil',
-          path: '/auth2Profil',
+          name: Auth2ProfilWidget.routeName,
+          path: Auth2ProfilWidget.routePath,
           builder: (context, params) => NavBarPage(
             initialPage: '',
             page: Auth2ProfilWidget(
@@ -240,26 +241,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'AGB',
-          path: '/AGB',
+          name: AgbWidget.routeName,
+          path: AgbWidget.routePath,
           builder: (context, params) => NavBarPage(
             initialPage: '',
             page: AgbWidget(),
           ),
         ),
         FFRoute(
-          name: 'VerificationPage',
-          path: '/verificationPage',
+          name: VerificationPageWidget.routeName,
+          path: VerificationPageWidget.routePath,
           builder: (context, params) => VerificationPageWidget(),
         ),
         FFRoute(
-          name: 'AllgemeineGeschftsbedingungen',
-          path: '/allgemeineGeschftsbedingungen',
+          name: AllgemeineGeschftsbedingungenWidget.routeName,
+          path: AllgemeineGeschftsbedingungenWidget.routePath,
           builder: (context, params) => AllgemeineGeschftsbedingungenWidget(),
         ),
         FFRoute(
-          name: 'EmailVerified',
-          path: '/emailVerified',
+          name: EmailVerifiedWidget.routeName,
+          path: EmailVerifiedWidget.routePath,
           builder: (context, params) => EmailVerifiedWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

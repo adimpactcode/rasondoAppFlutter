@@ -10,7 +10,8 @@ Future initFirebase() async {
             projectId: "rasondo-v3-wpjwei",
             storageBucket: "rasondo-v3-wpjwei.appspot.com",
             messagingSenderId: "725243170629",
-            appId: "1:725243170629:web:3b8e064435c61176a8782c"));
+            appId: "1:725243170629:web:3b8e064435c61176a8782c",
+            measurementId: "G-E9JSRCN2D7"));
   } else {
     await Firebase.initializeApp();
   }
