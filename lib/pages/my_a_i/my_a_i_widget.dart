@@ -1991,8 +1991,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         EdgeInsets.all(4.0),
                                                     child: Text(
                                                       gridViewCharactersMainRecord
-                                                          .personality
-                                                          .characterChoice,
+                                                          .age,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -2581,8 +2580,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                     4.0),
                                                             child: Text(
                                                               gridViewCharactersMainRecord
-                                                                  .personality
-                                                                  .characterChoice,
+                                                                  .age,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
