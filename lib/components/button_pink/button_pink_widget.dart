@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -44,7 +45,7 @@ class _ButtonPinkWidgetState extends State<ButtonPinkWidget> {
   Widget build(BuildContext context) {
     return FFButtonWidget(
       onPressed: () async {
-        context.pushNamed('auth_2_Create');
+        context.pushNamed(Auth2CreateWidget.routeName);
       },
       text: FFLocalizations.of(context).getText(
         'p3o8plca' /* Kostenlos Registrieren */,

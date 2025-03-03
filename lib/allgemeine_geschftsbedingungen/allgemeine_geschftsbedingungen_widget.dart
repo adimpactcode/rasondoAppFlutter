@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ export 'allgemeine_geschftsbedingungen_model.dart';
 
 class AllgemeineGeschftsbedingungenWidget extends StatefulWidget {
   const AllgemeineGeschftsbedingungenWidget({super.key});
+
+  static String routeName = 'AllgemeineGeschftsbedingungen';
+  static String routePath = '/allgemeineGeschftsbedingungen';
 
   @override
   State<AllgemeineGeschftsbedingungenWidget> createState() =>
@@ -114,7 +118,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('Home');
+                                          context
+                                              .pushNamed(HomeWidget.routeName);
                                         },
                                         child: Image.asset(
                                           'assets/images/Rasondo_(18).png',
@@ -144,7 +149,7 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
-                                                    'Explore',
+                                                    ExploreWidget.routeName,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
                                                           TransitionInfo(
@@ -218,7 +223,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
-                                                              'Explore');
+                                                              ExploreWidget
+                                                                  .routeName);
                                                         },
                                                         child: Icon(
                                                           Icons.explore,
@@ -240,7 +246,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Chats');
+                                                  context.pushNamed(
+                                                      ChatsWidget.routeName);
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -306,10 +313,12 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                           if (loggedIn ==
                                                               true) {
                                                             context.pushNamed(
-                                                                'Chats');
+                                                                ChatsWidget
+                                                                    .routeName);
                                                           } else {
                                                             context.pushNamed(
-                                                                'auth_2_Create');
+                                                                Auth2CreateWidget
+                                                                    .routeName);
                                                           }
                                                         },
                                                         child: Icon(
@@ -332,7 +341,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Create');
+                                                  context.pushNamed(
+                                                      CreateWidget.routeName);
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -396,7 +406,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
-                                                              'Create');
+                                                              CreateWidget
+                                                                  .routeName);
                                                         },
                                                         child: Icon(
                                                           Icons.add_circle,
@@ -608,7 +619,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                   ),
                                                   onPressed: () async {
                                                     context.pushNamed(
-                                                      'auth_2_profil',
+                                                      Auth2ProfilWidget
+                                                          .routeName,
                                                       queryParameters: {
                                                         'profileReference':
                                                             serializeParam(
@@ -631,8 +643,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context
-                                                  .pushNamed('auth_2_Create');
+                                              context.pushNamed(
+                                                  Auth2CreateWidget.routeName);
                                             },
                                             child: wrapWithModel(
                                               model: _model.buttonPinkModel,
@@ -644,7 +656,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                         if (loggedIn == false)
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              context.pushNamed('auth_2_Login');
+                                              context.pushNamed(
+                                                  Auth2LoginWidget.routeName);
                                             },
                                             text: FFLocalizations.of(context)
                                                 .getText(

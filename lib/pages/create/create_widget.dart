@@ -1,6 +1,7 @@
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/api_requests/api_streaming.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/button_pink/button_pink_widget.dart';
@@ -16,8 +17,10 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:convert';
 import 'dart:math';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
@@ -33,6 +36,9 @@ export 'create_model.dart';
 
 class CreateWidget extends StatefulWidget {
   const CreateWidget({super.key});
+
+  static String routeName = 'Create';
+  static String routePath = '/create';
 
   @override
   State<CreateWidget> createState() => _CreateWidgetState();
@@ -50,6 +56,12 @@ class _CreateWidgetState extends State<CreateWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => CreateModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().imageStyleState = 'Realistik';
+      safeSetState(() {});
+    });
 
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
@@ -129,7 +141,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -176,7 +188,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Explore');
+                              context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -212,9 +224,9 @@ class _CreateWidgetState extends State<CreateWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('Chats');
+                                context.pushNamed(ChatsWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -250,7 +262,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Create');
+                              context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -286,9 +298,9 @@ class _CreateWidgetState extends State<CreateWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('MyAI');
+                                context.pushNamed(MyAIWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -340,7 +352,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel2,
@@ -360,7 +373,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
-                                          context.pushNamed('GetPremium');
+                                          context.pushNamed(
+                                              GetPremiumWidget.routeName);
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
@@ -422,7 +436,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                   onTap: () async {
                                     if (loggedIn == true) {
                                       context.pushNamed(
-                                        'auth_2_profil',
+                                        Auth2ProfilWidget.routeName,
                                         queryParameters: {
                                           'profileReference': serializeParam(
                                             currentUserReference,
@@ -431,7 +445,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -477,7 +492,7 @@ class _CreateWidgetState extends State<CreateWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'auth_2_profil',
+                                  Auth2ProfilWidget.routeName,
                                   queryParameters: {
                                     'profileReference': serializeParam(
                                       currentUserReference,
@@ -530,7 +545,7 @@ class _CreateWidgetState extends State<CreateWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('auth_2_Login');
+                                context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -572,7 +587,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.pushNamedAuth('Home', context.mounted);
+                                context.pushNamedAuth(
+                                    HomeWidget.routeName, context.mounted);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -695,7 +711,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
-                                                      'Home',
+                                                      HomeWidget.routeName,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
                                                             TransitionInfo(
@@ -789,7 +805,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       ),
                                                       onPressed: () async {
                                                         context.pushNamed(
-                                                            'auth_2_Login');
+                                                            Auth2LoginWidget
+                                                                .routeName);
                                                       },
                                                     ),
                                                   ),
@@ -896,7 +913,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         context.pushNamed(
-                                                          'Home',
+                                                          HomeWidget.routeName,
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
@@ -997,7 +1014,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           ),
                                                           onPressed: () async {
                                                             context.pushNamed(
-                                                              'auth_2_profil',
+                                                              Auth2ProfilWidget
+                                                                  .routeName,
                                                               queryParameters: {
                                                                 'profileReference':
                                                                     serializeParam(
@@ -1090,7 +1108,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('Home');
+                                        context.pushNamed(HomeWidget.routeName);
                                       },
                                       child: Image.asset(
                                         'assets/images/Rasondo_(18).png',
@@ -1119,7 +1137,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   Colors.transparent,
                                               onTap: () async {
                                                 context.pushNamed(
-                                                  'Explore',
+                                                  ExploreWidget.routeName,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
                                                         TransitionInfo(
@@ -1192,7 +1210,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         context.pushNamed(
-                                                            'Explore');
+                                                            ExploreWidget
+                                                                .routeName);
                                                       },
                                                       child: Icon(
                                                         Icons.explore,
@@ -1214,7 +1233,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                context.pushNamed('Chats');
+                                                context.pushNamed(
+                                                    ChatsWidget.routeName);
                                               },
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1278,10 +1298,12 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       onTap: () async {
                                                         if (loggedIn == true) {
                                                           context.pushNamed(
-                                                              'Chats');
+                                                              ChatsWidget
+                                                                  .routeName);
                                                         } else {
                                                           context.pushNamed(
-                                                              'auth_2_Create');
+                                                              Auth2CreateWidget
+                                                                  .routeName);
                                                         }
                                                       },
                                                       child: Icon(
@@ -1304,7 +1326,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                context.pushNamed('Create');
+                                                context.pushNamed(
+                                                    CreateWidget.routeName);
                                               },
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1367,7 +1390,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         context.pushNamed(
-                                                            'Create');
+                                                            CreateWidget
+                                                                .routeName);
                                                       },
                                                       child: Icon(
                                                         Icons.add_circle,
@@ -1569,7 +1593,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                 ),
                                                 onPressed: () async {
                                                   context.pushNamed(
-                                                    'auth_2_profil',
+                                                    Auth2ProfilWidget.routeName,
                                                     queryParameters: {
                                                       'profileReference':
                                                           serializeParam(
@@ -1592,7 +1616,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('auth_2_Create');
+                                            context.pushNamed(
+                                                Auth2CreateWidget.routeName);
                                           },
                                           child: wrapWithModel(
                                             model: _model.buttonPinkModel1,
@@ -1604,7 +1629,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                       if (loggedIn == false)
                                         FFButtonWidget(
                                           onPressed: () async {
-                                            context.pushNamed('auth_2_Login');
+                                            context.pushNamed(
+                                                Auth2LoginWidget.routeName);
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(
@@ -2229,9 +2255,14 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             chipSpacing: 8.0,
                                                                                             rowSpacing: 8.0,
                                                                                             multiselect: false,
+                                                                                            initialized: _model.choiceChipsGenderValue != null,
                                                                                             alignment: WrapAlignment.start,
                                                                                             controller: _model.choiceChipsGenderValueController ??= FormFieldController<List<String>>(
-                                                                                              [],
+                                                                                              [
+                                                                                                FFLocalizations.of(context).getText(
+                                                                                                  'njn7p23z' /* Frau */,
+                                                                                                )
+                                                                                              ],
                                                                                             ),
                                                                                             wrapped: true,
                                                                                           ),
@@ -11032,7 +11063,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                               curve: Curves.ease,
                                                                             );
                                                                           } else {
-                                                                            context.pushNamed('auth_2_Create');
+                                                                            context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
                                                                         text: FFLocalizations.of(context)
@@ -11203,7 +11234,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                               curve: Curves.ease,
                                                                             );
                                                                           } else {
-                                                                            context.pushNamed('auth_2_Create');
+                                                                            context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
                                                                         text: FFLocalizations.of(context)
@@ -13146,7 +13177,7 @@ Jetzt Char... */
                                                                                       safeSetState(() {});
 
                                                                                       context.pushNamed(
-                                                                                        'characterProfil',
+                                                                                        CharacterProfilWidget.routeName,
                                                                                         queryParameters: {
                                                                                           'characterId': serializeParam(
                                                                                             _model.createdCharacterId?.reference,
@@ -13177,7 +13208,7 @@ Jetzt Char... */
                                                                                   );
                                                                                 }
                                                                               } else {
-                                                                                context.pushNamed('auth_2_Create');
+                                                                                context.pushNamed(Auth2CreateWidget.routeName);
                                                                               }
 
                                                                               safeSetState(() {});

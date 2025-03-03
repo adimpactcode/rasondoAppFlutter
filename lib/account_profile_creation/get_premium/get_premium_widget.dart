@@ -1,6 +1,7 @@
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/api_requests/api_streaming.dart';
 import '/backend/backend.dart';
 import '/components/button_pink/button_pink_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -9,7 +10,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:convert';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -23,6 +26,9 @@ export 'get_premium_model.dart';
 
 class GetPremiumWidget extends StatefulWidget {
   const GetPremiumWidget({super.key});
+
+  static String routeName = 'GetPremium';
+  static String routePath = '/getPremium';
 
   @override
   State<GetPremiumWidget> createState() => _GetPremiumWidgetState();
@@ -91,7 +97,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -138,7 +144,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Explore');
+                              context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -174,9 +180,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('Chats');
+                                context.pushNamed(ChatsWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -212,7 +218,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Create');
+                              context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -248,9 +254,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('MyAI');
+                                context.pushNamed(MyAIWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -302,7 +308,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel2,
@@ -322,7 +329,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
-                                          context.pushNamed('GetPremium');
+                                          context.pushNamed(
+                                              GetPremiumWidget.routeName);
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
@@ -382,7 +390,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   onTap: () async {
                                     if (loggedIn == true) {
                                       context.pushNamed(
-                                        'auth_2_profil',
+                                        Auth2ProfilWidget.routeName,
                                         queryParameters: {
                                           'profileReference': serializeParam(
                                             currentUserReference,
@@ -391,7 +399,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -437,7 +446,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'auth_2_profil',
+                                  Auth2ProfilWidget.routeName,
                                   queryParameters: {
                                     'profileReference': serializeParam(
                                       currentUserReference,
@@ -490,7 +499,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('auth_2_Login');
+                                context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -532,7 +541,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.pushNamedAuth('Home', context.mounted);
+                                context.pushNamedAuth(
+                                    HomeWidget.routeName, context.mounted);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -631,7 +641,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('Home');
+                                    context.pushNamed(HomeWidget.routeName);
                                   },
                                   child: Image.asset(
                                     'assets/images/Rasondo_(18).png',
@@ -659,7 +669,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'Explore',
+                                              ExploreWidget.routeName,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
                                                     TransitionInfo(
@@ -726,8 +736,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context
-                                                        .pushNamed('Explore');
+                                                    context.pushNamed(
+                                                        ExploreWidget
+                                                            .routeName);
                                                   },
                                                   child: Icon(
                                                     Icons.explore,
@@ -747,7 +758,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('Chats');
+                                            context.pushNamed(
+                                                ChatsWidget.routeName);
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -806,11 +818,13 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     if (loggedIn == true) {
-                                                      context
-                                                          .pushNamed('Chats');
+                                                      context.pushNamed(
+                                                          ChatsWidget
+                                                              .routeName);
                                                     } else {
                                                       context.pushNamed(
-                                                          'auth_2_Create');
+                                                          Auth2CreateWidget
+                                                              .routeName);
                                                     }
                                                   },
                                                   child: Icon(
@@ -831,7 +845,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('Create');
+                                            context.pushNamed(
+                                                CreateWidget.routeName);
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -889,7 +904,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed('Create');
+                                                    context.pushNamed(
+                                                        CreateWidget.routeName);
                                                   },
                                                   child: Icon(
                                                     Icons.add_circle,
@@ -1073,7 +1089,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             ),
                                             onPressed: () async {
                                               context.pushNamed(
-                                                'auth_2_profil',
+                                                Auth2ProfilWidget.routeName,
                                                 queryParameters: {
                                                   'profileReference':
                                                       serializeParam(
@@ -1095,7 +1111,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel1,
@@ -1107,7 +1124,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   if (loggedIn == false)
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        context.pushNamed('auth_2_Login');
+                                        context.pushNamed(
+                                            Auth2LoginWidget.routeName);
                                       },
                                       text: FFLocalizations.of(context).getText(
                                         '9y3d2ts0' /* Login */,
@@ -1230,7 +1248,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 context.pushNamed(
-                                                  'Home',
+                                                  HomeWidget.routeName,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
                                                         TransitionInfo(
@@ -1320,7 +1338,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   ),
                                                   onPressed: () async {
                                                     context.pushNamed(
-                                                        'auth_2_Login');
+                                                        Auth2LoginWidget
+                                                            .routeName);
                                                   },
                                                 ),
                                               ),
@@ -1423,7 +1442,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
-                                                      'Home',
+                                                      HomeWidget.routeName,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
                                                             TransitionInfo(
@@ -1517,7 +1536,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       ),
                                                       onPressed: () async {
                                                         context.pushNamed(
-                                                          'auth_2_profil',
+                                                          Auth2ProfilWidget
+                                                              .routeName,
                                                           queryParameters: {
                                                             'profileReference':
                                                                 serializeParam(
@@ -2505,7 +2525,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                         TapGestureRecognizer()
                                                           ..onTap = () async {
                                                             context.pushNamed(
-                                                                'AllgemeineGeschftsbedingungen');
+                                                                AllgemeineGeschftsbedingungenWidget
+                                                                    .routeName);
                                                           },
                                                   )
                                                 ],
@@ -2597,7 +2618,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 );
 
                                                 context.pushNamed(
-                                                  'auth_2_profil',
+                                                  Auth2ProfilWidget.routeName,
                                                   queryParameters: {
                                                     'profileReference':
                                                         serializeParam(
@@ -2630,7 +2651,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 );
                                               }
                                             } else {
-                                              context.pushNamed('GetPremium');
+                                              context.pushNamed(
+                                                  GetPremiumWidget.routeName);
                                             }
                                           } else {
                                             await showDialog(
@@ -2673,7 +2695,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           );
                                         }
                                       } else {
-                                        context.pushNamed('Create');
+                                        context
+                                            .pushNamed(CreateWidget.routeName);
                                       }
 
                                       safeSetState(() {});

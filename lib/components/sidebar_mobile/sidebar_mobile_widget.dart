@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -88,7 +89,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('Home');
+                        context.pushNamed(HomeWidget.routeName);
                       },
                       child: Image.asset(
                         'assets/images/Rasondo_(18).png',
@@ -120,7 +121,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('Explore');
+                    context.pushNamed(ExploreWidget.routeName);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -151,7 +152,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('Chats');
+                    context.pushNamed(ChatsWidget.routeName);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -182,7 +183,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('Create');
+                    context.pushNamed(CreateWidget.routeName);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -213,7 +214,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('MyAI');
+                    context.pushNamed(MyAIWidget.routeName);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -258,7 +259,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('auth_2_Create');
+                            context.pushNamed(Auth2CreateWidget.routeName);
                           },
                           child: wrapWithModel(
                             model: _model.buttonPinkModel,
@@ -316,7 +317,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.pushNamed(
-                        'auth_2_profil',
+                        Auth2ProfilWidget.routeName,
                         queryParameters: {
                           'profileReference': serializeParam(
                             currentUserReference,
@@ -358,7 +359,7 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('auth_2_Login');
+                    context.pushNamed(Auth2LoginWidget.routeName);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,

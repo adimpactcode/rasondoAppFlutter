@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/api_requests/api_streaming.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/message_limit_c_t_a_widget.dart';
@@ -7,8 +8,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:convert';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +32,9 @@ class ChatPageProWidget extends StatefulWidget {
 
   final DocumentReference? characterId;
   final DocumentReference? userReference;
+
+  static String routeName = 'chatPagePro';
+  static String routePath = '/chatPagePro';
 
   @override
   State<ChatPageProWidget> createState() => _ChatPageProWidgetState();
@@ -318,7 +324,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                       FFButtonWidget(
                                         onPressed: () async {
                                           context.pushNamed(
-                                            'characterProfil',
+                                            CharacterProfilWidget.routeName,
                                             queryParameters: {
                                               'characterId': serializeParam(
                                                 widget!.characterId,
@@ -598,7 +604,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                     ),
                                     onPressed: () async {
                                       context.pushNamed(
-                                        'ImageToImage',
+                                        ImageToImageWidget.routeName,
                                         queryParameters: {
                                           'characterReferenz': serializeParam(
                                             widget!.characterId,

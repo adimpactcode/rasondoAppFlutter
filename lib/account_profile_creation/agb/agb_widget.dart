@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ export 'agb_model.dart';
 
 class AgbWidget extends StatefulWidget {
   const AgbWidget({super.key});
+
+  static String routeName = 'AGB';
+  static String routePath = '/AGB';
 
   @override
   State<AgbWidget> createState() => _AgbWidgetState();
@@ -88,7 +92,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -135,7 +139,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Explore');
+                              context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -171,9 +175,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('Chats');
+                                context.pushNamed(ChatsWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -209,7 +213,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Create');
+                              context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -245,9 +249,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('MyAI');
+                                context.pushNamed(MyAIWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -299,7 +303,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel2,
@@ -319,7 +324,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
-                                          context.pushNamed('GetPremium');
+                                          context.pushNamed(
+                                              GetPremiumWidget.routeName);
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
@@ -381,7 +387,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                   onTap: () async {
                                     if (loggedIn == true) {
                                       context.pushNamed(
-                                        'auth_2_profil',
+                                        Auth2ProfilWidget.routeName,
                                         queryParameters: {
                                           'profileReference': serializeParam(
                                             currentUserReference,
@@ -390,7 +396,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -436,7 +443,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'auth_2_profil',
+                                  Auth2ProfilWidget.routeName,
                                   queryParameters: {
                                     'profileReference': serializeParam(
                                       currentUserReference,
@@ -489,7 +496,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('auth_2_Login');
+                                context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -531,7 +538,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.pushNamedAuth('Home', context.mounted);
+                                context.pushNamedAuth(
+                                    HomeWidget.routeName, context.mounted);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -629,7 +637,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -657,7 +665,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           context.pushNamed(
-                                            'Explore',
+                                            ExploreWidget.routeName,
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
@@ -721,7 +729,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Explore');
+                                                  context.pushNamed(
+                                                      ExploreWidget.routeName);
                                                 },
                                                 child: Icon(
                                                   Icons.explore,
@@ -741,7 +750,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('Chats');
+                                          context
+                                              .pushNamed(ChatsWidget.routeName);
                                         },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -797,10 +807,12 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   if (loggedIn == true) {
-                                                    context.pushNamed('Chats');
+                                                    context.pushNamed(
+                                                        ChatsWidget.routeName);
                                                   } else {
                                                     context.pushNamed(
-                                                        'auth_2_Create');
+                                                        Auth2CreateWidget
+                                                            .routeName);
                                                   }
                                                 },
                                                 child: Icon(
@@ -821,7 +833,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('Create');
+                                          context.pushNamed(
+                                              CreateWidget.routeName);
                                         },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -876,7 +889,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Create');
+                                                  context.pushNamed(
+                                                      CreateWidget.routeName);
                                                 },
                                                 child: Icon(
                                                   Icons.add_circle,
@@ -1052,7 +1066,7 @@ class _AgbWidgetState extends State<AgbWidget> {
                                           ),
                                           onPressed: () async {
                                             context.pushNamed(
-                                              'auth_2_profil',
+                                              Auth2ProfilWidget.routeName,
                                               queryParameters: {
                                                 'profileReference':
                                                     serializeParam(
@@ -1074,7 +1088,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     },
                                     child: wrapWithModel(
                                       model: _model.buttonPinkModel1,
@@ -1085,7 +1100,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 if (loggedIn == false)
                                   FFButtonWidget(
                                     onPressed: () async {
-                                      context.pushNamed('auth_2_Login');
+                                      context.pushNamed(
+                                          Auth2LoginWidget.routeName);
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'dxmcv2wq' /* Login */,

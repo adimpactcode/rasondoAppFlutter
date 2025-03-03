@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ export 'datenschutz_model.dart';
 
 class DatenschutzWidget extends StatefulWidget {
   const DatenschutzWidget({super.key});
+
+  static String routeName = 'Datenschutz';
+  static String routePath = '/Datenschutz';
 
   @override
   State<DatenschutzWidget> createState() => _DatenschutzWidgetState();
@@ -88,7 +92,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
                                   'assets/images/Rasondo_(18).png',
@@ -135,7 +139,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Explore');
+                              context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -171,9 +175,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('Chats');
+                                context.pushNamed(ChatsWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -209,7 +213,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('Create');
+                              context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -245,9 +249,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (loggedIn == true) {
-                                context.pushNamed('MyAI');
+                                context.pushNamed(MyAIWidget.routeName);
                               } else {
-                                context.pushNamed('auth_2_Create');
+                                context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
                             child: Row(
@@ -299,7 +303,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('auth_2_Create');
+                                        context.pushNamed(
+                                            Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
                                         model: _model.buttonPinkModel2,
@@ -319,7 +324,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
-                                          context.pushNamed('GetPremium');
+                                          context.pushNamed(
+                                              GetPremiumWidget.routeName);
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
@@ -381,7 +387,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                   onTap: () async {
                                     if (loggedIn == true) {
                                       context.pushNamed(
-                                        'auth_2_profil',
+                                        Auth2ProfilWidget.routeName,
                                         queryParameters: {
                                           'profileReference': serializeParam(
                                             currentUserReference,
@@ -390,7 +396,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -436,7 +443,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'auth_2_profil',
+                                  Auth2ProfilWidget.routeName,
                                   queryParameters: {
                                     'profileReference': serializeParam(
                                       currentUserReference,
@@ -489,7 +496,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('auth_2_Login');
+                                context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -531,7 +538,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.pushNamedAuth('Home', context.mounted);
+                                context.pushNamedAuth(
+                                    HomeWidget.routeName, context.mounted);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -636,7 +644,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('Home');
+                                          context
+                                              .pushNamed(HomeWidget.routeName);
                                         },
                                         child: Image.asset(
                                           'assets/images/Rasondo_(18).png',
@@ -666,7 +675,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
-                                                    'Explore',
+                                                    ExploreWidget.routeName,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
                                                           TransitionInfo(
@@ -740,7 +749,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
-                                                              'Explore');
+                                                              ExploreWidget
+                                                                  .routeName);
                                                         },
                                                         child: Icon(
                                                           Icons.explore,
@@ -762,7 +772,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Chats');
+                                                  context.pushNamed(
+                                                      ChatsWidget.routeName);
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -828,10 +839,12 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                           if (loggedIn ==
                                                               true) {
                                                             context.pushNamed(
-                                                                'Chats');
+                                                                ChatsWidget
+                                                                    .routeName);
                                                           } else {
                                                             context.pushNamed(
-                                                                'auth_2_Create');
+                                                                Auth2CreateWidget
+                                                                    .routeName);
                                                           }
                                                         },
                                                         child: Icon(
@@ -854,7 +867,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Create');
+                                                  context.pushNamed(
+                                                      CreateWidget.routeName);
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -918,7 +932,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
-                                                              'Create');
+                                                              CreateWidget
+                                                                  .routeName);
                                                         },
                                                         child: Icon(
                                                           Icons.add_circle,
@@ -1130,7 +1145,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                   ),
                                                   onPressed: () async {
                                                     context.pushNamed(
-                                                      'auth_2_profil',
+                                                      Auth2ProfilWidget
+                                                          .routeName,
                                                       queryParameters: {
                                                         'profileReference':
                                                             serializeParam(
@@ -1153,8 +1169,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context
-                                                  .pushNamed('auth_2_Create');
+                                              context.pushNamed(
+                                                  Auth2CreateWidget.routeName);
                                             },
                                             child: wrapWithModel(
                                               model: _model.buttonPinkModel1,
@@ -1166,7 +1182,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         if (loggedIn == false)
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              context.pushNamed('auth_2_Login');
+                                              context.pushNamed(
+                                                  Auth2LoginWidget.routeName);
                                             },
                                             text: FFLocalizations.of(context)
                                                 .getText(

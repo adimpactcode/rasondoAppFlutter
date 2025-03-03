@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:ui';
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -30,6 +31,9 @@ class CharacterProfilWidget extends StatefulWidget {
   });
 
   final DocumentReference? characterId;
+
+  static String routeName = 'characterProfil';
+  static String routePath = '/characterProfil';
 
   @override
   State<CharacterProfilWidget> createState() => _CharacterProfilWidgetState();
@@ -151,7 +155,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        context.pushNamed('Home');
+                                        context.pushNamed(HomeWidget.routeName);
                                       },
                                       child: Image.asset(
                                         'assets/images/Rasondo_(18).png',
@@ -198,7 +202,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('Explore');
+                                    context.pushNamed(ExploreWidget.routeName);
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -238,9 +242,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     if (loggedIn == true) {
-                                      context.pushNamed('Chats');
+                                      context.pushNamed(ChatsWidget.routeName);
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -280,7 +285,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('Create');
+                                    context.pushNamed(CreateWidget.routeName);
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -320,9 +325,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     if (loggedIn == true) {
-                                      context.pushNamed('MyAI');
+                                      context.pushNamed(MyAIWidget.routeName);
                                     } else {
-                                      context.pushNamed('auth_2_Create');
+                                      context.pushNamed(
+                                          Auth2CreateWidget.routeName);
                                     }
                                   },
                                   child: Row(
@@ -380,8 +386,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context
-                                                  .pushNamed('auth_2_Create');
+                                              context.pushNamed(
+                                                  Auth2CreateWidget.routeName);
                                             },
                                             child: wrapWithModel(
                                               model: _model.buttonPinkModel2,
@@ -403,7 +409,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             builder: (context) =>
                                                 FFButtonWidget(
                                               onPressed: () async {
-                                                context.pushNamed('GetPremium');
+                                                context.pushNamed(
+                                                    GetPremiumWidget.routeName);
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
@@ -467,7 +474,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       onTap: () async {
                                         if (loggedIn == true) {
                                           context.pushNamed(
-                                            'auth_2_profil',
+                                            Auth2ProfilWidget.routeName,
                                             queryParameters: {
                                               'profileReference':
                                                   serializeParam(
@@ -477,7 +484,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             }.withoutNulls,
                                           );
                                         } else {
-                                          context.pushNamed('auth_2_Create');
+                                          context.pushNamed(
+                                              Auth2CreateWidget.routeName);
                                         }
                                       },
                                       child: Row(
@@ -523,7 +531,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       context.pushNamed(
-                                        'auth_2_profil',
+                                        Auth2ProfilWidget.routeName,
                                         queryParameters: {
                                           'profileReference': serializeParam(
                                             currentUserReference,
@@ -582,7 +590,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('auth_2_Login');
+                                      context.pushNamed(
+                                          Auth2LoginWidget.routeName);
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -628,7 +637,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                           .clearRedirectLocation();
 
                                       context.pushNamedAuth(
-                                          'Home', context.mounted);
+                                          HomeWidget.routeName,
+                                          context.mounted);
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -763,7 +773,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               .transparent,
                                                           onTap: () async {
                                                             context.pushNamed(
-                                                              'Home',
+                                                              HomeWidget
+                                                                  .routeName,
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
@@ -869,7 +880,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               onPressed:
                                                                   () async {
                                                                 context.pushNamed(
-                                                                    'auth_2_Login');
+                                                                    Auth2LoginWidget
+                                                                        .routeName);
                                                               },
                                                             ),
                                                           ),
@@ -983,7 +995,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     .transparent,
                                                             onTap: () async {
                                                               context.pushNamed(
-                                                                'Home',
+                                                                HomeWidget
+                                                                    .routeName,
                                                                 extra: <String,
                                                                     dynamic>{
                                                                   kTransitionInfoKey:
@@ -1091,7 +1104,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     () async {
                                                                   context
                                                                       .pushNamed(
-                                                                    'auth_2_profil',
+                                                                    Auth2ProfilWidget
+                                                                        .routeName,
                                                                     queryParameters:
                                                                         {
                                                                       'profileReference':
@@ -1217,7 +1231,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
-                                                              'Home');
+                                                              HomeWidget
+                                                                  .routeName);
                                                         },
                                                         child: Image.asset(
                                                           'assets/images/Rasondo_(18).png',
@@ -1261,7 +1276,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     () async {
                                                                   context
                                                                       .pushNamed(
-                                                                    'Explore',
+                                                                    ExploreWidget
+                                                                        .routeName,
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       kTransitionInfoKey:
@@ -1338,7 +1354,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         onTap:
                                                                             () async {
                                                                           context
-                                                                              .pushNamed('Explore');
+                                                                              .pushNamed(ExploreWidget.routeName);
                                                                         },
                                                                         child:
                                                                             Icon(
@@ -1369,7 +1385,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 onTap:
                                                                     () async {
                                                                   context.pushNamed(
-                                                                      'Chats');
+                                                                      ChatsWidget
+                                                                          .routeName);
                                                                 },
                                                                 child: Row(
                                                                   mainAxisSize:
@@ -1436,9 +1453,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             () async {
                                                                           if (loggedIn ==
                                                                               true) {
-                                                                            context.pushNamed('Chats');
+                                                                            context.pushNamed(ChatsWidget.routeName);
                                                                           } else {
-                                                                            context.pushNamed('auth_2_Create');
+                                                                            context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
                                                                         child:
@@ -1470,7 +1487,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 onTap:
                                                                     () async {
                                                                   context.pushNamed(
-                                                                      'Create');
+                                                                      CreateWidget
+                                                                          .routeName);
                                                                 },
                                                                 child: Row(
                                                                   mainAxisSize:
@@ -1536,7 +1554,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         onTap:
                                                                             () async {
                                                                           context
-                                                                              .pushNamed('Create');
+                                                                              .pushNamed(CreateWidget.routeName);
                                                                         },
                                                                         child:
                                                                             Icon(
@@ -1812,7 +1830,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                       () async {
                                                                     context
                                                                         .pushNamed(
-                                                                      'auth_2_profil',
+                                                                      Auth2ProfilWidget
+                                                                          .routeName,
                                                                       queryParameters:
                                                                           {
                                                                         'profileReference':
@@ -1842,7 +1861,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     .transparent,
                                                             onTap: () async {
                                                               context.pushNamed(
-                                                                  'auth_2_Create');
+                                                                  Auth2CreateWidget
+                                                                      .routeName);
                                                             },
                                                             child:
                                                                 wrapWithModel(
@@ -1860,7 +1880,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                             onPressed:
                                                                 () async {
                                                               context.pushNamed(
-                                                                  'auth_2_Login');
+                                                                  Auth2LoginWidget
+                                                                      .routeName);
                                                             },
                                                             text: FFLocalizations
                                                                     .of(context)
@@ -2557,7 +2578,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           true) {
                                                                         context
                                                                             .pushNamed(
-                                                                          'chatPagePro',
+                                                                          ChatPageProWidget
+                                                                              .routeName,
                                                                           queryParameters:
                                                                               {
                                                                             'characterId':
@@ -2574,7 +2596,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         );
                                                                       } else {
                                                                         context.pushNamed(
-                                                                            'auth_2_Create');
+                                                                            Auth2CreateWidget.routeName);
                                                                       }
                                                                     },
                                                                     text: FFLocalizations.of(
@@ -2651,7 +2673,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           true) {
                                                                         context
                                                                             .pushNamed(
-                                                                          'ImageToImage',
+                                                                          ImageToImageWidget
+                                                                              .routeName,
                                                                           queryParameters:
                                                                               {
                                                                             'characterReferenz':
@@ -2668,7 +2691,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         );
                                                                       } else {
                                                                         context.pushNamed(
-                                                                            'auth_2_Create');
+                                                                            Auth2CreateWidget.routeName);
                                                                       }
                                                                     },
                                                                     text: FFLocalizations.of(
@@ -2937,7 +2960,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             true) {
                                                                           context
                                                                               .pushNamed(
-                                                                            'chatPagePro',
+                                                                            ChatPageProWidget.routeName,
                                                                             queryParameters:
                                                                                 {
                                                                               'characterId': serializeParam(
@@ -2952,7 +2975,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           );
                                                                         } else {
                                                                           context
-                                                                              .pushNamed('auth_2_Create');
+                                                                              .pushNamed(Auth2CreateWidget.routeName);
                                                                         }
                                                                       },
                                                                       text: FFLocalizations.of(
@@ -2999,7 +3022,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             true) {
                                                                           context
                                                                               .pushNamed(
-                                                                            'ImageToImage',
+                                                                            ImageToImageWidget.routeName,
                                                                             queryParameters:
                                                                                 {
                                                                               'characterReferenz': serializeParam(
@@ -3014,7 +3037,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           );
                                                                         } else {
                                                                           context
-                                                                              .pushNamed('auth_2_Create');
+                                                                              .pushNamed(Auth2CreateWidget.routeName);
                                                                         }
                                                                       },
                                                                       text: FFLocalizations.of(

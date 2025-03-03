@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,6 +16,9 @@ export 'auth2_login_model.dart';
 
 class Auth2LoginWidget extends StatefulWidget {
   const Auth2LoginWidget({super.key});
+
+  static String routeName = 'auth_2_Login';
+  static String routePath = '/auth2Login';
 
   @override
   State<Auth2LoginWidget> createState() => _Auth2LoginWidgetState();
@@ -97,7 +101,7 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                   size: 32.0,
                                 ),
                                 onPressed: () async {
-                                  context.pushNamed('Home');
+                                  context.pushNamed(HomeWidget.routeName);
                                 },
                               ),
                             ),
@@ -403,7 +407,7 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       }
 
                                       context.pushNamedAuth(
-                                        'Home',
+                                        HomeWidget.routeName,
                                         context.mounted,
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
@@ -486,8 +490,8 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                         return;
                                       }
 
-                                      context.goNamedAuth(
-                                          'Home', context.mounted);
+                                      context.goNamedAuth(HomeWidget.routeName,
+                                          context.mounted);
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'y9rmpn87' /* Continue with Google */,
@@ -546,7 +550,7 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         context.pushNamed(
-                                          'auth_2_Create',
+                                          Auth2CreateWidget.routeName,
                                           extra: <String, dynamic>{
                                             kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
@@ -621,7 +625,8 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       0.0, 16.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      context.goNamed('auth_2_ForgotPassword');
+                                      context.goNamed(
+                                          Auth2ForgotPasswordWidget.routeName);
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'lsjmju2h' /* Passwort vergessen? */,

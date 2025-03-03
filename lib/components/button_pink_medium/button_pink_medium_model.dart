@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'button_pink_medium_widget.dart' show ButtonPinkMediumWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

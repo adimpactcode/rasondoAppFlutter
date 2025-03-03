@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -90,7 +91,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('Home');
+                    context.pushNamed(HomeWidget.routeName);
                   },
                   child: Image.asset(
                     'assets/images/Rasondo_(18).png',
@@ -117,7 +118,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             context.pushNamed(
-                              'Explore',
+                              ExploreWidget.routeName,
                               extra: <String, dynamic>{
                                 kTransitionInfoKey: TransitionInfo(
                                   hasTransition: true,
@@ -135,7 +136,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Explore');
+                                  context.pushNamed(ExploreWidget.routeName);
                                 },
                                 child: Icon(
                                   Icons.explore,
@@ -152,7 +153,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Chats');
+                            context.pushNamed(ChatsWidget.routeName);
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -163,7 +164,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Chats');
+                                  context.pushNamed(ChatsWidget.routeName);
                                 },
                                 child: Icon(
                                   Icons.wechat_outlined,
@@ -180,7 +181,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('Create');
+                            context.pushNamed(CreateWidget.routeName);
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -191,7 +192,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('Create');
+                                  context.pushNamed(CreateWidget.routeName);
                                 },
                                 child: Icon(
                                   Icons.add_circle,
@@ -263,7 +264,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                         ),
                         onPressed: () async {
                           context.pushNamed(
-                            'auth_2_profil',
+                            Auth2ProfilWidget.routeName,
                             queryParameters: {
                               'profileReference': serializeParam(
                                 currentUserReference,
@@ -281,7 +282,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('auth_2_Create');
+                        context.pushNamed(Auth2CreateWidget.routeName);
                       },
                       child: wrapWithModel(
                         model: _model.buttonPinkModel,
@@ -292,7 +293,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                   if (loggedIn == false)
                     FFButtonWidget(
                       onPressed: () async {
-                        context.pushNamed('auth_2_Login');
+                        context.pushNamed(Auth2LoginWidget.routeName);
                       },
                       text: FFLocalizations.of(context).getText(
                         'wtj931sx' /* Login */,

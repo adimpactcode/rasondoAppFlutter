@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,6 +15,9 @@ export 'verification_page_model.dart';
 
 class VerificationPageWidget extends StatefulWidget {
   const VerificationPageWidget({super.key});
+
+  static String routeName = 'VerificationPage';
+  static String routePath = '/verificationPage';
 
   @override
   State<VerificationPageWidget> createState() => _VerificationPageWidgetState();
@@ -33,12 +37,12 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await authManager.refreshUser();
       if (currentUserEmailVerified == true) {
-        context.pushNamed('auth_2_profil');
+        context.pushNamed(Auth2ProfilWidget.routeName);
       } else {
         await Future.delayed(const Duration(milliseconds: 1000));
         if (currentUserEmailVerified == true) {
           context.pushNamed(
-            'auth_2_profil',
+            Auth2ProfilWidget.routeName,
             queryParameters: {
               'profileReference': serializeParam(
                 currentUserReference,
@@ -126,7 +130,7 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                                 onPressed: () async {
                                   await authManager.refreshUser();
                                   if (currentUserEmailVerified == true) {
-                                    context.pushNamed('Home');
+                                    context.pushNamed(HomeWidget.routeName);
                                   } else {
                                     await showDialog(
                                       context: context,

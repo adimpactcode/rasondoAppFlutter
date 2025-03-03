@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +12,9 @@ export 'email_verified_model.dart';
 
 class EmailVerifiedWidget extends StatefulWidget {
   const EmailVerifiedWidget({super.key});
+
+  static String routeName = 'EmailVerified';
+  static String routePath = '/emailVerified';
 
   @override
   State<EmailVerifiedWidget> createState() => _EmailVerifiedWidgetState();
@@ -114,7 +118,7 @@ class _EmailVerifiedWidgetState extends State<EmailVerifiedWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              context.pushNamed('Home');
+                              context.pushNamed(HomeWidget.routeName);
                             },
                             text: FFLocalizations.of(context).getText(
                               '8h0m2pnj' /* Login */,

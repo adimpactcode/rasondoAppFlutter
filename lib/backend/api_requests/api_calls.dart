@@ -190,6 +190,41 @@ class NovitaFunctionLLMCall {
       ) as List?;
 }
 
+class NovitaFunctionLLMStreamCall {
+  static Future<ApiCallResponse> call({
+    dynamic? messagesJson,
+    String? characterId = '0zjZs5Enh8YgEXQ6Jx8B',
+    String? userId = 'JIxHsLuFKNWif20WesSMdaKKJhs2',
+    String? userInput = '',
+  }) async {
+    final messages = _serializeJson(messagesJson);
+    final ffApiRequestBody = '''
+{
+  "characterId": "${characterId}",
+  "userId": "${userId}",
+  "userInput": "${userInput}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'novitaFunctionLLMStream',
+      apiUrl:
+          'https://us-central1-rasondo-v3-wpjwei.cloudfunctions.net/makePostCall',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: true,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class NovitaFunctionTextToImageCall {
   static Future<ApiCallResponse> call({
     String? characterId = '',

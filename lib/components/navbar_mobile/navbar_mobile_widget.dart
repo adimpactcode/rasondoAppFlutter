@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -94,7 +95,7 @@ class _NavbarMobileWidgetState extends State<NavbarMobileWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               context.pushNamed(
-                                'Home',
+                                HomeWidget.routeName,
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
@@ -164,7 +165,7 @@ class _NavbarMobileWidgetState extends State<NavbarMobileWidget> {
                                 ),
                                 onPressed: () async {
                                   context.pushNamed(
-                                    'auth_2_profil',
+                                    Auth2ProfilWidget.routeName,
                                     queryParameters: {
                                       'profileReference': serializeParam(
                                         currentUserReference,

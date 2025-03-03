@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,6 +17,9 @@ export 'auth2_create_model.dart';
 
 class Auth2CreateWidget extends StatefulWidget {
   const Auth2CreateWidget({super.key});
+
+  static String routeName = 'auth_2_Create';
+  static String routePath = '/auth2Create';
 
   @override
   State<Auth2CreateWidget> createState() => _Auth2CreateWidgetState();
@@ -707,7 +711,7 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                             .sendEmailVerification();
 
                                         context.pushNamedAuth(
-                                            'VerificationPage',
+                                            VerificationPageWidget.routeName,
                                             context.mounted);
 
                                         if (currentUserEmailVerified) {
@@ -730,7 +734,7 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                           );
 
                                           context.pushNamedAuth(
-                                            'auth_2_profil',
+                                            Auth2ProfilWidget.routeName,
                                             context.mounted,
                                             queryParameters: {
                                               'profileReference':
@@ -840,7 +844,8 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                         }
 
                                         context.goNamedAuth(
-                                            'Home', context.mounted);
+                                            HomeWidget.routeName,
+                                            context.mounted);
                                       },
                                       text: FFLocalizations.of(context).getText(
                                         's6kisexe' /* Continue with Google */,
@@ -900,7 +905,7 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           context.pushNamed(
-                                            'auth_2_Login',
+                                            Auth2LoginWidget.routeName,
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   TransitionInfo(
