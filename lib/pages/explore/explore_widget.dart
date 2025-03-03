@@ -2167,12 +2167,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         EdgeInsets.all(
                                                                             4.0),
                                                                     child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        gridViewCharactersMainRecord
-                                                                            .characterDisplay,
-                                                                        'Character',
-                                                                      ),
+                                                                      gridViewCharactersMainRecord
+                                                                          .personality
+                                                                          .characterChoice,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -2484,10 +2481,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
-                                                                            valueOrDefault<String>(
-                                                                              gridViewCharactersMainRecord.characterDisplay,
-                                                                              'Character',
-                                                                            ),
+                                                                            gridViewCharactersMainRecord.personality.characterChoice,
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                   color: FlutterFlowTheme.of(context).tertiary,
@@ -2781,10 +2775,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
-                                                                            valueOrDefault<String>(
-                                                                              gridViewCharactersMainRecord.characterDisplay,
-                                                                              'Character',
-                                                                            ),
+                                                                            gridViewCharactersMainRecord.personality.personalityChoice,
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                   color: FlutterFlowTheme.of(context).tertiary,
@@ -3199,10 +3190,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 Padding(
                                                                               padding: EdgeInsets.all(4.0),
                                                                               child: Text(
-                                                                                valueOrDefault<String>(
-                                                                                  gridViewCharactersMainRecord.characterDisplay,
-                                                                                  'Character',
-                                                                                ),
+                                                                                gridViewCharactersMainRecord.personality.characterChoice,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).tertiary,
@@ -3499,10 +3487,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 EdgeInsets.all(4.0),
                                                                             child:
                                                                                 Text(
-                                                                              '${valueOrDefault<String>(
-                                                                                gridViewCharactersMainRecord.characterDisplay,
-                                                                                'Character',
-                                                                              )}jahre',
+                                                                              gridViewCharactersMainRecord.personality.characterChoice,
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                     color: FlutterFlowTheme.of(context).tertiary,
@@ -3787,10 +3772,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 Padding(
                                                                               padding: EdgeInsets.all(4.0),
                                                                               child: Text(
-                                                                                valueOrDefault<String>(
-                                                                                  gridViewCharactersMainRecord.characterDisplay,
-                                                                                  'Character',
-                                                                                ),
+                                                                                gridViewCharactersMainRecord.personality.characterChoice,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).tertiary,

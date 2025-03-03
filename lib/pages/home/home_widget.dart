@@ -3632,12 +3632,9 @@ Ani... */
                                                                         EdgeInsets.all(
                                                                             4.0),
                                                                     child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        gridDisplayItemItem
-                                                                            .characterDisplay,
-                                                                        'Character',
-                                                                      ),
+                                                                      gridDisplayItemItem
+                                                                          .personality
+                                                                          .characterChoice,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -4223,12 +4220,9 @@ Ani... */
                                                                         .all(
                                                                             4.0),
                                                                 child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    getDisplayItemMobileItem
-                                                                        .characterDisplay,
-                                                                    'Character',
-                                                                  ),
+                                                                  getDisplayItemMobileItem
+                                                                      .personality
+                                                                      .characterChoice,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
