@@ -2221,7 +2221,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                             ),
                                                                                           ),
                                                                                           Text(
-                                                                                            '${columnCharactersMainRecord.age}jahre',
+                                                                                            columnCharactersMainRecord.age,
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                   fontSize: 18.0,
@@ -3224,7 +3224,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                               Text(
-                                                                                                '${columnCharactersMainRecord.age}jahre',
+                                                                                                columnCharactersMainRecord.age,
                                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                       fontSize: 20.0,

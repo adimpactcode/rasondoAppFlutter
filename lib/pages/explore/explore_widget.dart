@@ -2167,7 +2167,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         EdgeInsets.all(
                                                                             4.0),
                                                                     child: Text(
-                                                                      '${gridViewCharactersMainRecord.age}jahre',
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        gridViewCharactersMainRecord
+                                                                            .characterDisplay,
+                                                                        'Character',
+                                                                      ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -2479,7 +2484,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
-                                                                            '${gridViewCharactersMainRecord.age}jahre',
+                                                                            valueOrDefault<String>(
+                                                                              gridViewCharactersMainRecord.characterDisplay,
+                                                                              'Character',
+                                                                            ),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                   color: FlutterFlowTheme.of(context).tertiary,
@@ -2773,7 +2781,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               EdgeInsets.all(4.0),
                                                                           child:
                                                                               Text(
-                                                                            '${gridViewCharactersMainRecord.age}jahre',
+                                                                            valueOrDefault<String>(
+                                                                              gridViewCharactersMainRecord.characterDisplay,
+                                                                              'Character',
+                                                                            ),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                   color: FlutterFlowTheme.of(context).tertiary,
@@ -3188,7 +3199,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 Padding(
                                                                               padding: EdgeInsets.all(4.0),
                                                                               child: Text(
-                                                                                '${gridViewCharactersMainRecord.age}jahre',
+                                                                                valueOrDefault<String>(
+                                                                                  gridViewCharactersMainRecord.characterDisplay,
+                                                                                  'Character',
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).tertiary,
@@ -3485,7 +3499,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 EdgeInsets.all(4.0),
                                                                             child:
                                                                                 Text(
-                                                                              '${gridViewCharactersMainRecord.age}jahre',
+                                                                              '${valueOrDefault<String>(
+                                                                                gridViewCharactersMainRecord.characterDisplay,
+                                                                                'Character',
+                                                                              )}jahre',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                     color: FlutterFlowTheme.of(context).tertiary,
@@ -3770,7 +3787,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 Padding(
                                                                               padding: EdgeInsets.all(4.0),
                                                                               child: Text(
-                                                                                '${gridViewCharactersMainRecord.age}jahre',
+                                                                                valueOrDefault<String>(
+                                                                                  gridViewCharactersMainRecord.characterDisplay,
+                                                                                  'Character',
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                       color: FlutterFlowTheme.of(context).tertiary,

@@ -472,8 +472,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Man',
     },
     'njn7p23z': {
-      'de': '',
-      'en': 'Product Design',
+      'de': 'Frau',
+      'en': 'Woman',
     },
     '6hrpxbh4': {
       'de': 'Los geht`s',

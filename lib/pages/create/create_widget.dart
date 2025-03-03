@@ -2255,9 +2255,14 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             chipSpacing: 8.0,
                                                                                             rowSpacing: 8.0,
                                                                                             multiselect: false,
+                                                                                            initialized: _model.choiceChipsGenderValue != null,
                                                                                             alignment: WrapAlignment.start,
                                                                                             controller: _model.choiceChipsGenderValueController ??= FormFieldController<List<String>>(
-                                                                                              [],
+                                                                                              [
+                                                                                                FFLocalizations.of(context).getText(
+                                                                                                  'njn7p23z' /* Frau */,
+                                                                                                )
+                                                                                              ],
                                                                                             ),
                                                                                             wrapped: true,
                                                                                           ),

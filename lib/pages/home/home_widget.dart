@@ -3632,7 +3632,12 @@ Ani... */
                                                                         EdgeInsets.all(
                                                                             4.0),
                                                                     child: Text(
-                                                                      '${gridDisplayItemItem.age}jahre',
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        gridDisplayItemItem
+                                                                            .characterDisplay,
+                                                                        'Character',
+                                                                      ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -4218,7 +4223,12 @@ Ani... */
                                                                         .all(
                                                                             4.0),
                                                                 child: Text(
-                                                                  '${getDisplayItemMobileItem.age}jahre',
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    getDisplayItemMobileItem
+                                                                        .characterDisplay,
+                                                                    'Character',
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
