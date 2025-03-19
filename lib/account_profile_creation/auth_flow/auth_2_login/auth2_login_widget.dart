@@ -34,6 +34,8 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
     super.initState();
     _model = createModel(context, () => Auth2LoginModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'auth_2_Login'});
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -101,6 +103,10 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                   size: 32.0,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'AUTH_2_LOGIN_PAGE_arrow_back_ICN_ON_TAP');
+                                  logFirebaseEvent('IconButton_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                               ),
@@ -394,6 +400,9 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'AUTH_2_LOGIN_PAGE_LOGIN_BTN_ON_TAP');
+                                      logFirebaseEvent('Button_auth');
                                       GoRouter.of(context).prepareAuthEvent();
 
                                       final user =
@@ -405,6 +414,8 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       if (user == null) {
                                         return;
                                       }
+
+                                      logFirebaseEvent('Button_navigate_to');
 
                                       context.pushNamedAuth(
                                         HomeWidget.routeName,
@@ -483,6 +494,9 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'AUTH_2_LOGIN_CONTINUE_WITH_GOOGLE_BTN_ON');
+                                      logFirebaseEvent('Button_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       final user = await authManager
                                           .signInWithGoogle(context);
@@ -549,6 +563,11 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'AUTH_2_LOGIN_RichText_nlzpkvnh_ON_TAP');
+                                        logFirebaseEvent(
+                                            'RichText_navigate_to');
+
                                         context.pushNamed(
                                           Auth2CreateWidget.routeName,
                                           extra: <String, dynamic>{
@@ -625,6 +644,10 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget> {
                                       0.0, 16.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'AUTH_2_LOGIN_PASSWORT_VERGESSEN_BTN_ON_T');
+                                      logFirebaseEvent('Button_navigate_to');
+
                                       context.goNamed(
                                           Auth2ForgotPasswordWidget.routeName);
                                     },

@@ -78,15 +78,20 @@ class _DarkLightSwitchSmallWidgetState extends State<DarkLightSwitchSmallWidget>
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onTap: () async {
+          logFirebaseEvent('DARK_LIGHT_SWITCH_SMALL_lightDark_small_');
           if ((Theme.of(context).brightness == Brightness.light) == true) {
+            logFirebaseEvent('lightDark_small_set_dark_mode_settings');
             setDarkModeSetting(context, ThemeMode.dark);
+            logFirebaseEvent('lightDark_small_widget_animation');
             if (animationsMap['containerOnActionTriggerAnimation'] != null) {
               animationsMap['containerOnActionTriggerAnimation']!
                   .controller
                   .forward(from: 0.0);
             }
           } else {
+            logFirebaseEvent('lightDark_small_set_dark_mode_settings');
             setDarkModeSetting(context, ThemeMode.light);
+            logFirebaseEvent('lightDark_small_widget_animation');
             if (animationsMap['containerOnActionTriggerAnimation'] != null) {
               animationsMap['containerOnActionTriggerAnimation']!
                   .controller

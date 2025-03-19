@@ -39,6 +39,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
     super.initState();
     _model = createModel(context, () => ChatsModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Chats'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -98,6 +99,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('CHATS_PAGE_Drawer_41hsoo0i_ON_TAP');
+                    logFirebaseEvent('Drawer_navigate_to');
+
                     context.pushNamed(GetPremiumWidget.routeName);
                   },
                   child: Drawer(
@@ -128,6 +132,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CHATS_PAGE_Image_5nfolq9l_ON_TAP');
+                                        logFirebaseEvent('Image_navigate_to');
+
                                         context.pushNamed(HomeWidget.routeName);
                                       },
                                       child: Image.asset(
@@ -146,6 +154,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'CHATS_PAGE_Icon_uqekazyf_ON_TAP');
+                                          logFirebaseEvent('Icon_drawer');
                                           if (scaffoldKey
                                                   .currentState!.isDrawerOpen ||
                                               scaffoldKey.currentState!
@@ -175,6 +186,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHATS_PAGE_Row_y5a5r776_ON_TAP');
+                                    logFirebaseEvent('Row_navigate_to');
+
                                     context.pushNamed(ExploreWidget.routeName);
                                   },
                                   child: Row(
@@ -214,9 +229,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHATS_PAGE_Row_aevunq3e_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(ChatsWidget.routeName);
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -258,6 +279,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHATS_PAGE_Row_nsz28338_ON_TAP');
+                                    logFirebaseEvent('Row_navigate_to');
+
                                     context.pushNamed(CreateWidget.routeName);
                                   },
                                   child: Row(
@@ -297,9 +322,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHATS_PAGE_Row_qotqzd4q_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(MyAIWidget.routeName);
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -359,6 +390,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'CHATS_PAGE_Container_pvjyegao_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'buttonPink_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2CreateWidget.routeName);
                                             },
@@ -382,6 +418,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             builder: (context) =>
                                                 FFButtonWidget(
                                               onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'CHATS_PAGE_PREMIUM_BTN_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Button_navigate_to');
+
                                                 context.pushNamed(
                                                     GetPremiumWidget.routeName);
                                               },
@@ -445,7 +486,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CHATS_PAGE_Row_ypy9uvdd_ON_TAP');
                                         if (loggedIn == true) {
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                             Auth2ProfilWidget.routeName,
                                             queryParameters: {
@@ -457,6 +502,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             }.withoutNulls,
                                           );
                                         } else {
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                               Auth2CreateWidget.routeName);
                                         }
@@ -503,6 +550,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHATS_PAGE_Row_3vsweye5_ON_TAP');
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -563,6 +614,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHATS_PAGE_Row_hcr70i6a_ON_TAP');
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2LoginWidget.routeName);
                                     },
@@ -604,10 +659,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHATS_PAGE_Row_rbd2f09p_ON_TAP');
+                                      logFirebaseEvent('Row_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       await authManager.signOut();
                                       GoRouter.of(context)
                                           .clearRedirectLocation();
+
+                                      logFirebaseEvent('Row_navigate_to');
 
                                       context.pushNamedAuth(
                                           HomeWidget.routeName,
@@ -714,6 +774,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHATS_PAGE_Image_e2eqs0w3_ON_TAP');
+                                      logFirebaseEvent('Image_navigate_to');
+
                                       context.pushNamed(HomeWidget.routeName);
                                     },
                                     child: Image.asset(
@@ -741,6 +805,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'CHATS_PAGE_Row_l6ges2p5_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Row_navigate_to');
+
                                               context.pushNamed(
                                                 ExploreWidget.routeName,
                                                 extra: <String, dynamic>{
@@ -813,6 +882,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'CHATS_PAGE_Icon_bnhwaze7_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Icon_navigate_to');
+
                                                       context.pushNamed(
                                                           ExploreWidget
                                                               .routeName);
@@ -836,6 +910,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'CHATS_PAGE_Row_stt5z8x6_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Row_navigate_to');
+
                                               context.pushNamed(
                                                   ChatsWidget.routeName);
                                             },
@@ -899,11 +978,19 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'CHATS_PAGE_Icon_qjthtitj_ON_TAP');
                                                       if (loggedIn == true) {
+                                                        logFirebaseEvent(
+                                                            'Icon_navigate_to');
+
                                                         context.pushNamed(
                                                             ChatsWidget
                                                                 .routeName);
                                                       } else {
+                                                        logFirebaseEvent(
+                                                            'Icon_navigate_to');
+
                                                         context.pushNamed(
                                                             Auth2CreateWidget
                                                                 .routeName);
@@ -928,6 +1015,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'CHATS_PAGE_Row_u27v6q9w_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Row_navigate_to');
+
                                               context.pushNamed(
                                                   CreateWidget.routeName);
                                             },
@@ -991,6 +1083,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'CHATS_PAGE_Icon_lyc3wtgt_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Icon_navigate_to');
+
                                                       context.pushNamed(
                                                           CreateWidget
                                                               .routeName);
@@ -1096,11 +1193,17 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             safeSetState(() =>
                                                 FFAppState().isLightMode =
                                                     !FFAppState().isLightMode);
+                                            logFirebaseEvent(
+                                                'CHATS_PAGE_ToggleIcon_k09vnd2s_ON_TOGGLE');
                                             if (Theme.of(context).brightness ==
                                                 Brightness.dark) {
+                                              logFirebaseEvent(
+                                                  'ToggleIcon_set_dark_mode_settings');
                                               setDarkModeSetting(
                                                   context, ThemeMode.light);
                                             } else {
+                                              logFirebaseEvent(
+                                                  'ToggleIcon_set_dark_mode_settings');
                                               setDarkModeSetting(
                                                   context, ThemeMode.dark);
                                             }
@@ -1178,6 +1281,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 size: 24.0,
                                               ),
                                               onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'CHATS_PAGE_person_ICN_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'IconButton_navigate_to');
+
                                                 context.pushNamed(
                                                   Auth2ProfilWidget.routeName,
                                                   queryParameters: {
@@ -1202,6 +1310,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'CHATS_PAGE_Container_m7ucyn0e_ON_TAP');
+                                          logFirebaseEvent(
+                                              'buttonPink_navigate_to');
+
                                           context.pushNamed(
                                               Auth2CreateWidget.routeName);
                                         },
@@ -1215,6 +1328,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     if (loggedIn == false)
                                       FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'CHATS_PAGE_LOGIN_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               Auth2LoginWidget.routeName);
                                         },
@@ -1271,6 +1389,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'CHATS_PAGE_Icon_vm5uqx0p_ON_TAP');
+                                          logFirebaseEvent('Icon_drawer');
                                           scaffoldKey.currentState!
                                               .openDrawer();
                                         },
@@ -1351,6 +1472,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'CHATS_PAGE_Container_45hupsbw_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Container_navigate_to');
+
                                                       context.pushNamed(
                                                         HomeWidget.routeName,
                                                         extra: <String,
@@ -1394,14 +1520,20 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                       .isLightMode =
                                                                   !FFAppState()
                                                                       .isLightMode);
+                                                          logFirebaseEvent(
+                                                              'CHATS_PAGE_ToggleIcon_03np24o4_ON_TOGGLE');
                                                           if (Theme.of(context)
                                                                   .brightness ==
                                                               Brightness.dark) {
+                                                            logFirebaseEvent(
+                                                                'ToggleIcon_set_dark_mode_settings');
                                                             setDarkModeSetting(
                                                                 context,
                                                                 ThemeMode
                                                                     .light);
                                                           } else {
+                                                            logFirebaseEvent(
+                                                                'ToggleIcon_set_dark_mode_settings');
                                                             setDarkModeSetting(
                                                                 context,
                                                                 ThemeMode.dark);
@@ -1446,6 +1578,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           size: 24.0,
                                                         ),
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'CHATS_PAGE_person_ICN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'IconButton_navigate_to');
+
                                                           context.pushNamed(
                                                             Auth2ProfilWidget
                                                                 .routeName,
@@ -1480,6 +1617,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           size: 28.0,
                                                         ),
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'CHATS_PAGE_menu_open_ICN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'IconButton_drawer');
                                                           scaffoldKey
                                                               .currentState!
                                                               .openDrawer();
@@ -1554,6 +1695,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'CHATS_PAGE_Container_4bhlhdy5_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Container_navigate_to');
+
                                                   context.pushNamed(
                                                     HomeWidget.routeName,
                                                     extra: <String, dynamic>{
@@ -1595,13 +1741,19 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                   .isLightMode =
                                                               !FFAppState()
                                                                   .isLightMode);
+                                                      logFirebaseEvent(
+                                                          'CHATS_PAGE_ToggleIcon_wxdo7wx4_ON_TOGGLE');
                                                       if (Theme.of(context)
                                                               .brightness ==
                                                           Brightness.dark) {
+                                                        logFirebaseEvent(
+                                                            'ToggleIcon_set_dark_mode_settings');
                                                         setDarkModeSetting(
                                                             context,
                                                             ThemeMode.light);
                                                       } else {
+                                                        logFirebaseEvent(
+                                                            'ToggleIcon_set_dark_mode_settings');
                                                         setDarkModeSetting(
                                                             context,
                                                             ThemeMode.dark);
@@ -1646,6 +1798,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                       size: 24.0,
                                                     ),
                                                     onPressed: () async {
+                                                      logFirebaseEvent(
+                                                          'CHATS_PAGE_login_ICN_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'IconButton_navigate_to');
+
                                                       context.pushNamed(
                                                           Auth2LoginWidget
                                                               .routeName);
@@ -1671,6 +1828,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                       size: 28.0,
                                                     ),
                                                     onPressed: () async {
+                                                      logFirebaseEvent(
+                                                          'CHATS_PAGE_menu_open_ICN_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'IconButton_drawer');
                                                       scaffoldKey.currentState!
                                                           .openDrawer();
                                                     },
@@ -1836,6 +1997,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   Flexible(
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'CHATS_JETZT_CHATPARTNER_ENTDECKEN_BTN_ON');
+                                                        logFirebaseEvent(
+                                                            'Button_navigate_to');
+
                                                         context.pushNamed(
                                                             ExploreWidget
                                                                 .routeName);
@@ -1977,10 +2143,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'CHATS_PAGE_Column_4j2rjjfj_ON_TAP');
                                                     await authManager
                                                         .refreshUser();
                                                     if (currentUserEmailVerified ==
                                                         true) {
+                                                      logFirebaseEvent(
+                                                          'Column_navigate_to');
+
                                                       context.pushNamed(
                                                         ChatPageProWidget
                                                             .routeName,
@@ -2001,6 +2172,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                         }.withoutNulls,
                                                       );
                                                     } else {
+                                                      logFirebaseEvent(
+                                                          'Column_navigate_to');
+
                                                       context.pushNamed(
                                                           Auth2CreateWidget
                                                               .routeName);
@@ -2010,6 +2184,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Padding(
                                                           padding:
@@ -2034,8 +2211,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                         1.0),
                                                                 child:
                                                                     Container(
-                                                                  width: 52.0,
-                                                                  height: 52.0,
+                                                                  width: 58.0,
+                                                                  height: 58.0,
                                                                   decoration:
                                                                       BoxDecoration(
                                                                     color: FlutterFlowTheme.of(
@@ -2085,9 +2262,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                           columnCharactersMainRecord
                                                                               .referenceImage,
                                                                           width:
-                                                                              52.0,
+                                                                              58.0,
                                                                           height:
-                                                                              52.0,
+                                                                              58.0,
                                                                           fit: BoxFit
                                                                               .cover,
                                                                         ),
@@ -2115,37 +2292,37 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                         CrossAxisAlignment
                                                                             .start,
                                                                     children: [
-                                                                      Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.center,
-                                                                        children: [
-                                                                          Flexible(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                                                                              child: Text(
-                                                                                columnCharactersMainRecord.name,
-                                                                                textAlign: TextAlign.start,
-                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                                                      letterSpacing: 0.0,
-                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
-                                                                                    ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: [
+                                                                            Flexible(
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                                                                child: Text(
+                                                                                  columnCharactersMainRecord.name,
+                                                                                  textAlign: TextAlign.start,
+                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                        fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                                        letterSpacing: 0.0,
+                                                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                                      ),
+                                                                                ),
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                          Icon(
-                                                                            Icons.chevron_right_rounded,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                        ],
+                                                                            Icon(
+                                                                              Icons.chevron_right_rounded,
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              size: 24.0,
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       ),
                                                                       Align(
                                                                         alignment: AlignmentDirectional(
@@ -2156,7 +2333,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                           borderRadius:
                                                                               8.0,
                                                                           buttonSize:
-                                                                              40.0,
+                                                                              36.0,
                                                                           fillColor:
                                                                               Color(0x00DE5499),
                                                                           icon:
@@ -2169,11 +2346,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                           ),
                                                                           onPressed:
                                                                               () async {
+                                                                            logFirebaseEvent('CHATS_delete_forever_sharp_ICN_ON_TAP');
+                                                                            logFirebaseEvent('IconButton_alert_dialog');
                                                                             var confirmDialogResponse = await showDialog<bool>(
                                                                                   context: context,
                                                                                   builder: (alertDialogContext) {
                                                                                     return AlertDialog(
-                                                                                      title: Text('Character löschen?'),
+                                                                                      title: Text('Unterhaltung löschen?'),
                                                                                       actions: [
                                                                                         TextButton(
                                                                                           onPressed: () => Navigator.pop(alertDialogContext, false),
@@ -2189,8 +2368,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                                 ) ??
                                                                                 false;
                                                                             if (confirmDialogResponse) {
+                                                                              logFirebaseEvent('IconButton_backend_call');
                                                                               await listViewChatsRecord.reference.delete();
                                                                             } else {
+                                                                              logFirebaseEvent('IconButton_close_dialog_drawer_etc');
                                                                               Navigator.pop(context);
                                                                             }
                                                                           },

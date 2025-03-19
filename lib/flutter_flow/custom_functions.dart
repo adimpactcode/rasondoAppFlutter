@@ -30,3 +30,27 @@ List<MessagesStruct>? jsonToMessages(List<dynamic>? apiLlmPageload) {
 
   return messages;
 }
+
+int getItemAtIndex(List<MessagesStruct>? messages) {
+  // Return -1 if the list is null or empty
+  if (messages == null || messages.isEmpty) {
+    return -1;
+  }
+
+  // Return the index of the last element
+  return messages.length - 1;
+}
+
+String buildAssistantMessage(MessagesStruct? message) {
+  if (message == null) {
+    return ""; // Falls message null ist, gib einen leeren String zurück
+  }
+
+  if (message.messages != null && message.messages!.isNotEmpty) {
+    return message.messages!.join(
+        ""); // Falls gestreamte Nachrichten existieren, Chunks zusammenfügen
+  }
+
+  return message.content ??
+      ""; // Falls kein Streaming, den normalen Content nutzen
+}

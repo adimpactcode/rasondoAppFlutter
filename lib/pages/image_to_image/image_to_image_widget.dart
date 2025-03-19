@@ -1,3 +1,4 @@
+import '';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/api_requests/api_streaming.dart';
@@ -46,6 +47,8 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
     super.initState();
     _model = createModel(context, () => ImageToImageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ImageToImage'});
     _model.img2imgChangeAppereanceTextController ??= TextEditingController();
     _model.img2imgChangeAppereanceFocusNode ??= FocusNode();
 
@@ -161,6 +164,10 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'IMAGE_TO_IMAGE_PAGE_Icon_v6g9ubw7_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Icon_close_dialog_drawer_etc');
                                                             Navigator.pop(
                                                                 context);
                                                           },
@@ -704,6 +711,10 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                     16.0, 12.0, 16.0, 12.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'IMAGE_TO_IMAGE_JETZT_ERSTELLEN_BTN_ON_TA');
+                                                logFirebaseEvent(
+                                                    'Button_update_page_state');
                                                 _model.imgToimgAppearance =
                                                     valueOrDefault<String>(
                                                   _model
@@ -721,6 +732,8 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                 _model.characterId = widget!
                                                     .characterReferenz!.id;
                                                 safeSetState(() {});
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
                                                 showDialog(
                                                   barrierDismissible: false,
                                                   context: context,
@@ -753,6 +766,8 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                   },
                                                 );
 
+                                                logFirebaseEvent(
+                                                    'Button_backend_call');
                                                 _model.newGeneratedImgUrl =
                                                     await NovitaFunctionImageToImageCall
                                                         .call(
@@ -767,6 +782,8 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                 if ((_model.newGeneratedImgUrl
                                                         ?.succeeded ??
                                                     true)) {
+                                                  logFirebaseEvent(
+                                                      'Button_update_app_state');
                                                   FFAppState()
                                                           .generatedImageUrl =
                                                       NovitaFunctionImageToImageCall
@@ -776,7 +793,11 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                         ''),
                                                   )!;
                                                   safeSetState(() {});
+                                                  logFirebaseEvent(
+                                                      'Button_close_dialog_drawer_etc');
                                                   Navigator.pop(context);
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
                                                   await showDialog(
                                                     context: context,
                                                     builder:
@@ -795,6 +816,8 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       );
                                                     },
                                                   );
+                                                  logFirebaseEvent(
+                                                      'Button_backend_call');
                                                   unawaited(
                                                     () async {
                                                       await widget!
@@ -817,6 +840,8 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                       });
                                                     }(),
                                                   );
+                                                  logFirebaseEvent(
+                                                      'Button_navigate_to');
 
                                                   context.pushNamed(
                                                     CharacterProfilWidget
@@ -832,6 +857,8 @@ class _ImageToImageWidgetState extends State<ImageToImageWidget> {
                                                     }.withoutNulls,
                                                   );
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
                                                   await showDialog(
                                                     context: context,
                                                     builder:

@@ -94,6 +94,10 @@ class _NavbarMobileWidgetState extends State<NavbarMobileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'NAVBAR_MOBILE_Container_lkmok9d9_ON_TAP');
+                              logFirebaseEvent('Container_navigate_to');
+
                               context.pushNamed(
                                 HomeWidget.routeName,
                                 extra: <String, dynamic>{
@@ -129,11 +133,17 @@ class _NavbarMobileWidgetState extends State<NavbarMobileWidget> {
                                 onPressed: () async {
                                   safeSetState(() => FFAppState().isLightMode =
                                       !FFAppState().isLightMode);
+                                  logFirebaseEvent(
+                                      'NAVBAR_MOBILE_ToggleIcon_wz8p73xt_ON_TOG');
                                   if (Theme.of(context).brightness ==
                                       Brightness.dark) {
+                                    logFirebaseEvent(
+                                        'ToggleIcon_set_dark_mode_settings');
                                     setDarkModeSetting(
                                         context, ThemeMode.light);
                                   } else {
+                                    logFirebaseEvent(
+                                        'ToggleIcon_set_dark_mode_settings');
                                     setDarkModeSetting(context, ThemeMode.dark);
                                   }
                                 },
@@ -164,6 +174,10 @@ class _NavbarMobileWidgetState extends State<NavbarMobileWidget> {
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'NAVBAR_MOBILE_COMP_person_ICN_ON_TAP');
+                                  logFirebaseEvent('IconButton_navigate_to');
+
                                   context.pushNamed(
                                     Auth2ProfilWidget.routeName,
                                     queryParameters: {
@@ -191,6 +205,10 @@ class _NavbarMobileWidgetState extends State<NavbarMobileWidget> {
                                   size: 28.0,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'NAVBAR_MOBILE_COMP_menu_open_ICN_ON_TAP');
+                                  logFirebaseEvent(
+                                      'IconButton_close_dialog_drawer_etc');
                                   Navigator.pop(context);
                                 },
                               ),

@@ -152,7 +152,12 @@ class _AgeVerificationWidgetState extends State<AgeVerificationWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'AGE_VERIFICATION_ICH_BIN_BER_18_BTN_ON_T');
+                              logFirebaseEvent(
+                                  'Button_close_dialog_drawer_etc');
                               Navigator.pop(context);
+                              logFirebaseEvent('Button_update_app_state');
                               FFAppState().isBannerDismissed = true;
                               safeSetState(() {});
                             },

@@ -34,6 +34,8 @@ class _Auth2ForgotPasswordWidgetState extends State<Auth2ForgotPasswordWidget> {
     super.initState();
     _model = createModel(context, () => Auth2ForgotPasswordModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'auth_2_ForgotPassword'});
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -98,6 +100,9 @@ class _Auth2ForgotPasswordWidgetState extends State<Auth2ForgotPasswordWidget> {
                                   size: 36.0,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'AUTH_2_FORGOT_PASSWORD_arrow_back_ICN_ON');
+                                  logFirebaseEvent('IconButton_navigate_back');
                                   context.safePop();
                                 },
                               ),
@@ -289,6 +294,9 @@ class _Auth2ForgotPasswordWidgetState extends State<Auth2ForgotPasswordWidget> {
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'AUTH_2_FORGOT_PASSWORD_PASSWORT_LINK_ANF');
+                                      logFirebaseEvent('Button_auth');
                                       if (_model.emailAddressTextController.text
                                           .isEmpty) {
                                         ScaffoldMessenger.of(context)
@@ -306,6 +314,7 @@ class _Auth2ForgotPasswordWidgetState extends State<Auth2ForgotPasswordWidget> {
                                             .emailAddressTextController.text,
                                         context: context,
                                       );
+                                      logFirebaseEvent('Button_alert_dialog');
                                       unawaited(
                                         () async {
                                           await showDialog(
@@ -328,6 +337,7 @@ class _Auth2ForgotPasswordWidgetState extends State<Auth2ForgotPasswordWidget> {
                                           );
                                         }(),
                                       );
+                                      logFirebaseEvent('Button_navigate_to');
 
                                       context.pushNamed(
                                           Auth2LoginWidget.routeName);

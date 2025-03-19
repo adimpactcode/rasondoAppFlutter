@@ -40,6 +40,8 @@ class _AllgemeineGeschftsbedingungenWidgetState
     super.initState();
     _model = createModel(context, () => AllgemeineGeschftsbedingungenModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'AllgemeineGeschftsbedingungen'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -118,6 +120,10 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Image_exu');
+                                          logFirebaseEvent('Image_navigate_to');
+
                                           context
                                               .pushNamed(HomeWidget.routeName);
                                         },
@@ -148,6 +154,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Row_1dfu7');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                     ExploreWidget.routeName,
                                                     extra: <String, dynamic>{
@@ -222,6 +233,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Icon_ffyw');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               ExploreWidget
                                                                   .routeName);
@@ -246,6 +262,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Row_bgib4');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       ChatsWidget.routeName);
                                                 },
@@ -310,12 +331,20 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Icon_njmv');
                                                           if (loggedIn ==
                                                               true) {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 ChatsWidget
                                                                     .routeName);
                                                           } else {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 Auth2CreateWidget
                                                                     .routeName);
@@ -341,6 +370,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Row_dxeg9');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       CreateWidget.routeName);
                                                 },
@@ -405,6 +439,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Icon_bmvj');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               CreateWidget
                                                                   .routeName);
@@ -523,12 +562,18 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                 safeSetState(() => FFAppState()
                                                         .isLightMode =
                                                     !FFAppState().isLightMode);
+                                                logFirebaseEvent(
+                                                    'ALLGEMEINE_GESCHFTSBEDINGUNGEN_ToggleIco');
                                                 if (Theme.of(context)
                                                         .brightness ==
                                                     Brightness.dark) {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.light);
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.dark);
                                                 }
@@ -618,6 +663,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                                     size: 24.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'ALLGEMEINE_GESCHFTSBEDINGUNGEN_person_IC');
+                                                    logFirebaseEvent(
+                                                        'IconButton_navigate_to');
+
                                                     context.pushNamed(
                                                       Auth2ProfilWidget
                                                           .routeName,
@@ -643,6 +693,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Container');
+                                              logFirebaseEvent(
+                                                  'buttonPink_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2CreateWidget.routeName);
                                             },
@@ -656,6 +711,11 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                         if (loggedIn == false)
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'ALLGEMEINE_GESCHFTSBEDINGUNGEN_LOGIN_BTN');
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2LoginWidget.routeName);
                                             },
@@ -715,6 +775,9 @@ class _AllgemeineGeschftsbedingungenWidgetState
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'ALLGEMEINE_GESCHFTSBEDINGUNGEN_Icon_ucj6');
+                                              logFirebaseEvent('Icon_drawer');
                                               scaffoldKey.currentState!
                                                   .openDrawer();
                                             },

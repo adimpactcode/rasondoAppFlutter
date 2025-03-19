@@ -1,3 +1,4 @@
+import '';
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -33,14 +34,22 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
     super.initState();
     _model = createModel(context, () => VerificationPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'VerificationPage'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('VERIFICATION_VerificationPage_ON_INIT_ST');
       await authManager.refreshUser();
       if (currentUserEmailVerified == true) {
+        logFirebaseEvent('VerificationPage_navigate_to');
+
         context.pushNamed(Auth2ProfilWidget.routeName);
       } else {
+        logFirebaseEvent('VerificationPage_wait__delay');
         await Future.delayed(const Duration(milliseconds: 1000));
         if (currentUserEmailVerified == true) {
+          logFirebaseEvent('VerificationPage_navigate_to');
+
           context.pushNamed(
             Auth2ProfilWidget.routeName,
             queryParameters: {
@@ -128,10 +137,15 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                                   size: 36.0,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'VERIFICATION_PAGE_PAGE_close_ICN_ON_TAP');
                                   await authManager.refreshUser();
                                   if (currentUserEmailVerified == true) {
+                                    logFirebaseEvent('IconButton_navigate_to');
+
                                     context.pushNamed(HomeWidget.routeName);
                                   } else {
+                                    logFirebaseEvent('IconButton_alert_dialog');
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
@@ -333,6 +347,9 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'VERIFICATION_E_MAIL_ERNEUT_SENDEN_BTN_ON');
+                                          logFirebaseEvent('Button_auth');
                                           await authManager
                                               .sendEmailVerification();
                                         },

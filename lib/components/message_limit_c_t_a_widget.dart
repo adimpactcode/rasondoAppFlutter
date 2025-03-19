@@ -98,6 +98,9 @@ class _MessageLimitCTAWidgetState extends State<MessageLimitCTAWidget> {
                             size: 24.0,
                           ),
                           onPressed: () async {
+                            logFirebaseEvent(
+                                'MESSAGE_LIMIT_C_T_A_close_ICN_ON_TAP');
+                            logFirebaseEvent('IconButton_dismiss_dialog');
                             Navigator.pop(context);
                           },
                         ),
@@ -176,6 +179,10 @@ class _MessageLimitCTAWidgetState extends State<MessageLimitCTAWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'MESSAGE_LIMIT_C_T_A_JETZT_PREMIUM_WERDEN');
+                              logFirebaseEvent('Button_navigate_to');
+
                               context.pushNamed(GetPremiumWidget.routeName);
                             },
                             text: FFLocalizations.of(context).getText(

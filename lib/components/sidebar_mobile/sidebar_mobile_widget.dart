@@ -89,6 +89,10 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent(
+                            'SIDEBAR_MOBILE_Image_od6jj5f6_ON_TAP');
+                        logFirebaseEvent('Image_navigate_to');
+
                         context.pushNamed(HomeWidget.routeName);
                       },
                       child: Image.asset(
@@ -121,6 +125,9 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('SIDEBAR_MOBILE_COMP_Row_gkud8uf4_ON_TAP');
+                    logFirebaseEvent('Row_navigate_to');
+
                     context.pushNamed(ExploreWidget.routeName);
                   },
                   child: Row(
@@ -152,6 +159,9 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('SIDEBAR_MOBILE_COMP_Row_p4y7fuia_ON_TAP');
+                    logFirebaseEvent('Row_navigate_to');
+
                     context.pushNamed(ChatsWidget.routeName);
                   },
                   child: Row(
@@ -183,6 +193,9 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('SIDEBAR_MOBILE_COMP_Row_nd123bgc_ON_TAP');
+                    logFirebaseEvent('Row_navigate_to');
+
                     context.pushNamed(CreateWidget.routeName);
                   },
                   child: Row(
@@ -214,6 +227,9 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('SIDEBAR_MOBILE_COMP_Row_4n0dci2b_ON_TAP');
+                    logFirebaseEvent('Row_navigate_to');
+
                     context.pushNamed(MyAIWidget.routeName);
                   },
                   child: Row(
@@ -259,6 +275,10 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'SIDEBAR_MOBILE_Container_tzuqo3i1_ON_TAP');
+                            logFirebaseEvent('buttonPink_navigate_to');
+
                             context.pushNamed(Auth2CreateWidget.routeName);
                           },
                           child: wrapWithModel(
@@ -316,6 +336,10 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
+                      logFirebaseEvent(
+                          'SIDEBAR_MOBILE_COMP_Row_vhcx6hzw_ON_TAP');
+                      logFirebaseEvent('Row_navigate_to');
+
                       context.pushNamed(
                         Auth2ProfilWidget.routeName,
                         queryParameters: {
@@ -359,6 +383,9 @@ class _SidebarMobileWidgetState extends State<SidebarMobileWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('SIDEBAR_MOBILE_COMP_Row_knya6bet_ON_TAP');
+                    logFirebaseEvent('Row_navigate_to');
+
                     context.pushNamed(Auth2LoginWidget.routeName);
                   },
                   child: Row(

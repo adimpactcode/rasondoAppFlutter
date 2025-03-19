@@ -152,7 +152,12 @@ class _CookieBannerWidgetState extends State<CookieBannerWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'COOKIE_BANNER_COMP_ABLEHNEN_BTN_ON_TAP');
+                              logFirebaseEvent(
+                                  'Button_close_dialog_drawer_etc');
                               Navigator.pop(context);
+                              logFirebaseEvent('Button_update_app_state');
                               FFAppState().isBannerDismissed = true;
                               safeSetState(() {});
                             },
@@ -187,7 +192,12 @@ class _CookieBannerWidgetState extends State<CookieBannerWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'COOKIE_BANNER_AKZEPTIEREN_BTN_ON_TAP');
+                              logFirebaseEvent(
+                                  'Button_close_dialog_drawer_etc');
                               Navigator.pop(context);
+                              logFirebaseEvent('Button_update_app_state');
                               FFAppState().isBannerDismissed = true;
                               safeSetState(() {});
                             },

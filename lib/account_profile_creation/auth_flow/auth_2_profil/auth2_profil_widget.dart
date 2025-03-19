@@ -45,6 +45,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
     super.initState();
     _model = createModel(context, () => Auth2ProfilModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'auth_2_profil'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -107,6 +109,9 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                   size: 32.0,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'AUTH_2_PROFIL_PAGE_arrow_back_ICN_ON_TAP');
+                                  logFirebaseEvent('IconButton_navigate_back');
                                   context.safePop();
                                 },
                               ),
@@ -215,6 +220,10 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'AUTH_2_PROFIL_PAGE_imageBorder_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'imageBorder_upload_media_to_firebase');
                                               final selectedMedia =
                                                   await selectMediaWithSourceBottomSheet(
                                                 context: context,
@@ -289,6 +298,9 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                 }
                                               }
 
+                                              logFirebaseEvent(
+                                                  'imageBorder_backend_call');
+
                                               await currentUserReference!
                                                   .update(createUsersRecordData(
                                                 photoUrl:
@@ -358,6 +370,10 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'AUTH_2_PROFIL_PAGE_Text_oj039fsv_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Text_upload_media_to_firebase');
                                               final selectedMedia =
                                                   await selectMediaWithSourceBottomSheet(
                                                 context: context,
@@ -429,6 +445,9 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                   return;
                                                 }
                                               }
+
+                                              logFirebaseEvent(
+                                                  'Text_backend_call');
 
                                               await widget!.profileReference!
                                                   .update(createUsersRecordData(
@@ -569,6 +588,11 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'AUTH_2_PROFIL_Container_ctn7ozj0_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Container_navigate_to');
+
                                         context
                                             .pushNamed(ExploreWidget.routeName);
                                       },
@@ -602,6 +626,11 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'AUTH_2_PROFIL_PAGE_Text_l2lv97oo_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Text_navigate_to');
+
                                               context.pushNamed(
                                                   ExploreWidget.routeName);
                                             },
@@ -651,6 +680,11 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'AUTH_2_PROFIL_Container_u0kr26s3_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Container_navigate_to');
+
                                             context.pushNamed(
                                                 GetPremiumWidget.routeName);
                                           },
@@ -729,6 +763,10 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'AUTH_2_PROFIL_Container_jf102723_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Container_alert_dialog');
                                             var confirmDialogResponse =
                                                 await showDialog<bool>(
                                                       context: context,
@@ -762,6 +800,8 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                     ) ??
                                                     false;
                                             if (confirmDialogResponse) {
+                                              logFirebaseEvent(
+                                                  'Container_backend_call');
                                               _model.apiResult3fj =
                                                   await CancelSubscriptionPaypalCall
                                                       .call(
@@ -769,12 +809,16 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                     .profileReference?.id,
                                               );
                                             } else {
+                                              logFirebaseEvent(
+                                                  'Container_close_dialog_drawer_etc');
                                               Navigator.pop(context);
                                             }
 
                                             if ((_model
                                                     .apiResult3fj?.succeeded ??
                                                 true)) {
+                                              logFirebaseEvent(
+                                                  'Container_alert_dialog');
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {
@@ -794,10 +838,14 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                                   );
                                                 },
                                               );
+                                              logFirebaseEvent(
+                                                  'Container_navigate_to');
 
                                               context.pushNamed(
                                                   HomeWidget.routeName);
                                             } else {
+                                              logFirebaseEvent(
+                                                  'Container_alert_dialog');
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {
@@ -918,6 +966,11 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'AUTH_2_PROFIL_PAGE_Text_56t8ukvd_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Text_navigate_to');
+
                                                 context.pushNamed(
                                                     ExploreWidget.routeName);
                                               },
@@ -1028,11 +1081,17 @@ class _Auth2ProfilWidgetState extends State<Auth2ProfilWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'AUTH_2_PROFIL_PAGE_Text_9zqooj68_ON_TAP');
+                                            logFirebaseEvent('Text_auth');
                                             GoRouter.of(context)
                                                 .prepareAuthEvent();
                                             await authManager.signOut();
                                             GoRouter.of(context)
                                                 .clearRedirectLocation();
+
+                                            logFirebaseEvent(
+                                                'Text_navigate_to');
 
                                             context.pushNamedAuth(
                                                 Auth2LoginWidget.routeName,

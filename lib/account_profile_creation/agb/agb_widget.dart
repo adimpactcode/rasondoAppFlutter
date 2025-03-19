@@ -39,6 +39,7 @@ class _AgbWidgetState extends State<AgbWidget> {
     super.initState();
     _model = createModel(context, () => AgbModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'AGB'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -92,6 +93,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'AGB_PAGE_Image_idsxqy7k_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -110,6 +115,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'AGB_PAGE_Icon_o7ku4uus_ON_TAP');
+                                    logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
                                         scaffoldKey
@@ -139,6 +147,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent('AGB_PAGE_Row_mhgqu4h3_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
@@ -174,9 +185,14 @@ class _AgbWidgetState extends State<AgbWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent('AGB_PAGE_Row_52mh2r00_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ChatsWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -213,6 +229,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent('AGB_PAGE_Row_iy0qnwco_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
@@ -248,9 +267,14 @@ class _AgbWidgetState extends State<AgbWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent('AGB_PAGE_Row_wioozx35_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -303,6 +327,11 @@ class _AgbWidgetState extends State<AgbWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'AGB_PAGE_Container_pile34q6_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -324,6 +353,11 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'AGB_PAGE_PREMIUM_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               GetPremiumWidget.routeName);
                                         },
@@ -385,7 +419,11 @@ class _AgbWidgetState extends State<AgbWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'AGB_PAGE_Row_i9v9j3sz_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -396,6 +434,8 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -442,6 +482,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'AGB_PAGE_Row_uw3godjg_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(
                                   Auth2ProfilWidget.routeName,
                                   queryParameters: {
@@ -496,6 +540,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'AGB_PAGE_Row_ea8n7mih_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
@@ -534,9 +582,14 @@ class _AgbWidgetState extends State<AgbWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'AGB_PAGE_Row_f8p5cmk2_ON_TAP');
+                                logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
+
+                                logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamedAuth(
                                     HomeWidget.routeName, context.mounted);
@@ -637,6 +690,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'AGB_PAGE_Image_8tbt9qwj_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -664,6 +721,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'AGB_PAGE_Row_wayp1pj3_ON_TAP');
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                             ExploreWidget.routeName,
                                             extra: <String, dynamic>{
@@ -729,6 +790,11 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'AGB_PAGE_Icon_qycdchqj_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Icon_navigate_to');
+
                                                   context.pushNamed(
                                                       ExploreWidget.routeName);
                                                 },
@@ -750,6 +816,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'AGB_PAGE_Row_b84f37bv_ON_TAP');
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context
                                               .pushNamed(ChatsWidget.routeName);
                                         },
@@ -806,10 +876,18 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'AGB_PAGE_Icon_8zz2voua_ON_TAP');
                                                   if (loggedIn == true) {
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         ChatsWidget.routeName);
                                                   } else {
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         Auth2CreateWidget
                                                             .routeName);
@@ -833,6 +911,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'AGB_PAGE_Row_o34ztfhw_ON_TAP');
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                               CreateWidget.routeName);
                                         },
@@ -889,6 +971,11 @@ class _AgbWidgetState extends State<AgbWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'AGB_PAGE_Icon_qm0b2x5h_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Icon_navigate_to');
+
                                                   context.pushNamed(
                                                       CreateWidget.routeName);
                                                 },
@@ -987,11 +1074,17 @@ class _AgbWidgetState extends State<AgbWidget> {
                                         safeSetState(() =>
                                             FFAppState().isLightMode =
                                                 !FFAppState().isLightMode);
+                                        logFirebaseEvent(
+                                            'AGB_PAGE_ToggleIcon_8s0p8btq_ON_TOGGLE');
                                         if (Theme.of(context).brightness ==
                                             Brightness.dark) {
+                                          logFirebaseEvent(
+                                              'ToggleIcon_set_dark_mode_settings');
                                           setDarkModeSetting(
                                               context, ThemeMode.light);
                                         } else {
+                                          logFirebaseEvent(
+                                              'ToggleIcon_set_dark_mode_settings');
                                           setDarkModeSetting(
                                               context, ThemeMode.dark);
                                         }
@@ -1065,6 +1158,11 @@ class _AgbWidgetState extends State<AgbWidget> {
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'AGB_PAGE_person_ICN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'IconButton_navigate_to');
+
                                             context.pushNamed(
                                               Auth2ProfilWidget.routeName,
                                               queryParameters: {
@@ -1088,6 +1186,11 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'AGB_PAGE_Container_uk51hfkm_ON_TAP');
+                                      logFirebaseEvent(
+                                          'buttonPink_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     },
@@ -1100,6 +1203,10 @@ class _AgbWidgetState extends State<AgbWidget> {
                                 if (loggedIn == false)
                                   FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'AGB_PAGE_LOGIN_BTN_ON_TAP');
+                                      logFirebaseEvent('Button_navigate_to');
+
                                       context.pushNamed(
                                           Auth2LoginWidget.routeName);
                                     },
@@ -1149,6 +1256,9 @@ class _AgbWidgetState extends State<AgbWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'AGB_PAGE_Icon_i9nmmfwg_ON_TAP');
+                                      logFirebaseEvent('Icon_drawer');
                                       scaffoldKey.currentState!.openDrawer();
                                     },
                                     child: Icon(

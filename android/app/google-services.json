@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "725243170629-8vupp2ifd0pcdtn623miuh7lr877n2s9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.rasondov3",
+            "certificate_hash": "1f6843d7e4c183d63fd33d4a5607561580c39b48"
+          }
+        },
+        {
           "client_id": "725243170629-qr241fl2icoao0629d4oabea8dpuh4kk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

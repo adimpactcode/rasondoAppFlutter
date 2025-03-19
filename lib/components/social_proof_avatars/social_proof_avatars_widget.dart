@@ -48,7 +48,7 @@ class _SocialProofAvatarsWidgetState extends State<SocialProofAvatarsWidget> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           width: 180.0,

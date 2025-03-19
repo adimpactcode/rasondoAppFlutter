@@ -127,6 +127,10 @@ class _EMailVerifiziertWidgetState extends State<EMailVerifiziertWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'E_MAIL_VERIFIZIERT_JETZT_CHARACTERE_ENTD');
+                              logFirebaseEvent('Button_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             text: FFLocalizations.of(context).getText(

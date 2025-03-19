@@ -53,6 +53,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
     super.initState();
     _model = createModel(context, () => ExploreModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Explore'});
     _model.tabBarMobileController = TabController(
       vsync: this,
       length: 3,
@@ -143,6 +144,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'EXPLORE_PAGE_Image_wyugxhwq_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -161,6 +166,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'EXPLORE_PAGE_Icon_wve8bcjl_ON_TAP');
+                                    logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
                                         scaffoldKey
@@ -190,6 +198,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'EXPLORE_PAGE_Row_qcod1174_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
@@ -225,9 +237,15 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'EXPLORE_PAGE_Row_8rffhea4_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ChatsWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -264,6 +282,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'EXPLORE_PAGE_Row_46zthdzy_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
@@ -299,9 +321,15 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'EXPLORE_PAGE_Row_nrgxqs2b_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -354,6 +382,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'EXPLORE_PAGE_Container_tetc3wlm_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -375,6 +408,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_PAGE_PREMIUM_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               GetPremiumWidget.routeName);
                                         },
@@ -436,7 +474,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'EXPLORE_PAGE_Row_euuejas7_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -447,6 +489,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         }.withoutNulls,
                                       );
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -493,6 +537,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'EXPLORE_PAGE_Row_y9kwfqg4_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(
                                   Auth2ProfilWidget.routeName,
                                   queryParameters: {
@@ -547,6 +595,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'EXPLORE_PAGE_Row_whciprvy_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
@@ -585,9 +637,14 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'EXPLORE_PAGE_Row_j3jv107o_ON_TAP');
+                                logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
+
+                                logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamedAuth(
                                     HomeWidget.routeName, context.mounted);
@@ -688,6 +745,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'EXPLORE_PAGE_Image_jeotbl4e_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -715,6 +776,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_PAGE_Row_buu292fa_ON_TAP');
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                             ExploreWidget.routeName,
                                             extra: <String, dynamic>{
@@ -780,6 +845,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_PAGE_Icon_qsb9nev5_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Icon_navigate_to');
+
                                                   context.pushNamed(
                                                       ExploreWidget.routeName);
                                                 },
@@ -801,6 +871,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_PAGE_Row_dsaja4hq_ON_TAP');
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context
                                               .pushNamed(ChatsWidget.routeName);
                                         },
@@ -857,10 +931,18 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_PAGE_Icon_qpsjmmuf_ON_TAP');
                                                   if (loggedIn == true) {
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         ChatsWidget.routeName);
                                                   } else {
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         Auth2CreateWidget
                                                             .routeName);
@@ -884,6 +966,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_PAGE_Row_w9zd196z_ON_TAP');
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                               CreateWidget.routeName);
                                         },
@@ -940,6 +1026,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_PAGE_Icon_lju6rkb4_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Icon_navigate_to');
+
                                                   context.pushNamed(
                                                       CreateWidget.routeName);
                                                 },
@@ -1038,11 +1129,17 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         safeSetState(() =>
                                             FFAppState().isLightMode =
                                                 !FFAppState().isLightMode);
+                                        logFirebaseEvent(
+                                            'EXPLORE_ToggleIcon_o6a3fy2v_ON_TOGGLE');
                                         if (Theme.of(context).brightness ==
                                             Brightness.dark) {
+                                          logFirebaseEvent(
+                                              'ToggleIcon_set_dark_mode_settings');
                                           setDarkModeSetting(
                                               context, ThemeMode.light);
                                         } else {
+                                          logFirebaseEvent(
+                                              'ToggleIcon_set_dark_mode_settings');
                                           setDarkModeSetting(
                                               context, ThemeMode.dark);
                                         }
@@ -1116,6 +1213,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'EXPLORE_PAGE_person_ICN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'IconButton_navigate_to');
+
                                             context.pushNamed(
                                               Auth2ProfilWidget.routeName,
                                               queryParameters: {
@@ -1139,6 +1241,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'EXPLORE_PAGE_Container_yv6m8hpw_ON_TAP');
+                                      logFirebaseEvent(
+                                          'buttonPink_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     },
@@ -1151,6 +1258,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 if (loggedIn == false)
                                   FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'EXPLORE_PAGE_LOGIN_BTN_ON_TAP');
+                                      logFirebaseEvent('Button_navigate_to');
+
                                       context.pushNamed(
                                           Auth2LoginWidget.routeName);
                                     },
@@ -1201,6 +1312,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'EXPLORE_PAGE_Icon_zdekwcy9_ON_TAP');
+                                      logFirebaseEvent('Icon_drawer');
                                       scaffoldKey.currentState!.openDrawer();
                                     },
                                     child: Icon(
@@ -1270,6 +1384,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'EXPLORE_PAGE_Container_8xi4kgxe_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Container_navigate_to');
+
                                               context.pushNamed(
                                                 HomeWidget.routeName,
                                                 extra: <String, dynamic>{
@@ -1310,12 +1429,18 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       FFAppState().isLightMode =
                                                           !FFAppState()
                                                               .isLightMode);
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_ToggleIcon_ajl26ppj_ON_TOGGLE');
                                                   if (Theme.of(context)
                                                           .brightness ==
                                                       Brightness.dark) {
+                                                    logFirebaseEvent(
+                                                        'ToggleIcon_set_dark_mode_settings');
                                                     setDarkModeSetting(context,
                                                         ThemeMode.light);
                                                   } else {
+                                                    logFirebaseEvent(
+                                                        'ToggleIcon_set_dark_mode_settings');
                                                     setDarkModeSetting(context,
                                                         ThemeMode.dark);
                                                   }
@@ -1354,6 +1479,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                   size: 24.0,
                                                 ),
                                                 onPressed: () async {
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_PAGE_login_ICN_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'IconButton_navigate_to');
+
                                                   context.pushNamed(
                                                       Auth2LoginWidget
                                                           .routeName);
@@ -1377,6 +1507,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                   size: 28.0,
                                                 ),
                                                 onPressed: () async {
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_PAGE_menu_open_ICN_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'IconButton_drawer');
                                                   scaffoldKey.currentState!
                                                       .openDrawer();
                                                 },
@@ -1451,6 +1585,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_PAGE_Container_fddx3nf9_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Container_navigate_to');
+
                                                   context.pushNamed(
                                                     HomeWidget.routeName,
                                                     extra: <String, dynamic>{
@@ -1492,13 +1631,19 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   .isLightMode =
                                                               !FFAppState()
                                                                   .isLightMode);
+                                                      logFirebaseEvent(
+                                                          'EXPLORE_ToggleIcon_5h4moa0r_ON_TOGGLE');
                                                       if (Theme.of(context)
                                                               .brightness ==
                                                           Brightness.dark) {
+                                                        logFirebaseEvent(
+                                                            'ToggleIcon_set_dark_mode_settings');
                                                         setDarkModeSetting(
                                                             context,
                                                             ThemeMode.light);
                                                       } else {
+                                                        logFirebaseEvent(
+                                                            'ToggleIcon_set_dark_mode_settings');
                                                         setDarkModeSetting(
                                                             context,
                                                             ThemeMode.dark);
@@ -1543,6 +1688,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       size: 24.0,
                                                     ),
                                                     onPressed: () async {
+                                                      logFirebaseEvent(
+                                                          'EXPLORE_PAGE_person_ICN_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'IconButton_navigate_to');
+
                                                       context.pushNamed(
                                                         Auth2ProfilWidget
                                                             .routeName,
@@ -1577,6 +1727,10 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       size: 28.0,
                                                     ),
                                                     onPressed: () async {
+                                                      logFirebaseEvent(
+                                                          'EXPLORE_PAGE_menu_open_ICN_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'IconButton_drawer');
                                                       scaffoldKey.currentState!
                                                           .openDrawer();
                                                     },
@@ -2052,6 +2206,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'EXPLORE_PAGE_Image_5j41iism_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Image_navigate_to');
+
                                                                   context
                                                                       .pushNamed(
                                                                     CharacterProfilWidget
@@ -2224,10 +2383,15 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   ),
                                                                   onPressed:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'EXPLORE_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                     await authManager
                                                                         .refreshUser();
                                                                     if (currentUserEmailVerified ==
                                                                         true) {
+                                                                      logFirebaseEvent(
+                                                                          'IconButton_navigate_to');
+
                                                                       context
                                                                           .pushNamed(
                                                                         ChatPageProWidget
@@ -2247,6 +2411,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         }.withoutNulls,
                                                                       );
                                                                     } else {
+                                                                      logFirebaseEvent(
+                                                                          'IconButton_navigate_to');
+
                                                                       context.pushNamed(
                                                                           Auth2CreateWidget
                                                                               .routeName);
@@ -2378,6 +2545,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               .transparent,
                                                                       onTap:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'EXPLORE_PAGE_Image_9oeapevu_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'Image_navigate_to');
+
                                                                         context
                                                                             .pushNamed(
                                                                           CharacterProfilWidget
@@ -2527,10 +2699,14 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         ),
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'EXPLORE_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                           await authManager
                                                                               .refreshUser();
                                                                           if (currentUserEmailVerified ==
                                                                               true) {
+                                                                            logFirebaseEvent('IconButton_navigate_to');
+
                                                                             context.pushNamed(
                                                                               ChatPageProWidget.routeName,
                                                                               queryParameters: {
@@ -2545,6 +2721,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               }.withoutNulls,
                                                                             );
                                                                           } else {
+                                                                            logFirebaseEvent('IconButton_navigate_to');
+
                                                                             context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
@@ -2672,6 +2850,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               .transparent,
                                                                       onTap:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'EXPLORE_PAGE_Image_c855doct_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'Image_navigate_to');
+
                                                                         context
                                                                             .pushNamed(
                                                                           CharacterProfilWidget
@@ -2821,10 +3004,14 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                         ),
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'EXPLORE_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                           await authManager
                                                                               .refreshUser();
                                                                           if (currentUserEmailVerified ==
                                                                               true) {
+                                                                            logFirebaseEvent('IconButton_navigate_to');
+
                                                                             context.pushNamed(
                                                                               ChatPageProWidget.routeName,
                                                                               queryParameters: {
@@ -2839,6 +3026,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               }.withoutNulls,
                                                                             );
                                                                           } else {
+                                                                            logFirebaseEvent('IconButton_navigate_to');
+
                                                                             context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
@@ -3101,6 +3290,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               Colors.transparent,
                                                                           onTap:
                                                                               () async {
+                                                                            logFirebaseEvent('EXPLORE_PAGE_Image_vlb2d0pu_ON_TAP');
+                                                                            logFirebaseEvent('Image_navigate_to');
+
                                                                             context.pushNamed(
                                                                               CharacterProfilWidget.routeName,
                                                                               queryParameters: {
@@ -3232,8 +3424,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             ),
                                                                             onPressed:
                                                                                 () async {
+                                                                              logFirebaseEvent('EXPLORE_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                               await authManager.refreshUser();
                                                                               if (currentUserEmailVerified == true) {
+                                                                                logFirebaseEvent('IconButton_navigate_to');
+
                                                                                 context.pushNamed(
                                                                                   ChatPageProWidget.routeName,
                                                                                   queryParameters: {
@@ -3248,6 +3443,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                   }.withoutNulls,
                                                                                 );
                                                                               } else {
+                                                                                logFirebaseEvent('IconButton_navigate_to');
+
                                                                                 context.pushNamed(Auth2CreateWidget.routeName);
                                                                               }
                                                                             },
@@ -3380,6 +3577,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             Colors.transparent,
                                                                         onTap:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'EXPLORE_PAGE_Image_twdr1opa_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Image_navigate_to');
+
                                                                           context
                                                                               .pushNamed(
                                                                             CharacterProfilWidget.routeName,
@@ -3532,9 +3734,12 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                           ),
                                                                           onPressed:
                                                                               () async {
+                                                                            logFirebaseEvent('EXPLORE_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                             await authManager.refreshUser();
                                                                             if (currentUserEmailVerified ==
                                                                                 true) {
+                                                                              logFirebaseEvent('IconButton_navigate_to');
+
                                                                               context.pushNamed(
                                                                                 ChatPageProWidget.routeName,
                                                                                 queryParameters: {
@@ -3549,6 +3754,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                 }.withoutNulls,
                                                                               );
                                                                             } else {
+                                                                              logFirebaseEvent('IconButton_navigate_to');
+
                                                                               context.pushNamed(Auth2CreateWidget.routeName);
                                                                             }
                                                                           },
@@ -3683,6 +3890,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                               Colors.transparent,
                                                                           onTap:
                                                                               () async {
+                                                                            logFirebaseEvent('EXPLORE_PAGE_Image_wh3mnhd5_ON_TAP');
+                                                                            logFirebaseEvent('Image_navigate_to');
+
                                                                             context.pushNamed(
                                                                               CharacterProfilWidget.routeName,
                                                                               queryParameters: {
@@ -3814,8 +4024,11 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                             ),
                                                                             onPressed:
                                                                                 () async {
+                                                                              logFirebaseEvent('EXPLORE_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                               await authManager.refreshUser();
                                                                               if (currentUserEmailVerified == true) {
+                                                                                logFirebaseEvent('IconButton_navigate_to');
+
                                                                                 context.pushNamed(
                                                                                   ChatPageProWidget.routeName,
                                                                                   queryParameters: {
@@ -3830,6 +4043,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                                   }.withoutNulls,
                                                                                 );
                                                                               } else {
+                                                                                logFirebaseEvent('IconButton_navigate_to');
+
                                                                                 context.pushNamed(Auth2CreateWidget.routeName);
                                                                               }
                                                                             },

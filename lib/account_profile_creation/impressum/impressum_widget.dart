@@ -39,6 +39,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
     super.initState();
     _model = createModel(context, () => ImpressumModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Impressum'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -92,6 +93,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'IMPRESSUM_PAGE_Image_nridajg8_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -110,6 +115,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'IMPRESSUM_PAGE_Icon_3hyv065u_ON_TAP');
+                                    logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
                                         scaffoldKey
@@ -139,6 +147,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'IMPRESSUM_PAGE_Row_qs3hmo2r_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
@@ -174,9 +186,15 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'IMPRESSUM_PAGE_Row_9lm0l8qe_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ChatsWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -213,6 +231,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'IMPRESSUM_PAGE_Row_bxvygz5g_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
@@ -248,9 +270,15 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'IMPRESSUM_PAGE_Row_evsfzz32_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -303,6 +331,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'IMPRESSUM_PAGE_Container_wmis8yf0_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -324,6 +357,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'IMPRESSUM_PAGE_PREMIUM_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               GetPremiumWidget.routeName);
                                         },
@@ -385,7 +423,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'IMPRESSUM_PAGE_Row_vvm6lb5x_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -396,6 +438,8 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -442,6 +486,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'IMPRESSUM_PAGE_Row_31kbh5qd_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(
                                   Auth2ProfilWidget.routeName,
                                   queryParameters: {
@@ -496,6 +544,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'IMPRESSUM_PAGE_Row_ssaovthz_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
@@ -534,9 +586,14 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'IMPRESSUM_PAGE_Row_htirrtmy_ON_TAP');
+                                logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
+
+                                logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamedAuth(
                                     HomeWidget.routeName, context.mounted);
@@ -645,6 +702,10 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'IMPRESSUM_PAGE_Image_6ge3oaxu_ON_TAP');
+                                          logFirebaseEvent('Image_navigate_to');
+
                                           context
                                               .pushNamed(HomeWidget.routeName);
                                         },
@@ -675,6 +736,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'IMPRESSUM_PAGE_Row_a3u3ofct_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                     ExploreWidget.routeName,
                                                     extra: <String, dynamic>{
@@ -749,6 +815,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'IMPRESSUM_PAGE_Icon_wq0y9f06_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               ExploreWidget
                                                                   .routeName);
@@ -773,6 +844,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'IMPRESSUM_PAGE_Row_3g5l0b18_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       ChatsWidget.routeName);
                                                 },
@@ -837,12 +913,20 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'IMPRESSUM_PAGE_Icon_94nmlx6o_ON_TAP');
                                                           if (loggedIn ==
                                                               true) {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 ChatsWidget
                                                                     .routeName);
                                                           } else {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 Auth2CreateWidget
                                                                     .routeName);
@@ -868,6 +952,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'IMPRESSUM_PAGE_Row_mey8p8c8_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       CreateWidget.routeName);
                                                 },
@@ -932,6 +1021,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'IMPRESSUM_PAGE_Icon_3m34ieh7_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               CreateWidget
                                                                   .routeName);
@@ -1050,12 +1144,18 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                 safeSetState(() => FFAppState()
                                                         .isLightMode =
                                                     !FFAppState().isLightMode);
+                                                logFirebaseEvent(
+                                                    'IMPRESSUM_ToggleIcon_1y2qc5tu_ON_TOGGLE');
                                                 if (Theme.of(context)
                                                         .brightness ==
                                                     Brightness.dark) {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.light);
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.dark);
                                                 }
@@ -1145,6 +1245,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     size: 24.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'IMPRESSUM_PAGE_person_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_navigate_to');
+
                                                     context.pushNamed(
                                                       Auth2ProfilWidget
                                                           .routeName,
@@ -1170,6 +1275,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'IMPRESSUM_PAGE_Container_kbhckwn2_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'buttonPink_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2CreateWidget.routeName);
                                             },
@@ -1183,6 +1293,11 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         if (loggedIn == false)
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'IMPRESSUM_PAGE_LOGIN_BTN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2LoginWidget.routeName);
                                             },
@@ -1242,6 +1357,9 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'IMPRESSUM_PAGE_Icon_nvz0caei_ON_TAP');
+                                              logFirebaseEvent('Icon_drawer');
                                               scaffoldKey.currentState!
                                                   .openDrawer();
                                             },
@@ -1384,6 +1502,52 @@ Capepo... */
                                                                         context)
                                                                     .labelMediumFamily),
                                                       ),
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 0.0, 30.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'IMPRESSUM_PAGE_Text_i93h6wyl_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Text_launch_u_r_l');
+                                                await launchURL(
+                                                    'https://www.adimpact.pro');
+                                              },
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'dm3znngi' /* Design + Development by adimpa... */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ),

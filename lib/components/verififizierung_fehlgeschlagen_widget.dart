@@ -156,6 +156,10 @@ class _VerififizierungFehlgeschlagenWidgetState
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'VERIFIFIZIERUNG_FEHLGESCHLAGEN_ZUR_REGIS');
+                              logFirebaseEvent('Button_navigate_to');
+
                               context.pushNamed(Auth2CreateWidget.routeName);
                             },
                             text: FFLocalizations.of(context).getText(
@@ -189,6 +193,9 @@ class _VerififizierungFehlgeschlagenWidgetState
                           ),
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'VERIFIFIZIERUNG_FEHLGESCHLAGEN_E_MAIL_ER');
+                              logFirebaseEvent('Button_auth');
                               await authManager.sendEmailVerification();
                             },
                             text: FFLocalizations.of(context).getText(

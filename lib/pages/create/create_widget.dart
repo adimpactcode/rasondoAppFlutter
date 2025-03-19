@@ -1,3 +1,4 @@
+import '';
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
@@ -57,8 +58,11 @@ class _CreateWidgetState extends State<CreateWidget>
     super.initState();
     _model = createModel(context, () => CreateModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Create'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('CREATE_PAGE_Create_ON_INIT_STATE');
+      logFirebaseEvent('Create_update_app_state');
       FFAppState().imageStyleState = 'Realistik';
       safeSetState(() {});
     });
@@ -141,6 +145,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'CREATE_PAGE_Image_3dvxmp36_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -159,6 +167,9 @@ class _CreateWidgetState extends State<CreateWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CREATE_PAGE_Icon_e3pa4j7q_ON_TAP');
+                                    logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
                                         scaffoldKey
@@ -188,6 +199,10 @@ class _CreateWidgetState extends State<CreateWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'CREATE_PAGE_Row_w7dc681e_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
@@ -223,9 +238,15 @@ class _CreateWidgetState extends State<CreateWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'CREATE_PAGE_Row_yqjsvork_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ChatsWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -262,6 +283,10 @@ class _CreateWidgetState extends State<CreateWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'CREATE_PAGE_Row_6ez49b0u_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
@@ -297,9 +322,15 @@ class _CreateWidgetState extends State<CreateWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'CREATE_PAGE_Row_c9wmf0qm_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -352,6 +383,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CREATE_PAGE_Container_excyldni_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -373,6 +409,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'CREATE_PAGE_PREMIUM_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               GetPremiumWidget.routeName);
                                         },
@@ -434,7 +475,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CREATE_PAGE_Row_2anv9a3z_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -445,6 +490,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                         }.withoutNulls,
                                       );
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -491,6 +538,10 @@ class _CreateWidgetState extends State<CreateWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'CREATE_PAGE_Row_ee2mmm76_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(
                                   Auth2ProfilWidget.routeName,
                                   queryParameters: {
@@ -545,6 +596,10 @@ class _CreateWidgetState extends State<CreateWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'CREATE_PAGE_Row_kmwdo0if_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
@@ -583,9 +638,14 @@ class _CreateWidgetState extends State<CreateWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'CREATE_PAGE_Row_etzr8psl_ON_TAP');
+                                logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
+
+                                logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamedAuth(
                                     HomeWidget.routeName, context.mounted);
@@ -710,6 +770,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'CREATE_PAGE_Container_rmxbfase_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Container_navigate_to');
+
                                                     context.pushNamed(
                                                       HomeWidget.routeName,
                                                       extra: <String, dynamic>{
@@ -751,13 +816,19 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                     .isLightMode =
                                                                 !FFAppState()
                                                                     .isLightMode);
+                                                        logFirebaseEvent(
+                                                            'CREATE_ToggleIcon_k6g1lerh_ON_TOGGLE');
                                                         if (Theme.of(context)
                                                                 .brightness ==
                                                             Brightness.dark) {
+                                                          logFirebaseEvent(
+                                                              'ToggleIcon_set_dark_mode_settings');
                                                           setDarkModeSetting(
                                                               context,
                                                               ThemeMode.light);
                                                         } else {
+                                                          logFirebaseEvent(
+                                                              'ToggleIcon_set_dark_mode_settings');
                                                           setDarkModeSetting(
                                                               context,
                                                               ThemeMode.dark);
@@ -804,6 +875,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         size: 24.0,
                                                       ),
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'CREATE_PAGE_login_ICN_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'IconButton_navigate_to');
+
                                                         context.pushNamed(
                                                             Auth2LoginWidget
                                                                 .routeName);
@@ -830,6 +906,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         size: 28.0,
                                                       ),
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'CREATE_PAGE_menu_open_ICN_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'IconButton_drawer');
                                                         scaffoldKey
                                                             .currentState!
                                                             .openDrawer();
@@ -912,6 +992,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CREATE_PAGE_Container_da6qbkfk_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Container_navigate_to');
+
                                                         context.pushNamed(
                                                           HomeWidget.routeName,
                                                           extra: <String,
@@ -958,16 +1043,22 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                         .isLightMode =
                                                                     !FFAppState()
                                                                         .isLightMode);
+                                                            logFirebaseEvent(
+                                                                'CREATE_ToggleIcon_4oie0ctf_ON_TOGGLE');
                                                             if (Theme.of(
                                                                         context)
                                                                     .brightness ==
                                                                 Brightness
                                                                     .dark) {
+                                                              logFirebaseEvent(
+                                                                  'ToggleIcon_set_dark_mode_settings');
                                                               setDarkModeSetting(
                                                                   context,
                                                                   ThemeMode
                                                                       .light);
                                                             } else {
+                                                              logFirebaseEvent(
+                                                                  'ToggleIcon_set_dark_mode_settings');
                                                               setDarkModeSetting(
                                                                   context,
                                                                   ThemeMode
@@ -1013,6 +1104,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                             size: 24.0,
                                                           ),
                                                           onPressed: () async {
+                                                            logFirebaseEvent(
+                                                                'CREATE_PAGE_person_ICN_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'IconButton_navigate_to');
+
                                                             context.pushNamed(
                                                               Auth2ProfilWidget
                                                                   .routeName,
@@ -1047,6 +1143,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                             size: 28.0,
                                                           ),
                                                           onPressed: () async {
+                                                            logFirebaseEvent(
+                                                                'CREATE_PAGE_menu_open_ICN_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'IconButton_drawer');
                                                             scaffoldKey
                                                                 .currentState!
                                                                 .openDrawer();
@@ -1108,6 +1208,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CREATE_PAGE_Image_q45t8wv2_ON_TAP');
+                                        logFirebaseEvent('Image_navigate_to');
+
                                         context.pushNamed(HomeWidget.routeName);
                                       },
                                       child: Image.asset(
@@ -1136,6 +1240,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'CREATE_PAGE_Row_mkhjab3e_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Row_navigate_to');
+
                                                 context.pushNamed(
                                                   ExploreWidget.routeName,
                                                   extra: <String, dynamic>{
@@ -1209,6 +1318,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CREATE_PAGE_Icon_p7an1k5q_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Icon_navigate_to');
+
                                                         context.pushNamed(
                                                             ExploreWidget
                                                                 .routeName);
@@ -1233,6 +1347,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'CREATE_PAGE_Row_6ksqfjbr_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Row_navigate_to');
+
                                                 context.pushNamed(
                                                     ChatsWidget.routeName);
                                               },
@@ -1296,11 +1415,19 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CREATE_PAGE_Icon_pblp87xg_ON_TAP');
                                                         if (loggedIn == true) {
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               ChatsWidget
                                                                   .routeName);
                                                         } else {
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               Auth2CreateWidget
                                                                   .routeName);
@@ -1326,6 +1453,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'CREATE_PAGE_Row_eiwx3w6z_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Row_navigate_to');
+
                                                 context.pushNamed(
                                                     CreateWidget.routeName);
                                               },
@@ -1389,6 +1521,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CREATE_PAGE_Icon_c7xlp064_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Icon_navigate_to');
+
                                                         context.pushNamed(
                                                             CreateWidget
                                                                 .routeName);
@@ -1502,12 +1639,18 @@ class _CreateWidgetState extends State<CreateWidget>
                                               safeSetState(() => FFAppState()
                                                       .isLightMode =
                                                   !FFAppState().isLightMode);
+                                              logFirebaseEvent(
+                                                  'CREATE_ToggleIcon_pbgc3mn7_ON_TOGGLE');
                                               if (Theme.of(context)
                                                       .brightness ==
                                                   Brightness.dark) {
+                                                logFirebaseEvent(
+                                                    'ToggleIcon_set_dark_mode_settings');
                                                 setDarkModeSetting(
                                                     context, ThemeMode.light);
                                               } else {
+                                                logFirebaseEvent(
+                                                    'ToggleIcon_set_dark_mode_settings');
                                                 setDarkModeSetting(
                                                     context, ThemeMode.dark);
                                               }
@@ -1592,6 +1735,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   size: 24.0,
                                                 ),
                                                 onPressed: () async {
+                                                  logFirebaseEvent(
+                                                      'CREATE_PAGE_person_ICN_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'IconButton_navigate_to');
+
                                                   context.pushNamed(
                                                     Auth2ProfilWidget.routeName,
                                                     queryParameters: {
@@ -1616,6 +1764,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'CREATE_PAGE_Container_pu5ouau2_ON_TAP');
+                                            logFirebaseEvent(
+                                                'buttonPink_navigate_to');
+
                                             context.pushNamed(
                                                 Auth2CreateWidget.routeName);
                                           },
@@ -1629,6 +1782,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                       if (loggedIn == false)
                                         FFButtonWidget(
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'CREATE_PAGE_LOGIN_BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_navigate_to');
+
                                             context.pushNamed(
                                                 Auth2LoginWidget.routeName);
                                           },
@@ -1688,6 +1846,9 @@ class _CreateWidgetState extends State<CreateWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'CREATE_PAGE_Icon_nzf6ela2_ON_TAP');
+                                            logFirebaseEvent('Icon_drawer');
                                             scaffoldKey.currentState!
                                                 .openDrawer();
                                           },
@@ -1855,6 +2016,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                         hoverColor: Colors.transparent,
                                                                                                         highlightColor: Colors.transparent,
                                                                                                         onTap: () async {
+                                                                                                          logFirebaseEvent('CREATE_PAGE_Stack_92l5zxub_ON_TAP');
+                                                                                                          logFirebaseEvent('Stack_update_app_state');
                                                                                                           FFAppState().imageStyleState = 'Realistik';
                                                                                                           safeSetState(() {});
                                                                                                         },
@@ -1925,6 +2088,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                         hoverColor: Colors.transparent,
                                                                                                         highlightColor: Colors.transparent,
                                                                                                         onTap: () async {
+                                                                                                          logFirebaseEvent('CREATE_PAGE_Stack_o1lzbob3_ON_TAP');
+                                                                                                          logFirebaseEvent('Stack_update_app_state');
                                                                                                           FFAppState().imageStyleState = 'Anime';
                                                                                                           safeSetState(() {});
                                                                                                         },
@@ -2069,6 +2234,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                       hoverColor: Colors.transparent,
                                                                                                       highlightColor: Colors.transparent,
                                                                                                       onTap: () async {
+                                                                                                        logFirebaseEvent('CREATE_PAGE_Stack_zw2sro1e_ON_TAP');
+                                                                                                        logFirebaseEvent('Stack_update_app_state');
                                                                                                         FFAppState().imageStyleState = 'Realistik';
                                                                                                         safeSetState(() {});
                                                                                                       },
@@ -2142,6 +2309,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                       hoverColor: Colors.transparent,
                                                                                                       highlightColor: Colors.transparent,
                                                                                                       onTap: () async {
+                                                                                                        logFirebaseEvent('CREATE_PAGE_Stack_uyclyo3d_ON_TAP');
+                                                                                                        logFirebaseEvent('Stack_update_app_state');
                                                                                                         FFAppState().imageStyleState = 'Anime';
                                                                                                         safeSetState(() {});
                                                                                                       },
@@ -2271,6 +2440,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                                                                                           child: FFButtonWidget(
                                                                                             onPressed: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_LOS_GEHTS_BTN_ON_TAP');
+                                                                                              logFirebaseEvent('Button_page_view');
                                                                                               await _model.pageViewController?.nextPage(
                                                                                                 duration: Duration(milliseconds: 300),
                                                                                                 curve: Curves.ease,
@@ -2483,7 +2654,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                        if (_model.choiceChipsGenderValue == 'Frau')
+                                                                                        if ((_model.choiceChipsGenderValue == 'Frau') || (_model.choiceChipsGenderValue == 'Woman'))
                                                                                           GridView(
                                                                                             padding: EdgeInsets.zero,
                                                                                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -2501,6 +2672,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_v91d6jt7_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Kaukasisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -2561,6 +2734,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_05zhash6_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Latina';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -2621,6 +2796,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_rauxlm5u_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Afrikanisch';
                                                                                                   FFAppState().update(() {});
                                                                                                 },
@@ -2681,6 +2858,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_6kl3c9s7_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Asiatisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -2741,6 +2920,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_85eium8q_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Europäisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -2801,6 +2982,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_y5qcrvwz_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Arabisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -2857,7 +3040,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               ),
                                                                                             ],
                                                                                           ),
-                                                                                        if (_model.choiceChipsGenderValue == 'Mann')
+                                                                                        if ((_model.choiceChipsGenderValue == 'Mann') || (_model.choiceChipsGenderValue == 'Man'))
                                                                                           GridView(
                                                                                             padding: EdgeInsets.zero,
                                                                                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -2875,6 +3058,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_gm5mkexs_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Kaukasisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -2935,6 +3120,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_70qe36km_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Latino';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -2995,6 +3182,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_mck52k7h_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Afrikanisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -3055,6 +3244,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_av3e2yrj_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Asiatisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -3115,6 +3306,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_i0i069db_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Europäisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -3175,6 +3368,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                                 hoverColor: Colors.transparent,
                                                                                                 highlightColor: Colors.transparent,
                                                                                                 onTap: () async {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_Stack_cbkqvpur_ON_TAP');
+                                                                                                  logFirebaseEvent('Stack_update_app_state');
                                                                                                   FFAppState().ethnicity = 'Arabisch';
                                                                                                   safeSetState(() {});
                                                                                                 },
@@ -3272,6 +3467,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
+                                                                                                logFirebaseEvent('CREATE_PAGE_Stack_dd8xeui0_ON_TAP');
+                                                                                                logFirebaseEvent('Stack_update_app_state');
                                                                                                 FFAppState().accessoires = 'Tattoo';
                                                                                                 safeSetState(() {});
                                                                                               },
@@ -3332,6 +3529,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
+                                                                                                logFirebaseEvent('CREATE_PAGE_Stack_lna4my2q_ON_TAP');
+                                                                                                logFirebaseEvent('Stack_update_app_state');
                                                                                                 FFAppState().accessoires = 'Brille';
                                                                                                 safeSetState(() {});
                                                                                               },
@@ -3392,6 +3591,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
+                                                                                                logFirebaseEvent('CREATE_PAGE_Stack_7qmf20ul_ON_TAP');
+                                                                                                logFirebaseEvent('Stack_update_app_state');
                                                                                                 FFAppState().accessoires = 'Hörner';
                                                                                                 safeSetState(() {});
                                                                                               },
@@ -3452,6 +3653,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
+                                                                                                logFirebaseEvent('CREATE_PAGE_Stack_4nq0s0ic_ON_TAP');
+                                                                                                logFirebaseEvent('Stack_update_app_state');
                                                                                                 FFAppState().accessoires = 'Schwanz';
                                                                                                 safeSetState(() {});
                                                                                               },
@@ -3512,6 +3715,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
+                                                                                                logFirebaseEvent('CREATE_PAGE_Stack_1c4247d3_ON_TAP');
+                                                                                                logFirebaseEvent('Stack_update_app_state');
                                                                                                 FFAppState().accessoires = 'Ohrringe';
                                                                                                 safeSetState(() {});
                                                                                               },
@@ -3572,6 +3777,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               hoverColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () async {
+                                                                                                logFirebaseEvent('CREATE_PAGE_Stack_jslhh65b_ON_TAP');
+                                                                                                logFirebaseEvent('Stack_update_app_state');
                                                                                                 FFAppState().accessoires = 'Halskette';
                                                                                                 safeSetState(() {});
                                                                                               },
@@ -3676,6 +3883,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -3757,6 +3968,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.nextPage(
@@ -3846,6 +4061,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -3926,6 +4145,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.nextPage(
@@ -4089,6 +4312,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_lwjn2a7n_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Blond';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4147,6 +4372,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_02ulh1f0_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Brunette';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4204,6 +4431,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_sq3b3yih_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Schwarz';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4261,6 +4490,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_fl729z99_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Rot';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4319,6 +4550,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_3pngrmm8_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Blau';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4377,6 +4610,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_uj8crhhw_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Rosa';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4435,6 +4670,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_9olg9uzj_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Weiß';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4510,6 +4747,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_vhuquwal_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Blond';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4568,6 +4807,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_z1ab3d8i_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Brunette';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4625,6 +4866,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_9db74yf2_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Schwarz';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4682,6 +4925,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_71wsmunj_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Rot';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4740,6 +4985,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_lk1jxtmt_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Weiß';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4815,6 +5062,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_j42a1et1_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Blau';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4873,6 +5122,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_ll8g9s28_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Bunt';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4930,6 +5181,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_m09ghhww_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Pink';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -4987,6 +5240,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_90d0cd6k_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Grün';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -5045,6 +5300,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_j3qit9q7_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Rot';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -5103,6 +5360,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_qbr8298l_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Weiß';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -5161,6 +5420,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_o2p0k9ac_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Dunkel';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -5219,6 +5480,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_4z4x9yh5_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Silber';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -5277,6 +5540,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_np7q7i1r_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().hairColour = 'Blond';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -5394,6 +5659,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                         ],
                                                                                         onChanged: (val) async {
                                                                                           safeSetState(() => _model.choiceChipsHairstyleValue = val?.firstOrNull);
+                                                                                          logFirebaseEvent('CREATE_ChoiceChipsHairstyle_ON_FORM_WIDG');
+                                                                                          logFirebaseEvent('ChoiceChipsHairstyle_update_app_state');
                                                                                           FFAppState().hairStyle = _model.choiceChipsHairstyleValue!;
                                                                                           safeSetState(() {});
                                                                                         },
@@ -5469,6 +5736,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                         ],
                                                                                         onChanged: (val) async {
                                                                                           safeSetState(() => _model.choiceChipsHairstyleAnimeValue = val?.firstOrNull);
+                                                                                          logFirebaseEvent('CREATE_ChoiceChipsHairstyleAnime_ON_FORM');
+                                                                                          logFirebaseEvent('ChoiceChipsHairstyleAnime_update_app_sta');
                                                                                           FFAppState().hairStyle = _model.choiceChipsHairstyleAnimeValue!;
                                                                                           safeSetState(() {});
                                                                                         },
@@ -5556,6 +5825,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           hoverColor: Colors.transparent,
                                                                                           highlightColor: Colors.transparent,
                                                                                           onTap: () async {
+                                                                                            logFirebaseEvent('CREATE_PAGE_Stack_cex4hk4n_ON_TAP');
+                                                                                            logFirebaseEvent('Stack_update_app_state');
                                                                                             FFAppState().eyeColour = 'Blau';
                                                                                             safeSetState(() {});
                                                                                           },
@@ -5614,6 +5885,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           hoverColor: Colors.transparent,
                                                                                           highlightColor: Colors.transparent,
                                                                                           onTap: () async {
+                                                                                            logFirebaseEvent('CREATE_PAGE_Stack_8jj10v1k_ON_TAP');
+                                                                                            logFirebaseEvent('Stack_update_app_state');
                                                                                             FFAppState().eyeColour = 'Braun';
                                                                                             safeSetState(() {});
                                                                                           },
@@ -5672,6 +5945,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           hoverColor: Colors.transparent,
                                                                                           highlightColor: Colors.transparent,
                                                                                           onTap: () async {
+                                                                                            logFirebaseEvent('CREATE_PAGE_Stack_2q437154_ON_TAP');
+                                                                                            logFirebaseEvent('Stack_update_app_state');
                                                                                             FFAppState().eyeColour = 'Grün';
                                                                                             safeSetState(() {});
                                                                                           },
@@ -5744,6 +6019,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           hoverColor: Colors.transparent,
                                                                                           highlightColor: Colors.transparent,
                                                                                           onTap: () async {
+                                                                                            logFirebaseEvent('CREATE_PAGE_Stack_qaeqrpw2_ON_TAP');
+                                                                                            logFirebaseEvent('Stack_update_app_state');
                                                                                             FFAppState().eyeColour = 'Gold';
                                                                                             safeSetState(() {});
                                                                                           },
@@ -5802,6 +6079,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           hoverColor: Colors.transparent,
                                                                                           highlightColor: Colors.transparent,
                                                                                           onTap: () async {
+                                                                                            logFirebaseEvent('CREATE_PAGE_Stack_ttvlfa00_ON_TAP');
+                                                                                            logFirebaseEvent('Stack_update_app_state');
                                                                                             FFAppState().eyeColour = 'Silber';
                                                                                             safeSetState(() {});
                                                                                           },
@@ -5860,6 +6139,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           hoverColor: Colors.transparent,
                                                                                           highlightColor: Colors.transparent,
                                                                                           onTap: () async {
+                                                                                            logFirebaseEvent('CREATE_PAGE_Stack_17kxfqn3_ON_TAP');
+                                                                                            logFirebaseEvent('Stack_update_app_state');
                                                                                             FFAppState().eyeColour = 'Dunkel';
                                                                                             safeSetState(() {});
                                                                                           },
@@ -5918,6 +6199,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                           hoverColor: Colors.transparent,
                                                                                           highlightColor: Colors.transparent,
                                                                                           onTap: () async {
+                                                                                            logFirebaseEvent('CREATE_PAGE_Stack_r8deefjw_ON_TAP');
+                                                                                            logFirebaseEvent('Stack_update_app_state');
                                                                                             FFAppState().eyeColour = 'Mehrfarbig';
                                                                                             safeSetState(() {});
                                                                                           },
@@ -6018,6 +6301,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -6100,6 +6387,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.nextPage(
@@ -6190,6 +6481,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -6270,6 +6565,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.nextPage(
@@ -6434,6 +6733,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_c7b89xoa_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'Skinny';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6496,6 +6797,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_9ikyi59y_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'Normal';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6558,6 +6861,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_898mntvn_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'Athletisch';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6619,6 +6924,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_rkcaj59i_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'Kurvig';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6682,6 +6989,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_wyt0vpoh_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'XXL';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6762,6 +7071,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_o7ehlwqf_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'Slim';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6824,6 +7135,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_ee5waas7_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'Normal';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6886,6 +7199,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_i6vlea02_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'Athletisch';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -6947,6 +7262,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_nrqg6d0v_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().bodyTyp = 'XXL';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7056,6 +7373,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_7khzww2s_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().breastSize = 'Klein';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7119,6 +7438,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_e64iz0px_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().breastSize = 'Medium';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7182,6 +7503,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_ti0odqge_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().breastSize = 'Groß';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7246,6 +7569,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_6xga3cjv_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().breastSize = 'XXL';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7354,6 +7679,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_9k7radxj_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'Klein';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7417,6 +7744,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_3jtl6omn_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'Medium';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7481,6 +7810,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_jkmb36ok_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'Groß';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7544,6 +7875,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_s1baobi8_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'XXL';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7624,6 +7957,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_o2y8065c_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'Klein';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7687,6 +8022,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_viwe1mdg_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'Medium';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7751,6 +8088,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_4uyi75v0_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'Groß';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7814,6 +8153,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_2e7quyhy_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().buttSize = 'XXL';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -7909,6 +8250,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsAccessoiresValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsAccessoires_ON_FORM_WI');
+                                                                                    logFirebaseEvent('ChoiceChipsAccessoires_update_app_state');
                                                                                     FFAppState().accessoires = _model.choiceChipsAccessoiresValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -7995,6 +8338,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -8076,6 +8423,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.nextPage(
@@ -8173,6 +8524,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                             FFButtonWidget(
                                                                           onPressed:
                                                                               () async {
+                                                                            logFirebaseEvent('CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                            logFirebaseEvent('Button_page_view');
                                                                             await _model.pageViewController?.previousPage(
                                                                               duration: Duration(milliseconds: 300),
                                                                               curve: Curves.ease,
@@ -8254,6 +8607,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                             FFButtonWidget(
                                                                           onPressed:
                                                                               () async {
+                                                                            logFirebaseEvent('CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                            logFirebaseEvent('Button_page_view');
                                                                             await _model.pageViewController?.nextPage(
                                                                               duration: Duration(milliseconds: 300),
                                                                               curve: Curves.ease,
@@ -8413,6 +8768,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsClothingValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsClothing_ON_FORM_WIDGE');
+                                                                                    logFirebaseEvent('ChoiceChipsClothing_update_app_state');
                                                                                     FFAppState().clothing = _model.choiceChipsClothingValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -8476,6 +8833,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsClothingAnimeValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsClothingAnime_ON_FORM_');
+                                                                                    logFirebaseEvent('ChoiceChipsClothingAnime_update_app_stat');
                                                                                     FFAppState().clothing = _model.choiceChipsClothingAnimeValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -8570,6 +8929,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_u16elbdl_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Futuristic';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -8657,6 +9018,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_7kujj6nj_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Asiatisch';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -8720,6 +9083,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_b0dtwe1z_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Fantasy';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -8797,6 +9162,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_3up5yy6n_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'City';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -8883,6 +9250,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_5a6sumgp_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Wohnung';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -8946,6 +9315,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_02togvy3_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Natur';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -9009,6 +9380,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_fx6ku2y4_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Restaurant';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -9072,6 +9445,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_3puzgohh_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Büro';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -9136,6 +9511,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_ff8ey2or_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Strand';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -9195,6 +9572,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_pmgt3el2_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Gym';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -9254,6 +9633,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_ypsqhcit_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Luxus';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -9318,6 +9699,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                             hoverColor: Colors.transparent,
                                                                                             highlightColor: Colors.transparent,
                                                                                             onTap: () async {
+                                                                                              logFirebaseEvent('CREATE_PAGE_Stack_zvfcjodx_ON_TAP');
+                                                                                              logFirebaseEvent('Stack_update_app_state');
                                                                                               FFAppState().ambiente = 'Club';
                                                                                               safeSetState(() {});
                                                                                             },
@@ -9423,6 +9806,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -9504,6 +9891,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.nextPage(
@@ -9600,6 +9991,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZUTCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -9688,6 +10083,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_WEITER_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.nextPage(
@@ -10110,6 +10509,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsCharacterValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsCharacter_ON_FORM_WIDG');
+                                                                                    logFirebaseEvent('ChoiceChipsCharacter_update_app_state');
                                                                                     FFAppState().characterChoice = _model.choiceChipsCharacterValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -10180,6 +10581,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsCharacterAnimeValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsCharacterAnime_ON_FORM');
+                                                                                    logFirebaseEvent('ChoiceChipsCharacterAnime_update_app_sta');
                                                                                     FFAppState().characterChoice = _model.choiceChipsCharacterAnimeValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -10280,6 +10683,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsPersonalityValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsPersonality_ON_FORM_WI');
+                                                                                    logFirebaseEvent('ChoiceChipsPersonality_update_app_state');
                                                                                     FFAppState().personalityChoice = _model.choiceChipsPersonalityValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -10377,6 +10782,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsPersonalityAnimeValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsPersonalityAnime_ON_FO');
+                                                                                    logFirebaseEvent('ChoiceChipsPersonalityAnime_update_app_s');
                                                                                     FFAppState().personalityChoice = _model.choiceChipsPersonalityAnimeValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -10465,6 +10872,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsVoiceTonValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsVoiceTon_ON_FORM_WIDGE');
+                                                                                    logFirebaseEvent('ChoiceChipsVoiceTon_update_app_state');
                                                                                     FFAppState().voiceTon = _model.choiceChipsVoiceTonValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -10532,6 +10941,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                   ],
                                                                                   onChanged: (val) async {
                                                                                     safeSetState(() => _model.choiceChipsVoiceTonAnimeValue = val?.firstOrNull);
+                                                                                    logFirebaseEvent('CREATE_ChoiceChipsVoiceTonAnime_ON_FORM_');
+                                                                                    logFirebaseEvent('ChoiceChipsVoiceTonAnime_update_app_stat');
                                                                                     FFAppState().voiceTon = _model.choiceChipsVoiceTonAnimeValue!;
                                                                                     safeSetState(() {});
                                                                                   },
@@ -10822,6 +11233,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                         ],
                                                                                         onChanged: (val) async {
                                                                                           safeSetState(() => _model.choiceChipsScenariesValue = val?.firstOrNull);
+                                                                                          logFirebaseEvent('CREATE_ChoiceChipsScenaries_ON_FORM_WIDG');
+                                                                                          logFirebaseEvent('ChoiceChipsScenaries_update_app_state');
                                                                                           FFAppState().scenarios = _model.choiceChipsScenariesValue!;
                                                                                           safeSetState(() {});
                                                                                         },
@@ -10888,6 +11301,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                         ],
                                                                                         onChanged: (val) async {
                                                                                           safeSetState(() => _model.choiceChipsScenariesAnimeValue = val?.firstOrNull);
+                                                                                          logFirebaseEvent('CREATE_ChoiceChipsScenariesAnime_ON_FORM');
+                                                                                          logFirebaseEvent('ChoiceChipsScenariesAnime_update_app_sta');
                                                                                           FFAppState().scenarios = _model.choiceChipsScenariesAnimeValue!;
                                                                                           safeSetState(() {});
                                                                                         },
@@ -10974,6 +11389,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -11056,13 +11475,18 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZUR_BERSICHT_BTN_ON_TAP');
                                                                           if (loggedIn ==
                                                                               true) {
+                                                                            logFirebaseEvent('Button_page_view');
                                                                             await _model.pageViewController?.nextPage(
                                                                               duration: Duration(milliseconds: 300),
                                                                               curve: Curves.ease,
                                                                             );
                                                                           } else {
+                                                                            logFirebaseEvent('Button_navigate_to');
+
                                                                             context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
@@ -11147,6 +11571,10 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_page_view');
                                                                           await _model
                                                                               .pageViewController
                                                                               ?.previousPage(
@@ -11227,13 +11655,18 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           FFButtonWidget(
                                                                         onPressed:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CREATE_PAGE_ZUR_BERSICHT_BTN_ON_TAP');
                                                                           if (loggedIn ==
                                                                               true) {
+                                                                            logFirebaseEvent('Button_page_view');
                                                                             await _model.pageViewController?.nextPage(
                                                                               duration: Duration(milliseconds: 300),
                                                                               curve: Curves.ease,
                                                                             );
                                                                           } else {
+                                                                            logFirebaseEvent('Button_navigate_to');
+
                                                                             context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
@@ -12880,6 +13313,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                                               onChanged: (newValue) async {
                                                                                                 safeSetState(() => _model.oeffentlichValue = newValue!);
                                                                                                 if (newValue!) {
+                                                                                                  logFirebaseEvent('CREATE_PAGE_oeffentlich_ON_TOGGLE_ON');
+                                                                                                  logFirebaseEvent('oeffentlich_update_app_state');
                                                                                                   FFAppState().ispublicState = true;
                                                                                                   safeSetState(() {});
                                                                                                 }
@@ -13035,8 +13470,10 @@ Jetzt Char... */
                                                                           return FFButtonWidget(
                                                                             onPressed:
                                                                                 () async {
+                                                                              logFirebaseEvent('CREATE_JETZT_A_I_ERSTELLEN_BTN_ON_TAP');
                                                                               if (loggedIn == true) {
                                                                                 if ((valueOrDefault(currentUserDocument?.charactersCreatedCount, 0) < 1) || valueOrDefault<bool>(currentUserDocument?.isPremium, false)) {
+                                                                                  logFirebaseEvent('Button_alert_dialog');
                                                                                   showDialog(
                                                                                     barrierDismissible: false,
                                                                                     context: context,
@@ -13056,6 +13493,8 @@ Jetzt Char... */
                                                                                       );
                                                                                     },
                                                                                   );
+
+                                                                                  logFirebaseEvent('Button_backend_call');
 
                                                                                   var charactersMainRecordReference = CharactersMainRecord.collection.doc();
                                                                                   await charactersMainRecordReference.set({
@@ -13157,14 +13596,18 @@ Jetzt Char... */
                                                                                     ),
                                                                                   }, charactersMainRecordReference);
                                                                                   if (_model.createdCharacterId?.reference != null) {
+                                                                                    logFirebaseEvent('Button_update_app_state');
                                                                                     FFAppState().characterId = _model.createdCharacterId!.reference.id;
                                                                                     safeSetState(() {});
+                                                                                    logFirebaseEvent('Button_backend_call');
                                                                                     _model.generatedImageUrl = await NovitaFunctionTextToImageCall.call(
                                                                                       characterId: FFAppState().characterId,
                                                                                     );
 
                                                                                     if (_model.generatedImageUrl != null) {
+                                                                                      logFirebaseEvent('Button_close_dialog_drawer_etc');
                                                                                       Navigator.pop(context);
+                                                                                      logFirebaseEvent('Button_backend_call');
 
                                                                                       await buttonUsersRecord.reference.update({
                                                                                         ...mapToFirestore(
@@ -13173,8 +13616,10 @@ Jetzt Char... */
                                                                                           },
                                                                                         ),
                                                                                       });
+                                                                                      logFirebaseEvent('Button_update_app_state');
                                                                                       FFAppState().cameFromCreate = true;
                                                                                       safeSetState(() {});
+                                                                                      logFirebaseEvent('Button_navigate_to');
 
                                                                                       context.pushNamed(
                                                                                         CharacterProfilWidget.routeName,
@@ -13188,6 +13633,7 @@ Jetzt Char... */
                                                                                     }
                                                                                   }
                                                                                 } else {
+                                                                                  logFirebaseEvent('Button_alert_dialog');
                                                                                   await showDialog(
                                                                                     context: context,
                                                                                     builder: (dialogContext) {
@@ -13208,6 +13654,8 @@ Jetzt Char... */
                                                                                   );
                                                                                 }
                                                                               } else {
+                                                                                logFirebaseEvent('Button_navigate_to');
+
                                                                                 context.pushNamed(Auth2CreateWidget.routeName);
                                                                               }
 
@@ -13264,6 +13712,10 @@ Jetzt Char... */
                                                                         FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'CREATE_PAGE_ZURCK_BTN_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'Button_page_view');
                                                                         await _model
                                                                             .pageViewController
                                                                             ?.previousPage(

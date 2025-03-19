@@ -39,6 +39,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
     super.initState();
     _model = createModel(context, () => MyAIModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'MyAI'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -92,6 +93,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'MY_A_I_PAGE_Image_x12l80qa_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -110,6 +115,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'MY_A_I_PAGE_Icon_7zl8zkeg_ON_TAP');
+                                    logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
                                         scaffoldKey
@@ -139,6 +147,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'MY_A_I_PAGE_Row_hwcuuny8_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
@@ -174,9 +186,15 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'MY_A_I_PAGE_Row_x2x8f9kk_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ChatsWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -213,6 +231,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'MY_A_I_PAGE_Row_5wv877ea_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
@@ -248,9 +270,15 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'MY_A_I_PAGE_Row_s4vrsosw_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -303,6 +331,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'MY_A_I_PAGE_Container_g22v2z13_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -322,6 +355,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'MY_A_I_PAGE_PREMIUM_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               GetPremiumWidget.routeName);
                                         },
@@ -383,7 +421,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'MY_A_I_PAGE_Row_5y0g2bfc_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -394,6 +436,8 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -440,6 +484,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'MY_A_I_PAGE_Row_0rnpvgdc_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(
                                   Auth2ProfilWidget.routeName,
                                   queryParameters: {
@@ -494,6 +542,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'MY_A_I_PAGE_Row_oszza9tx_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
@@ -532,9 +584,14 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'MY_A_I_PAGE_Row_1gt0iei3_ON_TAP');
+                                logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
+
+                                logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamedAuth(
                                     HomeWidget.routeName, context.mounted);
@@ -635,6 +692,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'MY_A_I_PAGE_Image_datwnpni_ON_TAP');
+                                    logFirebaseEvent('Image_navigate_to');
+
                                     context.pushNamed(HomeWidget.routeName);
                                   },
                                   child: Image.asset(
@@ -662,6 +723,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'MY_A_I_PAGE_Row_j77z993e_ON_TAP');
+                                            logFirebaseEvent('Row_navigate_to');
+
                                             context.pushNamed(
                                               ExploreWidget.routeName,
                                               extra: <String, dynamic>{
@@ -730,6 +795,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_PAGE_Icon_qgfa6jv3_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         ExploreWidget
                                                             .routeName);
@@ -752,6 +822,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'MY_A_I_PAGE_Row_76ann0lg_ON_TAP');
+                                            logFirebaseEvent('Row_navigate_to');
+
                                             context.pushNamed(
                                                 ChatsWidget.routeName);
                                           },
@@ -811,11 +885,19 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_PAGE_Icon_319pvdr0_ON_TAP');
                                                     if (loggedIn == true) {
+                                                      logFirebaseEvent(
+                                                          'Icon_navigate_to');
+
                                                       context.pushNamed(
                                                           ChatsWidget
                                                               .routeName);
                                                     } else {
+                                                      logFirebaseEvent(
+                                                          'Icon_navigate_to');
+
                                                       context.pushNamed(
                                                           Auth2CreateWidget
                                                               .routeName);
@@ -839,6 +921,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'MY_A_I_PAGE_Row_lamwwciq_ON_TAP');
+                                            logFirebaseEvent('Row_navigate_to');
+
                                             context.pushNamed(
                                                 CreateWidget.routeName);
                                           },
@@ -898,6 +984,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_PAGE_Icon_n5c2ylxw_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         CreateWidget.routeName);
                                                   },
@@ -1000,11 +1091,17 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           safeSetState(() =>
                                               FFAppState().isLightMode =
                                                   !FFAppState().isLightMode);
+                                          logFirebaseEvent(
+                                              'MY_A_I_ToggleIcon_j9yrpqb7_ON_TOGGLE');
                                           if (Theme.of(context).brightness ==
                                               Brightness.dark) {
+                                            logFirebaseEvent(
+                                                'ToggleIcon_set_dark_mode_settings');
                                             setDarkModeSetting(
                                                 context, ThemeMode.light);
                                           } else {
+                                            logFirebaseEvent(
+                                                'ToggleIcon_set_dark_mode_settings');
                                             setDarkModeSetting(
                                                 context, ThemeMode.dark);
                                           }
@@ -1082,6 +1179,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               size: 24.0,
                                             ),
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'MY_A_I_PAGE_person_ICN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'IconButton_navigate_to');
+
                                               context.pushNamed(
                                                 Auth2ProfilWidget.routeName,
                                                 queryParameters: {
@@ -1105,6 +1207,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'MY_A_I_PAGE_Container_8nxt0o97_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -1118,6 +1225,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   if (loggedIn == false)
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'MY_A_I_PAGE_LOGIN_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_navigate_to');
+
                                         context.pushNamed(
                                             Auth2LoginWidget.routeName);
                                       },
@@ -1171,6 +1282,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'MY_A_I_PAGE_Icon_zdwrkke3_ON_TAP');
+                                        logFirebaseEvent('Icon_drawer');
                                         scaffoldKey.currentState!.openDrawer();
                                       },
                                       child: Icon(
@@ -1249,6 +1363,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_PAGE_Container_6r9ix8cl_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Container_navigate_to');
+
                                                     context.pushNamed(
                                                       HomeWidget.routeName,
                                                       extra: <String, dynamic>{
@@ -1289,13 +1408,19 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 .ispublicState =
                                                             !FFAppState()
                                                                 .ispublicState);
+                                                        logFirebaseEvent(
+                                                            'MY_A_I_ToggleIcon_le0ylqqb_ON_TOGGLE');
                                                         if (Theme.of(context)
                                                                 .brightness ==
                                                             Brightness.dark) {
+                                                          logFirebaseEvent(
+                                                              'ToggleIcon_set_dark_mode_settings');
                                                           setDarkModeSetting(
                                                               context,
                                                               ThemeMode.light);
                                                         } else {
+                                                          logFirebaseEvent(
+                                                              'ToggleIcon_set_dark_mode_settings');
                                                           setDarkModeSetting(
                                                               context,
                                                               ThemeMode.dark);
@@ -1342,6 +1467,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         size: 24.0,
                                                       ),
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'MY_A_I_PAGE_person_ICN_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'IconButton_navigate_to');
+
                                                         context.pushNamed(
                                                           Auth2ProfilWidget
                                                               .routeName,
@@ -1377,6 +1507,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         size: 28.0,
                                                       ),
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'MY_A_I_PAGE_menu_open_ICN_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'IconButton_drawer');
                                                         scaffoldKey
                                                             .currentState!
                                                             .openDrawer();
@@ -1451,6 +1585,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'MY_A_I_PAGE_Container_hrmnynu4_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Container_navigate_to');
+
                                                 context.pushNamed(
                                                   HomeWidget.routeName,
                                                   extra: <String, dynamic>{
@@ -1492,13 +1631,19 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 .isLightMode =
                                                             !FFAppState()
                                                                 .isLightMode);
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_ToggleIcon_pv0fy6jw_ON_TOGGLE');
                                                     if (Theme.of(context)
                                                             .brightness ==
                                                         Brightness.dark) {
+                                                      logFirebaseEvent(
+                                                          'ToggleIcon_set_dark_mode_settings');
                                                       setDarkModeSetting(
                                                           context,
                                                           ThemeMode.light);
                                                     } else {
+                                                      logFirebaseEvent(
+                                                          'ToggleIcon_set_dark_mode_settings');
                                                       setDarkModeSetting(
                                                           context,
                                                           ThemeMode.dark);
@@ -1541,6 +1686,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     size: 24.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_PAGE_login_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_navigate_to');
+
                                                     context.pushNamed(
                                                         Auth2LoginWidget
                                                             .routeName);
@@ -1566,6 +1716,10 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     size: 28.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_PAGE_menu_open_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_drawer');
                                                     scaffoldKey.currentState!
                                                         .openDrawer();
                                                   },
@@ -1639,6 +1793,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'MY_A_I_JETZT_CHARACTER_ERSTELLEN_BTN_ON_');
+                                                logFirebaseEvent(
+                                                    'Button_navigate_to');
+
                                                 context.pushNamed(
                                                     CreateWidget.routeName);
                                               },
@@ -1824,7 +1983,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             Container(
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 25.0, 0.0, 0.0),
+                                    10.0, 25.0, 10.0, 0.0),
                                 child:
                                     StreamBuilder<List<CharactersMainRecord>>(
                                   stream: queryCharactersMainRecord(
@@ -1854,7 +2013,12 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         snapshot.data!;
 
                                     return GridView.builder(
-                                      padding: EdgeInsets.zero,
+                                      padding: EdgeInsets.fromLTRB(
+                                        0,
+                                        5.0,
+                                        0,
+                                        5.0,
+                                      ),
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
@@ -1891,6 +2055,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'MY_A_I_PAGE_Image_w65rmgal_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Image_navigate_to');
+
                                                   context.pushNamed(
                                                     CharacterProfilWidget
                                                         .routeName,
@@ -1905,24 +2074,31 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     }.withoutNulls,
                                                   );
                                                 },
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.network(
-                                                    gridViewCharactersMainRecord
-                                                        .referenceImage,
-                                                    width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        1.0,
-                                                    height: MediaQuery.sizeOf(
-                                                                context)
-                                                            .height *
-                                                        1.0,
-                                                    fit: BoxFit.cover,
-                                                    alignment:
-                                                        Alignment(0.0, -1.0),
+                                                child: Hero(
+                                                  tag:
+                                                      gridViewCharactersMainRecord
+                                                          .referenceImage,
+                                                  transitionOnUserGestures:
+                                                      true,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.network(
+                                                      gridViewCharactersMainRecord
+                                                          .referenceImage,
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          1.0,
+                                                      fit: BoxFit.cover,
+                                                      alignment:
+                                                          Alignment(0.0, -1.0),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -2041,10 +2217,15 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     size: 28.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_PAGE_wechat_outlined_ICN_ON_TAP');
                                                     await authManager
                                                         .refreshUser();
                                                     if (currentUserEmailVerified ==
                                                         true) {
+                                                      logFirebaseEvent(
+                                                          'IconButton_navigate_to');
+
                                                       context.pushNamed(
                                                         ChatPageProWidget
                                                             .routeName,
@@ -2065,6 +2246,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         }.withoutNulls,
                                                       );
                                                     } else {
+                                                      logFirebaseEvent(
+                                                          'IconButton_navigate_to');
+
                                                       context.pushNamed(
                                                           Auth2CreateWidget
                                                               .routeName);
@@ -2076,56 +2260,65 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             Align(
                                               alignment: AlignmentDirectional(
                                                   1.0, 1.0),
-                                              child: FlutterFlowIconButton(
-                                                borderRadius: 8.0,
-                                                buttonSize: 40.0,
-                                                fillColor: Color(0x00DE5499),
-                                                icon: Icon(
-                                                  Icons.delete_forever_sharp,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                  size: 24.0,
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
+                                                child: FlutterFlowIconButton(
+                                                  borderRadius: 8.0,
+                                                  buttonSize: 40.0,
+                                                  fillColor: Color(0x00DE5499),
+                                                  icon: Icon(
+                                                    Icons.delete_forever_sharp,
+                                                    color: Color(0xA6F2F2F2),
+                                                    size: 24.0,
+                                                  ),
+                                                  onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_A_I_delete_forever_sharp_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_alert_dialog');
+                                                    var confirmDialogResponse =
+                                                        await showDialog<bool>(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'Character löschen?'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                      child: Text(
+                                                                          'Abbruch'),
+                                                                    ),
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                      child: Text(
+                                                                          'Ja, löschen!'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            ) ??
+                                                            false;
+                                                    if (confirmDialogResponse) {
+                                                      logFirebaseEvent(
+                                                          'IconButton_backend_call');
+                                                      await gridViewCharactersMainRecord
+                                                          .reference
+                                                          .delete();
+                                                    } else {
+                                                      logFirebaseEvent(
+                                                          'IconButton_close_dialog_drawer_etc');
+                                                      Navigator.pop(context);
+                                                    }
+                                                  },
                                                 ),
-                                                onPressed: () async {
-                                                  var confirmDialogResponse =
-                                                      await showDialog<bool>(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: Text(
-                                                                    'Character löschen?'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                    child: Text(
-                                                                        'Abbruch'),
-                                                                  ),
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                    child: Text(
-                                                                        'Ja, löschen!'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          ) ??
-                                                          false;
-                                                  if (confirmDialogResponse) {
-                                                    await gridViewCharactersMainRecord
-                                                        .reference
-                                                        .delete();
-                                                  } else {
-                                                    Navigator.pop(context);
-                                                  }
-                                                },
                                               ),
                                             ),
                                           ],
@@ -2335,6 +2528,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                     100.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'MY_A_I_JETZT_CHARACTER_ERSTELLEN_BTN_ON_');
+                                                logFirebaseEvent(
+                                                    'Button_navigate_to');
+
                                                 context.pushNamed(
                                                     CreateWidget.routeName);
                                               },
@@ -2399,13 +2597,14 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       if (!snapshot.hasData) {
                                         return Center(
                                           child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: SpinKitPumpingHeart(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              size: 50.0,
+                                            width: 40.0,
+                                            height: 40.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
                                             ),
                                           ),
                                         );
@@ -2460,6 +2659,11 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'MY_A_I_PAGE_Image_c3nvx1p9_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Image_navigate_to');
+
                                                           context.pushNamed(
                                                             CharacterProfilWidget
                                                                 .routeName,
@@ -2474,28 +2678,35 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                             }.withoutNulls,
                                                           );
                                                         },
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          child: Image.network(
-                                                            gridViewCharactersMainRecord
-                                                                .referenceImage,
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            height: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .height *
-                                                                1.0,
-                                                            fit: BoxFit.cover,
-                                                            alignment:
-                                                                Alignment(
-                                                                    0.0, -1.0),
+                                                        child: Hero(
+                                                          tag: gridViewCharactersMainRecord
+                                                              .referenceImage,
+                                                          transitionOnUserGestures:
+                                                              true,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child:
+                                                                Image.network(
+                                                              gridViewCharactersMainRecord
+                                                                  .referenceImage,
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  1.0,
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .height *
+                                                                  1.0,
+                                                              fit: BoxFit.cover,
+                                                              alignment:
+                                                                  Alignment(0.0,
+                                                                      -1.0),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -2637,10 +2848,15 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                             size: 32.0,
                                                           ),
                                                           onPressed: () async {
+                                                            logFirebaseEvent(
+                                                                'MY_A_I_PAGE_wechat_outlined_ICN_ON_TAP');
                                                             await authManager
                                                                 .refreshUser();
                                                             if (currentUserEmailVerified ==
                                                                 true) {
+                                                              logFirebaseEvent(
+                                                                  'IconButton_navigate_to');
+
                                                               context.pushNamed(
                                                                 ChatPageProWidget
                                                                     .routeName,
@@ -2662,6 +2878,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                 }.withoutNulls,
                                                               );
                                                             } else {
+                                                              logFirebaseEvent(
+                                                                  'IconButton_navigate_to');
+
                                                               context.pushNamed(
                                                                   Auth2CreateWidget
                                                                       .routeName);
@@ -2683,12 +2902,15 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                         icon: Icon(
                                                           Icons
                                                               .delete_forever_sharp,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
+                                                          color:
+                                                              Color(0xA1F2F2F2),
                                                           size: 24.0,
                                                         ),
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'MY_A_I_delete_forever_sharp_ICN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'IconButton_alert_dialog');
                                                           var confirmDialogResponse =
                                                               await showDialog<
                                                                       bool>(
@@ -2718,10 +2940,14 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                                   ) ??
                                                                   false;
                                                           if (confirmDialogResponse) {
+                                                            logFirebaseEvent(
+                                                                'IconButton_backend_call');
                                                             await gridViewCharactersMainRecord
                                                                 .reference
                                                                 .delete();
                                                           } else {
+                                                            logFirebaseEvent(
+                                                                'IconButton_close_dialog_drawer_etc');
                                                             Navigator.pop(
                                                                 context);
                                                           }

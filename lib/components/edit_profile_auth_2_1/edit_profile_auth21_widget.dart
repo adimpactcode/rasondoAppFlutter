@@ -164,6 +164,8 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 32.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  logFirebaseEvent('EDIT_PROFILE_AUTH_2_1_FOTO_HOCHLADEN_BTN');
+                  logFirebaseEvent('Button_upload_media_to_firebase');
                   final selectedMedia = await selectMediaWithSourceBottomSheet(
                     context: context,
                     maxWidth: 300.00,
@@ -335,10 +337,14 @@ class _EditProfileAuth21WidgetState extends State<EditProfileAuth21Widget> {
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  logFirebaseEvent('EDIT_PROFILE_AUTH_2_1_Button-Login_ON_TA');
+                  logFirebaseEvent('Button-Login_backend_call');
+
                   await currentUserReference!.update(createUsersRecordData(
                     displayName: '',
                     photoUrl: '',
                   ));
+                  logFirebaseEvent('Button-Login_navigate_to');
 
                   context.pushNamed(
                     Auth2ProfilWidget.routeName,

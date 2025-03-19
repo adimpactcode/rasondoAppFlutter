@@ -35,6 +35,8 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
     super.initState();
     _model = createModel(context, () => Auth2CreateModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'auth_2_Create'});
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
 
@@ -110,6 +112,9 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                   size: 32.0,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'AUTH_2_CREATE_PAGE_arrow_back_ICN_ON_TAP');
+                                  logFirebaseEvent('IconButton_navigate_back');
                                   context.safePop();
                                 },
                               ),
@@ -671,7 +676,10 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'AUTH_2_CREATE_PAGE_ABSENDEN_BTN_ON_TAP');
                                         await authManager.refreshUser();
+                                        logFirebaseEvent('Button_auth');
                                         GoRouter.of(context).prepareAuthEvent();
                                         if (_model
                                                 .passwordTextController.text !=
@@ -707,14 +715,18 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                                   .nameTextController.text,
                                             ));
 
+                                        logFirebaseEvent('Button_auth');
                                         await authManager
                                             .sendEmailVerification();
+                                        logFirebaseEvent('Button_navigate_to');
 
                                         context.pushNamedAuth(
                                             VerificationPageWidget.routeName,
                                             context.mounted);
 
                                         if (currentUserEmailVerified) {
+                                          logFirebaseEvent(
+                                              'Button_alert_dialog');
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
@@ -732,6 +744,8 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                               );
                                             },
                                           );
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
 
                                           context.pushNamedAuth(
                                             Auth2ProfilWidget.routeName,
@@ -745,6 +759,8 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                             }.withoutNulls,
                                           );
                                         } else {
+                                          logFirebaseEvent(
+                                              'Button_alert_dialog');
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
@@ -836,6 +852,9 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'AUTH_2_CREATE_CONTINUE_WITH_GOOGLE_BTN_O');
+                                        logFirebaseEvent('Button_auth');
                                         GoRouter.of(context).prepareAuthEvent();
                                         final user = await authManager
                                             .signInWithGoogle(context);
@@ -904,6 +923,11 @@ class _Auth2CreateWidgetState extends State<Auth2CreateWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'AUTH_2_CREATE_RichText_l9epg16v_ON_TAP');
+                                          logFirebaseEvent(
+                                              'RichText_navigate_to');
+
                                           context.pushNamed(
                                             Auth2LoginWidget.routeName,
                                             extra: <String, dynamic>{

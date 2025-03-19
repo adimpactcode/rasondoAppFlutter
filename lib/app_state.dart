@@ -326,6 +326,47 @@ class FFAppState extends ChangeNotifier {
   set generatedImageUrl(String value) {
     _generatedImageUrl = value;
   }
+
+  List<MessagesStruct> _messages = [];
+  List<MessagesStruct> get messages => _messages;
+  set messages(List<MessagesStruct> value) {
+    _messages = value;
+  }
+
+  void addToMessages(MessagesStruct value) {
+    messages.add(value);
+  }
+
+  void removeFromMessages(MessagesStruct value) {
+    messages.remove(value);
+  }
+
+  void removeAtIndexFromMessages(int index) {
+    messages.removeAt(index);
+  }
+
+  void updateMessagesAtIndex(
+    int index,
+    MessagesStruct Function(MessagesStruct) updateFn,
+  ) {
+    messages[index] = updateFn(_messages[index]);
+  }
+
+  void insertAtIndexInMessages(int index, MessagesStruct value) {
+    messages.insert(index, value);
+  }
+
+  String _currentStreamingContent = '';
+  String get currentStreamingContent => _currentStreamingContent;
+  set currentStreamingContent(String value) {
+    _currentStreamingContent = value;
+  }
+
+  bool _isStreaming = false;
+  bool get isStreaming => _isStreaming;
+  set isStreaming(bool value) {
+    _isStreaming = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
