@@ -562,7 +562,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                     createdAt:
                                                         getCurrentTimestamp,
                                                   ));
-                                                  _model.streamUserMessageOnSubmit =
+                                                  _model.streamUserMessageCopy =
                                                       MessagesRecord
                                                           .getDocumentFromData(
                                                               createMessagesRecordData(
@@ -587,115 +587,57 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   });
                                                   logFirebaseEvent(
                                                       'TextField_backend_call');
-                                                  _model.streamCallResultOnSubmit =
-                                                      await NovitaFunctionLLMStreamCall
+                                                  _model.streamCallResultSubmit =
+                                                      await NovitaFunctionLLMCall
                                                           .call(
-                                                    characterId:
-                                                        widget!.characterId?.id,
                                                     userId: widget!
                                                         .userReference?.id,
+                                                    characterId:
+                                                        widget!.characterId?.id,
                                                     userInput: _model.userInput,
                                                   );
-                                                  if (_model
-                                                          .streamCallResultOnSubmit
-                                                          ?.succeeded ??
-                                                      true) {
-                                                    _model
-                                                        .streamCallResultOnSubmit
-                                                        ?.streamedResponse
-                                                        ?.stream
-                                                        .transform(utf8.decoder)
-                                                        .transform(
-                                                            const LineSplitter())
-                                                        .transform(
-                                                            ServerSentEventLineTransformer())
-                                                        .map((m) =>
-                                                            ResponseStreamMessage(
-                                                                message: m))
-                                                        .listen(
-                                                      (onMessageInput) async {
-                                                        if (FFAppState()
-                                                            .isStreaming) {
-                                                          logFirebaseEvent(
-                                                              '_update_app_state');
-                                                          FFAppState()
-                                                                  .isStreaming =
-                                                              false;
-                                                          safeSetState(() {});
-                                                          logFirebaseEvent(
-                                                              '_update_app_state');
-                                                          FFAppState()
-                                                              .addToMessages(
-                                                                  MessagesStruct(
-                                                            role: 'assistant',
-                                                            messages: StreamResponseStruct.maybeFromMap(
-                                                                    onMessageInput
-                                                                        .serverSentEvent
-                                                                        .jsonData)
-                                                                ?.choices
-                                                                ?.map((e) => e
-                                                                    .delta
-                                                                    .content)
-                                                                .toList(),
-                                                          ));
-                                                          safeSetState(() {});
-                                                        } else {
-                                                          logFirebaseEvent(
-                                                              '_update_app_state');
-                                                          FFAppState()
-                                                              .updateMessagesAtIndex(
-                                                            functions
-                                                                .getItemAtIndex(
-                                                                    FFAppState()
-                                                                        .messages
-                                                                        .toList()),
-                                                            (e) => e
-                                                              ..updateMessages(
-                                                                (e) => e.add(StreamResponseStruct.maybeFromMap(onMessageInput
-                                                                        .serverSentEvent
-                                                                        .jsonData)!
-                                                                    .chunks
-                                                                    .lastOrNull!
-                                                                    .newChunk),
-                                                              ),
-                                                          );
-                                                          safeSetState(() {});
-                                                        }
-                                                      },
-                                                      onError:
-                                                          (onErrorInput) async {},
-                                                      onDone: () async {},
-                                                    );
-                                                  }
 
                                                   logFirebaseEvent(
-                                                      'TextField_backend_call');
+                                                      'TextField_update_app_state');
+                                                  FFAppState().isStreaming =
+                                                      false;
+                                                  safeSetState(() {});
+                                                  if ((_model
+                                                          .streamCallResultSubmit
+                                                          ?.succeeded ??
+                                                      true)) {
+                                                    logFirebaseEvent(
+                                                        'TextField_update_app_state');
+                                                    FFAppState().addToMessages(
+                                                        MessagesStruct(
+                                                      role: 'assistant',
+                                                      content:
+                                                          NovitaFunctionLLMCall
+                                                              .aiResponse(
+                                                        (_model.streamCallResultSubmit
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      ),
+                                                    ));
+                                                    safeSetState(() {});
+                                                    logFirebaseEvent(
+                                                        'TextField_backend_call');
 
-                                                  var messagesRecordReference2 =
-                                                      MessagesRecord.createDoc(
-                                                          chatPageProChatsRecord!
-                                                              .reference);
-                                                  await messagesRecordReference2
-                                                      .set(
-                                                          createMessagesRecordData(
-                                                    role: 'assistant',
-                                                    content: FFAppState()
-                                                        .messages
-                                                        .lastOrNull
-                                                        ?.assistantMessage,
-                                                  ));
-                                                  _model.createDocumentCopy =
-                                                      MessagesRecord
-                                                          .getDocumentFromData(
-                                                              createMessagesRecordData(
-                                                                role:
-                                                                    'assistant',
-                                                                content: FFAppState()
-                                                                    .messages
-                                                                    .lastOrNull
-                                                                    ?.assistantMessage,
-                                                              ),
-                                                              messagesRecordReference2);
+                                                    await MessagesRecord.createDoc(
+                                                            chatPageProChatsRecord!
+                                                                .reference)
+                                                        .set(
+                                                            createMessagesRecordData(
+                                                      role: 'assistant',
+                                                      content:
+                                                          NovitaFunctionLLMCall
+                                                              .aiResponse(
+                                                        (_model.streamCallResultSubmit
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      ),
+                                                    ));
+                                                  }
                                                 } else {
                                                   logFirebaseEvent(
                                                       'TextField_alert_dialog');
@@ -944,108 +886,52 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                               logFirebaseEvent(
                                                   'streamButton_backend_call');
                                               _model.streamCallResult =
-                                                  await NovitaFunctionLLMStreamCall
+                                                  await NovitaFunctionLLMCall
                                                       .call(
-                                                characterId:
-                                                    widget!.characterId?.id,
                                                 userId:
                                                     widget!.userReference?.id,
+                                                characterId:
+                                                    widget!.characterId?.id,
                                                 userInput: _model.userInput,
                                               );
-                                              if (_model.streamCallResult
-                                                      ?.succeeded ??
-                                                  true) {
-                                                _model.streamCallResult
-                                                    ?.streamedResponse?.stream
-                                                    .transform(utf8.decoder)
-                                                    .transform(
-                                                        const LineSplitter())
-                                                    .transform(
-                                                        ServerSentEventLineTransformer())
-                                                    .map((m) =>
-                                                        ResponseStreamMessage(
-                                                            message: m))
-                                                    .listen(
-                                                  (onMessageInput) async {
-                                                    if (FFAppState()
-                                                        .isStreaming) {
-                                                      logFirebaseEvent(
-                                                          '_update_app_state');
-                                                      FFAppState().isStreaming =
-                                                          false;
-                                                      safeSetState(() {});
-                                                      logFirebaseEvent(
-                                                          '_update_app_state');
-                                                      FFAppState()
-                                                          .addToMessages(
-                                                              MessagesStruct(
-                                                        role: 'assistant',
-                                                        messages: StreamResponseStruct
-                                                                .maybeFromMap(
-                                                                    onMessageInput
-                                                                        .serverSentEvent
-                                                                        .jsonData)
-                                                            ?.choices
-                                                            ?.map((e) =>
-                                                                e.delta.content)
-                                                            .toList(),
-                                                      ));
-                                                      safeSetState(() {});
-                                                    } else {
-                                                      logFirebaseEvent(
-                                                          '_update_app_state');
-                                                      FFAppState()
-                                                          .updateMessagesAtIndex(
-                                                        functions
-                                                            .getItemAtIndex(
-                                                                FFAppState()
-                                                                    .messages
-                                                                    .toList()),
-                                                        (e) => e
-                                                          ..updateMessages(
-                                                            (e) => e.add(StreamResponseStruct.maybeFromMap(
-                                                                    onMessageInput
-                                                                        .serverSentEvent
-                                                                        .jsonData)!
-                                                                .chunks
-                                                                .lastOrNull!
-                                                                .newChunk),
-                                                          ),
-                                                      );
-                                                      safeSetState(() {});
-                                                    }
-                                                  },
-                                                  onError:
-                                                      (onErrorInput) async {},
-                                                  onDone: () async {},
-                                                );
-                                              }
 
                                               logFirebaseEvent(
-                                                  'streamButton_backend_call');
+                                                  'streamButton_update_app_state');
+                                              FFAppState().isStreaming = false;
+                                              safeSetState(() {});
+                                              if ((_model.streamCallResult
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                logFirebaseEvent(
+                                                    'streamButton_update_app_state');
+                                                FFAppState().addToMessages(
+                                                    MessagesStruct(
+                                                  role: 'assistant',
+                                                  content: NovitaFunctionLLMCall
+                                                      .aiResponse(
+                                                    (_model.streamCallResult
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  ),
+                                                ));
+                                                safeSetState(() {});
+                                                logFirebaseEvent(
+                                                    'streamButton_backend_call');
 
-                                              var messagesRecordReference2 =
-                                                  MessagesRecord.createDoc(
-                                                      chatPageProChatsRecord!
-                                                          .reference);
-                                              await messagesRecordReference2
-                                                  .set(createMessagesRecordData(
-                                                role: 'assistant',
-                                                content: FFAppState()
-                                                    .messages
-                                                    .lastOrNull
-                                                    ?.assistantMessage,
-                                              ));
-                                              _model.createDocument = MessagesRecord
-                                                  .getDocumentFromData(
-                                                      createMessagesRecordData(
-                                                        role: 'assistant',
-                                                        content: FFAppState()
-                                                            .messages
-                                                            .lastOrNull
-                                                            ?.assistantMessage,
-                                                      ),
-                                                      messagesRecordReference2);
+                                                await MessagesRecord.createDoc(
+                                                        chatPageProChatsRecord!
+                                                            .reference)
+                                                    .set(
+                                                        createMessagesRecordData(
+                                                  role: 'assistant',
+                                                  content: NovitaFunctionLLMCall
+                                                      .aiResponse(
+                                                    (_model.streamCallResult
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  ),
+                                                ));
+                                              }
                                             } else {
                                               logFirebaseEvent(
                                                   'streamButton_alert_dialog');

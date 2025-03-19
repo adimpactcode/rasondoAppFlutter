@@ -86,17 +86,13 @@ class ChatPageProModel extends FlutterFlowModel<ChatPageProWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in TextField widget.
-  MessagesRecord? streamUserMessageOnSubmit;
-  // Stores action output result for [Backend Call - API (novitaFunctionLLMStream)] action in TextField widget.
-  ApiCallResponse? streamCallResultOnSubmit;
-  // Stores action output result for [Backend Call - Create Document] action in TextField widget.
-  MessagesRecord? createDocumentCopy;
+  MessagesRecord? streamUserMessageCopy;
+  // Stores action output result for [Backend Call - API (novitaFunctionLLM)] action in TextField widget.
+  ApiCallResponse? streamCallResultSubmit;
   // Stores action output result for [Backend Call - Create Document] action in streamButton widget.
   MessagesRecord? streamUserMessage;
-  // Stores action output result for [Backend Call - API (novitaFunctionLLMStream)] action in streamButton widget.
+  // Stores action output result for [Backend Call - API (novitaFunctionLLM)] action in streamButton widget.
   ApiCallResponse? streamCallResult;
-  // Stores action output result for [Backend Call - Create Document] action in streamButton widget.
-  MessagesRecord? createDocument;
 
   @override
   void initState(BuildContext context) {}
