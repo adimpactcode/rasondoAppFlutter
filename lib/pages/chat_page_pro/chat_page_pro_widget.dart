@@ -580,6 +580,12 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                       true;
                                                   safeSetState(() {});
                                                   logFirebaseEvent(
+                                                      'TextField_clear_text_fields_pin_codes');
+                                                  safeSetState(() {
+                                                    _model.textController
+                                                        ?.clear();
+                                                  });
+                                                  logFirebaseEvent(
                                                       'TextField_backend_call');
                                                   _model.streamCallResultOnSubmit =
                                                       await NovitaFunctionLLMStreamCall
@@ -662,12 +668,6 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                     );
                                                   }
 
-                                                  logFirebaseEvent(
-                                                      'TextField_clear_text_fields_pin_codes');
-                                                  safeSetState(() {
-                                                    _model.textController
-                                                        ?.clear();
-                                                  });
                                                   logFirebaseEvent(
                                                       'TextField_backend_call');
 
