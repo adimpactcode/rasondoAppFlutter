@@ -170,6 +170,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'User profil',
       'en': 'user profile',
     },
+    'k5im7r0a': {
+      'de': 'Jetzt kostenlos testen!',
+      'en': '',
+    },
     'oibfhkrl': {
       'de': 'Login',
       'en': 'Login',
@@ -189,12 +193,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Discover new horizons of belonging. Open yourself up to new possibilities. Be part of an inspiring community.',
     },
     'y8eklo3a': {
-      'de': 'Jetzt AI Character erstellen!',
+      'de': 'Jetzt Character erstellen!',
       'en': 'Create AI Character Now!',
-    },
-    'j8lpky8o': {
-      'de': 'Download App',
-      'en': 'Download App',
     },
     'pr87y838': {
       'de': 'Tauche ein in lebendige Welten',
@@ -204,17 +204,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'KI Chat mit Realismus und \nAnime - Zauber',
       'en': 'AI chat with realism and \nanime magic',
     },
-    'iev05gsg': {
-      'de': 'Jetzt AI Partner erstellen',
-      'en': 'Create AI Partner now',
+    'ils4volu': {
+      'de': 'Jetzt kostenlos testen!',
+      'en': '',
     },
-    'gu6gx401': {
+    'p2by33vz': {
+      'de': 'Character erstellen!',
+      'en': '',
+    },
+    'yge154ca': {
       'de': '+10000 nutzende Kunden',
       'en': '+10000 customers using it',
-    },
-    '29y75mvm': {
-      'de': 'Donwload App!',
-      'en': 'Download app!',
     },
     'lzebf9wf': {
       'de': 'Realistisch und Anime Inspiriert',
@@ -225,18 +225,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'friendship and solidarity',
     },
     'qd41zby8': {
-      'de': 'Dein Wunschpartner - perfekt angepasst',
-      'en': 'Your dream partner - perfectly adapted',
-    },
-    '04nvmo2y': {
-      'de': 'Realsitisch und Anime inspiriert',
-      'en': 'Realistic and anime inspired',
-    },
-    'swswd6pz': {
-      'de': 'Freundschaft und Verbundenheit',
-      'en': 'friendship and solidarity',
-    },
-    'hejslwxi': {
       'de': 'Dein Wunschpartner - perfekt angepasst',
       'en': 'Your dream partner - perfectly adapted',
     },
@@ -2500,6 +2488,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en':
           'Imprint\n\nInformation in accordance with Section 5 of the Telemedia Act:\n\n[Name of the company]\n[Address of the company]\n[Postal code]\n\nRepresented by:\n[Name of the managing director / owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [URL of the website]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of the local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number in accordance with Section 27a of the Sales Tax Law: [VAT ID number]\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n[Name]\n[Address]',
     },
+    'dm3znngi': {
+      'de': 'Design + Development by adimpactAI',
+      'en': '',
+    },
     '15xhzjci': {
       'de': 'Explore',
       'en': 'Explore',
@@ -3007,7 +2999,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // buttonPink
   {
     'p3o8plca': {
-      'de': 'Kostenlos Registrieren',
+      'de': 'Jetzt kostenlos testen!',
       'en': 'Register for free',
     },
   },
@@ -3238,7 +3230,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Terms and Conditions',
     },
     'r1755ppl': {
-      'de': '2024 Rasondo. All rights reserved',
+      'de': '2025 Rasondo. All rights reserved',
       'en': '2024 Rasondo. All rights reserved',
     },
   },

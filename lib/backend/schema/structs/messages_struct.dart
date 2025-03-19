@@ -19,6 +19,7 @@ class MessagesStruct extends FFFirebaseStruct {
     String? assistantMessage,
     String? imagePrompt,
     List<DocumentReference>? oldMessages,
+    List<String>? messages,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _role = role,
         _content = content,
@@ -29,6 +30,7 @@ class MessagesStruct extends FFFirebaseStruct {
         _assistantMessage = assistantMessage,
         _imagePrompt = imagePrompt,
         _oldMessages = oldMessages,
+        _messages = messages,
         super(firestoreUtilData);
 
   // "role" field.
@@ -98,6 +100,17 @@ class MessagesStruct extends FFFirebaseStruct {
 
   bool hasOldMessages() => _oldMessages != null;
 
+  // "messages" field.
+  List<String>? _messages;
+  List<String> get messages => _messages ?? const [];
+  set messages(List<String>? val) => _messages = val;
+
+  void updateMessages(Function(List<String>) updateFn) {
+    updateFn(_messages ??= []);
+  }
+
+  bool hasMessages() => _messages != null;
+
   static MessagesStruct fromMap(Map<String, dynamic> data) => MessagesStruct(
         role: data['role'] as String?,
         content: data['content'] as String?,
@@ -108,6 +121,7 @@ class MessagesStruct extends FFFirebaseStruct {
         assistantMessage: data['assistantMessage'] as String?,
         imagePrompt: data['image_prompt'] as String?,
         oldMessages: getDataList(data['oldMessages']),
+        messages: getDataList(data['messages']),
       );
 
   static MessagesStruct? maybeFromMap(dynamic data) =>
@@ -123,6 +137,7 @@ class MessagesStruct extends FFFirebaseStruct {
         'assistantMessage': _assistantMessage,
         'image_prompt': _imagePrompt,
         'oldMessages': _oldMessages,
+        'messages': _messages,
       }.withoutNulls;
 
   @override
@@ -162,6 +177,11 @@ class MessagesStruct extends FFFirebaseStruct {
         'oldMessages': serializeParam(
           _oldMessages,
           ParamType.DocumentReference,
+          isList: true,
+        ),
+        'messages': serializeParam(
+          _messages,
+          ParamType.String,
           isList: true,
         ),
       }.withoutNulls;
@@ -214,6 +234,11 @@ class MessagesStruct extends FFFirebaseStruct {
           true,
           collectionNamePath: ['chats', 'messages'],
         ),
+        messages: deserializeParam<String>(
+          data['messages'],
+          ParamType.String,
+          true,
+        ),
       );
 
   @override
@@ -231,7 +256,8 @@ class MessagesStruct extends FFFirebaseStruct {
         initialMessage == other.initialMessage &&
         assistantMessage == other.assistantMessage &&
         imagePrompt == other.imagePrompt &&
-        listEquality.equals(oldMessages, other.oldMessages);
+        listEquality.equals(oldMessages, other.oldMessages) &&
+        listEquality.equals(messages, other.messages);
   }
 
   @override
@@ -244,7 +270,8 @@ class MessagesStruct extends FFFirebaseStruct {
         initialMessage,
         assistantMessage,
         imagePrompt,
-        oldMessages
+        oldMessages,
+        messages
       ]);
 }
 
@@ -280,11 +307,11 @@ MessagesStruct createMessagesStruct({
     );
 
 MessagesStruct? updateMessagesStruct(
-  MessagesStruct? messages, {
+  MessagesStruct? messagesStruct, {
   bool clearUnsetFields = true,
   bool create = false,
 }) =>
-    messages
+    messagesStruct
       ?..firestoreUtilData = FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
@@ -292,48 +319,51 @@ MessagesStruct? updateMessagesStruct(
 
 void addMessagesStructData(
   Map<String, dynamic> firestoreData,
-  MessagesStruct? messages,
+  MessagesStruct? messagesStruct,
   String fieldName, [
   bool forFieldValue = false,
 ]) {
   firestoreData.remove(fieldName);
-  if (messages == null) {
+  if (messagesStruct == null) {
     return;
   }
-  if (messages.firestoreUtilData.delete) {
+  if (messagesStruct.firestoreUtilData.delete) {
     firestoreData[fieldName] = FieldValue.delete();
     return;
   }
   final clearFields =
-      !forFieldValue && messages.firestoreUtilData.clearUnsetFields;
+      !forFieldValue && messagesStruct.firestoreUtilData.clearUnsetFields;
   if (clearFields) {
     firestoreData[fieldName] = <String, dynamic>{};
   }
-  final messagesData = getMessagesFirestoreData(messages, forFieldValue);
-  final nestedData = messagesData.map((k, v) => MapEntry('$fieldName.$k', v));
+  final messagesStructData =
+      getMessagesFirestoreData(messagesStruct, forFieldValue);
+  final nestedData =
+      messagesStructData.map((k, v) => MapEntry('$fieldName.$k', v));
 
-  final mergeFields = messages.firestoreUtilData.create || clearFields;
+  final mergeFields = messagesStruct.firestoreUtilData.create || clearFields;
   firestoreData
       .addAll(mergeFields ? mergeNestedFields(nestedData) : nestedData);
 }
 
 Map<String, dynamic> getMessagesFirestoreData(
-  MessagesStruct? messages, [
+  MessagesStruct? messagesStruct, [
   bool forFieldValue = false,
 ]) {
-  if (messages == null) {
+  if (messagesStruct == null) {
     return {};
   }
-  final firestoreData = mapToFirestore(messages.toMap());
+  final firestoreData = mapToFirestore(messagesStruct.toMap());
 
   // Add any Firestore field values
-  messages.firestoreUtilData.fieldValues
+  messagesStruct.firestoreUtilData.fieldValues
       .forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;
 }
 
 List<Map<String, dynamic>> getMessagesListFirestoreData(
-  List<MessagesStruct>? messagess,
+  List<MessagesStruct>? messagesStructs,
 ) =>
-    messagess?.map((e) => getMessagesFirestoreData(e, true)).toList() ?? [];
+    messagesStructs?.map((e) => getMessagesFirestoreData(e, true)).toList() ??
+    [];

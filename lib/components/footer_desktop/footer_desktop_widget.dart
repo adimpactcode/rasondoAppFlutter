@@ -139,6 +139,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_r8e4w6dk_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(HomeWidget.routeName);
                               },
                               child: Text(
@@ -170,6 +174,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_uz9gtr3l_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(ExploreWidget.routeName);
                               },
                               child: Text(
@@ -201,6 +209,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_w2ror8t2_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(CreateWidget.routeName);
                               },
                               child: Text(
@@ -232,9 +244,15 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_jmea0tzu_ON_TAP');
                                 if (loggedIn == true) {
+                                  logFirebaseEvent('Text_navigate_to');
+
                                   context.pushNamed(ChatsWidget.routeName);
                                 } else {
+                                  logFirebaseEvent('Text_navigate_to');
+
                                   context
                                       .pushNamed(Auth2CreateWidget.routeName);
                                 }
@@ -265,9 +283,15 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'FOOTER_DESKTOP_COMP_Text_arae8qs1_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -328,6 +352,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_qhq43nfh_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Text(
@@ -356,6 +384,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'FOOTER_DESKTOP_COMP_Text_t7f6wchv_ON_TAP');
+                              logFirebaseEvent('Text_navigate_to');
+
                               context.pushNamed(GetPremiumWidget.routeName);
                             },
                             child: Text(
@@ -415,6 +447,9 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_mxr5tdtp_ON_TAP');
+                                logFirebaseEvent('Text_send_email');
                                 await launchUrl(Uri(
                                   scheme: 'mailto',
                                   path: 'info@rasondo.com',
@@ -449,6 +484,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_umahitsg_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(DatenschutzWidget.routeName);
                               },
                               child: Text(
@@ -480,6 +519,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_lxygmyf7_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(ImpressumWidget.routeName);
                               },
                               child: Text(
@@ -511,6 +554,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'FOOTER_DESKTOP_COMP_Text_ter8159d_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(AgbWidget.routeName);
                               },
                               child: Text(
@@ -546,8 +593,12 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'FOOTER_DESKTOP_COMP_facebookIcon_ON_TAP');
+                                    logFirebaseEvent(
+                                        'facebookIcon_launch_u_r_l');
                                     await launchURL(
-                                        'https://facebook.com/teckaaofficial');
+                                        'https://www.facebook.com/people/Rasondo/61573585640604/');
                                   },
                                   child: FaIcon(
                                     FontAwesomeIcons.facebookSquare,
@@ -566,8 +617,12 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'FOOTER_DESKTOP_COMP_instagramIcon_ON_TAP');
+                                    logFirebaseEvent(
+                                        'instagramIcon_launch_u_r_l');
                                     await launchURL(
-                                        'https://instagram.com/teckaaofficial');
+                                        'https://www.instagram.com/rasondo_com/');
                                   },
                                   child: FaIcon(
                                     FontAwesomeIcons.instagram,
@@ -586,6 +641,10 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'FOOTER_DESKTOP_COMP_twitterIcon_ON_TAP');
+                                    logFirebaseEvent(
+                                        'twitterIcon_launch_u_r_l');
                                     await launchURL(
                                         'https://twitter.com/teckaaofficial');
                                   },
@@ -662,7 +721,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'r1755ppl' /* 2024 Rasondo. All rights reser... */,
+                        'r1755ppl' /* 2025 Rasondo. All rights reser... */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:

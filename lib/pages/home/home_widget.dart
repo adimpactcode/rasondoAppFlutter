@@ -1,3 +1,4 @@
+import '';
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -13,18 +14,14 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_model.dart';
@@ -50,10 +47,13 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     _model = createModel(context, () => HomeModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Home'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('HOME_PAGE_Home_ON_INIT_STATE');
       await authManager.refreshUser();
       if ((loggedIn == false) && (FFAppState().isBannerDismissed == false)) {
+        logFirebaseEvent('Home_alert_dialog');
         await showDialog(
           context: context,
           builder: (dialogContext) {
@@ -75,16 +75,19 @@ class _HomeWidgetState extends State<HomeWidget> {
         );
       }
       if (currentUserEmailVerified) {
+        logFirebaseEvent('Home_firestore_query');
         _model.loggedInUserGrid = await queryCharactersMainRecordOnce(
           queryBuilder: (charactersMainRecord) => charactersMainRecord.where(
             'is_public',
             isEqualTo: true,
           ),
         );
+        logFirebaseEvent('Home_update_page_state');
         _model.mainGridDisplay =
             _model.loggedInUserGrid!.toList().cast<CharactersMainRecord>();
         safeSetState(() {});
       } else {
+        logFirebaseEvent('Home_firestore_query');
         _model.notloggedInUserGrid = await queryCharactersMainRecordOnce(
           queryBuilder: (charactersMainRecord) => charactersMainRecord.where(
             'is_public',
@@ -92,6 +95,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           ),
           limit: 14,
         );
+        logFirebaseEvent('Home_firestore_query');
         _model.ctaGrid = await queryCharactersMainRecordOnce(
           queryBuilder: (charactersMainRecord) => charactersMainRecord.where(
             'type',
@@ -99,9 +103,11 @@ class _HomeWidgetState extends State<HomeWidget> {
           ),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
+        logFirebaseEvent('Home_update_page_state');
         _model.mainGridDisplay =
             _model.notloggedInUserGrid!.toList().cast<CharactersMainRecord>();
         safeSetState(() {});
+        logFirebaseEvent('Home_update_page_state');
         _model.addToMainGridDisplay(_model.ctaGrid!);
         safeSetState(() {});
       }
@@ -161,6 +167,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'HOME_PAGE_Image_4i5hmab8_ON_TAP');
+                                    logFirebaseEvent('Image_navigate_to');
+
                                     context.pushNamed(HomeWidget.routeName);
                                   },
                                   child: Image.asset(
@@ -179,6 +189,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_Icon_ctj88mt6_ON_TAP');
+                                      logFirebaseEvent('Icon_drawer');
                                       if (scaffoldKey
                                               .currentState!.isDrawerOpen ||
                                           scaffoldKey
@@ -208,6 +221,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'HOME_PAGE_Row_qxtk8xak_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ExploreWidget.routeName);
                               },
                               child: Row(
@@ -244,9 +261,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'HOME_PAGE_Row_ok7p51ez_ON_TAP');
                                 if (loggedIn == true) {
+                                  logFirebaseEvent('Row_navigate_to');
+
                                   context.pushNamed(ChatsWidget.routeName);
                                 } else {
+                                  logFirebaseEvent('Row_navigate_to');
+
                                   context
                                       .pushNamed(Auth2CreateWidget.routeName);
                                 }
@@ -285,6 +308,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'HOME_PAGE_Row_4j3mhmrt_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(CreateWidget.routeName);
                               },
                               child: Row(
@@ -321,9 +348,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'HOME_PAGE_Row_uno18m3j_ON_TAP');
                                 if (loggedIn == true) {
+                                  logFirebaseEvent('Row_navigate_to');
+
                                   context.pushNamed(MyAIWidget.routeName);
                                 } else {
+                                  logFirebaseEvent('Row_navigate_to');
+
                                   context
                                       .pushNamed(Auth2CreateWidget.routeName);
                                 }
@@ -378,11 +411,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_Container_5d07qvbg_ON_TAP');
+                                          logFirebaseEvent(
+                                              'buttonPink_navigate_to');
+
                                           context.pushNamed(
                                               Auth2CreateWidget.routeName);
                                         },
                                         child: wrapWithModel(
-                                          model: _model.buttonPinkModel2,
+                                          model: _model.buttonPinkModel,
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child: ButtonPinkWidget(),
@@ -399,6 +437,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       child: AuthUserStreamWidget(
                                         builder: (context) => FFButtonWidget(
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'HOME_PAGE_PREMIUM_BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_navigate_to');
+
                                             context.pushNamed(
                                                 GetPremiumWidget.routeName);
                                           },
@@ -461,7 +504,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_Row_2ky6vlkk_ON_TAP');
                                       if (loggedIn == true) {
+                                        logFirebaseEvent('Row_navigate_to');
+
                                         context.pushNamed(
                                           Auth2ProfilWidget.routeName,
                                           queryParameters: {
@@ -472,6 +519,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           }.withoutNulls,
                                         );
                                       } else {
+                                        logFirebaseEvent('Row_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       }
@@ -518,6 +567,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'HOME_PAGE_Row_0jolk1tk_ON_TAP');
+                                  logFirebaseEvent('Row_navigate_to');
+
                                   context.pushNamed(
                                     Auth2ProfilWidget.routeName,
                                     queryParameters: {
@@ -573,6 +626,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'HOME_PAGE_Row_t6gulr8r_ON_TAP');
+                                  logFirebaseEvent('Row_navigate_to');
+
                                   context.pushNamed(Auth2LoginWidget.routeName);
                                 },
                                 child: Row(
@@ -611,9 +668,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'HOME_PAGE_Row_hdf709bg_ON_TAP');
+                                  logFirebaseEvent('Row_auth');
                                   GoRouter.of(context).prepareAuthEvent();
                                   await authManager.signOut();
                                   GoRouter.of(context).clearRedirectLocation();
+
+                                  logFirebaseEvent('Row_navigate_to');
 
                                   context.pushNamedAuth(
                                       HomeWidget.routeName, context.mounted);
@@ -746,6 +808,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_Container_nf044nwz_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Container_navigate_to');
+
                                                           context.pushNamed(
                                                             HomeWidget
                                                                 .routeName,
@@ -796,14 +863,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           .isLightMode =
                                                                       !FFAppState()
                                                                           .isLightMode);
+                                                              logFirebaseEvent(
+                                                                  'HOME_PAGE_ToggleIcon_jsu5x3p1_ON_TOGGLE');
                                                               if (FFAppState()
                                                                       .isLightMode ==
                                                                   true) {
+                                                                logFirebaseEvent(
+                                                                    'ToggleIcon_set_dark_mode_settings');
                                                                 setDarkModeSetting(
                                                                     context,
                                                                     ThemeMode
                                                                         .dark);
                                                               } else {
+                                                                logFirebaseEvent(
+                                                                    'ToggleIcon_set_dark_mode_settings');
                                                                 setDarkModeSetting(
                                                                     context,
                                                                     ThemeMode
@@ -849,6 +922,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             ),
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'HOME_PAGE_person_ICN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'IconButton_navigate_to');
+
                                                               context.pushNamed(
                                                                 Auth2ProfilWidget
                                                                     .routeName,
@@ -885,6 +963,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             ),
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'HOME_PAGE_menu_open_ICN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'IconButton_drawer');
                                                               scaffoldKey
                                                                   .currentState!
                                                                   .openDrawer();
@@ -966,6 +1048,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'HOME_PAGE_Container_b5ikobmo_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Container_navigate_to');
+
                                                       context.pushNamed(
                                                         HomeWidget.routeName,
                                                         extra: <String,
@@ -1009,13 +1096,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .isLightMode =
                                                                   !FFAppState()
                                                                       .isLightMode);
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_ToggleIcon_4cefdihe_ON_TOGGLE');
                                                           if (FFAppState()
                                                                   .isLightMode ==
                                                               true) {
+                                                            logFirebaseEvent(
+                                                                'ToggleIcon_set_dark_mode_settings');
                                                             setDarkModeSetting(
                                                                 context,
                                                                 ThemeMode.dark);
                                                           } else {
+                                                            logFirebaseEvent(
+                                                                'ToggleIcon_set_dark_mode_settings');
                                                             setDarkModeSetting(
                                                                 context,
                                                                 ThemeMode
@@ -1061,6 +1154,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           size: 24.0,
                                                         ),
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_login_ICN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'IconButton_navigate_to');
+
                                                           context.pushNamed(
                                                               Auth2LoginWidget
                                                                   .routeName);
@@ -1086,6 +1184,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           size: 28.0,
                                                         ),
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_menu_open_ICN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'IconButton_drawer');
                                                           scaffoldKey
                                                               .currentState!
                                                               .openDrawer();
@@ -1145,6 +1247,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_Image_mbtbs1jq_ON_TAP');
+                                          logFirebaseEvent('Image_navigate_to');
+
                                           context
                                               .pushNamed(HomeWidget.routeName);
                                         },
@@ -1175,6 +1281,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'HOME_PAGE_Row_3ywobhz5_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                     ExploreWidget.routeName,
                                                     extra: <String, dynamic>{
@@ -1249,6 +1360,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_Icon_n5ma8qoj_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               ExploreWidget
                                                                   .routeName);
@@ -1273,6 +1389,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'HOME_PAGE_Row_9s4avjb3_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       ChatsWidget.routeName);
                                                 },
@@ -1337,12 +1458,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_Icon_y7d6qpoi_ON_TAP');
                                                           if (loggedIn ==
                                                               true) {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 ChatsWidget
                                                                     .routeName);
                                                           } else {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 Auth2CreateWidget
                                                                     .routeName);
@@ -1368,6 +1497,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'HOME_PAGE_Row_5gdyhm2s_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       CreateWidget.routeName);
                                                 },
@@ -1432,6 +1566,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_Icon_7c2dm6gh_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               CreateWidget
                                                                   .routeName);
@@ -1550,12 +1689,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 safeSetState(() => FFAppState()
                                                         .isLightMode =
                                                     !FFAppState().isLightMode);
+                                                logFirebaseEvent(
+                                                    'HOME_PAGE_ToggleIcon_prqvg595_ON_TOGGLE');
                                                 if (Theme.of(context)
                                                         .brightness ==
                                                     Brightness.dark) {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.light);
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.dark);
                                                 }
@@ -1645,6 +1790,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     size: 24.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'HOME_PAGE_person_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_navigate_to');
+
                                                     context.pushNamed(
                                                       Auth2ProfilWidget
                                                           .routeName,
@@ -1664,25 +1814,62 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                         ),
                                         if (loggedIn == false)
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_JETZT_KOSTENLOS_TESTEN_BTN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2CreateWidget.routeName);
                                             },
-                                            child: wrapWithModel(
-                                              model: _model.buttonPinkModel1,
-                                              updateCallback: () =>
-                                                  safeSetState(() {}),
-                                              child: ButtonPinkWidget(),
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              'k5im7r0a' /* Jetzt kostenlos testen! */,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color: Color(0xFF5BB0FF),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
+                                                      ),
+                                              elevation: 0.0,
+                                              borderSide: BorderSide(
+                                                color: Color(0xFF55BBFF),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                         if (loggedIn == false)
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_PAGE_LOGIN_BTN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2LoginWidget.routeName);
                                             },
@@ -1697,9 +1884,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
+                                              color: Color(0x00DE5499),
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1711,7 +1896,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .tertiary,
+                                                                .primary,
                                                         fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
@@ -1742,6 +1927,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_PAGE_Icon_p2a23dub_ON_TAP');
+                                              logFirebaseEvent('Icon_drawer');
                                               scaffoldKey.currentState!
                                                   .openDrawer();
                                             },
@@ -1998,18 +2186,26 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
                                                                       .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                               children: [
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
-                                                                          30.0,
+                                                                          25.0,
                                                                           0.0,
                                                                           0.0),
                                                                   child:
                                                                       FFButtonWidget(
                                                                     onPressed:
                                                                         () async {
+                                                                      logFirebaseEvent(
+                                                                          'HOME_JETZT_CHARACTER_ERSTELLEN_BTN_ON_TA');
+                                                                      logFirebaseEvent(
+                                                                          'Button_navigate_to');
+
                                                                       context.pushNamed(
                                                                           CreateWidget
                                                                               .routeName);
@@ -2017,14 +2213,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     text: FFLocalizations.of(
                                                                             context)
                                                                         .getText(
-                                                                      'y8eklo3a' /* Jetzt AI Character erstellen! */,
+                                                                      'y8eklo3a' /* Jetzt Character erstellen! */,
                                                                     ),
                                                                     options:
                                                                         FFButtonOptions(
                                                                       width:
                                                                           300.0,
                                                                       height:
-                                                                          70.0,
+                                                                          50.0,
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           0.0,
@@ -2047,7 +2243,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             fontSize:
                                                                                 18.0,
                                                                             letterSpacing:
-                                                                                0.0,
+                                                                                2.0,
                                                                             useGoogleFonts:
                                                                                 GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
                                                                           ),
@@ -2059,123 +2255,152 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Flexible(
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          20.0,
-                                                                          0.0,
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1.0,
                                                                           0.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Container(
-                                                                        decoration:
-                                                                            BoxDecoration(),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        logFirebaseEvent(
+                                                                            'HOME_PAGE_Image_cggk002o_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'Image_custom_action');
+                                                                        await actions
+                                                                            .triggerPWAInstall();
+                                                                      },
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          Theme.of(context).brightness == Brightness.dark
+                                                                              ? 'assets/images/Design_ohne_Titel_(14).png'
+                                                                              : 'assets/images/Design_ohne_Titel_(15).png',
+                                                                          width:
+                                                                              200.0,
+                                                                          height:
+                                                                              200.0,
+                                                                          fit: BoxFit
+                                                                              .contain,
+                                                                          alignment: Alignment(
                                                                               0.0,
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              wrapWithModel(
-                                                                            model:
-                                                                                _model.socialProofAvatarsModel,
-                                                                            updateCallback: () =>
-                                                                                safeSetState(() {}),
-                                                                            child:
-                                                                                SocialProofAvatarsWidget(),
-                                                                          ),
+                                                                              -1.0),
                                                                         ),
                                                                       ),
-                                                                      if (responsiveVisibility(
-                                                                        context:
-                                                                            context,
-                                                                        tabletLandscape:
-                                                                            false,
-                                                                        desktop:
-                                                                            false,
-                                                                      ))
-                                                                        Flexible(
-                                                                          child:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                8.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                                                                                  child: Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                                                    children: [
-                                                                                      Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                                                                                        child: ClipRRect(
-                                                                                          borderRadius: BorderRadius.circular(8.0),
-                                                                                          child: Image.asset(
-                                                                                            'assets/images/google-play_2504916_(1).png',
-                                                                                            width: 40.0,
-                                                                                            height: 40.0,
-                                                                                            fit: BoxFit.cover,
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      ClipRRect(
-                                                                                        borderRadius: BorderRadius.circular(8.0),
-                                                                                        child: SvgPicture.asset(
-                                                                                          'assets/images/apple_2504884.svg',
-                                                                                          width: 40.0,
-                                                                                          height: 40.0,
-                                                                                          fit: BoxFit.cover,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                                                                                  child: Text(
-                                                                                    FFLocalizations.of(context).getText(
-                                                                                      'j8lpky8o' /* Download App */,
-                                                                                    ),
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                          fontSize: 14.0,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontWeight: FontWeight.w600,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                    ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
+                                                          ),
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            5.0),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Flexible(
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                          child:
+                                                                              Image.asset(
+                                                                            'assets/images/Design_ohne_Titel_(9).png',
+                                                                            width:
+                                                                                40.0,
+                                                                            height:
+                                                                                40.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          'assets/images/Design_ohne_Titel_(8).png',
+                                                                          width:
+                                                                              40.0,
+                                                                          height:
+                                                                              40.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          20.0,
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          wrapWithModel(
+                                                                        model: _model
+                                                                            .socialProofAvatarsModel,
+                                                                        updateCallback:
+                                                                            () =>
+                                                                                safeSetState(() {}),
+                                                                        child:
+                                                                            SocialProofAvatarsWidget(),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ],
                                                       ),
@@ -2237,7 +2462,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         1.0,
-                                                height: 400.0,
+                                                height: 500.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -2322,14 +2547,7 @@ Ani... */
                                                                 ),
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0,
-                                                                  20.0),
+                                                    Flexible(
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -2337,64 +2555,290 @@ Ani... */
                                                             MainAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              context.pushNamed(
-                                                                  CreateWidget
-                                                                      .routeName);
-                                                            },
-                                                            text: FFLocalizations
-                                                                    .of(context)
-                                                                .getText(
-                                                              'iev05gsg' /* Jetzt AI Partner erstellen */,
-                                                            ),
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 40.0,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        20.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                if (loggedIn ==
+                                                                    false)
+                                                                  FFButtonWidget(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      logFirebaseEvent(
+                                                                          'HOME_JETZT_KOSTENLOS_TESTEN_BTN_ON_TAP');
+                                                                      logFirebaseEvent(
+                                                                          'Button_navigate_to');
+
+                                                                      context.pushNamed(
+                                                                          Auth2CreateWidget
+                                                                              .routeName);
+                                                                    },
+                                                                    text: FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'ils4volu' /* Jetzt kostenlos testen! */,
+                                                                    ),
+                                                                    options:
+                                                                        FFButtonOptions(
+                                                                      height:
+                                                                          40.0,
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                        color: Colors
-                                                                            .white,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                      color: Color(
+                                                                          0xFF5BB0FF),
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                            color:
+                                                                                Colors.white,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                          ),
+                                                                      elevation:
+                                                                          0.0,
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0xFF55BBFF),
+                                                                        width:
+                                                                            1.0,
                                                                       ),
-                                                              elevation: 0.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          6.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                  ),
+                                                                if (loggedIn ==
+                                                                    true)
+                                                                  FFButtonWidget(
+                                                                    onPressed:
+                                                                        () {
+                                                                      print(
+                                                                          'Button pressed ...');
+                                                                    },
+                                                                    text: FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'p2by33vz' /* Character erstellen! */,
+                                                                    ),
+                                                                    options:
+                                                                        FFButtonOptions(
+                                                                      height:
+                                                                          40.0,
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                            color:
+                                                                                Colors.white,
+                                                                            letterSpacing:
+                                                                                1.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                          ),
+                                                                      elevation:
+                                                                          0.0,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                  ),
+                                                              ],
                                                             ),
                                                           ),
-                                                        ].divide(SizedBox(
-                                                            width: 10.0)),
+                                                        ],
                                                       ),
                                                     ),
                                                     Flexible(
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        15.0,
+                                                                        20.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  child: Image
+                                                                      .asset(
+                                                                    'assets/images/Design_ohne_Titel_(8).png',
+                                                                    width: 35.0,
+                                                                    height:
+                                                                        35.0,
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'assets/images/Design_ohne_Titel_(9).png',
+                                                                      width:
+                                                                          35.0,
+                                                                      height:
+                                                                          35.0,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'HOME_PAGE_Image_ubv05gts_ON_TAP');
+                                                              if (isiOS ==
+                                                                  false) {
+                                                                logFirebaseEvent(
+                                                                    'Image_custom_action');
+                                                                await actions
+                                                                    .triggerPWAInstall();
+                                                              } else {
+                                                                logFirebaseEvent(
+                                                                    'Image_alert_dialog');
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Dwnload die APP '),
+                                                                      content: Text(
+                                                                          'Share drücken und hinzufügen'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              }
+                                                            },
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  Image.asset(
+                                                                Theme.of(context)
+                                                                            .brightness ==
+                                                                        Brightness
+                                                                            .dark
+                                                                    ? 'assets/images/Design_ohne_Titel_(18).png'
+                                                                    : 'assets/images/Design_ohne_Titel_(7).png',
+                                                                width: 150.0,
+                                                                height: 260.0,
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  30.0,
+                                                                  0.0,
+                                                                  0.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -2770,7 +3214,7 @@ Ani... */
                                                                       FFLocalizations.of(
                                                                               context)
                                                                           .getText(
-                                                                        'gu6gx401' /* +10000 nutzende Kunden */,
+                                                                        'yge154ca' /* +10000 nutzende Kunden */,
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
@@ -2798,117 +3242,6 @@ Ani... */
                                                         ],
                                                       ),
                                                     ),
-                                                    if (responsiveVisibility(
-                                                      context: context,
-                                                      phone: false,
-                                                      tablet: false,
-                                                    ))
-                                                      Flexible(
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      10.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceEvenly,
-                                                            children: [
-                                                              Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  '29y75mvm' /* Donwload App! */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                    ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            15.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceEvenly,
-                                                                  children: [
-                                                                    ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: SvgPicture
-                                                                          .asset(
-                                                                        'assets/images/apple_2504884.svg',
-                                                                        width:
-                                                                            50.0,
-                                                                        height:
-                                                                            50.0,
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .asset(
-                                                                          'assets/images/google-play_2504916_(1).png',
-                                                                          width:
-                                                                              50.0,
-                                                                          height:
-                                                                              50.0,
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
                                                   ],
                                                 ),
                                               ),
@@ -3078,237 +3411,6 @@ Ani... */
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              if (responsiveVisibility(
-                                context: context,
-                                tabletLandscape: false,
-                                desktop: false,
-                              ))
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 1.0,
-                                    height: 100.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Flexible(
-                                          child: Container(
-                                            width: double.infinity,
-                                            child: Stack(
-                                              children: [
-                                                PageView(
-                                                  controller: _model
-                                                          .pageViewController ??=
-                                                      PageController(
-                                                          initialPage: 0),
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  15.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Icon(
-                                                            Icons.auto_awesome,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            size: 45.0,
-                                                          ),
-                                                          Flexible(
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  '04nvmo2y' /* Realsitisch und Anime inspirie... */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        FaIcon(
-                                                          FontAwesomeIcons.fire,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 45.0,
-                                                        ),
-                                                        Flexible(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'swswd6pz' /* Freundschaft und Verbundenheit */,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily,
-                                                                    fontSize:
-                                                                        16.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.favorite,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 45.0,
-                                                        ),
-                                                        Flexible(
-                                                          child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                              'hejslwxi' /* Dein Wunschpartner - perfekt a... */,
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ].divide(SizedBox(
-                                                          height: 10.0)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 1.35),
-                                                  child: smooth_page_indicator
-                                                      .SmoothPageIndicator(
-                                                    controller: _model
-                                                            .pageViewController ??=
-                                                        PageController(
-                                                            initialPage: 0),
-                                                    count: 3,
-                                                    axisDirection:
-                                                        Axis.horizontal,
-                                                    onDotClicked: (i) async {
-                                                      await _model
-                                                          .pageViewController!
-                                                          .animateToPage(
-                                                        i,
-                                                        duration: Duration(
-                                                            milliseconds: 500),
-                                                        curve: Curves.ease,
-                                                      );
-                                                      safeSetState(() {});
-                                                    },
-                                                    effect:
-                                                        smooth_page_indicator
-                                                            .SlideEffect(
-                                                      spacing: 8.0,
-                                                      radius: 8.0,
-                                                      dotWidth: 6.0,
-                                                      dotHeight: 6.0,
-                                                      dotColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent1,
-                                                      activeDotColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      paintStyle:
-                                                          PaintingStyle.fill,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
                                     ),
                                   ),
                                 ),
@@ -3499,9 +3601,14 @@ Ani... */
                                                                   Colors
                                                                       .transparent,
                                                               onTap: () async {
+                                                                logFirebaseEvent(
+                                                                    'HOME_PAGE_Image_22k243nf_ON_TAP');
                                                                 if (gridDisplayItemItem
                                                                         .type !=
                                                                     'ctaGrid') {
+                                                                  logFirebaseEvent(
+                                                                      'Image_navigate_to');
+
                                                                   context
                                                                       .pushNamed(
                                                                     CharacterProfilWidget
@@ -3693,10 +3800,15 @@ Ani... */
                                                                   ),
                                                                   onPressed:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'HOME_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                     await authManager
                                                                         .refreshUser();
                                                                     if (currentUserEmailVerified ==
                                                                         true) {
+                                                                      logFirebaseEvent(
+                                                                          'IconButton_navigate_to');
+
                                                                       context
                                                                           .pushNamed(
                                                                         ChatPageProWidget
@@ -3716,6 +3828,9 @@ Ani... */
                                                                         }.withoutNulls,
                                                                       );
                                                                     } else {
+                                                                      logFirebaseEvent(
+                                                                          'IconButton_navigate_to');
+
                                                                       context.pushNamed(
                                                                           Auth2CreateWidget
                                                                               .routeName);
@@ -3743,6 +3858,11 @@ Ani... */
                                                                     FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'HOME_PAGE_JETZT_REGISTRIEREN_BTN_ON_TAP');
+                                                                    logFirebaseEvent(
+                                                                        'Button_navigate_to');
+
                                                                     context.pushNamed(
                                                                         Auth2CreateWidget
                                                                             .routeName);
@@ -4081,9 +4201,14 @@ Ani... */
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'HOME_PAGE_Image_7hn6fdv1_ON_TAP');
                                                             if (getDisplayItemMobileItem
                                                                     .type !=
                                                                 'ctaGrid') {
+                                                              logFirebaseEvent(
+                                                                  'Image_navigate_to');
+
                                                               context.pushNamed(
                                                                 CharacterProfilWidget
                                                                     .routeName,
@@ -4275,10 +4400,15 @@ Ani... */
                                                               ),
                                                               onPressed:
                                                                   () async {
+                                                                logFirebaseEvent(
+                                                                    'HOME_PAGE_wechat_outlined_ICN_ON_TAP');
                                                                 await authManager
                                                                     .refreshUser();
                                                                 if (currentUserEmailVerified ==
                                                                     true) {
+                                                                  logFirebaseEvent(
+                                                                      'IconButton_navigate_to');
+
                                                                   context
                                                                       .pushNamed(
                                                                     ChatPageProWidget
@@ -4301,6 +4431,9 @@ Ani... */
                                                                     }.withoutNulls,
                                                                   );
                                                                 } else {
+                                                                  logFirebaseEvent(
+                                                                      'IconButton_navigate_to');
+
                                                                   context.pushNamed(
                                                                       Auth2CreateWidget
                                                                           .routeName);
@@ -4402,6 +4535,11 @@ Ani... */
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'HOME_PAGE_JETZT_REGISTRIEREN_BTN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Button_navigate_to');
+
                                                               context.pushNamed(
                                                                   Auth2CreateWidget
                                                                       .routeName);
@@ -4525,6 +4663,11 @@ Ani... */
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'HOME_PAGE_ctaButton_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'ctaButton_navigate_to');
+
                                                               context.pushNamed(
                                                                   Auth2CreateWidget
                                                                       .routeName);
@@ -4626,6 +4769,11 @@ Ani... */
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'HOME_PAGE_ctaButton_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'ctaButton_navigate_to');
+
                                                               context.pushNamed(
                                                                   ExploreWidget
                                                                       .routeName);
@@ -5034,15 +5182,29 @@ Ani... */
                                                   alignment:
                                                       AlignmentDirectional(
                                                           0.0, 0.0),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.asset(
-                                                      'assets/images/mobile.png',
-                                                      width: 400.0,
-                                                      height: 500.0,
-                                                      fit: BoxFit.contain,
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.asset(
+                                                        'assets/images/mobile.png',
+                                                        width: 250.0,
+                                                        height: 510.0,
+                                                        fit: BoxFit.contain,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -5081,6 +5243,11 @@ Ani... */
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'HOME_JETZT_CHATPARTNER_ENTDECKEN_BTN_ON_');
+                                                        logFirebaseEvent(
+                                                            'Button_navigate_to');
+
                                                         context.pushNamed(
                                                             ExploreWidget
                                                                 .routeName);
@@ -5186,45 +5353,32 @@ Ani... */
                                                         ),
                                               ),
                                             ),
-                                            RatingBar.builder(
-                                              onRatingUpdate: (newValue) =>
-                                                  safeSetState(() =>
-                                                      _model.ratingBarValue1 =
-                                                          newValue),
-                                              itemBuilder: (context, index) =>
-                                                  Icon(
-                                                Icons.star_rounded,
-                                                color: Color(0xFFDEC854),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 20.0),
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'el3latcq' /* Linus K. */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
                                               ),
-                                              direction: Axis.horizontal,
-                                              initialRating: _model
-                                                  .ratingBarValue1 ??= 3.0,
-                                              unratedColor: Color(0xFFDEC854),
-                                              itemCount: 5,
-                                              itemSize: 24.0,
-                                              glowColor: Color(0xFFDEC854),
-                                            ),
-                                            Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'el3latcq' /* Linus K. */,
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
                                             ),
                                           ],
                                         ),
@@ -5282,6 +5436,11 @@ Ani... */
                                                               0.0, 0.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_ctaButton_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'ctaButton_navigate_to');
+
                                                           context.pushNamed(
                                                               Auth2CreateWidget
                                                                   .routeName);
@@ -5703,13 +5862,24 @@ Ani... */
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.asset(
-                                                      'assets/images/mobile.png',
-                                                      fit: BoxFit.cover,
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.asset(
+                                                        'assets/images/mobile.png',
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -5745,6 +5915,11 @@ Ani... */
                                                           0.0, 0.0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
+                                                      logFirebaseEvent(
+                                                          'HOME_DEINEN_CHATPARTNER_AUSWHLEN_BTN_ON_');
+                                                      logFirebaseEvent(
+                                                          'Button_navigate_to');
+
                                                       context.pushNamed(
                                                           ExploreWidget
                                                               .routeName);
@@ -5856,55 +6031,31 @@ Ani... */
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 10.0),
-                                            child: RatingBar.builder(
-                                              onRatingUpdate: (newValue) =>
-                                                  safeSetState(() =>
-                                                      _model.ratingBarValue2 =
-                                                          newValue),
-                                              itemBuilder: (context, index) =>
-                                                  Icon(
-                                                Icons.star_rounded,
-                                                color: Color(0xFFDEC854),
+                                                    0.0, 0.0, 0.0, 25.0),
+                                            child: Text(
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                'pjeqxg0f' /* Linus K. */,
                                               ),
-                                              direction: Axis.horizontal,
-                                              initialRating: _model
-                                                  .ratingBarValue2 ??= 3.0,
-                                              unratedColor: Color(0xFFDEC854),
-                                              itemCount: 5,
-                                              itemSize: 24.0,
-                                              glowColor: Color(0xFFDEC854),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                             ),
-                                          ),
-                                          Text(
-                                            FFLocalizations.of(context).getText(
-                                              'pjeqxg0f' /* Linus K. */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
                                           ),
                                         ],
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 30.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [],
-                                        ),
                                       ),
                                     ],
                                   ),

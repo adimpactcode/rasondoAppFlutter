@@ -1,3 +1,4 @@
+import '';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/api_requests/api_streaming.dart';
@@ -10,6 +11,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:convert';
 import 'dart:ui';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'chat_page_pro_model.dart';
 export 'chat_page_pro_model.dart';
@@ -50,12 +51,17 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
     super.initState();
     _model = createModel(context, () => ChatPageProModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'chatPagePro'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('CHAT_PRO_chatPagePro_ON_INIT_STATE');
+      logFirebaseEvent('chatPagePro_update_app_state');
       FFAppState().userId = currentUserReference!.id;
       safeSetState(() {});
+      logFirebaseEvent('chatPagePro_update_app_state');
       FFAppState().characterId = widget!.characterId!.id;
       safeSetState(() {});
+      logFirebaseEvent('chatPagePro_firestore_query');
       _model.doesChatExist = await queryChatsRecordOnce(
         queryBuilder: (chatsRecord) => chatsRecord
             .where(
@@ -69,10 +75,13 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       if (_model.doesChatExist?.reference != null) {
+        logFirebaseEvent('chatPagePro_firestore_query');
         _model.oldMessages = await queryMessagesRecordOnce(
           parent: _model.doesChatExist?.reference,
         );
       } else {
+        logFirebaseEvent('chatPagePro_backend_call');
+
         var chatsRecordReference = ChatsRecord.collection.doc();
         await chatsRecordReference.set(createChatsRecordData(
           userId: widget!.userReference,
@@ -86,29 +95,30 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
             chatsRecordReference);
       }
 
+      logFirebaseEvent('chatPagePro_backend_call');
       _model.apiLlmPageload = await NovitaFunctionLLMCall.call(
         userId: widget!.userReference?.id,
         characterId: widget!.characterId?.id,
       );
 
+      logFirebaseEvent('chatPagePro_update_page_state');
       _model.addToLastMessages(
           (_model.apiLlmPageload?.jsonBody ?? '').toString());
       safeSetState(() {});
       if ((_model.apiLlmPageload?.succeeded ?? true)) {
         if ((_model.oldMessages != null && (_model.oldMessages)!.isNotEmpty) ==
             false) {
-          _model.addToMessage(MessagesStruct(
+          logFirebaseEvent('chatPagePro_update_app_state');
+          FFAppState().addToMessages(MessagesStruct(
             role: 'assistant',
-            content: valueOrDefault<String>(
-              NovitaFunctionLLMCall.startMessage(
-                (_model.apiLlmPageload?.jsonBody ?? ''),
-              ),
-              'Heyy, schön dich zu sehen',
+            content: NovitaFunctionLLMCall.startMessage(
+              (_model.apiLlmPageload?.jsonBody ?? ''),
             ),
           ));
           safeSetState(() {});
         } else {
-          _model.message = functions
+          logFirebaseEvent('chatPagePro_update_app_state');
+          FFAppState().messages = functions
               .jsonToMessages(NovitaFunctionLLMCall.lastMessages(
                 (_model.apiLlmPageload?.jsonBody ?? ''),
               )?.toList())!
@@ -116,12 +126,6 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
               .cast<MessagesStruct>();
           safeSetState(() {});
         }
-
-        await _model.chatListView?.animateTo(
-          _model.chatListView!.position.maxScrollExtent,
-          duration: Duration(milliseconds: 100),
-          curve: Curves.ease,
-        );
       }
     });
 
@@ -241,81 +245,81 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Flexible(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 4.0, 0.0),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                context.safePop();
-                                              },
-                                              child: Icon(
-                                                Icons.chevron_left_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 28.0,
-                                              ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 12.0, 0.0, 12.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 4.0, 0.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'CHAT_PAGE_PRO_PAGE_Icon_th8w29hx_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Icon_navigate_back');
+                                              context.safePop();
+                                            },
+                                            child: Icon(
+                                              Icons.chevron_left_sharp,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 28.0,
                                             ),
                                           ),
-                                          Container(
-                                            width: 54.0,
-                                            height: 54.0,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              rowCharactersMainRecord
-                                                  .referenceImage,
-                                              fit: BoxFit.cover,
-                                            ),
+                                        ),
+                                        Container(
+                                          width: 54.0,
+                                          height: 54.0,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              rowCharactersMainRecord.name,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    fontSize: 16.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily),
-                                                  ),
-                                            ),
+                                          child: Image.network(
+                                            rowCharactersMainRecord
+                                                .referenceImage,
+                                            fit: BoxFit.cover,
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            rowCharactersMainRecord.name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  fontSize: 16.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Row(
@@ -323,6 +327,11 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                     children: [
                                       FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'CHAT_PAGE_PRO_PAGE__BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                             CharacterProfilWidget.routeName,
                                             queryParameters: {
@@ -376,13 +385,13 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
-                                ].divide(SizedBox(width: 20.0)),
+                                ],
                               );
                             },
                           ),
                         ),
                       ),
-                      Flexible(
+                      Expanded(
                         child: Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: Container(
@@ -395,167 +404,18 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Flexible(
-                                  child: Builder(
-                                    builder: (context) {
-                                      final messages =
-                                          _model.message.map((e) => e).toList();
-
-                                      return SingleChildScrollView(
-                                        controller: _model.chatListView,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: List.generate(
-                                              messages.length, (messagesIndex) {
-                                            final messagesItem =
-                                                messages[messagesIndex];
-                                            return Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 10.0, 10.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: [
-                                                  if (messagesItem.role ==
-                                                      'user')
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        if (messagesItem
-                                                                    .content !=
-                                                                null &&
-                                                            messagesItem
-                                                                    .content !=
-                                                                '')
-                                                          Flexible(
-                                                            child: Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      1.0, 0.0),
-                                                              child: Text(
-                                                                messagesItem
-                                                                    .content,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .end,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              'Poppins'),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                  if (messagesItem.role ==
-                                                      'assistant')
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        if (messagesItem
-                                                                    .content !=
-                                                                null &&
-                                                            messagesItem
-                                                                    .content !=
-                                                                '')
-                                                          Flexible(
-                                                            child: Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          0.0),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          8.0),
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          8.0),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          8.0),
-                                                                ),
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            8.0),
-                                                                child: Text(
-                                                                  messagesItem
-                                                                      .content,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Poppins',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondary,
-                                                                        fontSize:
-                                                                            16.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey('Poppins'),
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                ].divide(
-                                                    SizedBox(height: 10.0)),
-                                              ),
-                                            );
-                                          }),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                if (_model.isAssistantLoading == true)
-                                  Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Lottie.asset(
-                                      'assets/jsons/Animation_-_1733099242869.json',
-                                      width: 200.0,
-                                      height: 100.0,
-                                      fit: BoxFit.contain,
-                                      animate: true,
+                                Expanded(
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 400.0,
+                                    child: custom_widgets.ChatStreamWidget(
+                                      width: double.infinity,
+                                      height: 400.0,
+                                      isTyping: FFAppState().isStreaming,
+                                      messages: FFAppState().messages,
                                     ),
                                   ),
+                                ),
                               ],
                             ),
                           ),
@@ -603,6 +463,11 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                       size: 24.0,
                                     ),
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'CHAT_PRO_image_outlined_ICN_ON_TAP');
+                                      logFirebaseEvent(
+                                          'IconButton_navigate_to');
+
                                       context.pushNamed(
                                         ImageToImageWidget.routeName,
                                         queryParameters: {
@@ -638,6 +503,8 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                               focusNode:
                                                   _model.textFieldFocusNode,
                                               onFieldSubmitted: (_) async {
+                                                logFirebaseEvent(
+                                                    'CHAT_PRO_TextField_bz12x5qm_ON_TEXTFIELD');
                                                 if ((valueOrDefault<bool>(
                                                             currentUserDocument
                                                                 ?.isPremium,
@@ -648,16 +515,17 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                 ?.messagesSentCount,
                                                             0) <=
                                                         15)) {
-                                                  _model.addToMessage(
+                                                  logFirebaseEvent(
+                                                      'TextField_update_app_state');
+                                                  FFAppState().addToMessages(
                                                       MessagesStruct(
                                                     role: 'user',
                                                     content: _model
                                                         .textController.text,
                                                   ));
                                                   safeSetState(() {});
-                                                  _model.isAssistantLoading =
-                                                      true;
-                                                  safeSetState(() {});
+                                                  logFirebaseEvent(
+                                                      'TextField_update_page_state');
                                                   _model.userInput = _model
                                                       .textController.text;
                                                   _model.userId =
@@ -665,6 +533,8 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   _model.characterId =
                                                       widget!.characterId?.id;
                                                   safeSetState(() {});
+                                                  logFirebaseEvent(
+                                                      'TextField_backend_call');
 
                                                   await widget!.userReference!
                                                       .update({
@@ -676,6 +546,8 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                       },
                                                     ),
                                                   });
+                                                  logFirebaseEvent(
+                                                      'TextField_backend_call');
 
                                                   var messagesRecordReference1 =
                                                       MessagesRecord.createDoc(
@@ -690,7 +562,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                     createdAt:
                                                         getCurrentTimestamp,
                                                   ));
-                                                  _model.currentUserMessageCopy =
+                                                  _model.streamUserMessageOnSubmit =
                                                       MessagesRecord
                                                           .getDocumentFromData(
                                                               createMessagesRecordData(
@@ -702,26 +574,15 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                                     getCurrentTimestamp,
                                                               ),
                                                               messagesRecordReference1);
-                                                  await _model.chatListView
-                                                      ?.animateTo(
-                                                    _model
-                                                        .chatListView!
-                                                        .position
-                                                        .maxScrollExtent,
-                                                    duration: Duration(
-                                                        milliseconds: 100),
-                                                    curve: Curves.ease,
-                                                  );
-                                                  safeSetState(() {
-                                                    _model.textController
-                                                        ?.clear();
-                                                  });
-                                                  safeSetState(() {
-                                                    _model.textController
-                                                        ?.clear();
-                                                  });
-                                                  _model.apiResultmluSubmit =
-                                                      await NovitaFunctionLLMCall
+                                                  logFirebaseEvent(
+                                                      'TextField_update_app_state');
+                                                  FFAppState().isStreaming =
+                                                      true;
+                                                  safeSetState(() {});
+                                                  logFirebaseEvent(
+                                                      'TextField_backend_call');
+                                                  _model.streamCallResultOnSubmit =
+                                                      await NovitaFunctionLLMStreamCall
                                                           .call(
                                                     characterId:
                                                         widget!.characterId?.id,
@@ -729,52 +590,115 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                         .userReference?.id,
                                                     userInput: _model.userInput,
                                                   );
-
-                                                  _model.isAssistantLoading =
-                                                      false;
-                                                  safeSetState(() {});
                                                   if (_model
-                                                          .apiResultmluSubmit !=
-                                                      null) {
-                                                    _model.addToMessage(
-                                                        MessagesStruct(
-                                                      role: 'assistant',
-                                                      content:
-                                                          NovitaFunctionLLMCall
-                                                              .aiResponse(
-                                                        (_model.apiResultmluSubmit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
-                                                    ));
-                                                    safeSetState(() {});
-
-                                                    await MessagesRecord.createDoc(
-                                                            chatPageProChatsRecord!
-                                                                .reference)
-                                                        .set(
-                                                            createMessagesRecordData(
-                                                      role: 'assistant',
-                                                      content:
-                                                          NovitaFunctionLLMCall
-                                                              .aiResponse(
-                                                        (_model.apiResultmluSubmit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
-                                                    ));
-                                                  }
-                                                  await _model.chatListView
-                                                      ?.animateTo(
+                                                          .streamCallResultOnSubmit
+                                                          ?.succeeded ??
+                                                      true) {
                                                     _model
-                                                        .chatListView!
-                                                        .position
-                                                        .maxScrollExtent,
-                                                    duration: Duration(
-                                                        milliseconds: 100),
-                                                    curve: Curves.ease,
-                                                  );
+                                                        .streamCallResultOnSubmit
+                                                        ?.streamedResponse
+                                                        ?.stream
+                                                        .transform(utf8.decoder)
+                                                        .transform(
+                                                            const LineSplitter())
+                                                        .transform(
+                                                            ServerSentEventLineTransformer())
+                                                        .map((m) =>
+                                                            ResponseStreamMessage(
+                                                                message: m))
+                                                        .listen(
+                                                      (onMessageInput) async {
+                                                        if (FFAppState()
+                                                            .isStreaming) {
+                                                          logFirebaseEvent(
+                                                              '_update_app_state');
+                                                          FFAppState()
+                                                                  .isStreaming =
+                                                              false;
+                                                          safeSetState(() {});
+                                                          logFirebaseEvent(
+                                                              '_update_app_state');
+                                                          FFAppState()
+                                                              .addToMessages(
+                                                                  MessagesStruct(
+                                                            role: 'assistant',
+                                                            messages: StreamResponseStruct.maybeFromMap(
+                                                                    onMessageInput
+                                                                        .serverSentEvent
+                                                                        .jsonData)
+                                                                ?.choices
+                                                                ?.map((e) => e
+                                                                    .delta
+                                                                    .content)
+                                                                .toList(),
+                                                          ));
+                                                          safeSetState(() {});
+                                                        } else {
+                                                          logFirebaseEvent(
+                                                              '_update_app_state');
+                                                          FFAppState()
+                                                              .updateMessagesAtIndex(
+                                                            functions
+                                                                .getItemAtIndex(
+                                                                    FFAppState()
+                                                                        .messages
+                                                                        .toList()),
+                                                            (e) => e
+                                                              ..updateMessages(
+                                                                (e) => e.add(StreamResponseStruct.maybeFromMap(onMessageInput
+                                                                        .serverSentEvent
+                                                                        .jsonData)!
+                                                                    .chunks
+                                                                    .lastOrNull!
+                                                                    .newChunk),
+                                                              ),
+                                                          );
+                                                          safeSetState(() {});
+                                                        }
+                                                      },
+                                                      onError:
+                                                          (onErrorInput) async {},
+                                                      onDone: () async {},
+                                                    );
+                                                  }
+
+                                                  logFirebaseEvent(
+                                                      'TextField_clear_text_fields_pin_codes');
+                                                  safeSetState(() {
+                                                    _model.textController
+                                                        ?.clear();
+                                                  });
+                                                  logFirebaseEvent(
+                                                      'TextField_backend_call');
+
+                                                  var messagesRecordReference2 =
+                                                      MessagesRecord.createDoc(
+                                                          chatPageProChatsRecord!
+                                                              .reference);
+                                                  await messagesRecordReference2
+                                                      .set(
+                                                          createMessagesRecordData(
+                                                    role: 'assistant',
+                                                    content: FFAppState()
+                                                        .messages
+                                                        .lastOrNull
+                                                        ?.assistantMessage,
+                                                  ));
+                                                  _model.createDocumentCopy =
+                                                      MessagesRecord
+                                                          .getDocumentFromData(
+                                                              createMessagesRecordData(
+                                                                role:
+                                                                    'assistant',
+                                                                content: FFAppState()
+                                                                    .messages
+                                                                    .lastOrNull
+                                                                    ?.assistantMessage,
+                                                              ),
+                                                              messagesRecordReference2);
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'TextField_alert_dialog');
                                                   await showDialog(
                                                     context: context,
                                                     builder: (dialogContext) {
@@ -935,12 +859,14 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .primary,
                                           icon: Icon(
-                                            Icons.send_rounded,
+                                            Icons.send,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondary,
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'CHAT_PAGE_PRO_PAGE_streamButton_ON_TAP');
                                             if ((valueOrDefault<bool>(
                                                         currentUserDocument
                                                             ?.isPremium,
@@ -951,15 +877,17 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                             ?.messagesSentCount,
                                                         0) <=
                                                     15)) {
-                                              _model
-                                                  .addToMessage(MessagesStruct(
+                                              logFirebaseEvent(
+                                                  'streamButton_update_app_state');
+                                              FFAppState()
+                                                  .addToMessages(MessagesStruct(
                                                 role: 'user',
                                                 content:
                                                     _model.textController.text,
                                               ));
                                               safeSetState(() {});
-                                              _model.isAssistantLoading = true;
-                                              safeSetState(() {});
+                                              logFirebaseEvent(
+                                                  'streamButton_update_page_state');
                                               _model.userInput =
                                                   _model.textController.text;
                                               _model.userId =
@@ -967,6 +895,8 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                               _model.characterId =
                                                   widget!.characterId?.id;
                                               safeSetState(() {});
+                                              logFirebaseEvent(
+                                                  'streamButton_backend_call');
 
                                               await widget!.userReference!
                                                   .update({
@@ -977,6 +907,8 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                   },
                                                 ),
                                               });
+                                              logFirebaseEvent(
+                                                  'streamButton_backend_call');
 
                                               var messagesRecordReference1 =
                                                   MessagesRecord.createDoc(
@@ -989,7 +921,7 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                     _model.textController.text,
                                                 createdAt: getCurrentTimestamp,
                                               ));
-                                              _model.currentUserMessage =
+                                              _model.streamUserMessage =
                                                   MessagesRecord.getDocumentFromData(
                                                       createMessagesRecordData(
                                                         role: 'user',
@@ -1000,8 +932,19 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                             getCurrentTimestamp,
                                                       ),
                                                       messagesRecordReference1);
-                                              _model.apiResultmlu =
-                                                  await NovitaFunctionLLMCall
+                                              logFirebaseEvent(
+                                                  'streamButton_update_app_state');
+                                              FFAppState().isStreaming = true;
+                                              safeSetState(() {});
+                                              logFirebaseEvent(
+                                                  'streamButton_clear_text_fields_pin_codes');
+                                              safeSetState(() {
+                                                _model.textController?.clear();
+                                              });
+                                              logFirebaseEvent(
+                                                  'streamButton_backend_call');
+                                              _model.streamCallResult =
+                                                  await NovitaFunctionLLMStreamCall
                                                       .call(
                                                 characterId:
                                                     widget!.characterId?.id,
@@ -1009,58 +952,103 @@ class _ChatPageProWidgetState extends State<ChatPageProWidget> {
                                                     widget!.userReference?.id,
                                                 userInput: _model.userInput,
                                               );
-
-                                              safeSetState(() {
-                                                _model.textController?.clear();
-                                              });
-                                              await _model.chatListView
-                                                  ?.animateTo(
-                                                _model.chatListView!.position
-                                                    .maxScrollExtent,
-                                                duration:
-                                                    Duration(milliseconds: 100),
-                                                curve: Curves.ease,
-                                              );
-                                              _model.isAssistantLoading = false;
-                                              safeSetState(() {});
-                                              if ((_model.apiResultmlu
+                                              if (_model.streamCallResult
                                                       ?.succeeded ??
-                                                  true)) {
-                                                _model.addToMessage(
-                                                    MessagesStruct(
-                                                  role: 'assistant',
-                                                  content: NovitaFunctionLLMCall
-                                                      .aiResponse(
-                                                    (_model.apiResultmlu
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  ),
-                                                ));
-                                                safeSetState(() {});
-
-                                                await MessagesRecord.createDoc(
-                                                        chatPageProChatsRecord!
-                                                            .reference)
-                                                    .set(
-                                                        createMessagesRecordData(
-                                                  role: 'assistant',
-                                                  content: NovitaFunctionLLMCall
-                                                      .aiResponse(
-                                                    (_model.apiResultmlu
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  ),
-                                                ));
+                                                  true) {
+                                                _model.streamCallResult
+                                                    ?.streamedResponse?.stream
+                                                    .transform(utf8.decoder)
+                                                    .transform(
+                                                        const LineSplitter())
+                                                    .transform(
+                                                        ServerSentEventLineTransformer())
+                                                    .map((m) =>
+                                                        ResponseStreamMessage(
+                                                            message: m))
+                                                    .listen(
+                                                  (onMessageInput) async {
+                                                    if (FFAppState()
+                                                        .isStreaming) {
+                                                      logFirebaseEvent(
+                                                          '_update_app_state');
+                                                      FFAppState().isStreaming =
+                                                          false;
+                                                      safeSetState(() {});
+                                                      logFirebaseEvent(
+                                                          '_update_app_state');
+                                                      FFAppState()
+                                                          .addToMessages(
+                                                              MessagesStruct(
+                                                        role: 'assistant',
+                                                        messages: StreamResponseStruct
+                                                                .maybeFromMap(
+                                                                    onMessageInput
+                                                                        .serverSentEvent
+                                                                        .jsonData)
+                                                            ?.choices
+                                                            ?.map((e) =>
+                                                                e.delta.content)
+                                                            .toList(),
+                                                      ));
+                                                      safeSetState(() {});
+                                                    } else {
+                                                      logFirebaseEvent(
+                                                          '_update_app_state');
+                                                      FFAppState()
+                                                          .updateMessagesAtIndex(
+                                                        functions
+                                                            .getItemAtIndex(
+                                                                FFAppState()
+                                                                    .messages
+                                                                    .toList()),
+                                                        (e) => e
+                                                          ..updateMessages(
+                                                            (e) => e.add(StreamResponseStruct.maybeFromMap(
+                                                                    onMessageInput
+                                                                        .serverSentEvent
+                                                                        .jsonData)!
+                                                                .chunks
+                                                                .lastOrNull!
+                                                                .newChunk),
+                                                          ),
+                                                      );
+                                                      safeSetState(() {});
+                                                    }
+                                                  },
+                                                  onError:
+                                                      (onErrorInput) async {},
+                                                  onDone: () async {},
+                                                );
                                               }
-                                              await _model.chatListView
-                                                  ?.animateTo(
-                                                _model.chatListView!.position
-                                                    .maxScrollExtent,
-                                                duration:
-                                                    Duration(milliseconds: 100),
-                                                curve: Curves.ease,
-                                              );
+
+                                              logFirebaseEvent(
+                                                  'streamButton_backend_call');
+
+                                              var messagesRecordReference2 =
+                                                  MessagesRecord.createDoc(
+                                                      chatPageProChatsRecord!
+                                                          .reference);
+                                              await messagesRecordReference2
+                                                  .set(createMessagesRecordData(
+                                                role: 'assistant',
+                                                content: FFAppState()
+                                                    .messages
+                                                    .lastOrNull
+                                                    ?.assistantMessage,
+                                              ));
+                                              _model.createDocument = MessagesRecord
+                                                  .getDocumentFromData(
+                                                      createMessagesRecordData(
+                                                        role: 'assistant',
+                                                        content: FFAppState()
+                                                            .messages
+                                                            .lastOrNull
+                                                            ?.assistantMessage,
+                                                      ),
+                                                      messagesRecordReference2);
                                             } else {
+                                              logFirebaseEvent(
+                                                  'streamButton_alert_dialog');
                                               await showDialog(
                                                 context: context,
                                                 builder: (dialogContext) {

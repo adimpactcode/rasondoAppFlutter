@@ -101,6 +101,9 @@ class _CreateCharacterLimitCTAWidgetState
                             size: 24.0,
                           ),
                           onPressed: () async {
+                            logFirebaseEvent(
+                                'CREATE_CHARACTER_LIMIT_C_T_A_close_ICN_O');
+                            logFirebaseEvent('IconButton_dismiss_dialog');
                             Navigator.pop(context);
                           },
                         ),
@@ -179,6 +182,10 @@ class _CreateCharacterLimitCTAWidgetState
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'CREATE_CHARACTER_LIMIT_C_T_A_JETZT_PREMI');
+                              logFirebaseEvent('Button_navigate_to');
+
                               context.pushNamed(GetPremiumWidget.routeName);
                             },
                             text: FFLocalizations.of(context).getText(

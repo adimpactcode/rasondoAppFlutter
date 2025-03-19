@@ -45,10 +45,13 @@ class _ButtonPinkWidgetState extends State<ButtonPinkWidget> {
   Widget build(BuildContext context) {
     return FFButtonWidget(
       onPressed: () async {
+        logFirebaseEvent('BUTTON_PINK_JETZT_KOSTENLOS_TESTEN_BTN_O');
+        logFirebaseEvent('Button_navigate_to');
+
         context.pushNamed(Auth2CreateWidget.routeName);
       },
       text: FFLocalizations.of(context).getText(
-        'p3o8plca' /* Kostenlos Registrieren */,
+        'p3o8plca' /* Jetzt kostenlos testen! */,
       ),
       options: FFButtonOptions(
         width: 220.0,

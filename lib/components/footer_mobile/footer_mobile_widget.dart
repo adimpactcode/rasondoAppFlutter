@@ -115,6 +115,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_Container_4wgjqxug_ON_TAP');
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(HomeWidget.routeName);
                           },
                           child: Container(
@@ -149,6 +153,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_COMP_navExplore_ON_TAP');
+                            logFirebaseEvent('navExplore_navigate_to');
+
                             context.pushNamed(ExploreWidget.routeName);
                           },
                           child: Container(
@@ -183,6 +191,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_COMP_navCreate_ON_TAP');
+                            logFirebaseEvent('navCreate_navigate_to');
+
                             context.pushNamed(CreateWidget.routeName);
                           },
                           child: Container(
@@ -217,6 +229,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_Container_7ytq2md5_ON_TAP');
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(ChatsWidget.routeName);
                           },
                           child: Container(
@@ -230,9 +246,15 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'FOOTER_MOBILE_COMP_Text_tlct94x5_ON_TAP');
                                   if (loggedIn == true) {
+                                    logFirebaseEvent('Text_navigate_to');
+
                                     context.pushNamed(ChatsWidget.routeName);
                                   } else {
+                                    logFirebaseEvent('Text_navigate_to');
+
                                     context
                                         .pushNamed(Auth2CreateWidget.routeName);
                                   }
@@ -267,9 +289,15 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'FOOTER_MOBILE_COMP_Text_sfbfkqxc_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -330,6 +358,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_Container_bhclaexs_ON_TAP');
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(Auth2LoginWidget.routeName);
                           },
                           child: Container(
@@ -366,6 +398,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'FOOTER_MOBILE_COMP_Text_k3hkfn1t_ON_TAP');
+                              logFirebaseEvent('Text_navigate_to');
+
                               context.pushNamed(GetPremiumWidget.routeName);
                             },
                             child: Text(
@@ -425,6 +461,9 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_Container_fh84vjhr_ON_TAP');
+                            logFirebaseEvent('Container_send_email');
                             await launchUrl(Uri(
                                 scheme: 'mailto',
                                 path: 'i',
@@ -469,6 +508,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_Container_pss7smfv_ON_TAP');
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(DatenschutzWidget.routeName);
                           },
                           child: Container(
@@ -503,6 +546,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_Container_wqtqybcx_ON_TAP');
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(ImpressumWidget.routeName);
                           },
                           child: Container(
@@ -516,6 +563,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'FOOTER_MOBILE_COMP_Text_idiyr8it_ON_TAP');
+                                  logFirebaseEvent('Text_navigate_to');
+
                                   context.pushNamed(ImpressumWidget.routeName);
                                 },
                                 child: Text(
@@ -546,6 +597,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'FOOTER_MOBILE_Container_y5t6gy81_ON_TAP');
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(ImpressumWidget.routeName);
                           },
                           child: Container(
@@ -559,6 +614,10 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'FOOTER_MOBILE_COMP_Text_07zchs99_ON_TAP');
+                                  logFirebaseEvent('Text_navigate_to');
+
                                   context.pushNamed(AgbWidget.routeName);
                                 },
                                 child: Text(
@@ -596,8 +655,11 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'FOOTER_MOBILE_COMP_facebookIcon_ON_TAP');
+                                  logFirebaseEvent('facebookIcon_launch_u_r_l');
                                   await launchURL(
-                                      'https://facebook.com/teckaaofficial');
+                                      'https://www.facebook.com/profile.php?id=61573585640604');
                                 },
                                 child: FaIcon(
                                   FontAwesomeIcons.facebookSquare,
@@ -616,31 +678,15 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'FOOTER_MOBILE_COMP_instagramIcon_ON_TAP');
+                                  logFirebaseEvent(
+                                      'instagramIcon_launch_u_r_l');
                                   await launchURL(
-                                      'https://instagram.com/teckaaofficial');
+                                      'https://www.instagram.com/rasondo_com/');
                                 },
                                 child: FaIcon(
                                   FontAwesomeIcons.instagram,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 10.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await launchURL(
-                                      'https://twitter.com/teckaaofficial');
-                                },
-                                child: FaIcon(
-                                  FontAwesomeIcons.twitterSquare,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   size: 24.0,

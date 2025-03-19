@@ -30,6 +30,8 @@ class _EmailVerifiedWidgetState extends State<EmailVerifiedWidget> {
     super.initState();
     _model = createModel(context, () => EmailVerifiedModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'EmailVerified'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -118,6 +120,10 @@ class _EmailVerifiedWidgetState extends State<EmailVerifiedWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'EMAIL_VERIFIED_PAGE_LOGIN_BTN_ON_TAP');
+                              logFirebaseEvent('Button_navigate_to');
+
                               context.pushNamed(HomeWidget.routeName);
                             },
                             text: FFLocalizations.of(context).getText(

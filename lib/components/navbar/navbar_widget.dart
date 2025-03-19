@@ -91,6 +91,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('NAVBAR_COMP_Image_5df7uhsz_ON_TAP');
+                    logFirebaseEvent('Image_navigate_to');
+
                     context.pushNamed(HomeWidget.routeName);
                   },
                   child: Image.asset(
@@ -117,6 +120,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent('NAVBAR_COMP_Row_9dmtskzk_ON_TAP');
+                            logFirebaseEvent('Row_navigate_to');
+
                             context.pushNamed(
                               ExploreWidget.routeName,
                               extra: <String, dynamic>{
@@ -136,6 +142,10 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'NAVBAR_COMP_Icon_n1pf8l5p_ON_TAP');
+                                  logFirebaseEvent('Icon_navigate_to');
+
                                   context.pushNamed(ExploreWidget.routeName);
                                 },
                                 child: Icon(
@@ -153,6 +163,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent('NAVBAR_COMP_Row_rgy0g68g_ON_TAP');
+                            logFirebaseEvent('Row_navigate_to');
+
                             context.pushNamed(ChatsWidget.routeName);
                           },
                           child: Row(
@@ -164,6 +177,10 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'NAVBAR_COMP_Icon_avpltzs3_ON_TAP');
+                                  logFirebaseEvent('Icon_navigate_to');
+
                                   context.pushNamed(ChatsWidget.routeName);
                                 },
                                 child: Icon(
@@ -181,6 +198,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent('NAVBAR_COMP_Row_f6862cup_ON_TAP');
+                            logFirebaseEvent('Row_navigate_to');
+
                             context.pushNamed(CreateWidget.routeName);
                           },
                           child: Row(
@@ -192,6 +212,10 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'NAVBAR_COMP_Icon_v5r831wg_ON_TAP');
+                                  logFirebaseEvent('Icon_navigate_to');
+
                                   context.pushNamed(CreateWidget.routeName);
                                 },
                                 child: Icon(
@@ -229,9 +253,13 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                       onPressed: () async {
                         safeSetState(() => FFAppState().isLightMode =
                             !FFAppState().isLightMode);
+                        logFirebaseEvent(
+                            'NAVBAR_ToggleIcon_a471ugj4_ON_TOGGLE');
                         if (Theme.of(context).brightness == Brightness.dark) {
+                          logFirebaseEvent('ToggleIcon_set_dark_mode_settings');
                           setDarkModeSetting(context, ThemeMode.light);
                         } else {
+                          logFirebaseEvent('ToggleIcon_set_dark_mode_settings');
                           setDarkModeSetting(context, ThemeMode.dark);
                         }
                       },
@@ -263,6 +291,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                           size: 24.0,
                         ),
                         onPressed: () async {
+                          logFirebaseEvent('NAVBAR_COMP_person_ICN_ON_TAP');
+                          logFirebaseEvent('IconButton_navigate_to');
+
                           context.pushNamed(
                             Auth2ProfilWidget.routeName,
                             queryParameters: {
@@ -282,6 +313,10 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent(
+                            'NAVBAR_COMP_Container_db0s14ub_ON_TAP');
+                        logFirebaseEvent('buttonPink_navigate_to');
+
                         context.pushNamed(Auth2CreateWidget.routeName);
                       },
                       child: wrapWithModel(
@@ -293,6 +328,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                   if (loggedIn == false)
                     FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('NAVBAR_COMP_LOGIN_BTN_ON_TAP');
+                        logFirebaseEvent('Button_navigate_to');
+
                         context.pushNamed(Auth2LoginWidget.routeName);
                       },
                       text: FFLocalizations.of(context).getText(

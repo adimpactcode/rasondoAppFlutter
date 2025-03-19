@@ -39,6 +39,7 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
     super.initState();
     _model = createModel(context, () => DatenschutzModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Datenschutz'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -92,6 +93,10 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'DATENSCHUTZ_PAGE_Image_eqza4u7a_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -110,6 +115,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'DATENSCHUTZ_PAGE_Icon_c4k972d4_ON_TAP');
+                                    logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
                                         scaffoldKey
@@ -139,6 +147,10 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'DATENSCHUTZ_PAGE_Row_5jl61fb7_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
@@ -174,9 +186,15 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'DATENSCHUTZ_PAGE_Row_5tpsbojl_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ChatsWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -213,6 +231,10 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'DATENSCHUTZ_PAGE_Row_fn69nqlc_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
@@ -248,9 +270,15 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'DATENSCHUTZ_PAGE_Row_hcxmiypu_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -303,6 +331,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'DATENSCHUTZ_Container_fb7c4asz_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -324,6 +357,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'DATENSCHUTZ_PAGE_PREMIUM_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               GetPremiumWidget.routeName);
                                         },
@@ -385,7 +423,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'DATENSCHUTZ_PAGE_Row_ey30mx2r_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -396,6 +438,8 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -442,6 +486,10 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'DATENSCHUTZ_PAGE_Row_nw9xvslj_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(
                                   Auth2ProfilWidget.routeName,
                                   queryParameters: {
@@ -496,6 +544,10 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'DATENSCHUTZ_PAGE_Row_80su4b2p_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
@@ -534,9 +586,14 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'DATENSCHUTZ_PAGE_Row_gtjz8izo_ON_TAP');
+                                logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
+
+                                logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamedAuth(
                                     HomeWidget.routeName, context.mounted);
@@ -644,6 +701,10 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'DATENSCHUTZ_PAGE_Image_bpfcf666_ON_TAP');
+                                          logFirebaseEvent('Image_navigate_to');
+
                                           context
                                               .pushNamed(HomeWidget.routeName);
                                         },
@@ -674,6 +735,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'DATENSCHUTZ_PAGE_Row_izvj8319_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                     ExploreWidget.routeName,
                                                     extra: <String, dynamic>{
@@ -748,6 +814,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'DATENSCHUTZ_PAGE_Icon_iuvl9ox3_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               ExploreWidget
                                                                   .routeName);
@@ -772,6 +843,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'DATENSCHUTZ_PAGE_Row_jv7owl0l_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       ChatsWidget.routeName);
                                                 },
@@ -836,12 +912,20 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'DATENSCHUTZ_PAGE_Icon_qtmxl9q7_ON_TAP');
                                                           if (loggedIn ==
                                                               true) {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 ChatsWidget
                                                                     .routeName);
                                                           } else {
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
+
                                                             context.pushNamed(
                                                                 Auth2CreateWidget
                                                                     .routeName);
@@ -867,6 +951,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'DATENSCHUTZ_PAGE_Row_32o7ek8t_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       CreateWidget.routeName);
                                                 },
@@ -931,6 +1020,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'DATENSCHUTZ_PAGE_Icon_nkels5rq_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Icon_navigate_to');
+
                                                           context.pushNamed(
                                                               CreateWidget
                                                                   .routeName);
@@ -1049,12 +1143,18 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                 safeSetState(() => FFAppState()
                                                         .isLightMode =
                                                     !FFAppState().isLightMode);
+                                                logFirebaseEvent(
+                                                    'DATENSCHUTZ_ToggleIcon_yq07au8c_ON_TOGGL');
                                                 if (Theme.of(context)
                                                         .brightness ==
                                                     Brightness.dark) {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.light);
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_set_dark_mode_settings');
                                                   setDarkModeSetting(
                                                       context, ThemeMode.dark);
                                                 }
@@ -1144,6 +1244,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                                     size: 24.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'DATENSCHUTZ_PAGE_person_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_navigate_to');
+
                                                     context.pushNamed(
                                                       Auth2ProfilWidget
                                                           .routeName,
@@ -1169,6 +1274,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'DATENSCHUTZ_Container_17y3lgf2_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'buttonPink_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2CreateWidget.routeName);
                                             },
@@ -1182,6 +1292,11 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                         if (loggedIn == false)
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'DATENSCHUTZ_PAGE_LOGIN_BTN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2LoginWidget.routeName);
                                             },
@@ -1241,6 +1356,9 @@ class _DatenschutzWidgetState extends State<DatenschutzWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'DATENSCHUTZ_PAGE_Icon_p0su28ou_ON_TAP');
+                                              logFirebaseEvent('Icon_drawer');
                                               scaffoldKey.currentState!
                                                   .openDrawer();
                                             },

@@ -233,6 +233,9 @@ class _BottomSheetEmailSentWidgetState
                         EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 44.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'BOTTOM_SHEET_EMAIL_SENT_CREATE_NOTE_BTN_');
+                        logFirebaseEvent('Button_navigate_back');
                         context.pop();
                       },
                       text: FFLocalizations.of(context).getText(

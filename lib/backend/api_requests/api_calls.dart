@@ -202,12 +202,12 @@ class NovitaFunctionLLMStreamCall {
 {
   "characterId": "${characterId}",
   "userId": "${userId}",
-  "userInput": "${userInput}"
+  "userInput": "${userInput}",
+  "mode": "stream"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'novitaFunctionLLMStream',
-      apiUrl:
-          'https://us-central1-rasondo-v3-wpjwei.cloudfunctions.net/makePostCall',
+      apiUrl: 'https://streamapi-725243170629.us-central1.run.app/streamChat',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -217,12 +217,33 @@ class NovitaFunctionLLMStreamCall {
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: false,
+      decodeUtf8: true,
       cache: false,
       isStreamingApi: true,
       alwaysAllowBody: false,
     );
   }
+
+  static String? streamContent(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.choices[:].delta.content''',
+      ));
+  static String? streamRole(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.choices[:].delta.role''',
+      ));
+  static String? aiFullStreamResponse(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.fullContent''',
+      ));
+  static String? aiFullResponse(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.content''',
+      ));
 }
 
 class NovitaFunctionTextToImageCall {

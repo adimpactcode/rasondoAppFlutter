@@ -83,6 +83,9 @@ class _ImagePopupWidgetState extends State<ImagePopupWidget> {
                         size: 24.0,
                       ),
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'IMAGE_POPUP_close_rounded_ICN_ON_TAP');
+                        logFirebaseEvent('IconButton_close_dialog_drawer_etc');
                         Navigator.pop(context);
                       },
                     ),

@@ -1,3 +1,4 @@
+import '';
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
@@ -44,6 +45,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
     super.initState();
     _model = createModel(context, () => GetPremiumModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'GetPremium'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -97,6 +99,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'GET_PREMIUM_PAGE_Image_f7zhsot5_ON_TAP');
+                                  logFirebaseEvent('Image_navigate_to');
+
                                   context.pushNamed(HomeWidget.routeName);
                                 },
                                 child: Image.asset(
@@ -115,6 +121,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'GET_PREMIUM_PAGE_Icon_dja415hp_ON_TAP');
+                                    logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
                                         scaffoldKey
@@ -144,6 +153,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'GET_PREMIUM_PAGE_Row_n79bmarp_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(ExploreWidget.routeName);
                             },
                             child: Row(
@@ -179,9 +192,15 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'GET_PREMIUM_PAGE_Row_w2gyr2o4_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(ChatsWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -218,6 +237,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'GET_PREMIUM_PAGE_Row_sk5m0vej_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed(CreateWidget.routeName);
                             },
                             child: Row(
@@ -253,9 +276,15 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'GET_PREMIUM_PAGE_Row_sw2bx4fg_ON_TAP');
                               if (loggedIn == true) {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(MyAIWidget.routeName);
                               } else {
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2CreateWidget.routeName);
                               }
                             },
@@ -308,6 +337,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'GET_PREMIUM_Container_wp8qri61_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -329,6 +363,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'GET_PREMIUM_PAGE_PREMIUM_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
                                           context.pushNamed(
                                               GetPremiumWidget.routeName);
                                         },
@@ -388,7 +427,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'GET_PREMIUM_PAGE_Row_bi9c8kkt_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -399,6 +442,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -445,6 +490,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'GET_PREMIUM_PAGE_Row_0tipqzxn_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(
                                   Auth2ProfilWidget.routeName,
                                   queryParameters: {
@@ -499,6 +548,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'GET_PREMIUM_PAGE_Row_3sqp5vdj_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
+
                                 context.pushNamed(Auth2LoginWidget.routeName);
                               },
                               child: Row(
@@ -537,9 +590,14 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'GET_PREMIUM_PAGE_Row_8wiqomo5_ON_TAP');
+                                logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
+
+                                logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamedAuth(
                                     HomeWidget.routeName, context.mounted);
@@ -641,6 +699,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'GET_PREMIUM_PAGE_Image_hsua9a42_ON_TAP');
+                                    logFirebaseEvent('Image_navigate_to');
+
                                     context.pushNamed(HomeWidget.routeName);
                                   },
                                   child: Image.asset(
@@ -668,6 +730,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'GET_PREMIUM_PAGE_Row_15mo6xoq_ON_TAP');
+                                            logFirebaseEvent('Row_navigate_to');
+
                                             context.pushNamed(
                                               ExploreWidget.routeName,
                                               extra: <String, dynamic>{
@@ -736,6 +802,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'GET_PREMIUM_PAGE_Icon_g6cyi20o_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         ExploreWidget
                                                             .routeName);
@@ -758,6 +829,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'GET_PREMIUM_PAGE_Row_76clb16g_ON_TAP');
+                                            logFirebaseEvent('Row_navigate_to');
+
                                             context.pushNamed(
                                                 ChatsWidget.routeName);
                                           },
@@ -817,11 +892,19 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'GET_PREMIUM_PAGE_Icon_bvz0awl0_ON_TAP');
                                                     if (loggedIn == true) {
+                                                      logFirebaseEvent(
+                                                          'Icon_navigate_to');
+
                                                       context.pushNamed(
                                                           ChatsWidget
                                                               .routeName);
                                                     } else {
+                                                      logFirebaseEvent(
+                                                          'Icon_navigate_to');
+
                                                       context.pushNamed(
                                                           Auth2CreateWidget
                                                               .routeName);
@@ -845,6 +928,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'GET_PREMIUM_PAGE_Row_6rtqivjy_ON_TAP');
+                                            logFirebaseEvent('Row_navigate_to');
+
                                             context.pushNamed(
                                                 CreateWidget.routeName);
                                           },
@@ -904,6 +991,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'GET_PREMIUM_PAGE_Icon_rc62vax0_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
                                                     context.pushNamed(
                                                         CreateWidget.routeName);
                                                   },
@@ -1006,11 +1098,17 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           safeSetState(() =>
                                               FFAppState().isLightMode =
                                                   !FFAppState().isLightMode);
+                                          logFirebaseEvent(
+                                              'GET_PREMIUM_ToggleIcon_2h5f0opp_ON_TOGGL');
                                           if (Theme.of(context).brightness ==
                                               Brightness.dark) {
+                                            logFirebaseEvent(
+                                                'ToggleIcon_set_dark_mode_settings');
                                             setDarkModeSetting(
                                                 context, ThemeMode.light);
                                           } else {
+                                            logFirebaseEvent(
+                                                'ToggleIcon_set_dark_mode_settings');
                                             setDarkModeSetting(
                                                 context, ThemeMode.dark);
                                           }
@@ -1088,6 +1186,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                               size: 24.0,
                                             ),
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'GET_PREMIUM_PAGE_person_ICN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'IconButton_navigate_to');
+
                                               context.pushNamed(
                                                 Auth2ProfilWidget.routeName,
                                                 queryParameters: {
@@ -1111,6 +1214,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'GET_PREMIUM_Container_bu8g041o_ON_TAP');
+                                        logFirebaseEvent(
+                                            'buttonPink_navigate_to');
+
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
@@ -1124,6 +1232,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   if (loggedIn == false)
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'GET_PREMIUM_PAGE_LOGIN_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_navigate_to');
+
                                         context.pushNamed(
                                             Auth2LoginWidget.routeName);
                                       },
@@ -1177,6 +1289,9 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'GET_PREMIUM_PAGE_Icon_ffqaszp2_ON_TAP');
+                                        logFirebaseEvent('Icon_drawer');
                                         scaffoldKey.currentState!.openDrawer();
                                       },
                                       child: Icon(
@@ -1247,6 +1362,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'GET_PREMIUM_Container_6oo6b1v5_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Container_navigate_to');
+
                                                 context.pushNamed(
                                                   HomeWidget.routeName,
                                                   extra: <String, dynamic>{
@@ -1288,13 +1408,19 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                                 .isLightMode =
                                                             !FFAppState()
                                                                 .isLightMode);
+                                                    logFirebaseEvent(
+                                                        'GET_PREMIUM_ToggleIcon_d8af5142_ON_TOGGL');
                                                     if (Theme.of(context)
                                                             .brightness ==
                                                         Brightness.dark) {
+                                                      logFirebaseEvent(
+                                                          'ToggleIcon_set_dark_mode_settings');
                                                       setDarkModeSetting(
                                                           context,
                                                           ThemeMode.light);
                                                     } else {
+                                                      logFirebaseEvent(
+                                                          'ToggleIcon_set_dark_mode_settings');
                                                       setDarkModeSetting(
                                                           context,
                                                           ThemeMode.dark);
@@ -1337,6 +1463,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     size: 24.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'GET_PREMIUM_PAGE_login_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_navigate_to');
+
                                                     context.pushNamed(
                                                         Auth2LoginWidget
                                                             .routeName);
@@ -1362,6 +1493,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     size: 28.0,
                                                   ),
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'GET_PREMIUM_PAGE_menu_open_ICN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'IconButton_drawer');
                                                     scaffoldKey.currentState!
                                                         .openDrawer();
                                                   },
@@ -1441,6 +1576,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'GET_PREMIUM_Container_vrgkqsqv_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Container_navigate_to');
+
                                                     context.pushNamed(
                                                       HomeWidget.routeName,
                                                       extra: <String, dynamic>{
@@ -1482,13 +1622,19 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                                     .isLightMode =
                                                                 !FFAppState()
                                                                     .isLightMode);
+                                                        logFirebaseEvent(
+                                                            'GET_PREMIUM_ToggleIcon_d0swouk6_ON_TOGGL');
                                                         if (Theme.of(context)
                                                                 .brightness ==
                                                             Brightness.dark) {
+                                                          logFirebaseEvent(
+                                                              'ToggleIcon_set_dark_mode_settings');
                                                           setDarkModeSetting(
                                                               context,
                                                               ThemeMode.light);
                                                         } else {
+                                                          logFirebaseEvent(
+                                                              'ToggleIcon_set_dark_mode_settings');
                                                           setDarkModeSetting(
                                                               context,
                                                               ThemeMode.dark);
@@ -1535,6 +1681,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                         size: 24.0,
                                                       ),
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'GET_PREMIUM_PAGE_person_ICN_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'IconButton_navigate_to');
+
                                                         context.pushNamed(
                                                           Auth2ProfilWidget
                                                               .routeName,
@@ -1570,6 +1721,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                         size: 28.0,
                                                       ),
                                                       onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'GET_PREMIUM_PAGE_menu_open_ICN_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'IconButton_drawer');
                                                         scaffoldKey
                                                             .currentState!
                                                             .openDrawer();
@@ -1749,6 +1904,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'GET_PREMIUM_Container_s1di5jo9_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
                                           _model.premiumChoice =
                                               'P-3HB45797MH439562BM4ZF4BQ';
                                           safeSetState(() {});
@@ -2074,6 +2233,10 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'GET_PREMIUM_Container_lhospu7r_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
                                           _model.premiumChoice =
                                               'P-2P503182VC718830LM4ZGDQQ';
                                           safeSetState(() {});
@@ -2524,6 +2687,11 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     recognizer:
                                                         TapGestureRecognizer()
                                                           ..onTap = () async {
+                                                            logFirebaseEvent(
+                                                                'GET_PREMIUM_RichTextSpan_c9zuvw8k_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'RichTextSpan_navigate_to');
+
                                                             context.pushNamed(
                                                                 AllgemeineGeschftsbedingungenWidget
                                                                     .routeName);
@@ -2564,10 +2732,14 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'GET_PREMIUM_PAGE_Button_ON_TAP');
                                       if (loggedIn == true) {
                                         if (_model.premiumChoice !=
                                             'premiumChoice') {
                                           if (_model.checkboxValue == true) {
+                                            logFirebaseEvent(
+                                                'Button_backend_call');
                                             _model.paypalUrl =
                                                 await SubscriptionCallPaypalCall
                                                     .call(
@@ -2576,12 +2748,16 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             );
 
                                             if (_model.paypalUrl != null) {
+                                              logFirebaseEvent(
+                                                  'Button_launch_u_r_l');
                                               await launchURL(
                                                   SubscriptionCallPaypalCall
                                                       .approvalUrl(
                                                 (_model.paypalUrl?.jsonBody ??
                                                     ''),
                                               )!);
+                                              logFirebaseEvent(
+                                                  'Button_firestore_query');
                                               await queryUsersRecordOnce(
                                                 queryBuilder: (usersRecord) =>
                                                     usersRecord.where(
@@ -2596,6 +2772,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                           ?.isPremium,
                                                       false) ==
                                                   true) {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
                                                 await showDialog(
                                                   context: context,
                                                   builder:
@@ -2616,6 +2794,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                     );
                                                   },
                                                 );
+                                                logFirebaseEvent(
+                                                    'Button_navigate_to');
 
                                                 context.pushNamed(
                                                   Auth2ProfilWidget.routeName,
@@ -2629,6 +2809,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   }.withoutNulls,
                                                 );
                                               } else {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
                                                 await showDialog(
                                                   context: context,
                                                   builder:
@@ -2651,10 +2833,15 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                 );
                                               }
                                             } else {
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
+
                                               context.pushNamed(
                                                   GetPremiumWidget.routeName);
                                             }
                                           } else {
+                                            logFirebaseEvent(
+                                                'Button_alert_dialog');
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
@@ -2676,6 +2863,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             );
                                           }
                                         } else {
+                                          logFirebaseEvent(
+                                              'Button_alert_dialog');
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
@@ -2695,6 +2884,8 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           );
                                         }
                                       } else {
+                                        logFirebaseEvent('Button_navigate_to');
+
                                         context
                                             .pushNamed(CreateWidget.routeName);
                                       }

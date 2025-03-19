@@ -1,3 +1,4 @@
+import '';
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -13,19 +14,15 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'home_widget.dart' show HomeWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -56,45 +53,29 @@ class HomeModel extends FlutterFlowModel<HomeWidget> {
   List<CharactersMainRecord>? notloggedInUserGrid;
   // Stores action output result for [Firestore Query - Query a collection] action in Home widget.
   CharactersMainRecord? ctaGrid;
-  // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel1;
   // Model for SocialProofAvatars component.
   late SocialProofAvatarsModel socialProofAvatarsModel;
-  // State field(s) for PageView widget.
-  PageController? pageViewController;
-
-  int get pageViewCurrentIndex => pageViewController != null &&
-          pageViewController!.hasClients &&
-          pageViewController!.page != null
-      ? pageViewController!.page!.round()
-      : 0;
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue1;
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue2;
   // Model for FooterDesktop component.
   late FooterDesktopModel footerDesktopModel;
   // Model for FooterMobile component.
   late FooterMobileModel footerMobileModel;
   // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel2;
+  late ButtonPinkModel buttonPinkModel;
 
   @override
   void initState(BuildContext context) {
-    buttonPinkModel1 = createModel(context, () => ButtonPinkModel());
     socialProofAvatarsModel =
         createModel(context, () => SocialProofAvatarsModel());
     footerDesktopModel = createModel(context, () => FooterDesktopModel());
     footerMobileModel = createModel(context, () => FooterMobileModel());
-    buttonPinkModel2 = createModel(context, () => ButtonPinkModel());
+    buttonPinkModel = createModel(context, () => ButtonPinkModel());
   }
 
   @override
   void dispose() {
-    buttonPinkModel1.dispose();
     socialProofAvatarsModel.dispose();
     footerDesktopModel.dispose();
     footerMobileModel.dispose();
-    buttonPinkModel2.dispose();
+    buttonPinkModel.dispose();
   }
 }

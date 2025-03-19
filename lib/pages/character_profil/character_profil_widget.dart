@@ -1,3 +1,4 @@
+import '';
 import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -49,10 +50,14 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
     super.initState();
     _model = createModel(context, () => CharacterProfilModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'characterProfil'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('CHARACTER_PROFIL_characterProfil_ON_INIT');
       if (FFAppState().generatedImageUrl != null &&
           FFAppState().generatedImageUrl != '') {
+        logFirebaseEvent('characterProfil_alert_dialog');
         await showDialog(
           context: context,
           builder: (dialogContext) {
@@ -73,6 +78,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
           },
         );
 
+        logFirebaseEvent('characterProfil_update_app_state');
         FFAppState().generatedImageUrl = '';
         safeSetState(() {});
       }
@@ -155,6 +161,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CHARACTER_PROFIL_Image_yzta5z5t_ON_TAP');
+                                        logFirebaseEvent('Image_navigate_to');
+
                                         context.pushNamed(HomeWidget.routeName);
                                       },
                                       child: Image.asset(
@@ -173,6 +183,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'CHARACTER_PROFIL_Icon_yzeymhep_ON_TAP');
+                                          logFirebaseEvent('Icon_drawer');
                                           if (scaffoldKey
                                                   .currentState!.isDrawerOpen ||
                                               scaffoldKey.currentState!
@@ -202,6 +215,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHARACTER_PROFIL_Row_bt3mj4fx_ON_TAP');
+                                    logFirebaseEvent('Row_navigate_to');
+
                                     context.pushNamed(ExploreWidget.routeName);
                                   },
                                   child: Row(
@@ -241,9 +258,15 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHARACTER_PROFIL_Row_cn4fw2qd_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(ChatsWidget.routeName);
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -285,6 +308,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHARACTER_PROFIL_Row_dfhiykvl_ON_TAP');
+                                    logFirebaseEvent('Row_navigate_to');
+
                                     context.pushNamed(CreateWidget.routeName);
                                   },
                                   child: Row(
@@ -324,9 +351,15 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHARACTER_PROFIL_Row_l1q95ufr_ON_TAP');
                                     if (loggedIn == true) {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(MyAIWidget.routeName);
                                     } else {
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     }
@@ -386,6 +419,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'CHARACTER_PROFIL_Container_w8m1amz3_ON_T');
+                                              logFirebaseEvent(
+                                                  'buttonPink_navigate_to');
+
                                               context.pushNamed(
                                                   Auth2CreateWidget.routeName);
                                             },
@@ -409,6 +447,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             builder: (context) =>
                                                 FFButtonWidget(
                                               onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'CHARACTER_PROFIL_PAGE_PREMIUM_BTN_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Button_navigate_to');
+
                                                 context.pushNamed(
                                                     GetPremiumWidget.routeName);
                                               },
@@ -472,7 +515,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CHARACTER_PROFIL_Row_2fi0bdv7_ON_TAP');
                                         if (loggedIn == true) {
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                             Auth2ProfilWidget.routeName,
                                             queryParameters: {
@@ -484,6 +531,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             }.withoutNulls,
                                           );
                                         } else {
+                                          logFirebaseEvent('Row_navigate_to');
+
                                           context.pushNamed(
                                               Auth2CreateWidget.routeName);
                                         }
@@ -530,6 +579,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHARACTER_PROFIL_Row_e513iozp_ON_TAP');
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                         Auth2ProfilWidget.routeName,
                                         queryParameters: {
@@ -590,6 +643,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHARACTER_PROFIL_Row_kqznry31_ON_TAP');
+                                      logFirebaseEvent('Row_navigate_to');
+
                                       context.pushNamed(
                                           Auth2LoginWidget.routeName);
                                     },
@@ -631,10 +688,15 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHARACTER_PROFIL_Row_3b47ksgn_ON_TAP');
+                                      logFirebaseEvent('Row_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       await authManager.signOut();
                                       GoRouter.of(context)
                                           .clearRedirectLocation();
+
+                                      logFirebaseEvent('Row_navigate_to');
 
                                       context.pushNamedAuth(
                                           HomeWidget.routeName,
@@ -772,6 +834,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'CHARACTER_PROFIL_Container_4ymti39v_ON_T');
+                                                            logFirebaseEvent(
+                                                                'Container_navigate_to');
+
                                                             context.pushNamed(
                                                               HomeWidget
                                                                   .routeName,
@@ -823,16 +890,22 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             .isLightMode =
                                                                         !FFAppState()
                                                                             .isLightMode);
+                                                                logFirebaseEvent(
+                                                                    'CHARACTER_PROFIL_ToggleIcon_3anwmhqx_ON_');
                                                                 if (Theme.of(
                                                                             context)
                                                                         .brightness ==
                                                                     Brightness
                                                                         .dark) {
+                                                                  logFirebaseEvent(
+                                                                      'ToggleIcon_set_dark_mode_settings');
                                                                   setDarkModeSetting(
                                                                       context,
                                                                       ThemeMode
                                                                           .light);
                                                                 } else {
+                                                                  logFirebaseEvent(
+                                                                      'ToggleIcon_set_dark_mode_settings');
                                                                   setDarkModeSetting(
                                                                       context,
                                                                       ThemeMode
@@ -879,6 +952,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               ),
                                                               onPressed:
                                                                   () async {
+                                                                logFirebaseEvent(
+                                                                    'CHARACTER_PROFIL_PAGE_login_ICN_ON_TAP');
+                                                                logFirebaseEvent(
+                                                                    'IconButton_navigate_to');
+
                                                                 context.pushNamed(
                                                                     Auth2LoginWidget
                                                                         .routeName);
@@ -905,6 +983,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                               ),
                                                               onPressed:
                                                                   () async {
+                                                                logFirebaseEvent(
+                                                                    'CHARACTER_PROFIL_menu_open_ICN_ON_TAP');
+                                                                logFirebaseEvent(
+                                                                    'IconButton_drawer');
                                                                 scaffoldKey
                                                                     .currentState!
                                                                     .openDrawer();
@@ -994,6 +1076,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'CHARACTER_PROFIL_Container_dudz6wtg_ON_T');
+                                                              logFirebaseEvent(
+                                                                  'Container_navigate_to');
+
                                                               context.pushNamed(
                                                                 HomeWidget
                                                                     .routeName,
@@ -1044,16 +1131,22 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           .isLightMode =
                                                                       !FFAppState()
                                                                           .isLightMode);
+                                                                  logFirebaseEvent(
+                                                                      'CHARACTER_PROFIL_ToggleIcon_cr7id8wt_ON_');
                                                                   if (Theme.of(
                                                                               context)
                                                                           .brightness ==
                                                                       Brightness
                                                                           .dark) {
+                                                                    logFirebaseEvent(
+                                                                        'ToggleIcon_set_dark_mode_settings');
                                                                     setDarkModeSetting(
                                                                         context,
                                                                         ThemeMode
                                                                             .light);
                                                                   } else {
+                                                                    logFirebaseEvent(
+                                                                        'ToggleIcon_set_dark_mode_settings');
                                                                     setDarkModeSetting(
                                                                         context,
                                                                         ThemeMode
@@ -1102,6 +1195,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 ),
                                                                 onPressed:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'CHARACTER_PROFIL_PAGE_person_ICN_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'IconButton_navigate_to');
+
                                                                   context
                                                                       .pushNamed(
                                                                     Auth2ProfilWidget
@@ -1142,6 +1240,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 ),
                                                                 onPressed:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'CHARACTER_PROFIL_menu_open_ICN_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'IconButton_drawer');
                                                                   scaffoldKey
                                                                       .currentState!
                                                                       .openDrawer();
@@ -1230,6 +1332,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'CHARACTER_PROFIL_Image_pz1c4hjc_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Image_navigate_to');
+
                                                           context.pushNamed(
                                                               HomeWidget
                                                                   .routeName);
@@ -1274,6 +1381,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'CHARACTER_PROFIL_Row_q44r8o7w_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Row_navigate_to');
+
                                                                   context
                                                                       .pushNamed(
                                                                     ExploreWidget
@@ -1353,6 +1465,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             Colors.transparent,
                                                                         onTap:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CHARACTER_PROFIL_Icon_lpyp92kl_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Icon_navigate_to');
+
                                                                           context
                                                                               .pushNamed(ExploreWidget.routeName);
                                                                         },
@@ -1384,6 +1501,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'CHARACTER_PROFIL_Row_yrs9nxdj_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Row_navigate_to');
+
                                                                   context.pushNamed(
                                                                       ChatsWidget
                                                                           .routeName);
@@ -1451,10 +1573,16 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             Colors.transparent,
                                                                         onTap:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CHARACTER_PROFIL_Icon_h2j61kxh_ON_TAP');
                                                                           if (loggedIn ==
                                                                               true) {
+                                                                            logFirebaseEvent('Icon_navigate_to');
+
                                                                             context.pushNamed(ChatsWidget.routeName);
                                                                           } else {
+                                                                            logFirebaseEvent('Icon_navigate_to');
+
                                                                             context.pushNamed(Auth2CreateWidget.routeName);
                                                                           }
                                                                         },
@@ -1486,6 +1614,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'CHARACTER_PROFIL_Row_inuupavb_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Row_navigate_to');
+
                                                                   context.pushNamed(
                                                                       CreateWidget
                                                                           .routeName);
@@ -1553,6 +1686,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             Colors.transparent,
                                                                         onTap:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CHARACTER_PROFIL_Icon_quep23tx_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Icon_navigate_to');
+
                                                                           context
                                                                               .pushNamed(CreateWidget.routeName);
                                                                         },
@@ -1707,16 +1845,22 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             .isLightMode =
                                                                         !FFAppState()
                                                                             .isLightMode);
+                                                                logFirebaseEvent(
+                                                                    'CHARACTER_PROFIL_ToggleIcon_6vg6xo88_ON_');
                                                                 if (Theme.of(
                                                                             context)
                                                                         .brightness ==
                                                                     Brightness
                                                                         .dark) {
+                                                                  logFirebaseEvent(
+                                                                      'ToggleIcon_set_dark_mode_settings');
                                                                   setDarkModeSetting(
                                                                       context,
                                                                       ThemeMode
                                                                           .light);
                                                                 } else {
+                                                                  logFirebaseEvent(
+                                                                      'ToggleIcon_set_dark_mode_settings');
                                                                   setDarkModeSetting(
                                                                       context,
                                                                       ThemeMode
@@ -1828,6 +1972,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   ),
                                                                   onPressed:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'CHARACTER_PROFIL_PAGE_person_ICN_ON_TAP');
+                                                                    logFirebaseEvent(
+                                                                        'IconButton_navigate_to');
+
                                                                     context
                                                                         .pushNamed(
                                                                       Auth2ProfilWidget
@@ -1860,6 +2009,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'CHARACTER_PROFIL_Container_naiupl81_ON_T');
+                                                              logFirebaseEvent(
+                                                                  'buttonPink_navigate_to');
+
                                                               context.pushNamed(
                                                                   Auth2CreateWidget
                                                                       .routeName);
@@ -1879,6 +2033,11 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                           FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'CHARACTER_PROFIL_PAGE_LOGIN_BTN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Button_navigate_to');
+
                                                               context.pushNamed(
                                                                   Auth2LoginWidget
                                                                       .routeName);
@@ -1958,6 +2117,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'CHARACTER_PROFIL_Icon_33ixfojr_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Icon_drawer');
                                                               scaffoldKey
                                                                   .currentState!
                                                                   .openDrawer();
@@ -2163,6 +2326,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                   size: 34.0,
                                                                                 ),
                                                                                 onPressed: () async {
+                                                                                  logFirebaseEvent('CHARACTER_PROFIL_PAGE_close_ICN_ON_TAP');
+                                                                                  logFirebaseEvent('IconButton_navigate_back');
                                                                                   context.safePop();
                                                                                 },
                                                                               ),
@@ -2480,6 +2645,10 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             Colors.transparent,
                                                                         onTap:
                                                                             () async {
+                                                                          logFirebaseEvent(
+                                                                              'CHARACTER_PROFIL_Icon_q10gpgia_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Icon_firestore_query');
                                                                           _model.userLikeExist =
                                                                               await queryCharacterLikesRecordOnce(
                                                                             queryBuilder: (characterLikesRecord) => characterLikesRecord
@@ -2496,6 +2665,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           ).then((s) => s.firstOrNull);
                                                                           if (_model.userLikeExist?.reference ==
                                                                               null) {
+                                                                            logFirebaseEvent('Icon_backend_call');
+
                                                                             await widget!.characterId!.update({
                                                                               ...mapToFirestore(
                                                                                 {
@@ -2504,6 +2675,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                               ),
                                                                             });
                                                                           } else {
+                                                                            logFirebaseEvent('Icon_alert_dialog');
                                                                             await showDialog(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
@@ -2572,10 +2744,15 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   FFButtonWidget(
                                                                     onPressed:
                                                                         () async {
+                                                                      logFirebaseEvent(
+                                                                          'CHARACTER_PROFIL_PAGE_CHAT_BTN_ON_TAP');
                                                                       await authManager
                                                                           .refreshUser();
                                                                       if (currentUserEmailVerified ==
                                                                           true) {
+                                                                        logFirebaseEvent(
+                                                                            'Button_navigate_to');
+
                                                                         context
                                                                             .pushNamed(
                                                                           ChatPageProWidget
@@ -2595,6 +2772,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           }.withoutNulls,
                                                                         );
                                                                       } else {
+                                                                        logFirebaseEvent(
+                                                                            'Button_navigate_to');
+
                                                                         context.pushNamed(
                                                                             Auth2CreateWidget.routeName);
                                                                       }
@@ -2667,10 +2847,15 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                   FFButtonWidget(
                                                                     onPressed:
                                                                         () async {
+                                                                      logFirebaseEvent(
+                                                                          'CHARACTER_PROFIL_PAGE_FOTO_BTN_ON_TAP');
                                                                       await authManager
                                                                           .refreshUser();
                                                                       if (currentUserEmailVerified ==
                                                                           true) {
+                                                                        logFirebaseEvent(
+                                                                            'Button_navigate_to');
+
                                                                         context
                                                                             .pushNamed(
                                                                           ImageToImageWidget
@@ -2690,6 +2875,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                           }.withoutNulls,
                                                                         );
                                                                       } else {
+                                                                        logFirebaseEvent(
+                                                                            'Button_navigate_to');
+
                                                                         context.pushNamed(
                                                                             Auth2CreateWidget.routeName);
                                                                       }
@@ -2954,10 +3142,15 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'CHARACTER_PROFIL_CHAT_STARTEN_BTN_ON_TAP');
                                                                         await authManager
                                                                             .refreshUser();
                                                                         if (currentUserEmailVerified ==
                                                                             true) {
+                                                                          logFirebaseEvent(
+                                                                              'Button_navigate_to');
+
                                                                           context
                                                                               .pushNamed(
                                                                             ChatPageProWidget.routeName,
@@ -2974,6 +3167,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             }.withoutNulls,
                                                                           );
                                                                         } else {
+                                                                          logFirebaseEvent(
+                                                                              'Button_navigate_to');
+
                                                                           context
                                                                               .pushNamed(Auth2CreateWidget.routeName);
                                                                         }
@@ -3016,10 +3212,15 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                     FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'CHARACTER_PROFIL_BILD_ERSTELLEN_BTN_ON_T');
                                                                         await authManager
                                                                             .refreshUser();
                                                                         if (currentUserEmailVerified ==
                                                                             true) {
+                                                                          logFirebaseEvent(
+                                                                              'Button_navigate_to');
+
                                                                           context
                                                                               .pushNamed(
                                                                             ImageToImageWidget.routeName,
@@ -3036,6 +3237,9 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                             }.withoutNulls,
                                                                           );
                                                                         } else {
+                                                                          logFirebaseEvent(
+                                                                              'Button_navigate_to');
+
                                                                           context
                                                                               .pushNamed(Auth2CreateWidget.routeName);
                                                                         }
@@ -3281,6 +3485,8 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                                                                                   hoverColor: Colors.transparent,
                                                                                                   highlightColor: Colors.transparent,
                                                                                                   onTap: () async {
+                                                                                                    logFirebaseEvent('CHARACTER_PROFIL_Icon_k4f4bzhh_ON_TAP');
+                                                                                                    logFirebaseEvent('Icon_backend_call');
                                                                                                     unawaited(
                                                                                                       () async {
                                                                                                         await widget!.characterId!.update({

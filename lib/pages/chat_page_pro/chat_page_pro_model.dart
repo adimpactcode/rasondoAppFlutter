@@ -1,3 +1,4 @@
+import '';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/api_requests/api_streaming.dart';
@@ -10,6 +11,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:convert';
 import 'dart:ui';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'chat_page_pro_widget.dart' show ChatPageProWidget;
@@ -19,7 +21,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class ChatPageProModel extends FlutterFlowModel<ChatPageProWidget> {
@@ -57,6 +58,18 @@ class ChatPageProModel extends FlutterFlowModel<ChatPageProWidget> {
 
   bool submitUserInputAPI = false;
 
+  bool isFirstChunk = true;
+
+  List<String> currentChunks = [];
+  void addToCurrentChunks(String item) => currentChunks.add(item);
+  void removeFromCurrentChunks(String item) => currentChunks.remove(item);
+  void removeAtIndexFromCurrentChunks(int index) =>
+      currentChunks.removeAt(index);
+  void insertAtIndexInCurrentChunks(int index, String item) =>
+      currentChunks.insert(index, item);
+  void updateCurrentChunksAtIndex(int index, Function(String) updateFn) =>
+      currentChunks[index] = updateFn(currentChunks[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -68,29 +81,28 @@ class ChatPageProModel extends FlutterFlowModel<ChatPageProWidget> {
   ChatsRecord? newChatId;
   // Stores action output result for [Backend Call - API (novitaFunctionLLM)] action in chatPagePro widget.
   ApiCallResponse? apiLlmPageload;
-  // State field(s) for chatListView widget.
-  ScrollController? chatListView;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in TextField widget.
-  MessagesRecord? currentUserMessageCopy;
-  // Stores action output result for [Backend Call - API (novitaFunctionLLM)] action in TextField widget.
-  ApiCallResponse? apiResultmluSubmit;
-  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
-  MessagesRecord? currentUserMessage;
-  // Stores action output result for [Backend Call - API (novitaFunctionLLM)] action in IconButton widget.
-  ApiCallResponse? apiResultmlu;
+  MessagesRecord? streamUserMessageOnSubmit;
+  // Stores action output result for [Backend Call - API (novitaFunctionLLMStream)] action in TextField widget.
+  ApiCallResponse? streamCallResultOnSubmit;
+  // Stores action output result for [Backend Call - Create Document] action in TextField widget.
+  MessagesRecord? createDocumentCopy;
+  // Stores action output result for [Backend Call - Create Document] action in streamButton widget.
+  MessagesRecord? streamUserMessage;
+  // Stores action output result for [Backend Call - API (novitaFunctionLLMStream)] action in streamButton widget.
+  ApiCallResponse? streamCallResult;
+  // Stores action output result for [Backend Call - Create Document] action in streamButton widget.
+  MessagesRecord? createDocument;
 
   @override
-  void initState(BuildContext context) {
-    chatListView = ScrollController();
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    chatListView?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }

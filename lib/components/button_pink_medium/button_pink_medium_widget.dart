@@ -45,6 +45,9 @@ class _ButtonPinkMediumWidgetState extends State<ButtonPinkMediumWidget> {
   Widget build(BuildContext context) {
     return FFButtonWidget(
       onPressed: () async {
+        logFirebaseEvent('BUTTON_PINK_MEDIUM_JETZT_A_I_PARTNER_ERS');
+        logFirebaseEvent('Button_navigate_to');
+
         context.pushNamed(CreateWidget.routeName);
       },
       text: FFLocalizations.of(context).getText(
