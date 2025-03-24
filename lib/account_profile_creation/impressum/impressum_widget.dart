@@ -340,7 +340,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
-                                        model: _model.buttonPinkModel2,
+                                        model: _model.buttonPinkModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
                                         child: ButtonPinkWidget(),
@@ -703,7 +703,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'IMPRESSUM_PAGE_Image_6ge3oaxu_ON_TAP');
+                                              'IMPRESSUM_PAGE_Image_8eevrl86_ON_TAP');
                                           logFirebaseEvent('Image_navigate_to');
 
                                           context
@@ -737,7 +737,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'IMPRESSUM_PAGE_Row_a3u3ofct_ON_TAP');
+                                                      'IMPRESSUM_PAGE_Row_tc06pwmd_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Row_navigate_to');
 
@@ -766,7 +766,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'h89mh4w1' /* Character entdecken */,
+                                                            '01tpjdul' /* Chatpartner finden */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -816,7 +816,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           logFirebaseEvent(
-                                                              'IMPRESSUM_PAGE_Icon_wq0y9f06_ON_TAP');
+                                                              'IMPRESSUM_PAGE_Icon_0c6mn4wa_ON_TAP');
                                                           logFirebaseEvent(
                                                               'Icon_navigate_to');
 
@@ -845,7 +845,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'IMPRESSUM_PAGE_Row_3g5l0b18_ON_TAP');
+                                                      'IMPRESSUM_PAGE_Row_m291j0kk_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Row_navigate_to');
 
@@ -864,7 +864,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '4td4vsfh' /* Chats */,
+                                                            'ygwdbbo6' /* Meine Chats */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -914,7 +914,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           logFirebaseEvent(
-                                                              'IMPRESSUM_PAGE_Icon_94nmlx6o_ON_TAP');
+                                                              'IMPRESSUM_PAGE_Icon_hqtzcgfy_ON_TAP');
                                                           if (loggedIn ==
                                                               true) {
                                                             logFirebaseEvent(
@@ -953,7 +953,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'IMPRESSUM_PAGE_Row_mey8p8c8_ON_TAP');
+                                                      'IMPRESSUM_PAGE_Row_93zn60kg_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Row_navigate_to');
 
@@ -972,7 +972,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'gdmiirpn' /* Character erstellen */,
+                                                            'h5gh66v4' /* Wunschpartner erstellen */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1022,7 +1022,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           logFirebaseEvent(
-                                                              'IMPRESSUM_PAGE_Icon_3m34ieh7_ON_TAP');
+                                                              'IMPRESSUM_PAGE_Icon_1d8i63x9_ON_TAP');
                                                           logFirebaseEvent(
                                                               'Icon_navigate_to');
 
@@ -1052,7 +1052,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'qqerr9jz' /* Message... */,
+                                                'j6qouhi1' /* Message... */,
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -1116,7 +1116,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'nodvtnmj' /* Darkmodus */,
+                                                'bzl71ig8' /* Darkmodus */,
                                               ),
                                               style: TextStyle(),
                                             ),
@@ -1145,7 +1145,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                         .isLightMode =
                                                     !FFAppState().isLightMode);
                                                 logFirebaseEvent(
-                                                    'IMPRESSUM_ToggleIcon_1y2qc5tu_ON_TOGGLE');
+                                                    'IMPRESSUM_ToggleIcon_p30cs59q_ON_TOGGLE');
                                                 if (Theme.of(context)
                                                         .brightness ==
                                                     Brightness.dark) {
@@ -1184,7 +1184,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                '1nhop96f' /* User profil */,
+                                                'rltw6acb' /* User profil */,
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -1269,25 +1269,52 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                           ),
                                         ),
                                         if (loggedIn == false)
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
+                                          FFButtonWidget(
+                                            onPressed: () async {
                                               logFirebaseEvent(
-                                                  'IMPRESSUM_PAGE_Container_kbhckwn2_ON_TAP');
+                                                  'IMPRESSUM_JETZT_KOSTENLOS_TESTEN_BTN_ON_');
                                               logFirebaseEvent(
-                                                  'buttonPink_navigate_to');
+                                                  'Button_navigate_to');
 
                                               context.pushNamed(
                                                   Auth2CreateWidget.routeName);
                                             },
-                                            child: wrapWithModel(
-                                              model: _model.buttonPinkModel1,
-                                              updateCallback: () =>
-                                                  safeSetState(() {}),
-                                              child: ButtonPinkWidget(),
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              'qc6jbeq8' /* Jetzt kostenlos testen! */,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color: Color(0xFF5BB0FF),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
+                                                      ),
+                                              elevation: 0.0,
+                                              borderSide: BorderSide(
+                                                color: Color(0xFF55BBFF),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                         if (loggedIn == false)
@@ -1303,7 +1330,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             },
                                             text: FFLocalizations.of(context)
                                                 .getText(
-                                              'sdczjbvh' /* Login */,
+                                              'gogxm1py' /* Login */,
                                             ),
                                             options: FFButtonOptions(
                                               width: 100.0,
@@ -1312,9 +1339,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
+                                              color: Color(0x00DE5499),
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1326,7 +1351,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .tertiary,
+                                                                .primary,
                                                         fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
@@ -1358,7 +1383,7 @@ class _ImpressumWidgetState extends State<ImpressumWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'IMPRESSUM_PAGE_Icon_nvz0caei_ON_TAP');
+                                                  'IMPRESSUM_PAGE_Icon_6ua6wmbl_ON_TAP');
                                               logFirebaseEvent('Icon_drawer');
                                               scaffoldKey.currentState!
                                                   .openDrawer();

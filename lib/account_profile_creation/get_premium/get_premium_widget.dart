@@ -346,7 +346,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
-                                        model: _model.buttonPinkModel2,
+                                        model: _model.buttonPinkModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
                                         child: ButtonPinkWidget(),
@@ -700,7 +700,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'GET_PREMIUM_PAGE_Image_hsua9a42_ON_TAP');
+                                        'GET_PREMIUM_PAGE_Image_zc1fsqf4_ON_TAP');
                                     logFirebaseEvent('Image_navigate_to');
 
                                     context.pushNamed(HomeWidget.routeName);
@@ -731,7 +731,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'GET_PREMIUM_PAGE_Row_15mo6xoq_ON_TAP');
+                                                'GET_PREMIUM_PAGE_Row_7z8ddpc0_ON_TAP');
                                             logFirebaseEvent('Row_navigate_to');
 
                                             context.pushNamed(
@@ -755,7 +755,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'gi6emzb6' /* Character entdecken */,
+                                                      'fisf6bmr' /* Chatpartner finden */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -803,7 +803,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     logFirebaseEvent(
-                                                        'GET_PREMIUM_PAGE_Icon_g6cyi20o_ON_TAP');
+                                                        'GET_PREMIUM_PAGE_Icon_aefycej5_ON_TAP');
                                                     logFirebaseEvent(
                                                         'Icon_navigate_to');
 
@@ -830,7 +830,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'GET_PREMIUM_PAGE_Row_76clb16g_ON_TAP');
+                                                'GET_PREMIUM_PAGE_Row_ekdhn85k_ON_TAP');
                                             logFirebaseEvent('Row_navigate_to');
 
                                             context.pushNamed(
@@ -845,7 +845,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'hh7u03fs' /* Chats */,
+                                                      '1ei9dae5' /* Meine Chats */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -893,7 +893,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     logFirebaseEvent(
-                                                        'GET_PREMIUM_PAGE_Icon_bvz0awl0_ON_TAP');
+                                                        'GET_PREMIUM_PAGE_Icon_37aoczqk_ON_TAP');
                                                     if (loggedIn == true) {
                                                       logFirebaseEvent(
                                                           'Icon_navigate_to');
@@ -929,7 +929,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'GET_PREMIUM_PAGE_Row_6rtqivjy_ON_TAP');
+                                                'GET_PREMIUM_PAGE_Row_fumf5lpk_ON_TAP');
                                             logFirebaseEvent('Row_navigate_to');
 
                                             context.pushNamed(
@@ -944,7 +944,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'bhw067fl' /* Character erstellen */,
+                                                      'acoke46i' /* Wunschpartner erstellen */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -992,7 +992,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     logFirebaseEvent(
-                                                        'GET_PREMIUM_PAGE_Icon_rc62vax0_ON_TAP');
+                                                        'GET_PREMIUM_PAGE_Icon_v4j9mmq8_ON_TAP');
                                                     logFirebaseEvent(
                                                         'Icon_navigate_to');
 
@@ -1019,7 +1019,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       padding: EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'nonunwb9' /* Message... */,
+                                          'cukpl9xd' /* Message... */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -1074,7 +1074,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       padding: EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'p2lk2dok' /* Darkmodus */,
+                                          'a27g801s' /* Darkmodus */,
                                         ),
                                         style: TextStyle(),
                                       ),
@@ -1099,7 +1099,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                               FFAppState().isLightMode =
                                                   !FFAppState().isLightMode);
                                           logFirebaseEvent(
-                                              'GET_PREMIUM_ToggleIcon_2h5f0opp_ON_TOGGL');
+                                              'GET_PREMIUM_ToggleIcon_6voj755n_ON_TOGGL');
                                           if (Theme.of(context).brightness ==
                                               Brightness.dark) {
                                             logFirebaseEvent(
@@ -1134,7 +1134,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       padding: EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'kouzdlg7' /* User profil */,
+                                          '83tljk7b' /* User profil */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -1208,25 +1208,48 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                     ),
                                   ),
                                   if (loggedIn == false)
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
+                                    FFButtonWidget(
+                                      onPressed: () async {
                                         logFirebaseEvent(
-                                            'GET_PREMIUM_Container_bu8g041o_ON_TAP');
-                                        logFirebaseEvent(
-                                            'buttonPink_navigate_to');
+                                            'GET_PREMIUM_JETZT_KOSTENLOS_TESTEN_BTN_O');
+                                        logFirebaseEvent('Button_navigate_to');
 
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
-                                      child: wrapWithModel(
-                                        model: _model.buttonPinkModel1,
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: ButtonPinkWidget(),
+                                      text: FFLocalizations.of(context).getText(
+                                        'bkfdc5yp' /* Jetzt kostenlos testen! */,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: Color(0xFF5BB0FF),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: BorderSide(
+                                          color: Color(0xFF55BBFF),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   if (loggedIn == false)
@@ -1240,7 +1263,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                             Auth2LoginWidget.routeName);
                                       },
                                       text: FFLocalizations.of(context).getText(
-                                        '9y3d2ts0' /* Login */,
+                                        '3gx8dc1m' /* Login */,
                                       ),
                                       options: FFButtonOptions(
                                         width: 100.0,
@@ -1250,8 +1273,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: Color(0x00DE5499),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1260,7 +1282,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                                       .bodyMediumFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .primary,
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
@@ -1290,7 +1312,7 @@ class _GetPremiumWidgetState extends State<GetPremiumWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'GET_PREMIUM_PAGE_Icon_ffqaszp2_ON_TAP');
+                                            'GET_PREMIUM_PAGE_Icon_k7doecsr_ON_TAP');
                                         logFirebaseEvent('Icon_drawer');
                                         scaffoldKey.currentState!.openDrawer();
                                       },

@@ -33,24 +33,20 @@ class GetPremiumModel extends FlutterFlowModel<GetPremiumWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel1;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
   // Stores action output result for [Backend Call - API (subscriptionCallPaypal)] action in Button widget.
   ApiCallResponse? paypalUrl;
   // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel2;
+  late ButtonPinkModel buttonPinkModel;
 
   @override
   void initState(BuildContext context) {
-    buttonPinkModel1 = createModel(context, () => ButtonPinkModel());
-    buttonPinkModel2 = createModel(context, () => ButtonPinkModel());
+    buttonPinkModel = createModel(context, () => ButtonPinkModel());
   }
 
   @override
   void dispose() {
-    buttonPinkModel1.dispose();
-    buttonPinkModel2.dispose();
+    buttonPinkModel.dispose();
   }
 }

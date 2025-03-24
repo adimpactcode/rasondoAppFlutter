@@ -166,7 +166,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                   0.0, 0.0, 0.0, 10.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'pm9fyhtk' /* Entdecken */,
+                                  'pm9fyhtk' /* Chatpartner entdecken */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -204,7 +204,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                   0.0, 0.0, 0.0, 10.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'ap7l65cs' /* AI Partner erstellen */,
+                                  'ap7l65cs' /* Wunschpartner erstellen */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -261,7 +261,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                                 },
                                 child: Text(
                                   FFLocalizations.of(context).getText(
-                                    '8wsex5ep' /* Chats */,
+                                    '8wsex5ep' /* Meine Chats */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -303,7 +303,7 @@ class _FooterMobileWidgetState extends State<FooterMobileWidget> {
                             },
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                '6mer3000' /* Meine AI */,
+                                '6mer3000' /* Meine Chatpartner */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

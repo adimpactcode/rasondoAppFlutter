@@ -147,16 +147,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Home
   {
     '18mzotln': {
-      'de': 'Character entdecken',
-      'en': 'discover characters',
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
     'jv21upoq': {
-      'de': 'Chats',
-      'en': 'chats',
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
     '70js1yhv': {
-      'de': 'Character erstellen',
-      'en': 'Create Character',
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
     'e7rmc3ty': {
       'de': 'Message...',
@@ -164,15 +164,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wkueroee': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
     'zil46rvo': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
     'k5im7r0a': {
       'de': 'Jetzt kostenlos testen!',
-      'en': '',
+      'en': 'Try it now for free!',
     },
     'oibfhkrl': {
       'de': 'Login',
@@ -190,11 +190,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           'Entdecke neue Horizonte der Zugehörigkeit. Öffne dich neuen Möglichkeiten. Sei Teil einer inspirierenden Gemeinschaft.',
       'en':
-          'Discover new horizons of belonging. Open yourself up to new possibilities. Be part of an inspiring community.',
+          'Discover new horizons of belonging. Open yourself to new possibilities. Be part of an inspiring community.',
     },
     'y8eklo3a': {
-      'de': 'Jetzt Character erstellen!',
-      'en': 'Create AI Character Now!',
+      'de': 'Chatpartner finden!',
+      'en': 'Find chat partners!',
     },
     'pr87y838': {
       'de': 'Tauche ein in lebendige Welten',
@@ -202,19 +202,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'tqa9g54n': {
       'de': 'KI Chat mit Realismus und \nAnime - Zauber',
-      'en': 'AI chat with realism and \nanime magic',
+      'en': 'AI chat with realism and anime magic',
     },
     'ils4volu': {
       'de': 'Jetzt kostenlos testen!',
-      'en': '',
+      'en': 'Try it now for free!',
     },
     'p2by33vz': {
       'de': 'Character erstellen!',
-      'en': '',
+      'en': 'Create a character!',
     },
     'yge154ca': {
       'de': '+10000 nutzende Kunden',
-      'en': '+10000 customers using it',
+      'en': '+10000 using customers',
     },
     'lzebf9wf': {
       'de': 'Realistisch und Anime Inspiriert',
@@ -222,7 +222,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '0339voim': {
       'de': 'Freundschaft und Verbundenheit',
-      'en': 'friendship and solidarity',
+      'en': 'Friendship and solidarity',
     },
     'qd41zby8': {
       'de': 'Dein Wunschpartner - perfekt angepasst',
@@ -254,7 +254,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nxc87eiz': {
       'de': 'Wähle aus vielfältigen Optionen\n– Sie warten auf dich',
-      'en': 'Choose from a variety of options\n– They are waiting for you',
+      'en': 'Choose from a variety of options\n– They\'re waiting for you',
     },
     'kos3f3lc': {
       'de': 'Anime und Realsitik',
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'm6l8kibu': {
       'de': 'jetzt Charactere entdecken!',
-      'en': 'discover characters now!',
+      'en': 'Discover characters now!',
     },
     '2w09a5k2': {
       'de': 'Kostenlos registrieren',
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'a6lpdqla': {
       'de': 'Tabulos Flirten',
-      'en': 'Taboo-free flirting',
+      'en': 'Flirting without taboos',
     },
     '8crmlr8i': {
       'de': 'Entdecke deine Affinität',
@@ -308,7 +308,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           '\"Ich hätte nie gedacht, dass eine AI-basierte Flirtplattform so gut funktionieren kann! \nDie Charaktere sind überraschend authentisch, und die Chats fühlen sich echt an. Besonders cool finde ich, dass man seinen eigenen Charakter erstellen und nach Belieben anpassen kann. Seitdem ich Premium-Mitglied bin, genieße ich die unbegrenzten Chats und die Möglichkeit, personalisierte Bilder zu generieren – das hebt die Interaktionen nochmal auf ein neues Level. Alles läuft flüssig, und die App ist total einfach zu bedienen. \nEine tolle Möglichkeit, mal etwas anderes zu erleben!\"',
       'en':
-          '\"I never thought that an AI-based flirting platform could work so well! \nThe characters are surprisingly authentic and the chats feel real. I think it\'s particularly cool that you can create your own character and customize it as you like. Since becoming a premium member, I\'ve enjoyed the unlimited chats and the ability to generate personalized pictures - that takes the interactions to a new level. Everything runs smoothly and the app is really easy to use. \nA great way to experience something different!\"',
+          '\"I never would have thought an AI-based dating platform could work so well!\nThe characters are surprisingly authentic, and the chats feel real. I think it\'s especially cool that you can create your own character and customize it as you wish. Since becoming a Premium member, I\'ve enjoyed the unlimited chats and the ability to generate personalized pictures – it takes the interactions to a whole new level. Everything runs smoothly, and the app is super easy to use.\nA great way to experience something different!\"',
     },
     'el3latcq': {
       'de': 'Linus K.',
@@ -328,7 +328,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'f7hba86n': {
       'de': 'Tabulos Flirten',
-      'en': 'Taboo-free flirting',
+      'en': 'Flirting without taboos',
     },
     'gbc01bf4': {
       'de': 'Entdecke deine Affinität',
@@ -346,27 +346,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           '\"Ich hätte nie gedacht, dass \neine AI-basierte Flirtplattform so gut funktionieren kann! \nDie Charaktere sind überraschend authentisch, und die Chats \nfühlen sich echt an. \nSchnell mal viele Frauen kennenlernen.\nEine tolle Möglichkeit, mal etwas \nanderes zu erleben!\"',
       'en':
-          '\"I never thought that\nan AI-based flirting platform could work so well!\nThe characters are surprisingly authentic and the chats\nfeel real.\nGet to know lots of women quickly.\nA great opportunity to experience something\ndifferent!\"',
+          '\"I never would have thought that an AI-based dating platform could work so well! The characters are surprisingly authentic, and the chats feel real. Quickly meet a lot of women. A great way to experience something different!\"',
     },
     'pjeqxg0f': {
       'de': 'Linus K.',
       'en': 'Linus K.',
     },
     'lbj34iyg': {
-      'de': 'Explore',
-      'en': 'Explore',
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
     'i016fti7': {
-      'de': 'Chats',
-      'en': 'chats',
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
     'zam6csiv': {
-      'de': 'Create AI',
-      'en': 'Create AI',
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
     'w25nc6tz': {
-      'de': 'My AI',
-      'en': 'My AI',
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
     '29s9a3fv': {
       'de': 'Premium',
@@ -382,7 +382,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '1off3qt5': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'd7y6v30d': {
       'de': 'HOME',
@@ -391,31 +391,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Create
   {
-    '7blind59': {
-      'de': 'Character entdecken',
-      'en': 'discover characters',
+    'zeo38gj5': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    '9rb11ryf': {
-      'de': 'Chats',
-      'en': 'chats',
+    'a0ngecog': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'kr3d66up': {
-      'de': 'Character erstellen',
-      'en': 'Create Character',
+    'bunwhw48': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    's652198e': {
+    'u2k3iysl': {
       'de': 'Message...',
       'en': 'Message...',
     },
-    'xjrz02hu': {
+    'h1bgld7s': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
-    'g4xk8t0b': {
+    'e0umjvck': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
-    'q284849g': {
+    'sm48zfty': {
+      'de': 'Jetzt kostenlos testen!',
+      'en': 'Try it now for free!',
+    },
+    'bjvxfscb': {
       'de': 'Login',
       'en': 'Login',
     },
@@ -425,11 +429,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nkn7i265': {
       'de': 'Realistik',
-      'en': 'realism',
+      'en': 'Realism',
     },
     '59j0bbrj': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
     'pla4gnzb': {
       'de': 'Style auswählen:',
@@ -437,7 +441,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wjw327g5': {
       'de': 'Wähle das Geschlecht',
-      'en': 'Choose the gender',
+      'en': 'Select the gender',
     },
     '5m84ax7l': {
       'de': 'Style auswählen:',
@@ -449,7 +453,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'eewqty4k': {
       'de': 'Wähle das Geschlecht',
-      'en': 'Choose the gender',
+      'en': 'Select the gender',
     },
     '2j0b1xia': {
       'de': 'Frau',
@@ -473,7 +477,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dzxrl525': {
       'de': 'Teen 18+',
-      'en': 'Teen 18+',
+      'en': 'Teens 18+',
     },
     'g4vuen18': {
       'de': '20s',
@@ -553,7 +557,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'g9oja936': {
       'de': 'Tattoo',
-      'en': 'tattoo',
+      'en': 'Tattoo',
     },
     '5u7pwq6q': {
       'de': 'Brille',
@@ -593,7 +597,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zwdu9ik9': {
       'de': 'Haarfarbe',
-      'en': 'hair color',
+      'en': 'Hair color',
     },
     'wkqk5501': {
       'de': 'Blond',
@@ -717,7 +721,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '015vg7no': {
       'de': 'Abendfrisur',
-      'en': 'evening hairstyle',
+      'en': 'Evening hairstyle',
     },
     'eu9f8e7a': {
       'de': '',
@@ -741,7 +745,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'grt0o1ec': {
       'de': 'Spitzen enden',
-      'en': 'tips end',
+      'en': 'Tips end',
     },
     'rtuaufs4': {
       'de': 'Ahogo',
@@ -753,7 +757,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'x8at0wmx': {
       'de': 'Hime haar',
-      'en': 'Hime haar',
+      'en': 'Hime hair',
     },
     'vn59oqdn': {
       'de': '',
@@ -761,7 +765,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zi5jqleh': {
       'de': 'Augenfarbe',
-      'en': 'eye color',
+      'en': 'Eye color',
     },
     '6x52o7h5': {
       'de': 'Blau',
@@ -809,7 +813,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'fio60p8t': {
       'de': 'Bodytyp',
-      'en': 'body type',
+      'en': 'Body type',
     },
     'vbw56u12': {
       'de': 'Skinny',
@@ -905,7 +909,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '0wv5aev3': {
       'de': 'Tattoo',
-      'en': 'tattoo',
+      'en': 'Tattoo',
     },
     's5dfowh8': {
       'de': 'kein tattoo',
@@ -957,11 +961,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '436kavn3': {
       'de': 'Street Style',
-      'en': 'street style',
+      'en': 'Street Style',
     },
     'vej58ghy': {
       'de': 'Bademode',
-      'en': 'swimwear',
+      'en': 'Swimwear',
     },
     'uj10nc95': {
       'de': 'Dessous',
@@ -989,11 +993,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zy6u3pb4': {
       'de': 'Ambiente',
-      'en': 'ambience',
+      'en': 'Ambience',
     },
     '1utstd7o': {
       'de': 'Ambiente',
-      'en': 'ambience',
+      'en': 'Ambience',
     },
     'uauooswu': {
       'de': 'Futuristic',
@@ -1013,7 +1017,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'axvsr9ox': {
       'de': 'Ambiente',
-      'en': 'ambience',
+      'en': 'Ambience',
     },
     'j4mw6o2e': {
       'de': 'Wohnung',
@@ -1045,7 +1049,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'sfqi32la': {
       'de': 'Club',
-      'en': 'club',
+      'en': 'Club',
     },
     'rjir5wmt': {
       'de': 'zurück',
@@ -1057,7 +1061,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ze4x5cly': {
       'de': 'zutück',
-      'en': 'zutück',
+      'en': 'past',
     },
     'fspfwkml': {
       'de': 'weiter',
@@ -1071,7 +1075,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           'Je genauer du die Persönlichkeit deines KI-Charakters beschreibst, desto \nintensiver und erlebnisreicher wird deine Kommunikation mit ihm. Einige\nAspekte, die du berücksichtigen solltest, sind:\n\nGrundcharakter: \nIst dein Charakter eher introvertiert oder extrovertiert? \nIst er selbstbewusst oder eher schüchtern? Welche Werte und \nÜberzeugungen leiten sein Handeln?\n\nInteressen und Hobbys: \nWomit beschäftigt sich dein Charakter gerne in \nseiner Freizeit? Welche Themen interessieren ihn besonders?\n\nSprachstil und Ausdrucksweise:\n Wie drückt sich dein Charakter aus? \nVerwendet er eher formelle oder informelle Sprache? Welche \nRedewendungen oder Sprachmanierismen hat er?\n\nEmotionalität: \nWie geht dein Charakter mit Gefühlen um? Ist er eher sachlich und distanziert oder sehr emotional und empathisch?\n\nJe detaillierter und authentischer du deinen KI-Charakter gestaltest, \ndesto glaubwürdiger und immersiver wird die Interaktion für dich. Dies führt zu einem intensiveren und erlebnisreicheren \nKommunikationserlebnis-',
       'en':
-          'The more precisely you describe the personality of your AI character, the more intense and eventful your communication with him will be. Some aspects you should consider are: Basic character: Is your character more introverted or extroverted? Is he self-confident or rather shy? What values and beliefs guide his actions? Interests and hobbies: What does your character like to do in his free time? What topics are he particularly interested in? Language style and expression: How does your character express himself? Does he use more formal or informal language? What phrases or language mannerisms does he have? Emotionality: How does your character deal with feelings? Is he more matter-of-fact and distant or very emotional and empathetic? The more detailed and authentic you make your AI character, the more credible and immersive the interaction will be for you. This leads to a more intense and eventful \ncommunication experience-',
+          'The more precisely you describe your AI character\'s personality, the more intense and engaging your communication with them will be. Some aspects you should consider are:\n\nBasic personality:\nIs your character more introverted or extroverted?\nIs they confident or rather shy? What values and beliefs guide their actions?\n\nInterests and hobbies:\nWhat does your character like to do in their free time? What topics are they particularly interested in?\n\nLanguage style and expression:\nHow does your character express themselves?\nDo they use more formal or informal language? What phrases or mannerisms do they have?\n\nEmotionality:\nHow does your character deal with feelings? Is they more matter-of-fact and distant or very emotional and empathetic?\n\nThe more detailed and authentic you design your AI character, the more believable and immersive the interaction will be for you. This leads to a more intense and enriching communication experience.',
     },
     'ms9r7s2n': {
       'de': 'Gib deiner AI einen Namen',
@@ -1083,7 +1087,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'neds0jl0': {
       'de': 'Persönlichkeitsbeschreibung (optional)',
-      'en': 'personality description (optional)',
+      'en': 'Personality description (optional)',
     },
     '8eh3uqz6': {
       'de': '',
@@ -1097,7 +1101,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'xczraz8p': {
       'de': 'Character',
-      'en': 'character',
+      'en': 'Character',
     },
     '4sghkwvi': {
       'de': 'Freundlich',
@@ -1217,7 +1221,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'doa3pzsz': {
       'de': 'Ungezwungen',
-      'en': 'Unconstrained',
+      'en': 'Casual',
     },
     '4gqlhhaa': {
       'de': '',
@@ -1233,7 +1237,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'uy634nzh': {
       'de': 'Fürsorglich',
-      'en': 'caring',
+      'en': 'Caring',
     },
     'htg8spsq': {
       'de': 'Mütterlich',
@@ -1241,7 +1245,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ut8d5xdi': {
       'de': 'Exsentrisch',
-      'en': 'eccentric',
+      'en': 'Eccentric',
     },
     'e3vo8ez3': {
       'de': 'Schüchtern',
@@ -1289,7 +1293,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'rxzasmau': {
       'de': 'Stimme/Ausdruck',
-      'en': 'voice/expression',
+      'en': 'Voice/Expression',
     },
     'hxf6cs9b': {
       'de': 'Sanft',
@@ -1397,11 +1401,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wu39fwgo': {
       'de': 'Szenarien',
-      'en': 'scenarios',
+      'en': 'Scenarios',
     },
     'u2js5ftw': {
       'de': 'Themen',
-      'en': 'topics',
+      'en': 'Topics',
     },
     'bjanrzd5': {
       'de': 'Romantisch',
@@ -1413,7 +1417,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'er6erj69': {
       'de': 'Tanzen im Club',
-      'en': 'Dancing in the Club',
+      'en': 'Dancing in the club',
     },
     'ca0pfoqo': {
       'de': 'Geschäftsmeeting',
@@ -1421,11 +1425,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ezfinwk5': {
       'de': 'Geheimes Treffen',
-      'en': 'Secret Meeting',
+      'en': 'Secret meeting',
     },
     'glgtpy2d': {
       'de': 'Shoppen',
-      'en': 'shopping',
+      'en': 'Shopping',
     },
     '8k97hgtz': {
       'de': 'Im Saunaclub',
@@ -1441,7 +1445,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '3uv3xtzd': {
       'de': 'Kampftechniken',
-      'en': 'fighting techniques',
+      'en': 'Fighting techniques',
     },
     '1sglyiuv': {
       'de': 'Magische Kräfte',
@@ -1449,15 +1453,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'yk8dp5q3': {
       'de': 'Physiche Stärke',
-      'en': 'Physical Strength',
+      'en': 'Physical strength',
     },
     'c1fi9kvs': {
       'de': 'Besondere Sinne',
-      'en': 'Special Senses',
+      'en': 'Special senses',
     },
     'vd2me67u': {
       'de': 'Transformationsfähig',
-      'en': 'capable of transformation',
+      'en': 'Capable of transformation',
     },
     '1jbz5u3c': {
       'de': '',
@@ -1553,7 +1557,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'h32v9ep6': {
       'de': 'Character:',
-      'en': 'Character:',
+      'en': 'Characters:',
     },
     'j77st3b9': {
       'de': 'Persönlichkeit:',
@@ -1645,7 +1649,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'lowhry72': {
       'de': 'Character:',
-      'en': 'Character:',
+      'en': 'Characters:',
     },
     'ra6y48zp': {
       'de': 'Persönlichkeit:',
@@ -1687,7 +1691,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           'Tolle nachrichten! \nJetzt Character öffentlich stellen und likes erhalten.\n\nEs gibt jedoch ein paar wichtige Dinge zu beachten:\n\nAnonymität: Wenn du deinen Charakter veröffentlichst, bleibt deine \nIdentität anonym. Niemand erfährt, wer diesen Charakter erschaffen hat.\nInhalte: Bitte stelle sicher, dass dein Charakter keine freizügigen oder \nsexuell anzüglichen Inhalte aufweist. Solche Charaktere werden nicht \nveröffentlicht.\n\nCommunity-Richtlinien: Achte darauf, dass dein Charakter und deine \nInhalte unseren Gemeinschaftsrichtlinien entsprechen. Wir behalten uns \ndas Recht vor, Beiträge zu entfernen, die gegen diese Richtlinien \nverstoßen.\n\nWenn du diese Bedingungen erfüllst, kann dein KI-Charakter jetzt veröffentlicht \nund von anderen Nutzern entdeckt werden. Lass die Kreativität sprudeln und \nvile likes sammeln.',
       'en':
-          'Great news! \nMake your character public now and get likes.\n\nThere are a few important things to note, however:\n\nAnonymity: When you publish your character, your \nidentity remains anonymous. No one will know who created this character.\n\nContent: Please make sure your character does not contain any explicit or \nsexually suggestive content. Such characters will not be published.\n\nCommunity guidelines: Make sure your character and your content comply with our community guidelines. We reserve the right to remove posts that violate these guidelines.\n\nIf you meet these conditions, your AI character can now be published \nand discovered by other users. Let the creativity flow and collect lots of likes.',
+          'Great news!\n\nMake your character public now and get likes.\n\nThere are a few important things to keep in mind, however:\n\nAnonymity: When you publish your character, your identity remains anonymous. No one will know who created this character.\n\nContent: Please ensure your character does not contain any explicit or sexually explicit content. Such characters will not be published.\n\nCommunity Guidelines: Make sure your character and content comply with our Community Guidelines. We reserve the right to remove posts that violate these guidelines.\n\nIf you meet these conditions, your AI character can now be published and discovered by other users. Let your creativity flow and collect lots of likes.',
     },
     'pi19pixt': {
       'de': 'Jetzt AI erstellen',
@@ -1697,37 +1701,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'zurück',
       'en': 'back',
     },
-    'o546ybe0': {
-      'de': 'Explore',
-      'en': 'Explore',
+    'tgpbi7sn': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'f0dlzov1': {
-      'de': 'Chats',
-      'en': 'chats',
+    'kod6gv26': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'ywyqdv1d': {
-      'de': 'Create AI',
-      'en': 'Create AI',
+    '3vorilk0': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    'ps9qr6cu': {
-      'de': 'My AI',
-      'en': 'My AI',
+    'rwciq1id': {
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
-    '07lng8n9': {
+    '8p8gw4nc': {
       'de': 'Premium',
       'en': 'Premium',
     },
-    'gjutns1n': {
+    'gqevu3of': {
       'de': 'Profil',
       'en': 'profile',
     },
-    'vcpdc5mm': {
+    'kr4fq4kf': {
       'de': 'Login',
       'en': 'Login',
     },
-    'nihlh8ta': {
+    'kunjax0m': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'z3mt6of3': {
       'de': 'CREATE',
@@ -1736,31 +1740,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // MyAI
   {
-    '5mrtk0s5': {
-      'de': 'Character entdecken',
-      'en': 'discover characters',
+    'e8wi2d1l': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'msbmkd48': {
-      'de': 'Chats',
-      'en': 'chats',
+    'kycl7irf': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'su19gi2u': {
-      'de': 'Character erstellen',
-      'en': 'Create Character',
+    'suygm2lq': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    'jv01ei5t': {
+    'ichoakxk': {
       'de': 'Message...',
       'en': 'Message...',
     },
-    'juml0b2z': {
+    'b04iyj95': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
-    'ul7tztuj': {
+    'llopu7pc': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
-    'lfcp5xaf': {
+    '31tu7x07': {
+      'de': 'Jetzt kostenlos testen!',
+      'en': 'Try it now for free!',
+    },
+    'k5sfwyba': {
       'de': 'Login',
       'en': 'Login',
     },
@@ -1782,11 +1790,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ti1cat85': {
       'de': 'Charactere',
-      'en': 'characters',
+      'en': 'Characters',
     },
     '7v63qfs2': {
       'de': 'Die heißesten AI-Charaktere der Stadt - \nJetzt entdecken!',
-      'en': 'The hottest AI characters in town - \nDiscover them now!',
+      'en': 'The hottest AI characters in town - Discover them now!',
     },
     '5onbgy7d': {
       'de': 'Deine erstellten ',
@@ -1798,11 +1806,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'lhq82og9': {
       'de': 'Charactere',
-      'en': 'characters',
+      'en': 'Characters',
     },
     '76shhlgq': {
       'de': 'Die heißesten AI-Charaktere der Stadt - \nJetzt entdecken!',
-      'en': 'The hottest AI characters in town - \nDiscover them now!',
+      'en': 'The hottest AI characters in town - Discover them now!',
     },
     'dxjc57wh': {
       'de': 'Du hast noch keinen AI Character ',
@@ -1812,56 +1820,56 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Jetzt Character erstellen',
       'en': 'Create character now',
     },
-    'fyu632vm': {
-      'de': 'Explore',
-      'en': 'Explore',
+    'i1cx09fw': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'b8bj46d0': {
-      'de': 'Chats',
-      'en': 'chats',
+    'l7qt9vep': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    '31hxmk4h': {
-      'de': 'Create AI',
-      'en': 'Create AI',
+    'm5cc3xnt': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    'qq1eb0s7': {
-      'de': 'My AI',
-      'en': 'My AI',
+    'cm0grahz': {
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
-    'wrugfwh4': {
+    '120kmb16': {
       'de': 'Premium',
       'en': 'Premium',
     },
-    '3o6488n3': {
+    '6n75n0c6': {
       'de': 'Profil',
       'en': 'profile',
     },
-    '4ifg9x7d': {
+    'xtqr14m2': {
       'de': 'Login',
       'en': 'Login',
     },
-    '27gjs2ks': {
+    'w22cbsos': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'wzftfr6t': {
       'de': 'MY AI',
       'en': 'MY AI',
     },
   },
-  // Chats
+  // chats
   {
     'uvvgwpk4': {
       'de': 'Character entdecken',
-      'en': 'discover characters',
+      'en': 'Discover Character',
     },
     'b5nor30j': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'einogj3n': {
       'de': 'Character erstellen',
-      'en': 'Create Character',
+      'en': 'Create character',
     },
     '20km9eon': {
       'de': 'Message...',
@@ -1869,11 +1877,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'xo46ysy1': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
     '54nefpbs': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
     '968mkcmw': {
       'de': 'Login',
@@ -1881,7 +1889,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '5ey23c9i': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'zzdmdzpv': {
       'de': 'Du hast noch keinen Chat',
@@ -1891,56 +1899,56 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Jetzt Chatpartner entdecken!',
       'en': 'Discover chat partners now!',
     },
-    'hfcq76iw': {
-      'de': 'Explore',
-      'en': 'Explore',
+    'dhxqtcna': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'ovxnmf2p': {
-      'de': 'Chats',
-      'en': 'chats',
+    'nxv20ahv': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'hre89vof': {
-      'de': 'Create AI',
-      'en': 'Create AI',
+    '2gtox0j4': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    'ih8ya1ja': {
-      'de': 'My AI',
-      'en': 'My AI',
+    'ur2b83tn': {
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
-    'dllrrzv9': {
+    'exhlui8h': {
       'de': 'Premium',
       'en': 'Premium',
     },
-    'ddwgqcsi': {
+    'hr780g1u': {
       'de': 'Profil',
       'en': 'profile',
     },
-    'wco38ex4': {
+    'a3lp4yue': {
       'de': 'Login',
       'en': 'Login',
     },
-    'b68ptkce': {
+    'czg15l8o': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'ki0q4pzf': {
-      'de': 'CHATS',
-      'en': 'CHATS',
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
   },
   // characterProfil
   {
     '92rzt67b': {
       'de': 'Character entdecken',
-      'en': 'discover characters',
+      'en': 'Discover Character',
     },
     'ptd0wgii': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'wmpriee8': {
       'de': 'Character erstellen',
-      'en': 'Create Character',
+      'en': 'Create character',
     },
     '9p4f1nf7': {
       'de': 'Message...',
@@ -1948,11 +1956,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'fvxu7mml': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
     'vidmec88': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
     'ly0r8qj2': {
       'de': 'Login',
@@ -1980,7 +1988,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'fs37hwgp': {
       'de': 'Chat',
-      'en': 'chat',
+      'en': 'Chat',
     },
     'rjg429qq': {
       'de': 'Foto',
@@ -1996,7 +2004,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '8fpo5ud5': {
       'de': 'Bild erstellen',
-      'en': 'create image',
+      'en': 'Create image',
     },
     'hly1liql': {
       'de': 'Klick für ein Like!',
@@ -2022,37 +2030,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Gallery',
       'en': 'Gallery',
     },
-    'sh7k6lnf': {
-      'de': 'Explore',
-      'en': 'Explore',
+    'b9oq255s': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'q0t8ckrk': {
-      'de': 'Chats',
-      'en': 'chats',
+    'r1ax9ikq': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'mknr80p0': {
-      'de': 'Create AI',
-      'en': 'Create AI',
+    'paw5fae8': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    '16fioz52': {
-      'de': 'My AI',
-      'en': 'My AI',
+    'uyswn2pt': {
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
-    '7qlumd8b': {
+    'l9fbjc2r': {
       'de': 'Premium',
       'en': 'Premium',
     },
-    'wir4e0qs': {
+    'qhrlmcx0': {
       'de': 'Profil',
       'en': 'profile',
     },
-    't31ep6hk': {
+    'cpy9cvi0': {
       'de': 'Login',
       'en': 'Login',
     },
-    'j0putu3q': {
+    'mkfhgz40': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'h7fyp3zw': {
       'de': 'Home',
@@ -2061,41 +2069,45 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Explore
   {
-    'f9qzbbfl': {
-      'de': 'Character entdecken',
-      'en': 'discover characters',
+    'm5omedes': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'eq6s2hng': {
-      'de': 'Chats',
-      'en': 'chats',
+    '4k7xnqm8': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'guseos6t': {
-      'de': 'Character erstellen',
-      'en': 'Create Character',
+    '9o5c53ra': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    't8btwvv4': {
+    '5hwaad6q': {
       'de': 'Message...',
       'en': 'Message...',
     },
-    'fvp0pupc': {
+    'a14yni8d': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
-    'z6ywcml8': {
+    '4ddr7lzn': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
-    'mm4974h4': {
+    'vrey49y3': {
+      'de': 'Jetzt kostenlos testen!',
+      'en': 'Try it now for free!',
+    },
+    'vngbrvee': {
       'de': 'Login',
       'en': 'Login',
     },
     'c5u3y3sz': {
       'de': 'Coole ',
-      'en': 'cool',
+      'en': 'Cool',
     },
     'ttntro0w': {
       'de': 'Charactere \n',
-      'en': 'characters',
+      'en': 'Characters',
     },
     'v1nyopgj': {
       'de': 'Jetzt entdecken!',
@@ -2103,11 +2115,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'sdc2gk04': {
       'de': 'Coole ',
-      'en': 'cool',
+      'en': 'Cool',
     },
     'tamh2808': {
       'de': 'Charactere ',
-      'en': 'characters',
+      'en': 'Characters',
     },
     'm7rk17lk': {
       'de': 'Jetzt entdecken!',
@@ -2115,7 +2127,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ejaksq8j': {
       'de': 'Die heißesten AI-Charaktere der Stadt - \nJetzt entdecken!',
-      'en': 'The hottest AI characters in town - \nDiscover them now!',
+      'en': 'The hottest AI characters in town - Discover them now!',
     },
     '6773pvay': {
       'de': 'Frauen',
@@ -2127,7 +2139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6mx5k5ui': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
     'bs1btta7': {
       'de': 'Frauen',
@@ -2139,39 +2151,39 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '82fvngpe': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
-    'dp7efind': {
-      'de': 'Explore',
-      'en': 'Explore',
+    '8bz7c2md': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'xs37856e': {
-      'de': 'Chats',
-      'en': 'chats',
+    '051j6oxp': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    '5iqoueq2': {
-      'de': 'Create AI',
-      'en': 'Create AI',
+    'ais3huio': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    '01exg79c': {
-      'de': 'My AI',
-      'en': 'My AI',
+    'jww6tstc': {
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
-    'j41d4cwa': {
+    '78656neq': {
       'de': 'Premium',
       'en': 'Premium',
     },
-    'p5wvjo2x': {
+    '5kgl4eky': {
       'de': 'Profil',
       'en': 'profile',
     },
-    '53surfm8': {
+    'lvn2o705': {
       'de': 'Login',
       'en': 'Login',
     },
-    'r3dav8z8': {
+    'wubm8sn4': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'uiknu893': {
       'de': 'Explore',
@@ -2180,31 +2192,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // GetPremium
   {
-    'gi6emzb6': {
-      'de': 'Character entdecken',
-      'en': 'discover characters',
+    'fisf6bmr': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    'hh7u03fs': {
-      'de': 'Chats',
-      'en': 'chats',
+    '1ei9dae5': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'bhw067fl': {
-      'de': 'Character erstellen',
-      'en': 'Create Character',
+    'acoke46i': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    'nonunwb9': {
+    'cukpl9xd': {
       'de': 'Message...',
       'en': 'Message...',
     },
-    'p2lk2dok': {
+    'a27g801s': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
-    'kouzdlg7': {
+    '83tljk7b': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
-    '9y3d2ts0': {
+    'bkfdc5yp': {
+      'de': 'Jetzt kostenlos testen!',
+      'en': 'Try it now for free!',
+    },
+    '3gx8dc1m': {
       'de': 'Login',
       'en': 'Login',
     },
@@ -2230,7 +2246,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '2e5fcv31': {
       'de': '€12,90 Monatlich',
-      'en': '€12.90 Monthly',
+      'en': '€12.90 monthly',
     },
     'egvqei32': {
       'de': '€12',
@@ -2306,7 +2322,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ogzh193z': {
       'de': 'Unbegrenzt Chatten',
-      'en': 'Unlimited Chatting',
+      'en': 'Unlimited chatting',
     },
     'gdbiwkr5': {
       'de': 'Unbegrenzt AI Partner erstellen',
@@ -2334,7 +2350,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '086gtd09': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     '2yw8qltb': {
       'de': 'Create AI',
@@ -2358,7 +2374,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'gx3cyc1v': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     '6jz1lyl1': {
       'de': 'PREMIUM',
@@ -2369,15 +2385,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '423osjo7': {
       'de': 'Character entdecken',
-      'en': 'discover characters',
+      'en': 'Discover Character',
     },
     'cy9saq65': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     '8johuncp': {
       'de': 'Character erstellen',
-      'en': 'Create Character',
+      'en': 'Create character',
     },
     'yq642y7b': {
       'de': 'Message...',
@@ -2385,11 +2401,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '9uko0jpk': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
     'r4yjceig': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
     'fukq3nxc': {
       'de': 'Login',
@@ -2397,7 +2413,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'jakbkfj2': {
       'de': 'Datenschutz',
-      'en': 'data protection',
+      'en': 'Data protection',
     },
     'ym7es8sl': {
       'de':
@@ -2411,7 +2427,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'jv7fm5mf': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'nitpmh9n': {
       'de': 'Create AI',
@@ -2435,7 +2451,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dzxj1hd8': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'ypkezf3x': {
       'de': 'Home',
@@ -2444,31 +2460,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Impressum
   {
-    'h89mh4w1': {
-      'de': 'Character entdecken',
-      'en': 'discover characters',
+    '01tpjdul': {
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
-    '4td4vsfh': {
-      'de': 'Chats',
-      'en': 'chats',
+    'ygwdbbo6': {
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
-    'gdmiirpn': {
-      'de': 'Character erstellen',
-      'en': 'Create Character',
+    'h5gh66v4': {
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
-    'qqerr9jz': {
+    'j6qouhi1': {
       'de': 'Message...',
       'en': 'Message...',
     },
-    'nodvtnmj': {
+    'bzl71ig8': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
-    '1nhop96f': {
+    'rltw6acb': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
-    'sdczjbvh': {
+    'qc6jbeq8': {
+      'de': 'Jetzt kostenlos testen!',
+      'en': 'Try it now for free!',
+    },
+    'gogxm1py': {
       'de': 'Login',
       'en': 'Login',
     },
@@ -2480,17 +2500,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           'Angaben gemäß § 5 TMG:\n\nCapepointtrading 38 PTY (LTD)\nIl Paladino Alphen Close 2\nWestern Cape\n7140 Strand\n\nVertreten durch:\nGertrude Piringer\n\nKontakt:\nTelefon: +43 (0) 720 1270109\nE-Mail: office@rasondo.com\n\nHandelsregister: 2011/143503/07\nRegistergericht: Cape Town, Western Cape\n\nUmsatzsteuer-ID: \nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:\n4191255614\n\nVerantwortlich für den Inhalt nach § 55 Abs. 2 RStV:\nCapepointtrading 38 (PTY) LTD\n\nEU-Streitschlichtung\n\nDie Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:\nhttps://ec.europa.eu/consumers/odr/.\n\nUnsere E-Mail-Adresse finden Sie oben im Impressum.\nVerbraucherstreitbeilegung/Universalschlichtungsstelle\nWir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.\n\n',
       'en':
-          'Information in accordance with Section 5 of the Telemedia Act:\n\nCapepointtrading 38 PTY (LTD)\n\nIl Paladino Alphen Close 2\n\nWestern Cape\n\n7140 Strand\n\nRepresented by:\nGertrude Piringer\n\nContact:\nTelephone: +43 (0) 720 1270109\nE-mail: office@rasondo.com\n\nCommercial register: 2011/143503/07\nRegistration court: Cape Town, Western Cape\n\nVAT ID: \nVAT identification number in accordance with Section 27 a of the Sales Tax Law:\n\n4191255614\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n\nCapepointtrading 38 (PTY) LTD\n\nEU dispute resolution\n\nThe European Commission provides a platform for online dispute resolution (OS) ready:\nhttps://ec.europa.eu/consumers/odr/.\n\nYou can find our email address above in the imprint.\nConsumer dispute resolution/universal arbitration board\nWe are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
+          'Information pursuant to Section 5 of the Telemedia Act:\n\nCapepointtrading 38 PTY (LTD)\nIl Paladino Alphen Close 2\nWestern Cape\n7140 Strand\n\nRepresented by:\nGertrude Piringer\n\nContact:\nPhone: +43 (0) 720 1270109\nEmail: office@rasondo.com\n\nCommercial Register: 2011/143503/07\nRegistration Court: Cape Town, Western Cape\n\nVAT ID:\nVAT identification number pursuant to Section 27a of the Sales Tax Act:\n4191255614\n\nResponsible for content pursuant to Section 55 (2) of the German Interstate Broadcasting Agreement (RStV):\nCapepointtrading 38 (PTY) LTD\n\nEU Dispute Resolution\n\nThe European Commission provides a platform for online dispute resolution (ODR). Available:\nhttps://ec.europa.eu/consumers/odr/.\n\nYou can find our email address above in the imprint.\nConsumer Dispute Resolution/Universal Arbitration Board\nWe are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
     },
     'pr0wdwl3': {
       'de':
           'Impressum\n\nAngaben gemäß § 5 TMG:\n\n[Name des Unternehmens]\n[Adresse des Unternehmens]\n[PLZ Ort]\n\nVertreten durch:\n[Name des Geschäftsführers / Inhabers]\n\nKontakt:\nTelefon: [Telefonnummer]\nE-Mail: [E-Mail-Adresse]\nWebsite: [URL der Website]\n\nRegistereintrag:\nEintragung im Handelsregister.\nRegistergericht: [Name des Amtsgerichts]\nRegisternummer: [Handelsregisternummer]\n\nUmsatzsteuer-ID:\nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: [USt-IdNr.]\n\nVerantwortlich für den Inhalt nach § 55 Abs. 2 RStV:\n[Name]\n[Adresse]',
       'en':
-          'Imprint\n\nInformation in accordance with Section 5 of the Telemedia Act:\n\n[Name of the company]\n[Address of the company]\n[Postal code]\n\nRepresented by:\n[Name of the managing director / owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [URL of the website]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of the local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number in accordance with Section 27a of the Sales Tax Law: [VAT ID number]\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n[Name]\n[Address]',
+          'Imprint\n\nInformation pursuant to Section 5 of the Telemedia Act (TMG):\n\n[Company name]\n[Company address]\n[Postal code/city]\n\nRepresented by:\n[Name of Managing Director/Owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [Website URL]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number pursuant to Section 27a of the Sales Tax Act: [VAT ID number]\n\nResponsible for content pursuant to Section 55 (2) of the Interstate Broadcasting Agreement (RStV):\n[Name]\n[Address]',
     },
     'dm3znngi': {
       'de': 'Design + Development by adimpactAI',
-      'en': '',
+      'en': 'Design + Development by adimpactAI',
     },
     '15xhzjci': {
       'de': 'Explore',
@@ -2498,7 +2518,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ngzyksy6': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'ni1gku0h': {
       'de': 'Create AI',
@@ -2522,7 +2542,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'cbxtidnd': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'pmfiv3nj': {
       'de': 'Home',
@@ -2605,7 +2625,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jvzib8lp': {
       'de':
           'Bitte geben Sie die Informationen unten ein, um sich in Ihr Konto einzuloggen.',
-      'en': 'Please enter the information below to log into your account.',
+      'en': 'Please enter the information below to log in to your account.',
     },
     'sf73e4pd': {
       'de': 'Email',
@@ -2696,7 +2716,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qwxythkn': {
       'de':
           'In einem modernen Café, bei Sonnenuntergang, mit warmem Licht und gemütlicher Atmosphäre',
-      'en': 'In a modern cafe, at sunset, with warm light and cozy atmosphere',
+      'en':
+          'In a modern café, at sunset, with warm light and a cozy atmosphere',
     },
     'oegqxyqj': {
       'de': 'jetzt erstellen',
@@ -2711,7 +2732,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'i6zmahrb': {
       'de': 'Schreibe mir...',
-      'en': 'Write me...',
+      'en': 'Write to me...',
     },
     't7gv7g9b': {
       'de': 'Home',
@@ -2742,7 +2763,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'sexk06iu': {
       'de': 'Premium Abo kündigen',
-      'en': 'Cancel Premium Subscription',
+      'en': 'Cancel Premium subscription',
     },
     'yxtswbgq': {
       'de': 'Sprache',
@@ -2761,15 +2782,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'gq57c57i': {
       'de': 'Character entdecken',
-      'en': 'discover characters',
+      'en': 'Discover Character',
     },
     'qr4r4kl8': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'kuhd4kr6': {
       'de': 'Character erstellen',
-      'en': 'Create Character',
+      'en': 'Create character',
     },
     '8xr0efp0': {
       'de': 'Message...',
@@ -2777,11 +2798,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nok13lwu': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
     'rn488d5t': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
     'dxmcv2wq': {
       'de': 'Login',
@@ -2795,13 +2816,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           'ALLGEMEINE GESCHÄFTSBEDINGUNGEN \nDiese Allgemeinen Geschäftsbedingungen („Vereinbarung“) legen die rechtsverbindlichen Bedingungen für Ihre Nutzung der Website Rasondo.com („Website“) fest, die Eigentum von Capepoint Trading 38 PTY LTD ist und von dieser betrieben wird. \nDurch den Zugriff auf oder die Nutzung unserer Website erklären Sie sich mit dieser Vereinbarung einverstanden. Wenn Sie dieser Vereinbarung nicht zustimmen, dürfen Sie nicht auf unsere Website zugreifen oder sie nutzen. \n\nINHALT AUF DER WEBSITE \nDer Inhalt dieser Website wird mithilfe unserer Technologie durch künstliche Intelligenz generiert. Wir können nicht garantieren, dass die generierten Inhalte Ihren Vorlieben oder Wünschen entsprechen, geben aber das Versprechen an jeder Weiterentwicklung der Technologie unsere Kunden teilhaben zu lassen. Es ist wichtig zu beachten, dass alle auf dieser Website generierten Inhalte rein fiktiv sind und nicht dazu gedacht sind, reale Personen, ob lebend oder verstorben, darzustellen. Etwaige Ähnlichkeiten mit realen Personen oder Ereignissen sind rein zufällig. \nWir setzen uns dafür ein, dass KI-generierte Inhalte auf unserer Plattform in keiner Weise Minderjährigen ähneln oder deren Ähnlichkeit ausnutzen. Alle KI-generierten Inhalte, die Minderjährigen ähneln, werden umgehend überprüft und entfernt. Bitte beachten Sie, dass unsere Bilderzeugungs- und KI-Chat-Funktionen zwar darauf abzielen, ein außergewöhnliches Erlebnis zu bieten, es jedoch Fälle geben kann, in denen die Ergebnisse nicht Ihren Erwartungen entsprechen. Wie jede neue Technologie entwickeln sich auch die Systeme der künstlichen Intelligenz und des maschinellen Lernens kontinuierlich weiter und es werden täglich Verbesserungen vorgenommen. Bei der Registrierung bei Rasondo.com stimmen Benutzer den Einschränkungen des Systems zu und erkennen an, dass die Ergebnisse des Chats und der Bildgenerierung (einschließlich Sprachnachrichten und Videogenerierung, falls integriert) gelegentlich unzureichend sein können. Wir bedanken uns für Ihr Verständnis, da wir unermüdlich daran arbeiten, unsere Plattform zu verbessern und zu verfeinern, um unseren Benutzern das bestmögliche Erlebnis zu bieten. \nEIGENTUMSRECHTE Die Website und alle auf der Website verfügbaren Inhalte und Materialien, einschließlich, aber nicht beschränkt auf Texte, Grafiken, Logos, Symbole, Bilder, Audioclips, Videoclips, Datenzusammenstellungen und Software, sind Eigentum von Rasondo.com oder seinen Lizenzgebern und sind durch geschützt Urheberrechtsgesetze\nOhne unsere vorherige schriftliche Zustimmung dürfen Sie keinen Teil der Website oder ihres Inhalts kopieren, ändern, verteilen, anzeigen, übertragen, reproduzieren oder abgeleitete Werke davon erstellen. Es ist Ihnen nicht gestattet, den Quellcode oder die zugrunde liegenden Komponenten von Modellen, Algorithmen und Systemen der von der Website bereitgestellten Dienste zurück zu assemblieren, , zu dekompilieren, zu übersetzen oder auf andere Weise zu versuchen, sie zu entdecken. ZAHLUNG UND RECHNUNG Rasondo.com bietet kostenpflichtige Pläne an, die es Benutzern möglicherweise ermöglichen, mehr Inhalte zu generieren und mehr Nachrichten an ihre virtuelle Freundin zu senden, oder den Benutzern basierend auf dem Plan, für den sie sich entschieden haben, andere Optionen zu bieten. \nDurch das Abonnieren eines kostenpflichtigen Plans\nerklären Sie sich damit einverstanden, alle anfallenden Gebühren und Entgelte, einschließlich aller anfallenden Steuern, zu zahlen. Rasondo.com kann seine Preis- und Abrechnungsrichtlinien jederzeit aktualisieren. Durch die weitere Nutzung der Website nach solchen Änderungen stimmen Sie den aktualisierten Preis- und Abrechnungsrichtlinien zu. \nRasondo.com sendet Ihnen möglicherweise E-Mails zu seinen neuen Preis- und Abrechnungsrichtlinien, die ausschließlich zu dem Zweck dienen, Sie darüber zu informieren. Rückerstattungen Bitte beachten Sie, dass der Verkauf endgültig ist und wir keine Rückerstattung leisten, wenn Sie ein Abonnement über den Apple iTunes Store oder unsere iPhone-Anwendung erwerben. Ihr Kauf unterliegt den geltenden Zahlungsrichtlinien von Apple, die möglicherweise auch keine Rückerstattungen vorsehen. \nWenn Sie ein Abonnement über den Google Play Store erwerben, ist der Verkauf endgültig und wir leisten keine Rückerstattung. Ihr Kauf unterliegt den geltenden Zahlungsrichtlinien von Google, die möglicherweise auch keine Rückerstattungen vorsehen. Wenn Sie ein Abonnement über unsere Website erwerben (über Stripe, PayPal oder einen anderen Zahlungsabwickler), ist der Verkauf endgültig und wir leisten keine Rückerstattung.\n Bitte beachten Sie, dass die Rückerstattungsrichtlinie für EU-Bürger innerhalb von 14 Tagen nach dem Kauf nicht für den bereitgestellten Zugang zum digitalen Produkt gilt. Geräteanforderungen Um Rasondo.com über Ihr Smartphone oder ein anderes Gerät genießen zu können, muss Ihr Gerät bestimmte Systemanforderungen erfüllen. Diese Anforderungen finden Sie auf der Website sowie auf den App-Marktplätzen von Google und Apple. 3.1. Stornierung durch Sie Sie können Ihre Mitgliedschaft jederzeit kündigen, indem Sie Ihr Konto löschen. Diese Aktion ist irreversibel. Sobald Sie Ihr Konto löschen, werden alle mit Ihrer Nutzung der Dienste verbundenen Daten dauerhaft gelöscht. Nach der Löschung Ihres Kontos wird die Kündigung eines kostenpflichtigen Abonnements am Ende des entsprechenden Abrechnungszeitraums wirksam.\n Bitte beachten Sie, dass Sie beim Kauf eines kostenpflichtigen Abonnements über den Apple iTunes Store oder unsere iPhone-Anwendung Ihr Abonnement kündigen können, indem Sie die automatische Verlängerung kostenpflichtiger In-App-Abonnements kündigen, indem Sie in Ihren iTunes-Kontoeinstellungen „App-Abonnements verwalten“ auswählen und das gewünschte Abonnement auswählen ändern. Wenn Sie ein kostenpflichtiges Abonnement über den Google Play Store erwerben, können Sie automatische Verlängerungen in den Kontoeinstellungen unter „Abonnements“ in der Google Play-App oder gemäß dem aktuellen von Google Play beschriebenen Verfahren kündigen. Stornierung durch uns Wir können Ihre Nutzung der Dienste aufgrund Ihres Betrugs oder Verstoßes gegen eine Verpflichtung gemäß diesen Bedingungen aussetzen oder beenden. Eine solche Kündigung oder Aussetzung kann sofort und ohne Vorankündigung erfolgen. Kommerzielle Benutzung Der Dienst ist nur für Ihren persönlichen Gebrauch bestimmt. Sofern hierin oder in den Diensten nicht ausdrücklich etwas anderes gestattet ist, erklären Sie sich damit\neinverstanden, die Inhalte nicht für kommerzielle Zwecke anzuzeigen, zu verteilen, zu lizenzieren, auszuführen, zu veröffentlichen, zu reproduzieren, zu duplizieren, zu kopieren, abgeleitete Werke daraus zu erstellen, zu modifizieren, zu verkaufen, weiterzuverkaufen, zu verwerten, zu übertragen oder hochzuladen , jeglicher Teil der Dienste, die Nutzung der Dienste oder der Zugriff auf die Dienste. \n\nALLGEMEINE VERFAHREN ZUR VERWENDUNG UND LAGERUNG\n Sie erkennen an, dass wir allgemeine Praktiken und Beschränkungen für die Nutzung der Dienste festlegen können, einschließlich, aber nicht beschränkt auf den maximalen Zeitraum, für den Daten oder andere Inhalte von den Diensten gespeichert werden, und den maximalen Speicherplatz, der in Ihrem Namen auf unseren Servern zugewiesen wird . Sie stimmen zu, dass Replika keine Verantwortung oder Haftung für die Löschung oder Nichtspeicherung von Daten oder anderen Inhalten übernimmt, die von den Diensten gepflegt oder hochgeladen werden. Sie erkennen an, dass wir uns das Recht vorbehalten, Konten zu kündigen, die über einen längeren Zeitraum inaktiv sind. Sie erkennen weiterhin an, dass wir uns das Recht vorbehalten, diese allgemeinen Praktiken und Beschränkungen jederzeit nach eigenem Ermessen, mit oder ohne Vorankündigung, zu ändern. \n\nGEWÄHRLEISTUNGSAUSSCHLUSS UND HAFTUNGSBESCHRÄNKUNG \n\nRasondo.com übernimmt keine Zusicherungen oder Garantien dafür, dass die Website Ihren Anforderungen entspricht, ununterbrochen, sicher oder fehlerfrei verfügbar ist oder frei von Viren oder anderen schädlichen Komponenten ist. Die Website wird „wie besehen“ und „wie verfügbar“ ohne jegliche Gewährleistungen jeglicher Art bereitgestellt. In keinem Fall haftet Rasondo.com Ihnen oder Dritten gegenüber für direkte, indirekte, zufällige, besondere oder Folgeschäden, die sich aus oder im Zusammenhang mit Ihrer Nutzung der Website ergeben, einschließlich, aber nicht beschränkt auf, entgangenen Gewinn und verlorene Daten oder Betriebsunterbrechung. Die von der Website bereitgestellten Ausgaben des Chatbots werden nicht von Menschen generiert und durch die Nutzung der Website erkennen Sie an, dass die Antworten, die Sie erhalten, nicht von Menschen, sondern nur von Software generiert werden und Rasondo.com sie nicht kontrollieren kann. Die Ausgabe, die Sie erhalten, hängt von den von Ihnen bereitgestellten Triggern ab. Möglicherweise empfinden Sie die Ausgabe als beleidigend, unanständig oder anstößig und Sie stimmen zu, dass Rasondo.com unter keinen Umständen für Verluste oder Schäden jeglicher Art haftbar gemacht wird, die durch Ihre Nutzung von Inhalten entstehen. Rasondo.com bietet keine Gesundheitsfürsorge, psychiatrische, medizinische Betreuung oder andere professionelle Dienstleistungen im Bereich Medizin oder Therapie an. Wenn Sie mit psychischen Problemen zu kämpfen haben, sollten Sie einen Arzt, Therapeuten oder einen anderen Spezialisten aufsuchen und sich professionell beraten lassen. Rasondo.com übernimmt keine Verantwortung, wenn ein Nutzer feststellt, dass sein geistiges oder körperliches Wohlbefinden beeinträchtigt ist, nachdem er mit der Nutzung der Website begonnen hat. Rasondo.com haftet nicht für psychische Störungen, Suizidtendenzen oder sonstige Gesundheitsschäden, bei denen der Nutzer professionelle Hilfe in Anspruch nehmen sollte. Gerichtsstand und anwendbares Recht Gerichtsstand für alle Streitigkeiten aus diesem Vertrag ist Kapstadt.\n1. Es gilt Südafrikanisches Recht\n',
       'en':
-          'TERMS AND CONDITIONS \nThese Terms and Conditions (\"Agreement\") set out the legally binding terms and conditions of your use of the Rasondo.com website (\"Website\") owned and operated by Capepoint Trading 38 PTY LTD. \nBy accessing or using our Website, you agree to this Agreement. If you do not agree to this Agreement, you must not access or use our Website. \n\nCONTENT ON THE WEBSITE \nThe content on this Website is generated using our artificial intelligence technology. We cannot guarantee that the content generated will meet your preferences or desires, but promise to share any advancements in technology with our customers. It is important to note that all content generated on this Website is purely fictional and is not intended to represent any real person, living or deceased. Any resemblance to real persons or events is purely coincidental.\nWe are committed to ensuring that AI-generated content on our platform does not resemble or exploit the likeness of minors in any way. Any AI-generated content resembling minors will be promptly reviewed and removed. Please note that while our image generation and AI chat features aim to provide an exceptional experience, there may be instances where the results do not meet your expectations. Like any new technology, artificial intelligence and machine learning systems are continually evolving and improvements are being made daily. By registering with Rasondo.com, users agree to the limitations of the system and acknowledge that chat and image generation (including voice messages and video generation, if integrated) results may occasionally be inadequate. We appreciate your understanding as we work tirelessly to improve and refine our platform to provide the best possible experience for our users.\nOWNERSHIP RIGHTS The Site and all content and materials available on the Site, including but not limited to text, graphics, logos, icons, images, audio clips, video clips, data compilations and software, are the property of Rasondo.com or its licensors and are protected by copyright laws\nYou may not copy, modify, distribute, display, transmit, reproduce or create derivative works of any part of the Site or its content without our prior written consent. You are not permitted to reverse assemble, decompile, translate or otherwise attempt to discover the source code or underlying components of models, algorithms and systems of the services provided by the Site. PAYMENT AND BILLING Rasondo.com offers paid plans that may allow users to generate more content and send more messages to their virtual girlfriend, or provide users with other options based on the plan they have opted for.\nBy subscribing to a paid plan,\nyou agree to pay all applicable fees and charges, including all applicable taxes. Rasondo.com may update its pricing and billing policies at any time. By continuing to use the Site after such changes, you agree to the updated pricing and billing policies. \nRasondo.com may send you emails about its new pricing and billing policies for the sole purpose of informing you. Refunds Please note that if you purchase a subscription through the Apple iTunes Store or our iPhone application, the sale is final and we will not provide refunds. Your purchase is subject to Apple\'s applicable payment policies, which may also not provide for refunds. \nIf you purchase a subscription through the Google Play Store, the sale is final and we will not provide refunds. Your purchase is subject to Google\'s applicable payment policies, which may also not provide for refunds. If you purchase a subscription through our Site (through Stripe, PayPal or another payment processor), the sale is final and we will not provide refunds.\nPlease note that the refund policy for EU citizens does not apply to the provided access to the digital product within 14 days of purchase. Device Requirements To enjoy Rasondo.com via your smartphone or other device, your device must meet certain system requirements. These requirements can be found on the website as well as on the Google and Apple app marketplaces. 3.1. Cancellation by You You may cancel your membership at any time by deleting your account. This action is irreversible. Once you delete your account, all data associated with your use of the Services will be permanently deleted. After deleting your account, the cancellation of a paid subscription will take effect at the end of the corresponding billing period.\nPlease note that if you purchase a paid subscription through the Apple iTunes Store or our iPhone application, you may cancel your subscription by canceling the automatic renewal of paid in-app subscriptions by selecting “Manage App Subscriptions” in your iTunes account settings and selecting the subscription you wish to change. If you purchase a paid subscription through the Google Play Store, you may cancel automatic renewals in your account settings under \"Subscriptions\" in the Google Play app, or in accordance with the current process described by Google Play. Cancellation by Us We may suspend or terminate your use of the Services due to your fraud or breach of any obligation under these Terms. Such termination or suspension may be immediate and without notice. Commercial Use The Service is intended for your personal use only. Except as otherwise expressly permitted herein or in the Services, you agree not to display, distribute, license, perform, publish, reproduce, duplicate, copy, create derivative works from, modify, sell, resell, exploit, transmit or upload for any commercial purposes the Content, any part of the Services, use of the Services, or access to the Services.\n\nGENERAL USE AND STORAGE PRACTICES\nYou acknowledge that we may establish general practices and limits regarding use of the Services, including, but not limited to, the maximum period of time that data or other content will be retained by the Services and the maximum storage space that will be allocated on our servers on your behalf. You agree that Replika has no responsibility or liability for the deletion or failure to store any data or other content maintained or uploaded by the Services. You acknowledge that we reserve the right to terminate accounts that are inactive for an extended period of time. You further acknowledge that we reserve the right to change these general practices and limits at any time in our sole discretion, with or without notice.\n\nDISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY\n\nRasondo.com makes no representations or warranties that the Site will meet your requirements, will be available on an uninterrupted, secure, or error-free basis, or will be free of viruses or other harmful components. The Site is provided \"as is\" and \"as available\" without any warranties of any kind. In no event will Rasondo.com be liable to you or any third party for any direct, indirect, incidental, special or consequential damages arising out of or in connection with your use of the Site, including but not limited to lost profits and lost data or business interruption. The chatbot outputs provided by the Site are not human generated and by using the Site you acknowledge that the responses you receive are not human generated but only software generated and Rasondo.com cannot control them. The output you receive will depend on the triggers you provide. You may find the output offensive, indecent or objectionable and you agree that under no circumstances will Rasondo.com be liable for any loss or damage of any kind arising from your use of any Content. Rasondo.com does not provide health care, psychiatric, medical care or other professional services in the field of medicine or therapy. If you are struggling with mental health issues, you should consult a doctor, therapist or other specialist and seek professional advice. Rasondo.com accepts no responsibility if a user finds that their mental or physical well-being is impaired after they have started using the website. Rasondo.com is not liable for mental disorders, suicidal tendencies or other health problems for which the user should seek professional help. Place of jurisdiction and applicable law The place of jurisdiction for all disputes arising from this contract is Cape Town.\n1. South African law applies',
+          'TERMS AND CONDITIONS\nThese Terms and Conditions (\"Agreement\") set forth the legally binding terms and conditions governing your use of the Rasondo.com website (\"Website\"), owned and operated by Capepoint Trading 38 PTY LTD.\n\nBy accessing or using our Website, you agree to this Agreement. If you do not agree to this Agreement, you may not access or use our Website.\n\nCONTENT ON THE WEBSITE\nThe content of this Website is generated using our artificial intelligence technology. We cannot guarantee that the generated content will meet your preferences or desires, but we promise to share any advancements in technology with our customers. It is important to note that all content generated on this Website is purely fictional and is not intended to depict any real person, living or deceased. Any resemblance to real persons or events is purely coincidental.\nWe are committed to ensuring that AI-generated content on our platform does not in any way resemble or exploit minors. Any AI-generated content resembling minors will be promptly reviewed and removed. Please note that while our image generation and AI chat features aim to provide an exceptional experience, there may be instances where the results do not meet your expectations. Like any new technology, artificial intelligence and machine learning systems are continually evolving, and improvements are made daily. By registering with Rasondo.com, users agree to the limitations of the system and acknowledge that chat and image generation (including voice messages and video generation, if integrated) results may occasionally be inadequate. We appreciate your understanding as we work tirelessly to improve and refine our platform to provide the best possible experience for our users.\nOWNERSHIP RIGHTS The Site and all content and materials available on the Site, including but not limited to text, graphics, logos, icons, images, audio clips, video clips, data compilations, and software, are owned by Rasondo.com or its licensors and are protected by copyright laws.\nWithout our prior written consent, you may not copy, modify, distribute, display, transmit, reproduce, or create derivative works of any part of the Site or its content. You may not reverse assemble, decompile, translate, or otherwise attempt to discover the source code or underlying components of the models, algorithms, and systems of the services provided by the Site. PAYMENT AND BILLING Rasondo.com offers paid plans that may allow users to generate more content and send more messages to their Virtual Friend, or provide users with other options based on the plan they have chosen.\nBy subscribing to a paid plan, you agree to pay all applicable fees and charges, including all applicable taxes. Rasondo.com may update its pricing and billing policies at any time. By continuing to use the website after such changes, you agree to the updated pricing and billing policies. Rasondo.com may send you emails about its new pricing and billing policies for the sole purpose of informing you. Refunds Please note that if you purchase a subscription through the Apple iTunes Store or our iPhone application, the sale is final, and we do not provide refunds. Your purchase is subject to Apple\'s applicable payment policies, which may also not provide refunds.\nIf you purchase a subscription through the Google Play Store, the sale is final, and we do not provide refunds. Your purchase is subject to Google\'s applicable payment policies, which may also not provide refunds. If you purchase a subscription through our website (through Stripe, PayPal, or another payment processor), the sale is final, and we do not provide refunds. Please note that the refund policy for EU citizens does not apply to access to the digital product provided within 14 days of purchase. Device Requirements To enjoy Rasondo.com via your smartphone or other device, your device must meet certain system requirements. These requirements can be found on the website and on the Google and Apple app marketplaces. 3.1. Cancellation by You You may cancel your membership at any time by deleting your account. This action is irreversible. Once you delete your account, all data associated with your use of the Services will be permanently deleted. After deleting your account, cancellation of a paid subscription will take effect at the end of the applicable billing period.\nPlease note that if you purchased a paid subscription through the Apple iTunes Store or our iPhone app, you can cancel your subscription by canceling the automatic renewal of paid in-app subscriptions by going to \"Manage App Subscriptions\" in your iTunes account settings and selecting the subscription you wish to change. If you purchase a paid subscription through the Google Play Store, you may cancel automatic renewals in your account settings under \"Subscriptions\" in the Google Play app or according to the then-current process described by Google Play. Cancellation by Us We may suspend or terminate your use of the Services due to your fraud or breach of any obligation under these Terms. Such termination or suspension may be immediate and without notice. Commercial Use The Service is for your personal use only. Except as expressly permitted herein or in the Services, you agree not to display, distribute, license, perform, publish, reproduce, duplicate, copy, create derivative works from, modify, sell, resell, exploit, transmit, or upload for any commercial purpose any Content, any portion of the Services, use of the Services, or access to the Services.\n\nGENERAL USE AND STORAGE PRACTICES\nYou acknowledge that we may establish general practices and limits regarding the use of the Services, including, but not limited to, the maximum period of time that data or other content will be retained by the Services and the maximum storage space that will be allocated on your behalf on our servers. You agree that Replika assumes no responsibility or liability for the deletion or failure to store any data or other content maintained or uploaded by the Services. You acknowledge that we reserve the right to terminate accounts that are inactive for an extended period of time. You further acknowledge that we reserve the right to change these general practices and limits at any time in our sole discretion, with or without notice.\n\nDISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY\n\nRasondo.com makes no representations or warranties that the Site will meet your requirements, be available on an uninterrupted, secure, or error-free basis, or that it is free of viruses or other harmful components. The website is provided \"as is\" and \"as available\" without any warranties of any kind. In no event will Rasondo.com be liable to you or any third party for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with your use of the website, including, but not limited to, lost profits, lost data, or business interruption. The chatbot outputs provided by the website are not human-generated, and by using the website, you acknowledge that the responses you receive are not human-generated, but only software-generated, and Rasondo.com cannot control them. The output you receive depends on the triggers you provide. You may find the output offensive, indecent, or objectionable, and you agree that under no circumstances will Rasondo.com be liable for any loss or damage of any kind arising from your use of any content. Rasondo.com does not provide healthcare, psychiatric, medical care, or other professional services in the medical or therapeutic field. If you are struggling with mental health issues, you should consult a doctor, therapist, or other specialist for professional advice. Rasondo.com assumes no responsibility if a user discovers that their mental or physical well-being is impaired after using the website. Rasondo.com is not liable for mental disorders, suicidal tendencies, or other health problems for which the user should seek professional assistance. Jurisdiction and Applicable Law: The place of jurisdiction for all disputes arising from this agreement is Cape Town.\n1. South African law applies.',
     },
     'f85nbv7l': {
       'de':
           'Impressum\n\nAngaben gemäß § 5 TMG:\n\n[Name des Unternehmens]\n[Adresse des Unternehmens]\n[PLZ Ort]\n\nVertreten durch:\n[Name des Geschäftsführers / Inhabers]\n\nKontakt:\nTelefon: [Telefonnummer]\nE-Mail: [E-Mail-Adresse]\nWebsite: [URL der Website]\n\nRegistereintrag:\nEintragung im Handelsregister.\nRegistergericht: [Name des Amtsgerichts]\nRegisternummer: [Handelsregisternummer]\n\nUmsatzsteuer-ID:\nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: [USt-IdNr.]\n\nVerantwortlich für den Inhalt nach § 55 Abs. 2 RStV:\n[Name]\n[Adresse]',
       'en':
-          'Imprint\n\nInformation in accordance with Section 5 of the Telemedia Act:\n\n[Name of the company]\n[Address of the company]\n[Postal code]\n\nRepresented by:\n[Name of the managing director / owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [URL of the website]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of the local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number in accordance with Section 27a of the Sales Tax Law: [VAT ID number]\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n[Name]\n[Address]',
+          'Imprint\n\nInformation pursuant to Section 5 of the Telemedia Act (TMG):\n\n[Company name]\n[Company address]\n[Postal code/city]\n\nRepresented by:\n[Name of Managing Director/Owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [Website URL]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number pursuant to Section 27a of the Sales Tax Act: [VAT ID number]\n\nResponsible for content pursuant to Section 55 (2) of the Interstate Broadcasting Agreement (RStV):\n[Name]\n[Address]',
     },
     'k4hl2j9u': {
       'de': 'Explore',
@@ -2809,7 +2830,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'jdrvxq09': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'qzgwo69v': {
       'de': 'Create AI',
@@ -2833,7 +2854,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'exk180mf': {
       'de': 'Logout',
-      'en': 'logout',
+      'en': 'Logout',
     },
     'mkcl4hpw': {
       'de': 'Home',
@@ -2876,15 +2897,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '2bwlz7lo': {
       'de': 'Character entdecken',
-      'en': 'discover characters',
+      'en': 'Discover Character',
     },
     'oozbe1ms': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     'vqv0tpfx': {
       'de': 'Character erstellen',
-      'en': 'Create Character',
+      'en': 'Create character',
     },
     'uk2mzhtn': {
       'de': 'Message...',
@@ -2892,11 +2913,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'r3ks9jv3': {
       'de': 'Darkmodus',
-      'en': 'dark mode',
+      'en': 'Dark mode',
     },
     'a1xiwof9': {
       'de': 'User profil',
-      'en': 'user profile',
+      'en': 'User profile',
     },
     'bzadumz6': {
       'de': 'Login',
@@ -2910,13 +2931,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de':
           'Angaben gemäß § 5 TMG:\n\nCapepointtrading 38 PTY (LTD)\nIl Paladino Alphen Close 2\nWestern Cape\n7140 Strand\n\nVertreten durch:\nGertrude Piringer\n\nKontakt:\nTelefon: +43 (0) 720 1270109\nE-Mail: office@rasondo.com\n\nHandelsregister: 2011/143503/07\nRegistergericht: Cape Town, Western Cape\n\nUmsatzsteuer-ID: \nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:\n4191255614\n\nVerantwortlich für den Inhalt nach § 55 Abs. 2 RStV:\nCapepointtrading 38 (PTY) LTD\n\nEU-Streitschlichtung\n\nDie Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:\nhttps://ec.europa.eu/consumers/odr/.\n\nUnsere E-Mail-Adresse finden Sie oben im Impressum.\nVerbraucherstreitbeilegung/Universalschlichtungsstelle\nWir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.\n\n',
       'en':
-          'Information in accordance with Section 5 of the Telemedia Act:\n\nCapepointtrading 38 PTY (LTD)\n\nIl Paladino Alphen Close 2\n\nWestern Cape\n\n7140 Strand\n\nRepresented by:\nGertrude Piringer\n\nContact:\nTelephone: +43 (0) 720 1270109\nE-mail: office@rasondo.com\n\nCommercial register: 2011/143503/07\nRegistration court: Cape Town, Western Cape\n\nVAT ID: \nVAT identification number in accordance with Section 27 a of the Sales Tax Law:\n\n4191255614\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n\nCapepointtrading 38 (PTY) LTD\n\nEU dispute resolution\n\nThe European Commission provides a platform for online dispute resolution (OS) ready:\nhttps://ec.europa.eu/consumers/odr/.\n\nYou can find our email address above in the imprint.\nConsumer dispute resolution/universal arbitration board\nWe are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
+          'Information pursuant to Section 5 of the Telemedia Act:\n\nCapepointtrading 38 PTY (LTD)\nIl Paladino Alphen Close 2\nWestern Cape\n7140 Strand\n\nRepresented by:\nGertrude Piringer\n\nContact:\nPhone: +43 (0) 720 1270109\nEmail: office@rasondo.com\n\nCommercial Register: 2011/143503/07\nRegistration Court: Cape Town, Western Cape\n\nVAT ID:\nVAT identification number pursuant to Section 27a of the Sales Tax Act:\n4191255614\n\nResponsible for content pursuant to Section 55 (2) of the German Interstate Broadcasting Agreement (RStV):\nCapepointtrading 38 (PTY) LTD\n\nEU Dispute Resolution\n\nThe European Commission provides a platform for online dispute resolution (ODR). Available:\nhttps://ec.europa.eu/consumers/odr/.\n\nYou can find our email address above in the imprint.\nConsumer Dispute Resolution/Universal Arbitration Board\nWe are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
     },
     '9qgtd7a8': {
       'de':
           'Impressum\n\nAngaben gemäß § 5 TMG:\n\n[Name des Unternehmens]\n[Adresse des Unternehmens]\n[PLZ Ort]\n\nVertreten durch:\n[Name des Geschäftsführers / Inhabers]\n\nKontakt:\nTelefon: [Telefonnummer]\nE-Mail: [E-Mail-Adresse]\nWebsite: [URL der Website]\n\nRegistereintrag:\nEintragung im Handelsregister.\nRegistergericht: [Name des Amtsgerichts]\nRegisternummer: [Handelsregisternummer]\n\nUmsatzsteuer-ID:\nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: [USt-IdNr.]\n\nVerantwortlich für den Inhalt nach § 55 Abs. 2 RStV:\n[Name]\n[Adresse]',
       'en':
-          'Imprint\n\nInformation in accordance with Section 5 of the Telemedia Act:\n\n[Name of the company]\n[Address of the company]\n[Postal code]\n\nRepresented by:\n[Name of the managing director / owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [URL of the website]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of the local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number in accordance with Section 27a of the Sales Tax Law: [VAT ID number]\n\nResponsible for the content in accordance with Section 55 Paragraph 2 of the RStV:\n[Name]\n[Address]',
+          'Imprint\n\nInformation pursuant to Section 5 of the Telemedia Act (TMG):\n\n[Company name]\n[Company address]\n[Postal code/city]\n\nRepresented by:\n[Name of Managing Director/Owner]\n\nContact:\nTelephone: [Telephone number]\nEmail: [Email address]\nWebsite: [Website URL]\n\nRegistration entry:\nEntry in the commercial register.\nRegistration court: [Name of local court]\nRegistration number: [Commercial register number]\n\nVAT ID:\nVAT identification number pursuant to Section 27a of the Sales Tax Act: [VAT ID number]\n\nResponsible for content pursuant to Section 55 (2) of the Interstate Broadcasting Agreement (RStV):\n[Name]\n[Address]',
     },
     'qabv6fqz': {
       'de': 'Home',
@@ -2981,7 +3002,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '7jelnw8q': {
       'de': 'Mid-Manager',
-      'en': 'mid-manager',
+      'en': 'Mid-Manager',
     },
     'm52efw13': {
       'de': 'Employee',
@@ -3000,7 +3021,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'p3o8plca': {
       'de': 'Jetzt kostenlos testen!',
-      'en': 'Register for free',
+      'en': 'Try it now for free!',
     },
   },
   // sidebarMobile
@@ -3011,7 +3032,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'tvgk4nn0': {
       'de': 'Chats',
-      'en': 'chats',
+      'en': 'Chats',
     },
     '0ao7hbpg': {
       'de': 'Create AI',
@@ -3038,7 +3059,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '96b8bg4d': {
       'de': 'Jetzt AI partner erstellen!\n',
-      'en': 'Create AI partner now!',
+      'en': 'Create an AI partner now!',
     },
   },
   // buttonPinkMediumCopy
@@ -3063,7 +3084,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '5n5ty6ds': {
       'de': '+10000 nutzende Kunden',
-      'en': '+10000 customers using it',
+      'en': '+10000 using customers',
     },
   },
   // statementRow
@@ -3082,7 +3103,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'u3fk8ldn': {
       'de': 'Rating',
-      'en': 'rating',
+      'en': 'Rating',
     },
   },
   // statementBar
@@ -3093,11 +3114,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ol9ojtkm': {
       'de': 'Streaks',
-      'en': 'streaks',
+      'en': 'Streaks',
     },
     '2ssuyxem': {
       'de': 'Likes',
-      'en': 'likes',
+      'en': 'Likes',
     },
     'n4g5hjw5': {
       'de': 'Magic',
@@ -3149,7 +3170,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '177p7j7x': {
       'de': 'Anime',
-      'en': 'anime',
+      'en': 'Anime',
     },
   },
   // editProfile_auth_2_1
@@ -3175,31 +3196,31 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'yf70kqbm': {
       'de': 'Seiten',
-      'en': 'pages',
+      'en': 'Pages',
     },
     'ktkzfub1': {
       'de': 'Home',
       'en': 'Home',
     },
     'n2ruhw1d': {
-      'de': 'Entdecken',
-      'en': 'Discover',
+      'de': 'Chatpartner finden',
+      'en': 'Find chat partners',
     },
     'l1l8j2xd': {
-      'de': 'AI Partner erstellen',
-      'en': 'Create AI Partner',
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
     'd0m5zw7g': {
-      'de': 'Chats',
-      'en': 'chats',
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
     'igxnqez6': {
-      'de': 'Meine AI',
-      'en': 'My AI',
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
     'godcdk70': {
       'de': 'Account',
-      'en': 'account',
+      'en': 'Account',
     },
     'yumy3gpl': {
       'de': 'Login',
@@ -3219,7 +3240,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'tc1aasv0': {
       'de': 'Datenschutz',
-      'en': 'data protection',
+      'en': 'Data protection',
     },
     'up4nv2b6': {
       'de': 'Impressum',
@@ -3231,38 +3252,38 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'r1755ppl': {
       'de': '2025 Rasondo. All rights reserved',
-      'en': '2024 Rasondo. All rights reserved',
+      'en': '2025 Rasondo. All rights reserved',
     },
   },
   // FooterMobile
   {
     'nomfsa0u': {
       'de': 'Seiten',
-      'en': 'pages',
+      'en': 'Pages',
     },
     'dlhqp26j': {
       'de': 'Home',
       'en': 'Home',
     },
     'pm9fyhtk': {
-      'de': 'Entdecken',
-      'en': 'Discover',
+      'de': 'Chatpartner entdecken',
+      'en': 'Discover chat partners',
     },
     'ap7l65cs': {
-      'de': 'AI Partner erstellen',
-      'en': 'Create AI Partner',
+      'de': 'Wunschpartner erstellen',
+      'en': 'Create your desired partner',
     },
     '8wsex5ep': {
-      'de': 'Chats',
-      'en': 'chats',
+      'de': 'Meine Chats',
+      'en': 'My Chats',
     },
     '6mer3000': {
-      'de': 'Meine AI',
-      'en': 'My AI',
+      'de': 'Meine Chatpartner',
+      'en': 'My chat partners',
     },
     'ezibrawi': {
       'de': 'Account',
-      'en': 'account',
+      'en': 'Account',
     },
     '85d2jvfs': {
       'de': 'Login',
@@ -3282,7 +3303,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6fzjbl0o': {
       'de': 'Datenschutz',
-      'en': 'data protection',
+      'en': 'Data protection',
     },
     'z1engzr2': {
       'de': 'Impressum',
@@ -3316,13 +3337,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '6yhnlh1l': {
       'de': 'Inhalte für 18+',
-      'en': 'content for 18+',
+      'en': 'Content for 18+',
     },
     '80cke4m0': {
       'de':
           'Diese Seite ist nur für Erwachsene. \nEs enthät Ai generierte Inhalte, die für Erwachsene bestimmt sind.',
       'en':
-          'This site is for adults only. \nIt contains AI generated content intended for adults.',
+          'This site is for adults only.\nIt contains AI-generated content intended for adults.',
     },
     'qgk6424z': {
       'de': 'Ich bin über 18',
@@ -3348,7 +3369,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '3c4cmhi2': {
       'de': 'Create Limit erreicht',
-      'en': 'Create Limit reached',
+      'en': 'Create limit reached',
     },
     'epjotz8o': {
       'de': 'Werde Premium und erstelle so viele Charactere wie du möchtest!',
@@ -3363,13 +3384,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '685ipd8o': {
       'de': 'Cookies',
-      'en': 'cookies',
+      'en': 'Cookies',
     },
     'q5lp4wrf': {
       'de':
           'Wir nutzen Cookies, um unsere Webseite zu verbessern und Ihnen personalisierte Inhalte anzubieten. Einige Cookies sind notwendig, um die Funktionalität der Webseite zu gewährleisten, während andere uns helfen, die Benutzererfahrung zu optimieren und für Sie relevante Werbung anzuzeigen.Indem Sie auf \"Akzeptieren\" klicken, stimmen Sie der Verwendung aller Cookies zu. Sie können Ihre Einwilligung jederzeit widerrufen. Weitere Informationen finden Sie in unserer Datenschutzbestimmungen.',
       'en':
-          'We use cookies to improve our website and offer you personalized content. Some cookies are necessary to ensure the functionality of the website, while others help us optimize the user experience and display advertising that is relevant to you.By clicking \"Accept\", you agree to the use of all cookies. You can withdraw your consent at any time. For more information, see our privacy policy.',
+          'We use cookies to improve our website and offer you personalized content. Some cookies are necessary to ensure website functionality, while others help us optimize the user experience and display relevant advertising. By clicking \"Accept,\" you consent to the use of all cookies. You can withdraw your consent at any time. For more information, see our Privacy Policy.',
     },
     '4du2trnj': {
       'de': 'Ablehnen',
@@ -3389,7 +3410,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yr16cou4': {
       'de':
           'Es scheint, als hätte die Verifizierung nicht geklappt. \nBitte versuchen Sie es erneut.',
-      'en': 'It seems that the verification failed. \nPlease try again.',
+      'en': 'It seems the verification failed.\nPlease try again.',
     },
     'asuyruca': {
       'de': 'Zur Registrierung',
@@ -3441,7 +3462,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'xglwufyp': {
       'de': 'Bild wird erstellt',
-      'en': 'Image is created',
+      'en': 'Image is being created',
     },
   },
   // Miscellaneous

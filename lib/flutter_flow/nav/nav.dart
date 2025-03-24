@@ -120,7 +120,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: ChatsWidget.routePath,
           requireAuth: true,
           builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'Chats') : ChatsWidget(),
+              params.isEmpty ? NavBarPage(initialPage: 'chats') : ChatsWidget(),
         ),
         FFRoute(
           name: CharacterProfilWidget.routeName,

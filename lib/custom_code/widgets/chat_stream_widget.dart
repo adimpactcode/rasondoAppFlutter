@@ -55,10 +55,8 @@ class _FadingLetterState extends State<FadingLetter> {
   }
 }
 
-/// Widget, das den übergebenen Text buchstabenweise aufbaut und
-/// jeden neuen Buchstaben einzeln (mit Fade‑in) erscheinen lässt.
-/// Die Wrap‑Variante sorgt dafür, dass der Text natürlich umbricht – wir
-/// kapseln ihn zusätzlich in einen Container mit voller Breite.
+/// Neuer AnimatedTypingText, der alle Buchstaben als TextSpans in einem einzigen RichText darstellt.
+/// Dadurch übernimmt der Text-Renderer das korrekte Umbruch- und Worttrennungsverhalten.
 class AnimatedTypingText extends StatefulWidget {
   final String text;
   final TextStyle? style;
@@ -77,68 +75,73 @@ class AnimatedTypingText extends StatefulWidget {
   _AnimatedTypingTextState createState() => _AnimatedTypingTextState();
 }
 
-class _AnimatedTypingTextState extends State<AnimatedTypingText> {
-  int _visibleLetters = 0;
-  Timer? _timer;
+class _AnimatedTypingTextState extends State<AnimatedTypingText>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Duration _totalDuration;
 
   @override
   void initState() {
     super.initState();
-    _startAnimation();
-  }
-
-  void _startAnimation() {
-    _timer = Timer.periodic(widget.letterDelay, (timer) {
-      if (_visibleLetters < widget.text.length) {
-        setState(() {
-          _visibleLetters++;
-        });
-      } else {
-        timer.cancel();
-      }
-    });
+    _totalDuration =
+        widget.letterDelay * widget.text.length + widget.fadeDuration;
+    _controller = AnimationController(vsync: this, duration: _totalDuration);
+    _controller.forward();
   }
 
   @override
   void didUpdateWidget(covariant AnimatedTypingText oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Falls der Text erweitert wurde, animiere nur die neuen Buchstaben.
-    if (widget.text.length > _visibleLetters) {
-      _timer?.cancel();
-      _startAnimation();
+    if (oldWidget.text != widget.text) {
+      _controller.dispose();
+      _totalDuration =
+          widget.letterDelay * widget.text.length + widget.fadeDuration;
+      _controller = AnimationController(vsync: this, duration: _totalDuration);
+      _controller.forward();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> letterWidgets = [];
-    for (int i = 0; i < _visibleLetters; i++) {
-      letterWidgets.add(FadingLetter(
-        letter: widget.text[i],
-        style: widget.style,
-        fadeDuration: widget.fadeDuration,
-      ));
-    }
-    // Container mit voller Breite, damit der Wrap den gesamten horizontalen Raum nutzt.
-    return Container(
-      width: double.infinity,
-      child: Wrap(
-        spacing: 0,
-        runSpacing: 0,
-        alignment: WrapAlignment.start,
-        children: letterWidgets,
-      ),
+    final baseStyle = widget.style ?? DefaultTextStyle.of(context).style;
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        List<TextSpan> spans = [];
+        final currentTime = _controller.value * _totalDuration.inMilliseconds;
+        for (int i = 0; i < widget.text.length; i++) {
+          final letterStart = widget.letterDelay.inMilliseconds * i;
+          final letterEnd = letterStart + widget.fadeDuration.inMilliseconds;
+          double opacity;
+          if (currentTime < letterStart) {
+            opacity = 0.0;
+          } else if (currentTime >= letterEnd) {
+            opacity = 1.0;
+          } else {
+            opacity = (currentTime - letterStart) /
+                widget.fadeDuration.inMilliseconds;
+          }
+          spans.add(TextSpan(
+              text: widget.text[i],
+              style: baseStyle.copyWith(
+                  color: baseStyle.color?.withOpacity(opacity) ??
+                      Colors.black.withOpacity(opacity))));
+        }
+        return RichText(
+          text: TextSpan(children: spans, style: baseStyle),
+        );
+      },
     );
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _controller.dispose();
     super.dispose();
   }
 }
 
-/// Widget für die pulsierenden Punkte im Typing-Bubble.
+/// Widget für die pulsierenden Punkte in der Typing-Bubble.
 /// Jeder Punkt animiert sowohl seine Skalierung als auch seine Deckkraft.
 class PulsatingDot extends StatefulWidget {
   final Duration delay;
@@ -295,10 +298,10 @@ class _ChatStreamWidgetState extends State<ChatStreamWidget> {
                 ),
               ],
             ),
-            child: _buildMessageContent(message, isUserMessage),
+            child: _buildMessageContent(message, isUserMessage, index),
           );
 
-          // API-Nachrichten (über content) werden direkt angezeigt.
+          // User-Nachrichten werden statisch angezeigt.
           return Align(
             alignment:
                 isUserMessage ? Alignment.centerRight : Alignment.centerLeft,
@@ -309,7 +312,7 @@ class _ChatStreamWidgetState extends State<ChatStreamWidget> {
     );
   }
 
-  /// Optimiertes Chunk-Merging für korrekte Worttrennung.
+  /// Optimiertes Chunk-Merging (hier nur als Platzhalter, falls benötigt).
   String mergeChunks(List<String> chunks) {
     if (chunks.isEmpty) return "";
     final buffer = StringBuffer();
@@ -332,7 +335,13 @@ class _ChatStreamWidgetState extends State<ChatStreamWidget> {
     return buffer.toString();
   }
 
-  Widget _buildMessageContent(MessagesStruct message, bool isUserMessage) {
+  /// Hier unterscheiden wir:
+  /// - Für Nachrichten, die beim Page‑Load (über content) gesetzt werden:
+  ///   * User-Nachrichten werden statisch (SelectableText) angezeigt.
+  ///   * Assistant-Nachrichten werden statisch, **außer** wenn widget.isTyping true ist
+  ///     und es sich um die letzte Nachricht handelt.
+  Widget _buildMessageContent(
+      MessagesStruct message, bool isUserMessage, int index) {
     final textStyle = TextStyle(
       color: isUserMessage
           ? Colors.white
@@ -340,43 +349,24 @@ class _ChatStreamWidgetState extends State<ChatStreamWidget> {
       fontSize: 16,
     );
 
-    // API-Nachrichten (über content) unverändert.
     if (message.content != null && message.content!.isNotEmpty) {
-      return SelectableText(
-        message.content!,
-        style: textStyle,
-      );
-    }
-    // Streaming-Nachrichten (Chunks):
-    else if (message.messages != null && message.messages!.isNotEmpty) {
-      // Wenn nur ein Chunk vorliegt, wird er vollständig animiert.
-      if (message.messages!.length == 1) {
+      // Nur wenn es sich um eine Assistant-Nachricht handelt, widget.isTyping true ist
+      // und es die letzte Nachricht ist, wird der stream-like Effekt angewendet.
+      if (!isUserMessage &&
+          widget.isTyping &&
+          index == widget.messages.length - 1) {
         return AnimatedTypingText(
-          key: ValueKey("animated_${message.hashCode}_chunk0"),
-          text: message.messages!.first,
+          key: ValueKey("animated_${message.hashCode}_content"),
+          text: message.content!,
           style: textStyle,
           letterDelay: Duration(milliseconds: 50),
           fadeDuration: Duration(milliseconds: 300),
         );
       } else {
-        // Bei mehreren Chunks: Alle bisherigen Chunks werden als statischer Text angezeigt,
-        // und der letzte Chunk wird animiert.
-        List<Widget> children = [];
-        for (int i = 0; i < message.messages!.length - 1; i++) {
-          children.add(Text(message.messages![i], style: textStyle));
-        }
-        children.add(AnimatedTypingText(
-          key: ValueKey(
-              "animated_${message.hashCode}_chunk_${message.messages!.length - 1}"),
-          text: message.messages!.last,
+        // Andernfalls wird der Text statisch angezeigt.
+        return SelectableText(
+          message.content!,
           style: textStyle,
-          letterDelay: Duration(milliseconds: 50),
-          fadeDuration: Duration(milliseconds: 300),
-        ));
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: children,
         );
       }
     }

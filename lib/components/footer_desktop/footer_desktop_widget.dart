@@ -182,7 +182,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'n2ruhw1d' /* Entdecken */,
+                                  'n2ruhw1d' /* Chatpartner finden */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -217,7 +217,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'l1l8j2xd' /* AI Partner erstellen */,
+                                  'l1l8j2xd' /* Wunschpartner erstellen */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -259,7 +259,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'd0m5zw7g' /* Chats */,
+                                  'd0m5zw7g' /* Meine Chats */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -297,7 +297,7 @@ class _FooterDesktopWidgetState extends State<FooterDesktopWidget> {
                             },
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'igxnqez6' /* Meine AI */,
+                                'igxnqez6' /* Meine Chatpartner */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

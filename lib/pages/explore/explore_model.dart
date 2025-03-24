@@ -27,8 +27,6 @@ import 'package:provider/provider.dart';
 class ExploreModel extends FlutterFlowModel<ExploreWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel1;
   // State field(s) for TabBarMobile widget.
   TabController? tabBarMobileController;
   int get tabBarMobileCurrentIndex =>
@@ -40,19 +38,17 @@ class ExploreModel extends FlutterFlowModel<ExploreWidget> {
       tabBarDesktopController != null ? tabBarDesktopController!.index : 0;
 
   // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel2;
+  late ButtonPinkModel buttonPinkModel;
 
   @override
   void initState(BuildContext context) {
-    buttonPinkModel1 = createModel(context, () => ButtonPinkModel());
-    buttonPinkModel2 = createModel(context, () => ButtonPinkModel());
+    buttonPinkModel = createModel(context, () => ButtonPinkModel());
   }
 
   @override
   void dispose() {
-    buttonPinkModel1.dispose();
     tabBarMobileController?.dispose();
     tabBarDesktopController?.dispose();
-    buttonPinkModel2.dispose();
+    buttonPinkModel.dispose();
   }
 }
