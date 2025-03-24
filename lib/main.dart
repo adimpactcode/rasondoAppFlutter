@@ -164,7 +164,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'Home': HomeWidget(),
       'Explore': ExploreWidget(),
       'Create': CreateWidget(),
-      'Chats': ChatsWidget(),
+      'chats': ChatsWidget(),
       'GetPremium': GetPremiumWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -229,7 +229,7 @@ class _NavBarPageState extends State<NavBarPage> {
             GButton(
               icon: Icons.wechat_sharp,
               text: FFLocalizations.of(context).getText(
-                'ki0q4pzf' /* CHATS */,
+                'ki0q4pzf' /* Meine Chats */,
               ),
               textStyle: GoogleFonts.getFont(
                 'Poppins',

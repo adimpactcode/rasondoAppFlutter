@@ -162,7 +162,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'CHARACTER_PROFIL_Image_yzta5z5t_ON_TAP');
+                                            'CHARACTER_PROFIL_Image_7hzvi9qn_ON_TAP');
                                         logFirebaseEvent('Image_navigate_to');
 
                                         context.pushNamed(HomeWidget.routeName);
@@ -184,7 +184,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'CHARACTER_PROFIL_Icon_yzeymhep_ON_TAP');
+                                              'CHARACTER_PROFIL_Icon_fgk6v4j8_ON_TAP');
                                           logFirebaseEvent('Icon_drawer');
                                           if (scaffoldKey
                                                   .currentState!.isDrawerOpen ||
@@ -216,7 +216,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'CHARACTER_PROFIL_Row_bt3mj4fx_ON_TAP');
+                                        'CHARACTER_PROFIL_Row_krzcbuw9_ON_TAP');
                                     logFirebaseEvent('Row_navigate_to');
 
                                     context.pushNamed(ExploreWidget.routeName);
@@ -232,7 +232,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          'sh7k6lnf' /* Explore */,
+                                          'b9oq255s' /* Chatpartner finden */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -259,7 +259,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'CHARACTER_PROFIL_Row_cn4fw2qd_ON_TAP');
+                                        'CHARACTER_PROFIL_Row_gmlo40q3_ON_TAP');
                                     if (loggedIn == true) {
                                       logFirebaseEvent('Row_navigate_to');
 
@@ -282,7 +282,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          'q0t8ckrk' /* Chats */,
+                                          'r1ax9ikq' /* Meine Chats */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -309,7 +309,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'CHARACTER_PROFIL_Row_dfhiykvl_ON_TAP');
+                                        'CHARACTER_PROFIL_Row_thivxavr_ON_TAP');
                                     logFirebaseEvent('Row_navigate_to');
 
                                     context.pushNamed(CreateWidget.routeName);
@@ -325,7 +325,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          'mknr80p0' /* Create AI */,
+                                          'paw5fae8' /* Wunschpartner erstellen */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -352,7 +352,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'CHARACTER_PROFIL_Row_l1q95ufr_ON_TAP');
+                                        'CHARACTER_PROFIL_Row_f3xsfeu0_ON_TAP');
                                     if (loggedIn == true) {
                                       logFirebaseEvent('Row_navigate_to');
 
@@ -375,7 +375,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          '16fioz52' /* My AI */,
+                                          'uyswn2pt' /* Meine Chatpartner */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -420,7 +420,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'CHARACTER_PROFIL_Container_w8m1amz3_ON_T');
+                                                  'CHARACTER_PROFIL_Container_zofctaiw_ON_T');
                                               logFirebaseEvent(
                                                   'buttonPink_navigate_to');
 
@@ -457,7 +457,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
-                                                '7qlumd8b' /* Premium */,
+                                                'l9fbjc2r' /* Premium */,
                                               ),
                                               icon: Icon(
                                                 Icons.diamond_sharp,
@@ -505,68 +505,74 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     ].divide(SizedBox(height: 16.0)),
                                   ),
                                 ),
-                                if (loggedIn == true)
+                                if ((loggedIn == true) &&
+                                    (currentUserEmailVerified == true))
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'CHARACTER_PROFIL_Row_2fi0bdv7_ON_TAP');
-                                        if (loggedIn == true) {
-                                          logFirebaseEvent('Row_navigate_to');
+                                    child: AuthUserStreamWidget(
+                                      builder: (context) => InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'CHARACTER_PROFIL_Row_vagb24g6_ON_TAP');
+                                          if (loggedIn == true) {
+                                            logFirebaseEvent('Row_navigate_to');
 
-                                          context.pushNamed(
-                                            Auth2ProfilWidget.routeName,
-                                            queryParameters: {
-                                              'profileReference':
-                                                  serializeParam(
-                                                currentUserReference,
-                                                ParamType.DocumentReference,
-                                              ),
-                                            }.withoutNulls,
-                                          );
-                                        } else {
-                                          logFirebaseEvent('Row_navigate_to');
-
-                                          context.pushNamed(
-                                              Auth2CreateWidget.routeName);
-                                        }
-                                      },
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Icon(
-                                            Icons.person_2,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
-                                          ),
-                                          Text(
-                                            FFLocalizations.of(context).getText(
-                                              'wir4e0qs' /* Profil */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLargeFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
+                                            context.pushNamed(
+                                              Auth2ProfilWidget.routeName,
+                                              queryParameters: {
+                                                'profileReference':
+                                                    serializeParam(
+                                                  currentUserReference,
+                                                  ParamType.DocumentReference,
                                                 ),
-                                          ),
-                                        ].divide(SizedBox(width: 16.0)),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            logFirebaseEvent('Row_navigate_to');
+
+                                            context.pushNamed(
+                                                Auth2CreateWidget.routeName);
+                                          }
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Icon(
+                                              Icons.person_2,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                            Text(
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                'qhrlmcx0' /* Profil */,
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ].divide(SizedBox(width: 16.0)),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -580,7 +586,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'CHARACTER_PROFIL_Row_e513iozp_ON_TAP');
+                                          'CHARACTER_PROFIL_Row_dezkwgky_ON_TAP');
                                       logFirebaseEvent('Row_navigate_to');
 
                                       context.pushNamed(
@@ -644,7 +650,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'CHARACTER_PROFIL_Row_kqznry31_ON_TAP');
+                                          'CHARACTER_PROFIL_Row_l0em8n91_ON_TAP');
                                       logFirebaseEvent('Row_navigate_to');
 
                                       context.pushNamed(
@@ -661,7 +667,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                         ),
                                         Text(
                                           FFLocalizations.of(context).getText(
-                                            't31ep6hk' /* Login */,
+                                            'cpy9cvi0' /* Login */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
@@ -689,7 +695,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'CHARACTER_PROFIL_Row_3b47ksgn_ON_TAP');
+                                          'CHARACTER_PROFIL_Row_s9eklrni_ON_TAP');
                                       logFirebaseEvent('Row_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       await authManager.signOut();
@@ -713,7 +719,7 @@ class _CharacterProfilWidgetState extends State<CharacterProfilWidget> {
                                         ),
                                         Text(
                                           FFLocalizations.of(context).getText(
-                                            'j0putu3q' /* Logout */,
+                                            'mkfhgz40' /* Logout */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge

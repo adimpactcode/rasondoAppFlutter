@@ -94,7 +94,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   logFirebaseEvent(
-                                      'MY_A_I_PAGE_Image_x12l80qa_ON_TAP');
+                                      'MY_A_I_PAGE_Image_32l0yx73_ON_TAP');
                                   logFirebaseEvent('Image_navigate_to');
 
                                   context.pushNamed(HomeWidget.routeName);
@@ -116,7 +116,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'MY_A_I_PAGE_Icon_7zl8zkeg_ON_TAP');
+                                        'MY_A_I_PAGE_Icon_gdphe5k3_ON_TAP');
                                     logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
@@ -148,7 +148,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'MY_A_I_PAGE_Row_hwcuuny8_ON_TAP');
+                                  'MY_A_I_PAGE_Row_96dwi5io_ON_TAP');
                               logFirebaseEvent('Row_navigate_to');
 
                               context.pushNamed(ExploreWidget.routeName);
@@ -163,7 +163,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'fyu632vm' /* Explore */,
+                                    'i1cx09fw' /* Chatpartner finden */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -187,7 +187,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'MY_A_I_PAGE_Row_x2x8f9kk_ON_TAP');
+                                  'MY_A_I_PAGE_Row_x5o26z9h_ON_TAP');
                               if (loggedIn == true) {
                                 logFirebaseEvent('Row_navigate_to');
 
@@ -208,7 +208,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'b8bj46d0' /* Chats */,
+                                    'l7qt9vep' /* Meine Chats */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -232,7 +232,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'MY_A_I_PAGE_Row_5wv877ea_ON_TAP');
+                                  'MY_A_I_PAGE_Row_1uyk99cl_ON_TAP');
                               logFirebaseEvent('Row_navigate_to');
 
                               context.pushNamed(CreateWidget.routeName);
@@ -247,7 +247,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    '31hxmk4h' /* Create AI */,
+                                    'm5cc3xnt' /* Wunschpartner erstellen */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -271,7 +271,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'MY_A_I_PAGE_Row_s4vrsosw_ON_TAP');
+                                  'MY_A_I_PAGE_Row_g50f68yy_ON_TAP');
                               if (loggedIn == true) {
                                 logFirebaseEvent('Row_navigate_to');
 
@@ -292,7 +292,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'qq1eb0s7' /* My AI */,
+                                    'cm0grahz' /* Meine Chatpartner */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -332,7 +332,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'MY_A_I_PAGE_Container_g22v2z13_ON_TAP');
+                                            'MY_A_I_PAGE_Container_6syos5kr_ON_TAP');
                                         logFirebaseEvent(
                                             'buttonPink_navigate_to');
 
@@ -340,7 +340,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
-                                        model: _model.buttonPinkModel2,
+                                        model: _model.buttonPinkModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
                                         child: ButtonPinkWidget(),
@@ -348,7 +348,9 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     ),
                                   ),
                                 if (valueOrDefault<bool>(
-                                    currentUserDocument?.isPremium, false))
+                                        currentUserDocument?.isPremium,
+                                        false) ==
+                                    false)
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
@@ -365,7 +367,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
-                                          'wrugfwh4' /* Premium */,
+                                          '120kmb16' /* Premium */,
                                         ),
                                         icon: Icon(
                                           Icons.diamond_sharp,
@@ -422,7 +424,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'MY_A_I_PAGE_Row_5y0g2bfc_ON_TAP');
+                                        'MY_A_I_PAGE_Row_42pdl9zt_ON_TAP');
                                     if (loggedIn == true) {
                                       logFirebaseEvent('Row_navigate_to');
 
@@ -453,7 +455,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          '3o6488n3' /* Profil */,
+                                          '6n75n0c6' /* Profil */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -485,7 +487,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'MY_A_I_PAGE_Row_0rnpvgdc_ON_TAP');
+                                    'MY_A_I_PAGE_Row_yn7017vi_ON_TAP');
                                 logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamed(
@@ -543,7 +545,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'MY_A_I_PAGE_Row_oszza9tx_ON_TAP');
+                                    'MY_A_I_PAGE_Row_9o62xd1c_ON_TAP');
                                 logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamed(Auth2LoginWidget.routeName);
@@ -559,7 +561,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      '4ifg9x7d' /* Login */,
+                                      'xtqr14m2' /* Login */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -585,7 +587,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'MY_A_I_PAGE_Row_1gt0iei3_ON_TAP');
+                                    'MY_A_I_PAGE_Row_f0yniyqp_ON_TAP');
                                 logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
@@ -607,7 +609,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      '27gjs2ks' /* Logout */,
+                                      'w22cbsos' /* Logout */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -693,7 +695,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'MY_A_I_PAGE_Image_datwnpni_ON_TAP');
+                                        'MY_A_I_PAGE_Image_oafbm1pc_ON_TAP');
                                     logFirebaseEvent('Image_navigate_to');
 
                                     context.pushNamed(HomeWidget.routeName);
@@ -724,7 +726,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'MY_A_I_PAGE_Row_j77z993e_ON_TAP');
+                                                'MY_A_I_PAGE_Row_may52lzy_ON_TAP');
                                             logFirebaseEvent('Row_navigate_to');
 
                                             context.pushNamed(
@@ -748,7 +750,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '5mrtk0s5' /* Character entdecken */,
+                                                      'e8wi2d1l' /* Chatpartner finden */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -796,7 +798,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     logFirebaseEvent(
-                                                        'MY_A_I_PAGE_Icon_qgfa6jv3_ON_TAP');
+                                                        'MY_A_I_PAGE_Icon_8vthif0m_ON_TAP');
                                                     logFirebaseEvent(
                                                         'Icon_navigate_to');
 
@@ -823,7 +825,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'MY_A_I_PAGE_Row_76ann0lg_ON_TAP');
+                                                'MY_A_I_PAGE_Row_hal4b4yc_ON_TAP');
                                             logFirebaseEvent('Row_navigate_to');
 
                                             context.pushNamed(
@@ -838,7 +840,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'msbmkd48' /* Chats */,
+                                                      'kycl7irf' /* Meine Chats */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -886,7 +888,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     logFirebaseEvent(
-                                                        'MY_A_I_PAGE_Icon_319pvdr0_ON_TAP');
+                                                        'MY_A_I_PAGE_Icon_x7rvc6r8_ON_TAP');
                                                     if (loggedIn == true) {
                                                       logFirebaseEvent(
                                                           'Icon_navigate_to');
@@ -922,7 +924,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'MY_A_I_PAGE_Row_lamwwciq_ON_TAP');
+                                                'MY_A_I_PAGE_Row_0ni4xba9_ON_TAP');
                                             logFirebaseEvent('Row_navigate_to');
 
                                             context.pushNamed(
@@ -937,7 +939,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'su19gi2u' /* Character erstellen */,
+                                                      'suygm2lq' /* Wunschpartner erstellen */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -985,7 +987,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     logFirebaseEvent(
-                                                        'MY_A_I_PAGE_Icon_n5c2ylxw_ON_TAP');
+                                                        'MY_A_I_PAGE_Icon_3ksf0eu1_ON_TAP');
                                                     logFirebaseEvent(
                                                         'Icon_navigate_to');
 
@@ -1012,7 +1014,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       padding: EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'jv01ei5t' /* Message... */,
+                                          'ichoakxk' /* Message... */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -1067,7 +1069,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       padding: EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'juml0b2z' /* Darkmodus */,
+                                          'b04iyj95' /* Darkmodus */,
                                         ),
                                         style: TextStyle(),
                                       ),
@@ -1092,7 +1094,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                               FFAppState().isLightMode =
                                                   !FFAppState().isLightMode);
                                           logFirebaseEvent(
-                                              'MY_A_I_ToggleIcon_j9yrpqb7_ON_TOGGLE');
+                                              'MY_A_I_ToggleIcon_ff6fpi3t_ON_TOGGLE');
                                           if (Theme.of(context).brightness ==
                                               Brightness.dark) {
                                             logFirebaseEvent(
@@ -1127,7 +1129,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       padding: EdgeInsets.all(4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'ul7tztuj' /* User profil */,
+                                          'llopu7pc' /* User profil */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -1201,25 +1203,48 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                     ),
                                   ),
                                   if (loggedIn == false)
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
+                                    FFButtonWidget(
+                                      onPressed: () async {
                                         logFirebaseEvent(
-                                            'MY_A_I_PAGE_Container_8nxt0o97_ON_TAP');
-                                        logFirebaseEvent(
-                                            'buttonPink_navigate_to');
+                                            'MY_A_I_JETZT_KOSTENLOS_TESTEN_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_navigate_to');
 
                                         context.pushNamed(
                                             Auth2CreateWidget.routeName);
                                       },
-                                      child: wrapWithModel(
-                                        model: _model.buttonPinkModel1,
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: ButtonPinkWidget(),
+                                      text: FFLocalizations.of(context).getText(
+                                        '31tu7x07' /* Jetzt kostenlos testen! */,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: Color(0xFF5BB0FF),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: BorderSide(
+                                          color: Color(0xFF55BBFF),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   if (loggedIn == false)
@@ -1233,7 +1258,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                             Auth2LoginWidget.routeName);
                                       },
                                       text: FFLocalizations.of(context).getText(
-                                        'lfcp5xaf' /* Login */,
+                                        'k5sfwyba' /* Login */,
                                       ),
                                       options: FFButtonOptions(
                                         width: 100.0,
@@ -1243,8 +1268,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: Color(0x00DE5499),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1253,7 +1277,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                                       .bodyMediumFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .tertiary,
+                                                      .primary,
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
@@ -1283,7 +1307,7 @@ class _MyAIWidgetState extends State<MyAIWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'MY_A_I_PAGE_Icon_zdwrkke3_ON_TAP');
+                                            'MY_A_I_PAGE_Icon_zokacn17_ON_TAP');
                                         logFirebaseEvent('Icon_drawer');
                                         scaffoldKey.currentState!.openDrawer();
                                       },

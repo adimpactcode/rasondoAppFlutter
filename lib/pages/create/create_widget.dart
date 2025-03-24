@@ -146,7 +146,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   logFirebaseEvent(
-                                      'CREATE_PAGE_Image_3dvxmp36_ON_TAP');
+                                      'CREATE_PAGE_Image_r4xoif5v_ON_TAP');
                                   logFirebaseEvent('Image_navigate_to');
 
                                   context.pushNamed(HomeWidget.routeName);
@@ -168,7 +168,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'CREATE_PAGE_Icon_e3pa4j7q_ON_TAP');
+                                        'CREATE_PAGE_Icon_3cxmg60f_ON_TAP');
                                     logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
@@ -200,7 +200,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'CREATE_PAGE_Row_w7dc681e_ON_TAP');
+                                  'CREATE_PAGE_Row_tfiunrnv_ON_TAP');
                               logFirebaseEvent('Row_navigate_to');
 
                               context.pushNamed(ExploreWidget.routeName);
@@ -215,7 +215,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'o546ybe0' /* Explore */,
+                                    'tgpbi7sn' /* Chatpartner finden */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -239,7 +239,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'CREATE_PAGE_Row_yqjsvork_ON_TAP');
+                                  'CREATE_PAGE_Row_lebuap02_ON_TAP');
                               if (loggedIn == true) {
                                 logFirebaseEvent('Row_navigate_to');
 
@@ -260,7 +260,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'f0dlzov1' /* Chats */,
+                                    'kod6gv26' /* Meine Chats */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -284,7 +284,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'CREATE_PAGE_Row_6ez49b0u_ON_TAP');
+                                  'CREATE_PAGE_Row_y0vmcw7e_ON_TAP');
                               logFirebaseEvent('Row_navigate_to');
 
                               context.pushNamed(CreateWidget.routeName);
@@ -299,7 +299,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'ywyqdv1d' /* Create AI */,
+                                    '3vorilk0' /* Wunschpartner erstellen */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -323,7 +323,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'CREATE_PAGE_Row_c9wmf0qm_ON_TAP');
+                                  'CREATE_PAGE_Row_3mdf2qfq_ON_TAP');
                               if (loggedIn == true) {
                                 logFirebaseEvent('Row_navigate_to');
 
@@ -344,7 +344,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'ps9qr6cu' /* My AI */,
+                                    'rwciq1id' /* Meine Chatpartner */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -384,7 +384,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'CREATE_PAGE_Container_excyldni_ON_TAP');
+                                            'CREATE_PAGE_Container_k6cwgx29_ON_TAP');
                                         logFirebaseEvent(
                                             'buttonPink_navigate_to');
 
@@ -392,7 +392,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                             Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
-                                        model: _model.buttonPinkModel2,
+                                        model: _model.buttonPinkModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
                                         child: ButtonPinkWidget(),
@@ -419,7 +419,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
-                                          '07lng8n9' /* Premium */,
+                                          '8p8gw4nc' /* Premium */,
                                         ),
                                         icon: Icon(
                                           Icons.diamond_sharp,
@@ -476,7 +476,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'CREATE_PAGE_Row_2anv9a3z_ON_TAP');
+                                        'CREATE_PAGE_Row_tmbjn11j_ON_TAP');
                                     if (loggedIn == true) {
                                       logFirebaseEvent('Row_navigate_to');
 
@@ -507,7 +507,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          'gjutns1n' /* Profil */,
+                                          'gqevu3of' /* Profil */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -539,7 +539,7 @@ class _CreateWidgetState extends State<CreateWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'CREATE_PAGE_Row_ee2mmm76_ON_TAP');
+                                    'CREATE_PAGE_Row_qv50ybkn_ON_TAP');
                                 logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamed(
@@ -597,7 +597,7 @@ class _CreateWidgetState extends State<CreateWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'CREATE_PAGE_Row_kmwdo0if_ON_TAP');
+                                    'CREATE_PAGE_Row_f0cu89q1_ON_TAP');
                                 logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamed(Auth2LoginWidget.routeName);
@@ -613,7 +613,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'vcpdc5mm' /* Login */,
+                                      'kr4fq4kf' /* Login */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -639,7 +639,7 @@ class _CreateWidgetState extends State<CreateWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'CREATE_PAGE_Row_etzr8psl_ON_TAP');
+                                    'CREATE_PAGE_Row_hsjnkuvq_ON_TAP');
                                 logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
@@ -661,7 +661,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'nihlh8ta' /* Logout */,
+                                      'kunjax0m' /* Logout */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -1209,7 +1209,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'CREATE_PAGE_Image_q45t8wv2_ON_TAP');
+                                            'CREATE_PAGE_Image_0vibtvxv_ON_TAP');
                                         logFirebaseEvent('Image_navigate_to');
 
                                         context.pushNamed(HomeWidget.routeName);
@@ -1241,7 +1241,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   Colors.transparent,
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'CREATE_PAGE_Row_mkhjab3e_ON_TAP');
+                                                    'CREATE_PAGE_Row_ttoitlqs_ON_TAP');
                                                 logFirebaseEvent(
                                                     'Row_navigate_to');
 
@@ -1269,7 +1269,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          '7blind59' /* Character entdecken */,
+                                                          'zeo38gj5' /* Chatpartner finden */,
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -1319,7 +1319,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'CREATE_PAGE_Icon_p7an1k5q_ON_TAP');
+                                                            'CREATE_PAGE_Icon_7rbcjox8_ON_TAP');
                                                         logFirebaseEvent(
                                                             'Icon_navigate_to');
 
@@ -1348,7 +1348,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   Colors.transparent,
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'CREATE_PAGE_Row_6ksqfjbr_ON_TAP');
+                                                    'CREATE_PAGE_Row_0tkakqv8_ON_TAP');
                                                 logFirebaseEvent(
                                                     'Row_navigate_to');
 
@@ -1366,7 +1366,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          '9rb11ryf' /* Chats */,
+                                                          'a0ngecog' /* Meine Chats */,
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -1416,7 +1416,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'CREATE_PAGE_Icon_pblp87xg_ON_TAP');
+                                                            'CREATE_PAGE_Icon_xmm8tzts_ON_TAP');
                                                         if (loggedIn == true) {
                                                           logFirebaseEvent(
                                                               'Icon_navigate_to');
@@ -1454,7 +1454,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   Colors.transparent,
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'CREATE_PAGE_Row_eiwx3w6z_ON_TAP');
+                                                    'CREATE_PAGE_Row_lw9vzd80_ON_TAP');
                                                 logFirebaseEvent(
                                                     'Row_navigate_to');
 
@@ -1472,7 +1472,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          'kr3d66up' /* Character erstellen */,
+                                                          'bunwhw48' /* Wunschpartner erstellen */,
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -1522,7 +1522,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'CREATE_PAGE_Icon_c7xlp064_ON_TAP');
+                                                            'CREATE_PAGE_Icon_4jirbtre_ON_TAP');
                                                         logFirebaseEvent(
                                                             'Icon_navigate_to');
 
@@ -1551,7 +1551,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                           padding: EdgeInsets.all(4.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              's652198e' /* Message... */,
+                                              'u2k3iysl' /* Message... */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
@@ -1612,7 +1612,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                           padding: EdgeInsets.all(4.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              'xjrz02hu' /* Darkmodus */,
+                                              'h1bgld7s' /* Darkmodus */,
                                             ),
                                             style: TextStyle(),
                                           ),
@@ -1640,7 +1640,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       .isLightMode =
                                                   !FFAppState().isLightMode);
                                               logFirebaseEvent(
-                                                  'CREATE_ToggleIcon_pbgc3mn7_ON_TOGGLE');
+                                                  'CREATE_ToggleIcon_779revkn_ON_TOGGLE');
                                               if (Theme.of(context)
                                                       .brightness ==
                                                   Brightness.dark) {
@@ -1678,7 +1678,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                           padding: EdgeInsets.all(4.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              'g4xk8t0b' /* User profil */,
+                                              'e0umjvck' /* User profil */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
@@ -1758,25 +1758,53 @@ class _CreateWidgetState extends State<CreateWidget>
                                         ),
                                       ),
                                       if (loggedIn == false)
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
+                                        FFButtonWidget(
+                                          onPressed: () async {
                                             logFirebaseEvent(
-                                                'CREATE_PAGE_Container_pu5ouau2_ON_TAP');
+                                                'CREATE_JETZT_KOSTENLOS_TESTEN_BTN_ON_TAP');
                                             logFirebaseEvent(
-                                                'buttonPink_navigate_to');
+                                                'Button_navigate_to');
 
                                             context.pushNamed(
                                                 Auth2CreateWidget.routeName);
                                           },
-                                          child: wrapWithModel(
-                                            model: _model.buttonPinkModel1,
-                                            updateCallback: () =>
-                                                safeSetState(() {}),
-                                            child: ButtonPinkWidget(),
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            'sm48zfty' /* Jetzt kostenlos testen! */,
+                                          ),
+                                          options: FFButtonOptions(
+                                            height: 40.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFF5BB0FF),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily),
+                                                    ),
+                                            elevation: 0.0,
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF55BBFF),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
                                           ),
                                         ),
                                       if (loggedIn == false)
@@ -1792,7 +1820,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(
-                                            'q284849g' /* Login */,
+                                            'bjvxfscb' /* Login */,
                                           ),
                                           options: FFButtonOptions(
                                             width: 100.0,
@@ -1803,8 +1831,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                             iconPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                            color: Color(0x00DE5499),
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -1816,7 +1843,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .tertiary,
+                                                              .primary,
                                                       fontSize: 16.0,
                                                       letterSpacing: 0.0,
                                                       useGoogleFonts: GoogleFonts
@@ -1847,7 +1874,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'CREATE_PAGE_Icon_nzf6ela2_ON_TAP');
+                                                'CREATE_PAGE_Icon_cd7dh4qd_ON_TAP');
                                             logFirebaseEvent('Icon_drawer');
                                             scaffoldKey.currentState!
                                                 .openDrawer();

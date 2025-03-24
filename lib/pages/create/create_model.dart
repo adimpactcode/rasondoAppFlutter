@@ -69,8 +69,6 @@ class CreateModel extends FlutterFlowModel<CreateWidget> {
   final formKey2 = GlobalKey<FormState>();
   final formKey5 = GlobalKey<FormState>();
   final formKey4 = GlobalKey<FormState>();
-  // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel1;
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -201,19 +199,17 @@ class CreateModel extends FlutterFlowModel<CreateWidget> {
   // Stores action output result for [Backend Call - API (novitaFunctionTextToImage)] action in Button widget.
   ApiCallResponse? generatedImageUrl;
   // Model for buttonPink component.
-  late ButtonPinkModel buttonPinkModel2;
+  late ButtonPinkModel buttonPinkModel;
 
   @override
   void initState(BuildContext context) {
-    buttonPinkModel1 = createModel(context, () => ButtonPinkModel());
     chooseButtonTransparentModel =
         createModel(context, () => ChooseButtonTransparentModel());
-    buttonPinkModel2 = createModel(context, () => ButtonPinkModel());
+    buttonPinkModel = createModel(context, () => ButtonPinkModel());
   }
 
   @override
   void dispose() {
-    buttonPinkModel1.dispose();
     chooseButtonTransparentModel.dispose();
     nameFocusNode?.dispose();
     nameTextController?.dispose();
@@ -224,6 +220,6 @@ class CreateModel extends FlutterFlowModel<CreateWidget> {
     textfieldJobFocusNode?.dispose();
     textfieldJobTextController?.dispose();
 
-    buttonPinkModel2.dispose();
+    buttonPinkModel.dispose();
   }
 }

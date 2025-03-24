@@ -22,7 +22,7 @@ export 'chats_model.dart';
 class ChatsWidget extends StatefulWidget {
   const ChatsWidget({super.key});
 
-  static String routeName = 'Chats';
+  static String routeName = 'chats';
   static String routePath = '/chats';
 
   @override
@@ -39,7 +39,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
     super.initState();
     _model = createModel(context, () => ChatsModel());
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Chats'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'chats'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -82,7 +82,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         List<ChatsRecord> chatsChatsRecordList = snapshot.data!;
 
         return Title(
-            title: 'Chats',
+            title: 'chats',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
             child: GestureDetector(
               onTap: () {
@@ -93,393 +93,50 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                 key: scaffoldKey,
                 backgroundColor:
                     FlutterFlowTheme.of(context).secondaryBackground,
-                drawer: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    logFirebaseEvent('CHATS_PAGE_Drawer_41hsoo0i_ON_TAP');
-                    logFirebaseEvent('Drawer_navigate_to');
+                drawer: Drawer(
+                  elevation: 16.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          24.0, 32.0, 24.0, 32.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHATS_PAGE_Image_4x00vw9e_ON_TAP');
+                                      logFirebaseEvent('Image_navigate_to');
 
-                    context.pushNamed(GetPremiumWidget.routeName);
-                  },
-                  child: Drawer(
-                    elevation: 16.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 32.0, 24.0, 32.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'CHATS_PAGE_Image_5nfolq9l_ON_TAP');
-                                        logFirebaseEvent('Image_navigate_to');
-
-                                        context.pushNamed(HomeWidget.routeName);
-                                      },
-                                      child: Image.asset(
-                                        'assets/images/Rasondo_(18).png',
-                                        width: 170.0,
-                                        height: 60.0,
-                                        fit: BoxFit.cover,
-                                      ),
+                                      context.pushNamed(HomeWidget.routeName);
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/Rasondo_(18).png',
+                                      width: 170.0,
+                                      height: 60.0,
+                                      fit: BoxFit.cover,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          35.0, 0.0, 0.0, 10.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'CHATS_PAGE_Icon_uqekazyf_ON_TAP');
-                                          logFirebaseEvent('Icon_drawer');
-                                          if (scaffoldKey
-                                                  .currentState!.isDrawerOpen ||
-                                              scaffoldKey.currentState!
-                                                  .isEndDrawerOpen) {
-                                            Navigator.pop(context);
-                                          }
-                                        },
-                                        child: Icon(
-                                          Icons.close,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 34.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ].divide(SizedBox(height: 32.0)),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'CHATS_PAGE_Row_y5a5r776_ON_TAP');
-                                    logFirebaseEvent('Row_navigate_to');
-
-                                    context.pushNamed(ExploreWidget.routeName);
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.explore,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'hfcq76iw' /* Explore */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
-                                      ),
-                                    ].divide(SizedBox(width: 16.0)),
                                   ),
-                                ),
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'CHATS_PAGE_Row_aevunq3e_ON_TAP');
-                                    if (loggedIn == true) {
-                                      logFirebaseEvent('Row_navigate_to');
-
-                                      context.pushNamed(ChatsWidget.routeName);
-                                    } else {
-                                      logFirebaseEvent('Row_navigate_to');
-
-                                      context.pushNamed(
-                                          Auth2CreateWidget.routeName);
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.chat_bubble,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'ovxnmf2p' /* Chats */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
-                                      ),
-                                    ].divide(SizedBox(width: 16.0)),
-                                  ),
-                                ),
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'CHATS_PAGE_Row_nsz28338_ON_TAP');
-                                    logFirebaseEvent('Row_navigate_to');
-
-                                    context.pushNamed(CreateWidget.routeName);
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.add_circle,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'hre89vof' /* Create AI */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
-                                      ),
-                                    ].divide(SizedBox(width: 16.0)),
-                                  ),
-                                ),
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'CHATS_PAGE_Row_qotqzd4q_ON_TAP');
-                                    if (loggedIn == true) {
-                                      logFirebaseEvent('Row_navigate_to');
-
-                                      context.pushNamed(MyAIWidget.routeName);
-                                    } else {
-                                      logFirebaseEvent('Row_navigate_to');
-
-                                      context.pushNamed(
-                                          Auth2CreateWidget.routeName);
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.favorite,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'ih8ya1ja' /* My AI */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
-                                      ),
-                                    ].divide(SizedBox(width: 16.0)),
-                                  ),
-                                ),
-                                Divider(
-                                  thickness: 2.0,
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 30.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      if (loggedIn == false)
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 2.0, 0.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'CHATS_PAGE_Container_pvjyegao_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'buttonPink_navigate_to');
-
-                                              context.pushNamed(
-                                                  Auth2CreateWidget.routeName);
-                                            },
-                                            child: wrapWithModel(
-                                              model: _model.buttonPinkModel2,
-                                              updateCallback: () =>
-                                                  safeSetState(() {}),
-                                              child: ButtonPinkWidget(),
-                                            ),
-                                          ),
-                                        ),
-                                      if (valueOrDefault<bool>(
-                                              currentUserDocument?.isPremium,
-                                              false) ==
-                                          false)
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 30.0),
-                                          child: AuthUserStreamWidget(
-                                            builder: (context) =>
-                                                FFButtonWidget(
-                                              onPressed: () async {
-                                                logFirebaseEvent(
-                                                    'CHATS_PAGE_PREMIUM_BTN_ON_TAP');
-                                                logFirebaseEvent(
-                                                    'Button_navigate_to');
-
-                                                context.pushNamed(
-                                                    GetPremiumWidget.routeName);
-                                              },
-                                              text: FFLocalizations.of(context)
-                                                  .getText(
-                                                'dllrrzv9' /* Premium */,
-                                              ),
-                                              icon: Icon(
-                                                Icons.diamond_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                size: 22.0,
-                                              ),
-                                              options: FFButtonOptions(
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                elevation: 0.0,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                    ].divide(SizedBox(height: 16.0)),
-                                  ),
-                                ),
-                                if (loggedIn == true)
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 0.0),
+                                        35.0, 0.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -487,7 +144,328 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'CHATS_PAGE_Row_ypy9uvdd_ON_TAP');
+                                            'CHATS_PAGE_Icon_0bvy8bmk_ON_TAP');
+                                        logFirebaseEvent('Icon_drawer');
+                                        if (scaffoldKey
+                                                .currentState!.isDrawerOpen ||
+                                            scaffoldKey.currentState!
+                                                .isEndDrawerOpen) {
+                                          Navigator.pop(context);
+                                        }
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 34.0,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].divide(SizedBox(height: 32.0)),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'CHATS_PAGE_Row_gd0llyu8_ON_TAP');
+                                  logFirebaseEvent('Row_navigate_to');
+
+                                  context.pushNamed(ExploreWidget.routeName);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.explore,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 24.0,
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'dhxqtcna' /* Chatpartner finden */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 16.0)),
+                                ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'CHATS_PAGE_Row_pbd8blm3_ON_TAP');
+                                  if (loggedIn == true) {
+                                    logFirebaseEvent('Row_navigate_to');
+
+                                    context.pushNamed(ChatsWidget.routeName);
+                                  } else {
+                                    logFirebaseEvent('Row_navigate_to');
+
+                                    context
+                                        .pushNamed(Auth2CreateWidget.routeName);
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.chat_bubble,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 24.0,
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'nxv20ahv' /* Meine Chats */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 16.0)),
+                                ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'CHATS_PAGE_Row_60t6wt2l_ON_TAP');
+                                  logFirebaseEvent('Row_navigate_to');
+
+                                  context.pushNamed(CreateWidget.routeName);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.add_circle,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 24.0,
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '2gtox0j4' /* Wunschpartner erstellen */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 16.0)),
+                                ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'CHATS_PAGE_Row_36g32fw0_ON_TAP');
+                                  if (loggedIn == true) {
+                                    logFirebaseEvent('Row_navigate_to');
+
+                                    context.pushNamed(MyAIWidget.routeName);
+                                  } else {
+                                    logFirebaseEvent('Row_navigate_to');
+
+                                    context
+                                        .pushNamed(Auth2CreateWidget.routeName);
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.favorite,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 24.0,
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'ur2b83tn' /* Meine Chatpartner */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 16.0)),
+                                ),
+                              ),
+                              Divider(
+                                thickness: 2.0,
+                                color: FlutterFlowTheme.of(context).alternate,
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 30.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    if (loggedIn == false)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 2.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'CHATS_PAGE_Container_pyrjwxn3_ON_TAP');
+                                            logFirebaseEvent(
+                                                'buttonPink_navigate_to');
+
+                                            context.pushNamed(
+                                                Auth2CreateWidget.routeName);
+                                          },
+                                          child: wrapWithModel(
+                                            model: _model.buttonPinkModel2,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: ButtonPinkWidget(),
+                                          ),
+                                        ),
+                                      ),
+                                    if (valueOrDefault<bool>(
+                                            currentUserDocument?.isPremium,
+                                            false) ==
+                                        false)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 30.0),
+                                        child: AuthUserStreamWidget(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'CHATS_PAGE_PREMIUM_BTN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
+
+                                              context.pushNamed(
+                                                  GetPremiumWidget.routeName);
+                                            },
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              'exhlui8h' /* Premium */,
+                                            ),
+                                            icon: Icon(
+                                              Icons.diamond_sharp,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              size: 22.0,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
+                                                      ),
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ].divide(SizedBox(height: 16.0)),
+                                ),
+                              ),
+                              if ((loggedIn == true) &&
+                                  (currentUserEmailVerified == true))
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 10.0, 0.0, 0.0),
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'CHATS_PAGE_Row_l6qgc8ny_ON_TAP');
                                         if (loggedIn == true) {
                                           logFirebaseEvent('Row_navigate_to');
 
@@ -519,7 +497,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           ),
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'ddwgqcsi' /* Profil */,
+                                              'hr780g1u' /* Profil */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
@@ -541,188 +519,185 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       ),
                                     ),
                                   ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 5.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'CHATS_PAGE_Row_3vsweye5_ON_TAP');
-                                      logFirebaseEvent('Row_navigate_to');
+                                ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 5.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHATS_PAGE_Row_w86xi68f_ON_TAP');
+                                    logFirebaseEvent('Row_navigate_to');
 
-                                      context.pushNamed(
-                                        Auth2ProfilWidget.routeName,
-                                        queryParameters: {
-                                          'profileReference': serializeParam(
-                                            currentUserReference,
-                                            ParamType.DocumentReference,
-                                          ),
-                                        }.withoutNulls,
-                                      );
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        FlutterFlowLanguageSelector(
-                                          width: 150.0,
-                                          height: 40.0,
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          borderColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryBackground,
-                                          borderRadius: 8.0,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                              ),
-                                          hideFlags: true,
-                                          flagSize: 24.0,
-                                          flagTextGap: 8.0,
-                                          currentLanguage:
-                                              FFLocalizations.of(context)
-                                                  .languageCode,
-                                          languages:
-                                              FFLocalizations.languages(),
-                                          onChanged: (lang) =>
-                                              setAppLanguage(context, lang),
+                                    context.pushNamed(
+                                      Auth2ProfilWidget.routeName,
+                                      queryParameters: {
+                                        'profileReference': serializeParam(
+                                          currentUserReference,
+                                          ParamType.DocumentReference,
                                         ),
-                                      ].divide(SizedBox(width: 16.0)),
-                                    ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      FlutterFlowLanguageSelector(
+                                        width: 150.0,
+                                        height: 40.0,
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                        borderRadius: 8.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                        hideFlags: true,
+                                        flagSize: 24.0,
+                                        flagTextGap: 8.0,
+                                        currentLanguage:
+                                            FFLocalizations.of(context)
+                                                .languageCode,
+                                        languages: FFLocalizations.languages(),
+                                        onChanged: (lang) =>
+                                            setAppLanguage(context, lang),
+                                      ),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
-                                if (loggedIn == false)
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'CHATS_PAGE_Row_hcr70i6a_ON_TAP');
-                                      logFirebaseEvent('Row_navigate_to');
+                              ),
+                              if (loggedIn == false)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHATS_PAGE_Row_ob61ud5b_ON_TAP');
+                                    logFirebaseEvent('Row_navigate_to');
 
-                                      context.pushNamed(
-                                          Auth2LoginWidget.routeName);
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.login,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24.0,
+                                    context
+                                        .pushNamed(Auth2LoginWidget.routeName);
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.login,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'a3lp4yue' /* Login */,
                                         ),
-                                        Text(
-                                          FFLocalizations.of(context).getText(
-                                            'wco38ex4' /* Login */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLargeFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLargeFamily),
-                                              ),
-                                        ),
-                                      ].divide(SizedBox(width: 16.0)),
-                                    ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLargeFamily),
+                                            ),
+                                      ),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
-                                if (loggedIn == true)
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'CHATS_PAGE_Row_rbd2f09p_ON_TAP');
-                                      logFirebaseEvent('Row_auth');
-                                      GoRouter.of(context).prepareAuthEvent();
-                                      await authManager.signOut();
-                                      GoRouter.of(context)
-                                          .clearRedirectLocation();
+                                ),
+                              if (loggedIn == true)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHATS_PAGE_Row_hfyxjuai_ON_TAP');
+                                    logFirebaseEvent('Row_auth');
+                                    GoRouter.of(context).prepareAuthEvent();
+                                    await authManager.signOut();
+                                    GoRouter.of(context)
+                                        .clearRedirectLocation();
 
-                                      logFirebaseEvent('Row_navigate_to');
+                                    logFirebaseEvent('Row_navigate_to');
 
-                                      context.pushNamedAuth(
-                                          HomeWidget.routeName,
-                                          context.mounted);
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.lock_outline,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24.0,
+                                    context.pushNamedAuth(
+                                        HomeWidget.routeName, context.mounted);
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.lock_outline,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'czg15l8o' /* Logout */,
                                         ),
-                                        Text(
-                                          FFLocalizations.of(context).getText(
-                                            'b68ptkce' /* Logout */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLargeFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLargeFamily),
-                                              ),
-                                        ),
-                                      ].divide(SizedBox(width: 16.0)),
-                                    ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLargeFamily),
+                                            ),
+                                      ),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
-                              ].divide(SizedBox(height: 24.0)),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.facebook,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 28.0,
                                 ),
-                                Icon(
-                                  Icons.discord,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 28.0,
-                                ),
-                              ].divide(SizedBox(width: 24.0)),
-                            ),
-                          ].divide(SizedBox(height: 40.0)),
-                        ),
+                            ].divide(SizedBox(height: 24.0)),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.facebook,
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 28.0,
+                              ),
+                              Icon(
+                                Icons.discord,
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 28.0,
+                              ),
+                            ].divide(SizedBox(width: 24.0)),
+                          ),
+                        ].divide(SizedBox(height: 40.0)),
                       ),
                     ),
                   ),

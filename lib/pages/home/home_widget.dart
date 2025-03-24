@@ -237,7 +237,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'lbj34iyg' /* Explore */,
+                                      'lbj34iyg' /* Chatpartner finden */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -284,7 +284,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'i016fti7' /* Chats */,
+                                      'i016fti7' /* Meine Chats */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -324,7 +324,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'zam6csiv' /* Create AI */,
+                                      'zam6csiv' /* Wunschpartner erstellen */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -371,7 +371,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'w25nc6tz' /* My AI */,
+                                      'w25nc6tz' /* Meine Chatpartner */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -1311,7 +1311,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '18mzotln' /* Character entdecken */,
+                                                            '18mzotln' /* Chatpartner finden */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1409,7 +1409,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'jv21upoq' /* Chats */,
+                                                            'jv21upoq' /* Meine Chats */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1517,7 +1517,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '70js1yhv' /* Character erstellen */,
+                                                            '70js1yhv' /* Wunschpartner erstellen */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2202,7 +2202,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     onPressed:
                                                                         () async {
                                                                       logFirebaseEvent(
-                                                                          'HOME_JETZT_CHARACTER_ERSTELLEN_BTN_ON_TA');
+                                                                          'HOME_PAGE_CHATPARTNER_FINDEN_BTN_ON_TAP');
                                                                       logFirebaseEvent(
                                                                           'Button_navigate_to');
 
@@ -2213,7 +2213,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     text: FFLocalizations.of(
                                                                             context)
                                                                         .getText(
-                                                                      'y8eklo3a' /* Jetzt Character erstellen! */,
+                                                                      'y8eklo3a' /* Chatpartner finden! */,
                                                                     ),
                                                                     options:
                                                                         FFButtonOptions(

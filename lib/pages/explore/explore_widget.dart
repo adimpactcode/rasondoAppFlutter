@@ -65,18 +65,6 @@ class _ExploreWidgetState extends State<ExploreWidget>
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
     animationsMap.addAll({
-      'buttonOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShimmerEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            color: Color(0x80FFFFFF),
-            angle: 0.524,
-          ),
-        ],
-      ),
       'tabBarOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -145,7 +133,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   logFirebaseEvent(
-                                      'EXPLORE_PAGE_Image_wyugxhwq_ON_TAP');
+                                      'EXPLORE_PAGE_Image_kmz614zn_ON_TAP');
                                   logFirebaseEvent('Image_navigate_to');
 
                                   context.pushNamed(HomeWidget.routeName);
@@ -167,7 +155,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'EXPLORE_PAGE_Icon_wve8bcjl_ON_TAP');
+                                        'EXPLORE_PAGE_Icon_694o8n6d_ON_TAP');
                                     logFirebaseEvent('Icon_drawer');
                                     if (scaffoldKey
                                             .currentState!.isDrawerOpen ||
@@ -199,7 +187,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'EXPLORE_PAGE_Row_qcod1174_ON_TAP');
+                                  'EXPLORE_PAGE_Row_5uejkxa1_ON_TAP');
                               logFirebaseEvent('Row_navigate_to');
 
                               context.pushNamed(ExploreWidget.routeName);
@@ -214,7 +202,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'dp7efind' /* Explore */,
+                                    '8bz7c2md' /* Chatpartner finden */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -238,7 +226,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'EXPLORE_PAGE_Row_8rffhea4_ON_TAP');
+                                  'EXPLORE_PAGE_Row_o36g8x7w_ON_TAP');
                               if (loggedIn == true) {
                                 logFirebaseEvent('Row_navigate_to');
 
@@ -259,7 +247,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'xs37856e' /* Chats */,
+                                    '051j6oxp' /* Meine Chats */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -283,7 +271,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'EXPLORE_PAGE_Row_46zthdzy_ON_TAP');
+                                  'EXPLORE_PAGE_Row_dlmp2n76_ON_TAP');
                               logFirebaseEvent('Row_navigate_to');
 
                               context.pushNamed(CreateWidget.routeName);
@@ -298,7 +286,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    '5iqoueq2' /* Create AI */,
+                                    'ais3huio' /* Wunschpartner erstellen */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -322,7 +310,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'EXPLORE_PAGE_Row_nrgxqs2b_ON_TAP');
+                                  'EXPLORE_PAGE_Row_p0qqx2h7_ON_TAP');
                               if (loggedIn == true) {
                                 logFirebaseEvent('Row_navigate_to');
 
@@ -343,7 +331,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    '01exg79c' /* My AI */,
+                                    'jww6tstc' /* Meine Chatpartner */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -383,7 +371,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'EXPLORE_PAGE_Container_tetc3wlm_ON_TAP');
+                                            'EXPLORE_PAGE_Container_sac96aqi_ON_TAP');
                                         logFirebaseEvent(
                                             'buttonPink_navigate_to');
 
@@ -391,7 +379,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             Auth2CreateWidget.routeName);
                                       },
                                       child: wrapWithModel(
-                                        model: _model.buttonPinkModel2,
+                                        model: _model.buttonPinkModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
                                         child: ButtonPinkWidget(),
@@ -418,7 +406,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
-                                          'j41d4cwa' /* Premium */,
+                                          '78656neq' /* Premium */,
                                         ),
                                         icon: Icon(
                                           Icons.diamond_sharp,
@@ -475,7 +463,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'EXPLORE_PAGE_Row_euuejas7_ON_TAP');
+                                        'EXPLORE_PAGE_Row_4sgtd79a_ON_TAP');
                                     if (loggedIn == true) {
                                       logFirebaseEvent('Row_navigate_to');
 
@@ -506,7 +494,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          'p5wvjo2x' /* Profil */,
+                                          '5kgl4eky' /* Profil */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -538,7 +526,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'EXPLORE_PAGE_Row_y9kwfqg4_ON_TAP');
+                                    'EXPLORE_PAGE_Row_tprpbdkl_ON_TAP');
                                 logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamed(
@@ -596,7 +584,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'EXPLORE_PAGE_Row_whciprvy_ON_TAP');
+                                    'EXPLORE_PAGE_Row_d391kitc_ON_TAP');
                                 logFirebaseEvent('Row_navigate_to');
 
                                 context.pushNamed(Auth2LoginWidget.routeName);
@@ -612,7 +600,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      '53surfm8' /* Login */,
+                                      'lvn2o705' /* Login */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -638,7 +626,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'EXPLORE_PAGE_Row_j3jv107o_ON_TAP');
+                                    'EXPLORE_PAGE_Row_v4d8pbdh_ON_TAP');
                                 logFirebaseEvent('Row_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await authManager.signOut();
@@ -660,7 +648,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'r3dav8z8' /* Logout */,
+                                      'wubm8sn4' /* Logout */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -746,7 +734,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   logFirebaseEvent(
-                                      'EXPLORE_PAGE_Image_jeotbl4e_ON_TAP');
+                                      'EXPLORE_PAGE_Image_cbodzlp4_ON_TAP');
                                   logFirebaseEvent('Image_navigate_to');
 
                                   context.pushNamed(HomeWidget.routeName);
@@ -777,7 +765,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'EXPLORE_PAGE_Row_buu292fa_ON_TAP');
+                                              'EXPLORE_PAGE_Row_9ojplzro_ON_TAP');
                                           logFirebaseEvent('Row_navigate_to');
 
                                           context.pushNamed(
@@ -801,7 +789,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'f9qzbbfl' /* Character entdecken */,
+                                                    'm5omedes' /* Chatpartner finden */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -846,7 +834,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'EXPLORE_PAGE_Icon_qsb9nev5_ON_TAP');
+                                                      'EXPLORE_PAGE_Icon_fce4g5a4_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Icon_navigate_to');
 
@@ -872,7 +860,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'EXPLORE_PAGE_Row_dsaja4hq_ON_TAP');
+                                              'EXPLORE_PAGE_Row_nupdnrfl_ON_TAP');
                                           logFirebaseEvent('Row_navigate_to');
 
                                           context
@@ -887,7 +875,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'eq6s2hng' /* Chats */,
+                                                    '4k7xnqm8' /* Meine Chats */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -932,7 +920,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'EXPLORE_PAGE_Icon_qpsjmmuf_ON_TAP');
+                                                      'EXPLORE_PAGE_Icon_9vnxzg7m_ON_TAP');
                                                   if (loggedIn == true) {
                                                     logFirebaseEvent(
                                                         'Icon_navigate_to');
@@ -967,7 +955,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'EXPLORE_PAGE_Row_w9zd196z_ON_TAP');
+                                              'EXPLORE_PAGE_Row_yq09iwvt_ON_TAP');
                                           logFirebaseEvent('Row_navigate_to');
 
                                           context.pushNamed(
@@ -982,7 +970,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'guseos6t' /* Character erstellen */,
+                                                    '9o5c53ra' /* Wunschpartner erstellen */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1027,7 +1015,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'EXPLORE_PAGE_Icon_lju6rkb4_ON_TAP');
+                                                      'EXPLORE_PAGE_Icon_0ugtp931_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Icon_navigate_to');
 
@@ -1054,7 +1042,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     padding: EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        't8btwvv4' /* Message... */,
+                                        '5hwaad6q' /* Message... */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
@@ -1106,7 +1094,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     padding: EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        'fvp0pupc' /* Darkmodus */,
+                                        'a14yni8d' /* Darkmodus */,
                                       ),
                                       style: TextStyle(),
                                     ),
@@ -1130,7 +1118,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                             FFAppState().isLightMode =
                                                 !FFAppState().isLightMode);
                                         logFirebaseEvent(
-                                            'EXPLORE_ToggleIcon_o6a3fy2v_ON_TOGGLE');
+                                            'EXPLORE_ToggleIcon_v95b0ojn_ON_TOGGLE');
                                         if (Theme.of(context).brightness ==
                                             Brightness.dark) {
                                           logFirebaseEvent(
@@ -1165,7 +1153,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     padding: EdgeInsets.all(4.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        'z6ywcml8' /* User profil */,
+                                        '4ddr7lzn' /* User profil */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
@@ -1235,24 +1223,45 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                   ),
                                 ),
                                 if (loggedIn == false)
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
+                                  FFButtonWidget(
+                                    onPressed: () async {
                                       logFirebaseEvent(
-                                          'EXPLORE_PAGE_Container_yv6m8hpw_ON_TAP');
-                                      logFirebaseEvent(
-                                          'buttonPink_navigate_to');
+                                          'EXPLORE_JETZT_KOSTENLOS_TESTEN_BTN_ON_TA');
+                                      logFirebaseEvent('Button_navigate_to');
 
                                       context.pushNamed(
                                           Auth2CreateWidget.routeName);
                                     },
-                                    child: wrapWithModel(
-                                      model: _model.buttonPinkModel1,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: ButtonPinkWidget(),
+                                    text: FFLocalizations.of(context).getText(
+                                      'vrey49y3' /* Jetzt kostenlos testen! */,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: Color(0xFF5BB0FF),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
+                                          ),
+                                      elevation: 0.0,
+                                      borderSide: BorderSide(
+                                        color: Color(0xFF55BBFF),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
                                 if (loggedIn == false)
@@ -1266,7 +1275,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                           Auth2LoginWidget.routeName);
                                     },
                                     text: FFLocalizations.of(context).getText(
-                                      'mm4974h4' /* Login */,
+                                      'vngbrvee' /* Login */,
                                     ),
                                     options: FFButtonOptions(
                                       width: 100.0,
@@ -1276,8 +1285,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       iconPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: Color(0x00DE5499),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1285,7 +1293,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
                                             color: FlutterFlowTheme.of(context)
-                                                .tertiary,
+                                                .primary,
                                             fontSize: 16.0,
                                             letterSpacing: 0.0,
                                             useGoogleFonts: GoogleFonts.asMap()
@@ -1301,8 +1309,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                       ),
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'buttonOnPageLoadAnimation']!),
+                                  ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
@@ -1313,7 +1320,7 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'EXPLORE_PAGE_Icon_zdekwcy9_ON_TAP');
+                                          'EXPLORE_PAGE_Icon_riz79yvu_ON_TAP');
                                       logFirebaseEvent('Icon_drawer');
                                       scaffoldKey.currentState!.openDrawer();
                                     },
